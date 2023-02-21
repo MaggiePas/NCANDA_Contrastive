@@ -52,7 +52,7 @@ class CenterLoss(nn.Module):
         return loss
 
 
-class CenterModel(LightningModule):
+class TripletModel(LightningModule):
     '''
     Resnet Model Class including the training, validation and testing steps
     '''
@@ -91,6 +91,8 @@ class CenterModel(LightningModule):
         self.center_loss = CenterLoss(num_classes=2, feat_dim=64, use_gpu=True)
 
         self.bce_loss = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
+        
+        self.triplet_loss = torch.nn.TripletMarginLoss()
 
         self.train_macro_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
         
@@ -183,42 +185,60 @@ class CenterModel(LightningModule):
         
 
     def training_step(self, batch, batch_idx):
-
-        img, tab, y, subject_id = batch
         
-        img = img.clone().detach().float()
-        # img = torch.tensor(img).float()
         
-        y = y.to(torch.float32)
+        anchor_img = batch['anchor'][0]
+        anchor_tab = batch['anchor'][1]
+        anchor_y = batch['anchor'][2]
+        anchor_subj = batch['anchor'][3]
+        anchor_img = anchor_img.clone().detach().float()
+        anchor_y = anchor_y.to(torch.float32)
+        anchor_pred, anchor_feats = self(anchor_img, anchor_tab)
 
-        y_pred, x_feats = self(img, tab)
+        pos_img = batch['positive'][0]
+        pos_tab = batch['positive'][1]
+        pos_y = batch['positive'][2]
+        pos_subj = batch['positive'][3]
+        pos_img = pos_img.clone().detach().float()
+        pos_y = pos_y.to(torch.float32)
+        pos_pred, pos_feats = self(pos_img, pos_tab)
+
+        neg_img = batch['negative'][0]
+        neg_tab = batch['negative'][1]
+        neg_y = batch['negative'][2]
+        neg_subj = batch['negative'][3]
+        neg_img = neg_img.clone().detach().float()
+        neg_y = neg_y.to(torch.float32)
+        neg_pred, neg_feats = self(neg_img, neg_tab)
+
+        bce_loss_f = self.bce_loss(anchor_pred, anchor_y.squeeze())
+
+        center_loss_f = self.center_loss(anchor_feats, anchor_y.squeeze())
+
+        triplet_loss_f = self.triplet_loss(anchor_feats, pos_feats, neg_feats)
+
+        loss = 0.45 * bce_loss_f + 0.2 * center_loss_f + 0.35 * triplet_loss_f
+
+        anchor_pred_tag = torch.round(torch.sigmoid(anchor_pred))
         
-        bce_loss_f = self.bce_loss(y_pred, y.squeeze())
+        self.train_results_df['subject'] = tuple(anchor_subj)
+        self.train_results_df['label'] = anchor_y.squeeze().detach().cpu().numpy()
+        self.train_results_df['prediction'] = anchor_pred_tag.detach().cpu().numpy()
 
-        center_loss_f = self.center_loss(x_feats, y.squeeze())
-
-        loss = 1.0*bce_loss_f + 0.2*center_loss_f
-
-        y_pred_tag = torch.round(torch.sigmoid(y_pred))
-        
-        self.train_results_df['subject'] = tuple(subject_id)
-        self.train_results_df['label'] = y.squeeze().detach().cpu().numpy()
-        self.train_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
-
-        tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
+        tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cpu().numpy())
         self.train_results_df['age'] = tab_bef_normalization[:,2]
         self.train_results_df['sex'] = tab_bef_normalization[:, 1]
         
         self.train_results_df_all = pd.concat([self.train_results_df_all , self.train_results_df], ignore_index=True)
         
         if BATCH_SIZE == 1:
-            self.train_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.train_accuracy(torch.unsqueeze(anchor_y_pred_tag, 0), anchor_y)
             
-            self.train_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.train_macro_accuracy(torch.unsqueeze(anchor_y_pred_tag, 0), anchor_y)
         else:
-            self.train_accuracy(y_pred_tag, y)
+            self.train_accuracy(anchor_pred_tag, anchor_y)
             
-            self.train_macro_accuracy(y_pred_tag, y)
+            self.train_macro_accuracy(anchor_pred_tag, anchor_y)
         
         self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
         self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
@@ -226,32 +246,51 @@ class CenterModel(LightningModule):
         self.log('train_loss', loss, on_step=True, on_epoch=True)
         self.log('train_bce_loss', bce_loss_f, on_step=True, on_epoch=True)
         self.log('train_center_loss', center_loss_f, on_step=True, on_epoch=True)
+        self.log('train_triplet_loss', triplet_loss_f, on_step=True, on_epoch=True)
 
         return loss
 
     def validation_step(self, batch, batch_idx):
 
-        img, tab, y, subject_id = batch
-        
-        img = img.clone().detach().float()
-        
-        y = y.to(torch.float32)
+        anchor_img = batch['anchor'][0]
+        anchor_tab = batch['anchor'][1]
+        anchor_y = batch['anchor'][2]
+        anchor_subj = batch['anchor'][3]
+        anchor_img = anchor_img.clone().detach().float()
+        anchor_y = anchor_y.to(torch.float32)
+        anchor_pred, anchor_feats = self(anchor_img, anchor_tab)
 
-        y_pred, x_feats = self(img, tab)
+        pos_img = batch['positive'][0]
+        pos_tab = batch['positive'][1]
+        pos_y = batch['positive'][2]
+        pos_subj = batch['positive'][3]
+        pos_img = pos_img.clone().detach().float()
+        pos_y = pos_y.to(torch.float32)
+        pos_pred, pos_feats = self(pos_img, pos_tab)
 
-        bce_loss_f = self.bce_loss(y_pred, y.squeeze())
+        neg_img = batch['negative'][0]
+        neg_tab = batch['negative'][1]
+        neg_y = batch['negative'][2]
+        neg_subj = batch['negative'][3]
+        neg_img = neg_img.clone().detach().float()
+        neg_y = neg_y.to(torch.float32)
+        neg_pred, neg_feats = self(neg_img, neg_tab)
 
-        center_loss_f = self.center_loss(x_feats, y.squeeze())
+        bce_loss_f = self.bce_loss(anchor_pred, anchor_y.squeeze())
 
-        loss = 1.0*bce_loss_f + 0.2*center_loss_f
+        center_loss_f = self.center_loss(anchor_feats, anchor_y.squeeze())
+
+        triplet_loss_f = self.triplet_loss(anchor_feats, pos_feats, neg_feats)
+
+        loss = 0.45 * bce_loss_f + 0.2 * center_loss_f + 0.35 * triplet_loss_f
+
+        anchor_pred_tag = torch.round(torch.sigmoid(anchor_pred))
         
-        y_pred_tag = torch.round(torch.sigmoid(y_pred))
+        self.val_results_df['subject'] = tuple(anchor_subj)
+        self.val_results_df['label'] = anchor_y.squeeze().detach().cpu().numpy()
+        self.val_results_df['prediction'] = anchor_pred_tag.detach().cpu().numpy()
         
-        self.val_results_df['subject'] = tuple(subject_id)
-        self.val_results_df['label'] = y.squeeze().detach().cpu().numpy()
-        self.val_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
-        
-        tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
+        tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cpu().numpy())
         self.val_results_df['age'] = tab_bef_normalization[:,2]
         self.val_results_df['sex'] = tab_bef_normalization[:, 1]
         
@@ -259,13 +298,13 @@ class CenterModel(LightningModule):
         
         if BATCH_SIZE == 1:
             
-            self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             
-            self.val_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_macro_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
         else:
-            self.val_accuracy(y_pred_tag, y)
+            self.val_accuracy(anchor_pred_tag, anchor_y)
             
-            self.val_macro_accuracy(y_pred_tag, y)
+            self.val_macro_accuracy(anchor_pred_tag, anchor_y)
         
         self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
         self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True)
@@ -274,36 +313,55 @@ class CenterModel(LightningModule):
         self.log('val_loss', loss, on_step=True, on_epoch=True)
         self.log('val_bce_loss', bce_loss_f, on_step=True, on_epoch=True)
         self.log('val_center_loss', center_loss_f, on_step=True, on_epoch=True)
+        self.log('val_triplet_loss', triplet_loss_f, on_step=True, on_epoch=True)
 
         return loss
 
     def test_step(self, batch, batch_idx):
 
-        img, tab, y, subject_id = batch
-        
-        img = img.clone().detach().float()
-                
-        y = y.to(torch.float32)
+        anchor_img = batch['anchor'][0]
+        anchor_tab = batch['anchor'][1]
+        anchor_y = batch['anchor'][2]
+        anchor_subj = batch['anchor'][3]
+        anchor_img = anchor_img.clone().detach().float()
+        anchor_y = anchor_y.to(torch.float32)
+        anchor_pred, anchor_feats = self(anchor_img, anchor_tab)
 
-        y_pred, x_feats = self(img, tab)
+        pos_img = batch['positive'][0]
+        pos_tab = batch['positive'][1]
+        pos_y = batch['positive'][2]
+        pos_subj = batch['positive'][3]
+        pos_img = pos_img.clone().detach().float()
+        pos_y = pos_y.to(torch.float32)
+        pos_pred, pos_feats = self(pos_img, pos_tab)
 
-        bce_loss_f = self.bce_loss(y_pred, y.squeeze())
+        neg_img = batch['negative'][0]
+        neg_tab = batch['negative'][1]
+        neg_y = batch['negative'][2]
+        neg_subj = batch['negative'][3]
+        neg_img = neg_img.clone().detach().float()
+        neg_y = neg_y.to(torch.float32)
+        neg_pred, neg_feats = self(neg_img, neg_tab)
 
-        center_loss_f = self.center_loss(x_feats, y.squeeze())
+        bce_loss_f = self.bce_loss(anchor_pred, anchor_y.squeeze())
 
-        loss = 1.0*bce_loss_f + 0.2*center_loss_f
+        center_loss_f = self.center_loss(anchor_feats, anchor_y.squeeze())
 
-        y_pred_tag = torch.round(torch.sigmoid(y_pred))
+        triplet_loss_f = self.triplet_loss(anchor_feats, pos_feats, neg_feats)
+
+        loss = 0.45 * bce_loss_f + 0.2 * center_loss_f + 0.35 * triplet_loss_f
+
+        anchor_pred_tag = torch.round(torch.sigmoid(anchor_pred))
                 
         if BATCH_SIZE == 1:
             
-            self.test_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.test_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             
-            self.test_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.test_macro_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
         else:
-            self.test_accuracy(y_pred_tag, y)
+            self.test_accuracy(anchor_pred_tag, anchor_y)
             
-            self.test_macro_accuracy(y_pred_tag, y)
+            self.test_macro_accuracy(anchor_pred_tag, anchor_y)
         
         self.log('test_acc_step', self.test_accuracy, on_step=True, on_epoch=False)
         self.log('test_macro_acc_step', self.test_macro_accuracy, on_step=True, on_epoch=True)
@@ -311,13 +369,14 @@ class CenterModel(LightningModule):
         self.log("test loss", loss)
         self.log('test_bce_loss', bce_loss_f, on_step=True, on_epoch=True)
         self.log('test_center_loss', center_loss_f, on_step=True, on_epoch=True)
+        self.log('test_triplet_loss', triplet_loss_f, on_step=True, on_epoch=True)
 
         return loss
         
     
     def training_epoch_end(self, outs):
         
-        filename_out = '/home/users/paschali/results/train_out_center_02_64' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/home/users/paschali/results/train_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.train_results_df_all.to_csv(filename_out)
 
@@ -331,7 +390,7 @@ class CenterModel(LightningModule):
     def validation_epoch_end(self, outputs):
         # log epoch metric
 
-        filename_out = '/home/users/paschali/results/val_out_center_02_64' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/home/users/paschali/results/val_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
         
         self.val_results_df_all.to_csv(filename_out)
 
