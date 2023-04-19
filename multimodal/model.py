@@ -222,7 +222,7 @@ class MultiModModel(LightningModule):
     
     def training_epoch_end(self, outs):
         
-        filename_out = '/home/users/paschali/results/train_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/home/users/emilywesel/results/train_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.train_results_df_all.to_csv(filename_out)
 
@@ -236,7 +236,7 @@ class MultiModModel(LightningModule):
     def validation_epoch_end(self, outputs):
         # log epoch metric
 
-        filename_out = '/home/users/paschali/results/val_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/home/users/emilywesel/results/val_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
         
         self.val_results_df_all.to_csv(filename_out)
 
