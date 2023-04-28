@@ -4,7 +4,7 @@ import torchvision.transforms as transforms
 # IMAGE_PATH = r'C:\Users\Selen\Desktop\LMU\multimodal_network\data\adni\images\nifti_images_tabular'
 # IMAGE_PATH = r'/Users/magdalinipaschali/Documents/NCANDA_T1_T2/T1_small'
 
-IMAGE_PATH = r'home/groups/kpohl/ncanda-multi-modal/T1'
+IMAGE_PATH = r'/Users/emilywesel/Desktop/NCANDA/data/ncanda-multi-modal/T1'
 
 # CSV_FILE = r'C:\Users\Selen\Desktop\LMU\multimodal_network\data\adni\labels'
 # CSV_FILE = r'C:\Users\Selen\Desktop\LMU\multimodal_network\data\adni\labels\tabular_image_labels'

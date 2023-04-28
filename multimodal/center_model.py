@@ -317,7 +317,8 @@ class CenterModel(LightningModule):
     
     def training_epoch_end(self, outs):
         
-        filename_out = '/home/users/paschali/results/train_out_center_02_64' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/scratch/users/ewesel/train_out_center_02_64' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/Users/emilywesel/Desktop/NCANDA/train_out_center_02_64' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.train_results_df_all.to_csv(filename_out)
 
@@ -331,8 +332,9 @@ class CenterModel(LightningModule):
     def validation_epoch_end(self, outputs):
         # log epoch metric
 
-        filename_out = '/home/users/paschali/results/val_out_center_02_64' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
-        
+        filename_out = '/scratch/users/ewesel/val_out_center_02_64' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/Users/emilywesel/Desktop/NCANDA/val_out_center_02_64' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+
         self.val_results_df_all.to_csv(filename_out)
 
         # Clear the dataframe so the new epoch can start fresh

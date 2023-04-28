@@ -223,6 +223,7 @@ class MultiModModel(LightningModule):
     def training_epoch_end(self, outs):
         
         filename_out = '/home/users/emilywesel/results/train_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/Users/emilywesel/Desktop/NCANDA/train_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.train_results_df_all.to_csv(filename_out)
 
@@ -237,7 +238,8 @@ class MultiModModel(LightningModule):
         # log epoch metric
 
         filename_out = '/home/users/emilywesel/results/val_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
-        
+        filename_out = '/Users/emilywesel/Desktop/NCANDA/val_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+
         self.val_results_df_all.to_csv(filename_out)
 
         # Clear the dataframe so the new epoch can start fresh

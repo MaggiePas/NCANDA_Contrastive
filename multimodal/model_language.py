@@ -287,8 +287,8 @@ class MultiModModelWithLanguage(LightningModule):
         return loss
 
     def training_epoch_end(self, outs):
-
-        filename_out = '/home/users/paschali/results/train_out_language_' + str(
+        filename_out = '/scratch/users/ewesel/train_out_language_'
+        filename_out = '/Users/emilywesel/Desktop/NCANDA/train_out_language_' + str(
             self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.train_results_df_all.to_csv(filename_out)
@@ -302,7 +302,7 @@ class MultiModModelWithLanguage(LightningModule):
     def validation_epoch_end(self, outputs):
         # log epoch metric
 
-        filename_out = '/home/users/paschali/results/val_out_language_' + str(
+        filename_out = '/Users/emilywesel/Desktop/NCANDA/val_out_language_' + str(
             self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.val_results_df_all.to_csv(filename_out)

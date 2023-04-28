@@ -173,13 +173,13 @@ class NCANDADataModule(pl.LightningDataModule):
         self.test = self.validation
 
     def train_dataloader(self):
-        return DataLoader(self.train, batch_size=BATCH_SIZE, shuffle=True, num_workers=1, drop_last = True)
+        return DataLoader(self.train, batch_size=BATCH_SIZE, shuffle=True, num_workers=8, drop_last = True)
 
     def val_dataloader(self):
-        return DataLoader(self.validation, batch_size=BATCH_SIZE, shuffle=False, num_workers=1, drop_last = True)
+        return DataLoader(self.validation, batch_size=BATCH_SIZE, shuffle=False, num_workers=8, drop_last = True)
 
     def test_dataloader(self):
-        return DataLoader(self.test, batch_size=BATCH_SIZE, shuffle=False, num_workers=1, drop_last = True)
+        return DataLoader(self.test, batch_size=BATCH_SIZE, shuffle=False, num_workers=8, drop_last = True)
 
 class Multimodal_Dataset(Dataset):
 
