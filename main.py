@@ -125,6 +125,7 @@ def main_language(wandb, wandb_logger):
     val_loader = data.val_dataloader()
 
     # ge the model
+    print("getting the model")
     model = MultiModModelWithLanguage(class_weight=data.class_weight, scaler=data.scaler)
 
     # Optional
@@ -179,6 +180,9 @@ def main_triplet(wandb, wandb_logger):
     val_loader = data.val_dataloader()
 
     # ge the model
+    print("getting the model")
+    model = MultiModModelWithLanguage(class_weight=data.class_weight, scaler=data.scaler)
+    print("koday got it")
     model = TripletModel(class_weight=data.class_weight, scaler=data.scaler)
 
     # Optional
