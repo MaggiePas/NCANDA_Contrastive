@@ -75,7 +75,7 @@ class NCANDADataset(Dataset):
 
         subject_id = self.input_tab.iloc[idx, 0]
 
-        image_path = image_name + '.nii.gz'
+        image_path = image_name + '.nii'
 
         image = nib.load(image_path)
         image = image.get_fdata()
@@ -173,13 +173,13 @@ class NCANDADataModule(pl.LightningDataModule):
         self.test = self.validation
 
     def train_dataloader(self):
-        return DataLoader(self.train, batch_size=BATCH_SIZE, shuffle=True, num_workers=1, drop_last = True)
+        return DataLoader(self.train, batch_size=BATCH_SIZE, shuffle=True, num_workers=0, drop_last = True)
 
     def val_dataloader(self):
-        return DataLoader(self.validation, batch_size=BATCH_SIZE, shuffle=False, num_workers=1, drop_last = True)
+        return DataLoader(self.validation, batch_size=BATCH_SIZE, shuffle=False, num_workers=0, drop_last = True)
 
     def test_dataloader(self):
-        return DataLoader(self.test, batch_size=BATCH_SIZE, shuffle=False, num_workers=1, drop_last = True)
+        return DataLoader(self.test, batch_size=BATCH_SIZE, shuffle=False, num_workers=0, drop_last = True)
 
 class Multimodal_Dataset(Dataset):
 
@@ -244,7 +244,7 @@ class Multimodal_Dataset(Dataset):
         img_folder_name = self.multimodal['Image_id'][idx]
 
         img_path = os.path.join(
-            self.imge_base_dir, img_folder_name, 'image.nii.gz')
+            self.imge_base_dir, img_folder_name, 'image.nii')
 
         image = nib.load(img_path)
         image = image.get_fdata()

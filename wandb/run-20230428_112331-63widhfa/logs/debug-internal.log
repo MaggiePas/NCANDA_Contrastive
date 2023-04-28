@@ -1,0 +1,1039 @@
+2023-04-28 11:23:31,476 INFO    StreamThr :50712 [internal.py:wandb_internal():89] W&B internal server running at pid: 50712, started at: 2023-04-28 11:23:31.475828
+2023-04-28 11:23:31,477 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status
+2023-04-28 11:23:31,493 INFO    WriterThread:50712 [datastore.py:open_for_write():85] open: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/run-63widhfa.wandb
+2023-04-28 11:23:31,493 DEBUG   SenderThread:50712 [sender.py:send():375] send: header
+2023-04-28 11:23:31,528 DEBUG   SenderThread:50712 [sender.py:send():375] send: run
+2023-04-28 11:23:31,787 INFO    SenderThread:50712 [dir_watcher.py:__init__():219] watching files in: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files
+2023-04-28 11:23:31,787 INFO    SenderThread:50712 [sender.py:_start_run_threads():1127] run started: 63widhfa with start time 1682706211.476397
+2023-04-28 11:23:31,787 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:23:31,788 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:23:31,793 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: check_version
+2023-04-28 11:23:31,793 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: check_version
+2023-04-28 11:23:31,889 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: run_start
+2023-04-28 11:23:31,892 DEBUG   HandlerThread:50712 [system_info.py:__init__():31] System info init
+2023-04-28 11:23:31,892 DEBUG   HandlerThread:50712 [system_info.py:__init__():46] System info init done
+2023-04-28 11:23:31,892 INFO    HandlerThread:50712 [system_monitor.py:start():181] Starting system monitor
+2023-04-28 11:23:31,892 INFO    SystemMonitor:50712 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-04-28 11:23:31,893 INFO    HandlerThread:50712 [system_monitor.py:probe():201] Collecting system info
+2023-04-28 11:23:31,893 INFO    SystemMonitor:50712 [interfaces.py:start():190] Started cpu monitoring
+2023-04-28 11:23:31,894 INFO    SystemMonitor:50712 [interfaces.py:start():190] Started disk monitoring
+2023-04-28 11:23:31,894 DEBUG   HandlerThread:50712 [system_info.py:probe():195] Probing system
+2023-04-28 11:23:31,895 INFO    SystemMonitor:50712 [interfaces.py:start():190] Started memory monitoring
+2023-04-28 11:23:31,896 INFO    SystemMonitor:50712 [interfaces.py:start():190] Started network monitoring
+2023-04-28 11:23:31,904 DEBUG   HandlerThread:50712 [system_info.py:_probe_git():180] Probing git
+2023-04-28 11:23:31,946 DEBUG   HandlerThread:50712 [system_info.py:_probe_git():188] Probing git done
+2023-04-28 11:23:31,947 DEBUG   HandlerThread:50712 [system_info.py:probe():240] Probing system done
+2023-04-28 11:23:31,947 DEBUG   HandlerThread:50712 [system_monitor.py:probe():210] {'os': 'Darwin-21.6.0-x86_64-i386-64bit', 'python': '3.7.5', 'heartbeatAt': '2023-04-28T18:23:31.895295', 'startedAt': '2023-04-28T18:23:31.418762', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'main.py', 'codePath': 'main.py', 'git': {'remote': 'https://github.com/MaggiePas/NCANDA_Contrastive.git', 'commit': '758576a23283b9b9a686310489bb694acd02f396'}, 'email': '102644645+mrfetter@users.noreply.github.com', 'root': '/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive', 'host': 'DN0a22966e.SUNet', 'username': 'MaryFetter', 'executable': '/Library/Frameworks/Python.framework/Versions/3.7/bin/python3', 'cpu_count': 2, 'cpu_count_logical': 4, 'cpu_freq': {'current': 2900, 'min': 2900, 'max': 2900}, 'cpu_freq_per_core': [{'current': 2900, 'min': 2900, 'max': 2900}], 'disk': {'total': 465.7246513366699, 'used': 19.502052307128906}, 'memory': {'total': 8.0}}
+2023-04-28 11:23:31,947 INFO    HandlerThread:50712 [system_monitor.py:probe():211] Finished collecting system info
+2023-04-28 11:23:31,947 INFO    HandlerThread:50712 [system_monitor.py:probe():214] Publishing system info
+2023-04-28 11:23:31,947 DEBUG   HandlerThread:50712 [system_info.py:_save_pip():52] Saving list of pip packages installed into the current environment
+2023-04-28 11:23:31,948 DEBUG   HandlerThread:50712 [system_info.py:_save_pip():67] Saving pip packages done
+2023-04-28 11:23:31,949 INFO    HandlerThread:50712 [system_monitor.py:probe():216] Finished publishing system info
+2023-04-28 11:23:31,954 DEBUG   SenderThread:50712 [sender.py:send():375] send: files
+2023-04-28 11:23:31,955 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-metadata.json with policy now
+2023-04-28 11:23:31,990 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:23:31,995 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:23:32,136 DEBUG   SenderThread:50712 [sender.py:send():375] send: telemetry
+2023-04-28 11:23:32,644 INFO    wandb-upload_0:50712 [upload_job.py:push():137] Uploaded file /var/folders/d1/1g4fb8rd0bgdw4zh3vsc2y4m0000gn/T/tmpwbpn3rjnwandb/jddxeenj-wandb-metadata.json
+2023-04-28 11:23:32,795 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-metadata.json
+2023-04-28 11:23:32,795 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:23:32,796 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:23:32,796 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_created():278] file/dir created: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/requirements.txt
+2023-04-28 11:23:33,231 DEBUG   SenderThread:50712 [sender.py:send():375] send: telemetry
+2023-04-28 11:23:34,799 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:23:36,807 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:23:37,318 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:23:38,811 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:23:40,141 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:23:40,144 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:23:40,144 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:23:40,147 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:23:40,819 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:23:40,820 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:23:42,828 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:23:43,153 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:23:45,292 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:23:45,298 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:23:45,298 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:23:45,299 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:23:45,840 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:23:46,725 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:23:46,728 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:23:46,728 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:23:46,729 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:23:46,844 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:23:46,844 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:23:46,967 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:23:46,968 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:23:48,846 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:23:49,047 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:23:51,895 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:23:51,897 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:23:51,897 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:23:51,898 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:23:52,860 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:23:52,860 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:23:52,944 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:23:52,948 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:23:52,948 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:23:52,955 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:23:53,864 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:23:54,865 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:23:54,964 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:23:57,848 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:23:57,849 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:23:57,850 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:23:57,850 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:23:57,869 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:23:58,871 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:23:59,333 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:23:59,336 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:23:59,338 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:23:59,339 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:23:59,872 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:00,349 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:24:00,877 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:01,968 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:24:01,969 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:24:05,146 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:05,157 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:05,158 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:05,162 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:05,897 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:06,173 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:24:06,241 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:06,316 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:06,316 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:06,318 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:06,901 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/config.yaml
+2023-04-28 11:24:06,902 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:06,902 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:08,904 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:10,755 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:10,759 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:10,760 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:10,760 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:10,912 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:11,787 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:24:12,921 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:13,264 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:13,269 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:13,269 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:13,279 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:13,925 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:14,930 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:15,553 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:15,558 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:15,559 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:15,559 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:15,565 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:15,579 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:15,581 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:15,585 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:15,934 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:16,382 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:16,385 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:16,387 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:16,397 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:16,939 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:16,939 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:16,969 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:24:16,970 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:24:17,039 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:24:17,305 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:17,308 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:17,308 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:17,309 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:17,943 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:18,947 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:21,804 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:21,807 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:21,809 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:21,811 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:21,961 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:22,790 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:22,801 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:22,802 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:22,803 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:24:22,805 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:22,966 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:22,967 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:24,974 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:27,756 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:27,764 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:27,765 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:27,766 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:27,986 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:28,772 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:24:28,992 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:29,275 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:29,281 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:29,282 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:29,283 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:29,994 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:30,997 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:31,898 DEBUG   SystemMonitor:50712 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-04-28 11:24:31,904 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:24:31,973 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:24:31,975 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:24:34,060 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:24:35,075 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:35,079 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:35,080 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:35,081 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:36,018 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:36,179 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:36,186 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:36,187 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:36,188 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:37,031 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:37,031 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:39,201 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:24:41,865 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:41,875 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:41,877 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:41,879 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:42,046 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:43,048 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:43,262 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:43,267 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:43,267 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:43,268 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:44,056 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:44,270 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:24:45,064 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:46,977 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:24:46,977 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:24:49,225 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:49,227 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:49,228 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:49,229 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:50,087 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:50,185 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:24:51,092 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:51,713 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:51,718 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:51,718 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:51,719 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:52,096 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:53,100 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:54,392 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:54,395 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:54,396 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:54,398 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:54,405 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:54,419 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:54,419 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:54,425 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:55,108 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:55,108 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:55,414 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:55,418 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:55,419 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:55,428 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:24:55,434 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:56,113 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:56,766 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:24:56,770 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:24:56,770 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:24:56,772 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:24:57,120 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:24:57,120 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:24:59,124 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:00,785 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:25:01,910 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:25:01,979 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:25:01,980 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:25:02,772 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:02,775 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:02,776 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:02,779 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:03,155 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:03,156 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:04,448 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:04,453 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:04,454 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:04,455 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:05,161 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:05,161 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:06,474 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:25:09,616 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:09,620 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:09,620 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:09,624 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:10,178 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:10,655 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:10,660 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:10,660 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:10,661 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:11,186 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:11,187 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:11,667 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:25:13,191 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:15,855 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:15,866 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:15,866 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:15,867 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:16,200 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:16,873 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:25:16,881 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:16,883 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:16,884 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:16,886 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:16,984 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:25:16,984 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:25:17,205 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:17,205 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:19,213 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:21,775 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:21,778 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:21,778 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:21,779 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:22,224 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:22,784 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:25:22,821 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:22,824 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:22,824 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:22,826 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:23,225 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:23,225 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:25,246 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:27,843 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:25:28,355 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:28,376 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:28,376 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:28,378 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:29,251 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:29,252 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:31,259 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:31,683 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:31,688 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:31,689 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:31,689 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:31,913 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:25:31,987 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:25:31,988 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:25:32,261 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:33,056 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:25:33,263 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:34,483 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:34,488 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:34,488 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:34,489 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:34,499 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:34,509 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:34,510 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:34,514 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:35,273 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:35,274 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:35,277 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:35,281 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:35,282 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:35,287 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:36,278 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:36,497 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:36,500 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:36,501 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:36,503 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:37,284 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:37,285 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:38,507 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:25:39,287 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:42,254 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:42,258 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:42,258 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:42,259 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:42,296 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:43,302 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:43,445 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:43,449 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:43,450 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:43,451 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:44,304 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:44,452 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:25:45,305 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:46,997 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:25:46,999 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:25:48,809 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:48,818 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:48,819 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:48,820 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:49,316 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:49,823 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:25:49,915 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:49,922 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:49,922 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:49,923 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:50,320 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:51,325 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:54,933 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:25:54,936 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:54,940 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:54,941 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:54,942 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:55,336 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:55,933 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:25:55,937 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:25:55,938 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:25:55,939 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:25:56,338 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:25:57,340 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:25:59,953 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:01,922 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:26:01,998 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:26:01,999 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:26:02,231 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:02,234 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:02,235 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:02,235 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:02,368 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:03,371 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:04,090 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:04,097 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:04,098 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:04,100 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:04,372 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:05,112 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:05,373 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:10,126 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:15,140 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:17,002 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:26:17,003 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:26:18,914 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:18,919 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:18,919 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:18,921 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:19,438 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:20,858 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:21,444 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:23,445 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:23,453 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:23,459 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:23,465 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:23,466 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:24,454 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:25,460 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:26,479 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:29,968 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:29,970 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:29,970 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:29,972 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:29,989 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:29,994 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:29,994 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:29,995 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:30,475 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:31,479 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:31,554 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:31,557 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:31,558 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:31,558 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:31,560 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:31,927 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:26:32,003 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:26:32,004 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:26:32,481 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:33,134 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:33,139 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:33,139 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:33,142 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:33,485 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:33,486 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:35,499 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:37,169 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:39,371 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:39,374 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:39,375 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:39,379 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:39,513 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:40,384 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:40,389 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:40,389 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:40,390 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:40,522 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:41,527 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:42,399 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:46,054 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:46,062 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:46,062 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:46,063 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:46,544 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:47,007 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:26:47,008 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:26:47,378 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:47,381 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:47,381 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:47,382 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:47,545 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:47,546 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:48,386 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:49,551 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:52,896 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:52,901 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:52,902 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:52,903 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:53,568 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:53,568 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:53,908 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:54,043 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:54,048 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:54,049 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:54,049 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:26:54,591 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:26:55,586 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:26:59,071 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:26:59,631 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:26:59,636 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:26:59,636 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:26:59,637 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:00,611 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:01,076 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:01,080 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:01,080 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:01,081 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:01,614 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:01,615 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:27:01,927 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:27:02,009 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:27:02,010 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:27:03,621 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:27:04,093 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:27:07,737 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:07,742 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:07,743 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:07,746 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:08,647 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:09,651 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:27:09,875 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:27:10,531 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:10,534 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:10,534 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:10,536 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:10,655 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:11,657 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:27:14,420 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:14,421 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:14,421 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:14,422 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:14,449 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:14,453 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:14,454 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:14,458 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:14,668 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:15,467 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:15,471 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:15,473 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:15,474 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:27:15,476 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:15,670 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:15,671 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:27:17,011 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:27:17,012 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:27:17,676 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:27:18,602 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:18,607 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:18,608 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:18,609 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:18,680 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:20,626 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:27:21,695 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:27:25,638 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:27:30,649 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:27:31,951 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:27:32,016 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:27:32,017 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:27:36,113 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:27:37,847 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:37,854 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:37,854 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:37,855 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:38,763 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:39,766 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:27:40,379 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:40,395 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:40,395 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:40,396 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:40,770 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:41,422 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:27:41,775 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:27:46,462 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:27:47,019 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:27:47,020 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:27:49,549 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:49,553 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:49,553 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:49,555 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:49,819 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:50,829 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:50,832 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:50,833 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:50,834 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:51,828 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:51,829 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:27:51,840 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:27:53,838 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:27:56,856 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:27:57,329 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:57,332 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:57,333 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:57,339 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:57,851 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:58,925 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:27:58,929 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:27:58,930 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:27:58,931 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:27:59,871 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:27:59,871 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:00,881 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:01,959 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:28:01,964 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:28:02,028 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:28:02,033 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:28:07,139 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:28:07,597 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:07,603 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:07,604 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:07,606 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:07,926 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:08,946 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:08,951 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:08,952 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:08,958 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:09,939 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:09,939 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:10,943 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:12,970 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:28:14,798 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:14,804 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:14,806 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:14,808 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:14,957 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:15,961 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:17,029 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:28:17,030 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:28:17,337 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:17,356 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:17,361 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:17,363 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:17,973 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:17,974 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:18,364 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:28:19,978 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:20,112 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:20,116 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:20,117 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:20,118 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:20,131 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:20,139 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:20,140 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:20,140 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:20,982 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:21,274 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:21,280 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:21,282 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:21,292 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:21,987 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:21,988 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:22,562 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:22,568 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:22,569 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:22,570 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:22,991 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:22,992 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:23,575 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:28:28,601 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:28:28,670 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:28,677 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:28,678 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:28,679 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:29,028 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:29,897 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:29,900 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:29,900 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:29,901 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:30,035 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:30,045 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:31,039 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:31,972 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:28:32,032 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:28:32,032 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:28:34,123 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:28:37,317 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:37,322 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:37,322 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:37,325 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:38,073 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:38,073 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:38,381 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:38,384 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:38,384 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:38,385 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:39,073 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:39,073 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:39,395 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:28:44,390 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:44,394 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:44,396 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:44,397 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:28:44,399 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:45,093 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:45,728 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:45,731 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:45,732 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:45,733 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:46,097 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:46,097 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:47,032 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:28:47,034 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:28:47,103 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:50,124 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:28:51,803 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:51,811 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:51,812 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:51,814 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:52,118 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:53,214 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:53,216 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:53,217 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:53,219 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:28:54,130 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:28:54,130 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:55,134 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:28:55,227 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:28:59,613 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:28:59,620 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:28:59,620 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:28:59,622 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:00,157 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:00,643 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:29:01,989 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:29:02,040 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:29:02,041 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:29:02,165 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:03,489 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:03,491 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:03,491 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:03,492 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:04,166 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:04,167 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:06,176 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:06,514 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:29:07,463 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:07,466 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:07,467 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:07,471 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:07,481 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:07,488 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:07,488 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:07,492 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:08,182 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:08,811 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:08,833 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:08,834 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:08,840 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:09,187 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:10,191 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:11,387 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:11,396 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:11,397 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:11,397 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:12,201 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:12,401 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:29:13,204 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:17,037 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:29:17,038 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:29:17,134 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:17,137 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:17,138 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:17,139 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:17,217 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:18,144 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:29:18,170 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:18,171 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:18,172 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:18,174 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:18,221 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:18,221 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:19,227 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:23,185 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:29:24,029 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:24,037 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:24,037 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:24,042 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:24,251 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:25,443 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:25,460 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:25,460 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:25,462 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:26,257 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:26,258 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:27,258 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:28,469 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:29:31,997 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:29:32,048 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:29:32,050 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:29:32,706 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:32,710 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:32,710 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:32,717 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:33,292 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:33,723 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:29:33,830 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:33,835 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:33,839 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:33,846 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:34,294 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:34,295 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:35,298 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:38,874 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:29:39,758 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:39,762 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:39,762 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:39,774 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:40,308 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:40,743 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:40,747 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:40,747 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:40,748 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:41,314 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:41,314 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:42,318 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:44,762 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:29:45,943 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:45,947 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:45,948 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:45,949 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:46,177 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:46,885 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:29:46,886 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:29:48,185 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:48,959 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:48,962 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:48,963 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:48,975 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:49,189 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:49,980 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:29:50,193 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:52,089 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:52,096 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:52,100 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:52,101 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:52,182 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:52,185 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:52,185 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:52,188 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:52,197 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:53,261 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:53,270 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:53,270 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:53,272 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:54,204 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:54,204 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:54,533 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:54,536 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:54,539 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:54,540 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:29:55,208 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:29:55,209 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:29:55,545 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:29:59,586 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:29:59,590 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:29:59,591 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:29:59,595 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:30:00,229 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:30:00,598 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:30:01,743 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:30:01,747 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:30:01,748 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:30:01,749 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:30:01,833 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:30:01,889 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:30:01,890 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:30:02,244 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:30:02,244 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:03,247 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:05,979 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:30:08,381 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:30:08,386 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:30:08,387 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:30:08,388 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:30:09,278 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:30:10,103 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:30:10,104 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:30:10,104 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:30:10,105 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:30:10,280 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:30:10,281 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:11,121 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:30:11,316 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:16,160 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:30:16,892 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:30:16,901 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:30:18,044 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:30:18,804 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:30:18,804 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:30:18,807 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:30:18,977 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:30:18,980 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:30:18,981 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:30:18,982 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:30:19,385 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:30:20,375 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:21,378 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:21,992 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:30:24,425 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:30:24,429 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:30:24,430 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:30:24,433 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:30:25,395 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:30:26,023 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:30:26,025 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:30:26,025 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:30:26,026 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:30:26,399 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:30:26,400 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:27,099 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:30:27,404 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:31,837 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:30:31,892 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: stop_status
+2023-04-28 11:30:31,892 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: stop_status
+2023-04-28 11:30:32,973 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:30:34,795 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: partial_history
+2023-04-28 11:30:34,798 DEBUG   SenderThread:50712 [sender.py:send():375] send: history
+2023-04-28 11:30:34,799 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: summary_record
+2023-04-28 11:30:34,799 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:30:35,432 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:30:36,437 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:36,493 DEBUG   SenderThread:50712 [sender.py:send():375] send: exit
+2023-04-28 11:30:36,493 INFO    SenderThread:50712 [sender.py:send_exit():598] handling exit code: 0
+2023-04-28 11:30:36,494 INFO    SenderThread:50712 [sender.py:send_exit():600] handling runtime: 424
+2023-04-28 11:30:36,495 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:30:36,496 INFO    SenderThread:50712 [sender.py:send_exit():606] send defer
+2023-04-28 11:30:36,499 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:36,500 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 0
+2023-04-28 11:30:36,500 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:36,501 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 0
+2023-04-28 11:30:36,501 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 1
+2023-04-28 11:30:36,502 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:36,502 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 1
+2023-04-28 11:30:36,503 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:36,503 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 1
+2023-04-28 11:30:36,503 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 2
+2023-04-28 11:30:36,503 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:36,503 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 2
+2023-04-28 11:30:36,504 INFO    HandlerThread:50712 [system_monitor.py:finish():190] Stopping system monitor
+2023-04-28 11:30:36,504 DEBUG   SystemMonitor:50712 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-04-28 11:30:36,505 DEBUG   SystemMonitor:50712 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-04-28 11:30:36,511 INFO    HandlerThread:50712 [interfaces.py:finish():202] Joined cpu monitor
+2023-04-28 11:30:36,512 INFO    HandlerThread:50712 [interfaces.py:finish():202] Joined disk monitor
+2023-04-28 11:30:36,512 INFO    HandlerThread:50712 [interfaces.py:finish():202] Joined memory monitor
+2023-04-28 11:30:36,512 INFO    HandlerThread:50712 [interfaces.py:finish():202] Joined network monitor
+2023-04-28 11:30:36,513 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:36,514 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 2
+2023-04-28 11:30:36,514 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 3
+2023-04-28 11:30:36,514 DEBUG   SenderThread:50712 [sender.py:send():375] send: stats
+2023-04-28 11:30:36,516 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:36,516 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 3
+2023-04-28 11:30:36,518 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:36,518 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 3
+2023-04-28 11:30:36,519 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 4
+2023-04-28 11:30:36,521 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:36,521 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 4
+2023-04-28 11:30:36,523 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:36,525 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 4
+2023-04-28 11:30:36,525 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 5
+2023-04-28 11:30:36,526 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:36,526 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 5
+2023-04-28 11:30:36,532 DEBUG   SenderThread:50712 [sender.py:send():375] send: summary
+2023-04-28 11:30:36,533 INFO    SenderThread:50712 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-04-28 11:30:36,533 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:36,534 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 5
+2023-04-28 11:30:36,534 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 6
+2023-04-28 11:30:36,534 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:36,535 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 6
+2023-04-28 11:30:36,536 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:36,536 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 6
+2023-04-28 11:30:36,537 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 7
+2023-04-28 11:30:36,537 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: status_report
+2023-04-28 11:30:36,538 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:36,538 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 7
+2023-04-28 11:30:36,539 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:36,539 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 7
+2023-04-28 11:30:37,441 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:30:37,441 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:37,495 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: poll_exit
+2023-04-28 11:30:37,626 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 8
+2023-04-28 11:30:37,626 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: poll_exit
+2023-04-28 11:30:37,627 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:37,627 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 8
+2023-04-28 11:30:37,627 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:37,627 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 8
+2023-04-28 11:30:37,639 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 9
+2023-04-28 11:30:37,640 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:37,640 DEBUG   SenderThread:50712 [sender.py:send():375] send: artifact
+2023-04-28 11:30:37,641 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 9
+2023-04-28 11:30:38,094 INFO    SenderThread:50712 [sender.py:send_artifact():1474] sent artifact job-https___github.com_MaggiePas_NCANDA_Contrastive.git_main.py - {'id': 'QXJ0aWZhY3Q6NDMzNDI0OTAy', 'digest': '018457fef653547eab5150a9f77b0e3e', 'state': 'COMMITTED', 'aliases': [{'artifactCollectionName': 'job-https___github.com_MaggiePas_NCANDA_Contrastive.git_main.py', 'alias': 'latest'}, {'artifactCollectionName': 'job-https___github.com_MaggiePas_NCANDA_Contrastive.git_main.py', 'alias': 'v2'}], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjYzNzI1Nzk2', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NDMzNDI0OTAy', 'versionIndex': 2}}, 'version': 'v2'}
+2023-04-28 11:30:38,094 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:38,094 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 9
+2023-04-28 11:30:38,094 INFO    SenderThread:50712 [dir_watcher.py:finish():365] shutting down directory watcher
+2023-04-28 11:30:38,445 INFO    Thread-12 :50712 [dir_watcher.py:_on_file_modified():295] file/dir modified: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:38,445 INFO    SenderThread:50712 [dir_watcher.py:finish():395] scan: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files
+2023-04-28 11:30:38,446 INFO    SenderThread:50712 [dir_watcher.py:finish():409] scan save: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/requirements.txt requirements.txt
+2023-04-28 11:30:38,446 INFO    SenderThread:50712 [dir_watcher.py:finish():409] scan save: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log output.log
+2023-04-28 11:30:38,452 INFO    SenderThread:50712 [dir_watcher.py:finish():409] scan save: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/config.yaml config.yaml
+2023-04-28 11:30:38,455 INFO    SenderThread:50712 [dir_watcher.py:finish():409] scan save: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json wandb-summary.json
+2023-04-28 11:30:38,456 INFO    SenderThread:50712 [dir_watcher.py:finish():409] scan save: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-metadata.json wandb-metadata.json
+2023-04-28 11:30:38,460 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 10
+2023-04-28 11:30:38,461 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:38,461 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 10
+2023-04-28 11:30:38,466 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:38,466 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 10
+2023-04-28 11:30:38,467 INFO    SenderThread:50712 [file_pusher.py:finish():168] shutting down file pusher
+2023-04-28 11:30:38,500 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: poll_exit
+2023-04-28 11:30:38,500 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: poll_exit
+2023-04-28 11:30:39,080 INFO    wandb-upload_3:50712 [upload_job.py:push():137] Uploaded file /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/config.yaml
+2023-04-28 11:30:39,081 INFO    wandb-upload_4:50712 [upload_job.py:push():137] Uploaded file /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/wandb-summary.json
+2023-04-28 11:30:39,081 INFO    wandb-upload_2:50712 [upload_job.py:push():137] Uploaded file /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/output.log
+2023-04-28 11:30:39,081 INFO    wandb-upload_0:50712 [upload_job.py:push():137] Uploaded file /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/files/requirements.txt
+2023-04-28 11:30:39,285 INFO    Thread-11 :50712 [sender.py:transition_state():626] send defer: 11
+2023-04-28 11:30:39,286 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:39,286 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 11
+2023-04-28 11:30:39,286 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:39,286 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 11
+2023-04-28 11:30:39,286 INFO    SenderThread:50712 [file_pusher.py:join():173] waiting for file pusher
+2023-04-28 11:30:39,287 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 12
+2023-04-28 11:30:39,287 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:39,287 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 12
+2023-04-28 11:30:39,287 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:39,287 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 12
+2023-04-28 11:30:39,504 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: poll_exit
+2023-04-28 11:30:39,740 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 13
+2023-04-28 11:30:39,740 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: poll_exit
+2023-04-28 11:30:39,741 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:39,741 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 13
+2023-04-28 11:30:39,741 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:39,742 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 13
+2023-04-28 11:30:39,742 INFO    SenderThread:50712 [sender.py:transition_state():626] send defer: 14
+2023-04-28 11:30:39,742 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: defer
+2023-04-28 11:30:39,742 INFO    HandlerThread:50712 [handler.py:handle_request_defer():170] handle defer: 14
+2023-04-28 11:30:39,743 DEBUG   SenderThread:50712 [sender.py:send():375] send: final
+2023-04-28 11:30:39,743 DEBUG   SenderThread:50712 [sender.py:send():375] send: footer
+2023-04-28 11:30:39,743 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: defer
+2023-04-28 11:30:39,743 INFO    SenderThread:50712 [sender.py:send_request_defer():622] handle sender defer: 14
+2023-04-28 11:30:39,744 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: poll_exit
+2023-04-28 11:30:39,745 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: poll_exit
+2023-04-28 11:30:39,745 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: poll_exit
+2023-04-28 11:30:39,746 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: poll_exit
+2023-04-28 11:30:39,747 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: server_info
+2023-04-28 11:30:39,748 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: get_summary
+2023-04-28 11:30:39,750 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: sampled_history
+2023-04-28 11:30:39,757 DEBUG   SenderThread:50712 [sender.py:send_request():402] send_request: server_info
+2023-04-28 11:30:39,831 INFO    MainThread:50712 [wandb_run.py:_footer_history_summary_info():3476] rendering history
+2023-04-28 11:30:39,832 INFO    MainThread:50712 [wandb_run.py:_footer_history_summary_info():3508] rendering summary
+2023-04-28 11:30:39,833 INFO    MainThread:50712 [wandb_run.py:_footer_sync_info():3434] logging synced files
+2023-04-28 11:30:39,835 DEBUG   HandlerThread:50712 [handler.py:handle_request():144] handle_request: shutdown
+2023-04-28 11:30:39,835 INFO    HandlerThread:50712 [handler.py:finish():845] shutting down handler
+2023-04-28 11:30:40,760 INFO    WriterThread:50712 [datastore.py:close():298] close: /Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230428_112331-63widhfa/run-63widhfa.wandb
+2023-04-28 11:30:40,832 INFO    SenderThread:50712 [sender.py:finish():1550] shutting down sender
+2023-04-28 11:30:40,832 INFO    SenderThread:50712 [file_pusher.py:finish():168] shutting down file pusher
+2023-04-28 11:30:40,832 INFO    SenderThread:50712 [file_pusher.py:join():173] waiting for file pusher

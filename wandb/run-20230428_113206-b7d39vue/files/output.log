@@ -1,0 +1,67 @@
+/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pytorch_lightning/loggers/wandb.py:396: UserWarning: There is a wandb run already in progress and newly created instances of `WandbLogger` will reuse this run. If this is not desired, call `wandb.finish()` before instantiating `WandbLogger`.
+  "There is a wandb run already in progress and newly created instances of `WandbLogger` will reuse"
+Global seed set to 23
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+  | Name                 | Type               | Params
+------------------------------------------------------------
+0 | resnet               | ResNet             | 14.4 M
+1 | fc1                  | Linear             | 15.4 K
+2 | fc2                  | Linear             | 7.7 K
+3 | fc3                  | Linear             | 33
+4 | train_macro_accuracy | MulticlassAccuracy | 0
+5 | val_macro_accuracy   | MulticlassAccuracy | 0
+6 | test_macro_accuracy  | MulticlassAccuracy | 0
+7 | train_accuracy       | MulticlassAccuracy | 0
+8 | val_accuracy         | MulticlassAccuracy | 0
+9 | test_accuracy        | MulticlassAccuracy | 0
+------------------------------------------------------------
+14.4 M    Trainable params
+0         Non-trainable params
+14.4 M    Total params
+57.764    Total estimated model params size (MB)
+/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:229: PossibleUserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 4 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  category=PossibleUserWarning,
+Train dataset length: 10
+Validation dataset length: 4
+Sanity Checking DataLoader 0:   0%|                                                                                   | 0/2 [00:00<?, ?it/s]
+/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pytorch_lightning/utilities/data.py:84: UserWarning: Trying to infer the `batch_size` from an ambiguous collection. The batch size we found is 2. To avoid any miscalculations, use `self.log(..., batch_size=batch_size)`.
+
+Sanity Checking DataLoader 0:  50%|█████████████████████████████████████▌                                     | 1/2 [00:01<00:01,  1.50s/it]
+/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:229: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 4 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+
+Epoch 0:   0%|                                                                                                        | 0/7 [00:00<?, ?it/s]
+/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/multimodal/model.py:114: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+
+Epoch 0:  14%|██████████▍                                                              | 1/7 [00:06<00:38,  6.40s/it, loss=1.65, v_num=9vue]
+/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/multimodal/model.py:114: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  img = torch.tensor(img).float()
+/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/multimodal/model.py:114: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+
+
+Epoch 0:  43%|███████████████████████████████▋                                          | 3/7 [00:19<00:25,  6.37s/it, loss=1.4, v_num=9vue]
+/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/multimodal/model.py:114: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+
+Epoch 0:  57%|█████████████████████████████████████████▋                               | 4/7 [00:25<00:18,  6.31s/it, loss=1.28, v_num=9vue]
+/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/multimodal/model.py:114: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+Epoch 0:  71%|████████████████████████████████████████████████████▊                     | 5/7 [00:31<00:12,  6.21s/it, loss=1.2, v_num=9vue]
+
+
+
+Validation DataLoader 0:  50%|████████████████████████████████████████                                        | 1/2 [00:01<00:01,  1.62s/it]
+/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/multimodal/model.py:114: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+
+Epoch 1:   0%|                                                                                  | 0/7 [00:00<?, ?it/s, loss=1.2, v_num=9vue]
+/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/multimodal/model.py:114: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+
+Epoch 1:  14%|██████████▍                                                              | 1/7 [00:05<00:35,  5.94s/it, loss=1.14, v_num=9vue]
+/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/multimodal/model.py:114: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+
+
+Epoch 1:  43%|███████████████████████████████▎                                         | 3/7 [00:18<00:24,  6.18s/it, loss=1.15, v_num=9vue]
+/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/multimodal/model.py:114: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  img = torch.tensor(img).float()
+/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pytorch_lightning/trainer/call.py:48: UserWarning: Detected KeyboardInterrupt, attempting graceful shutdown...
+  rank_zero_warn("Detected KeyboardInterrupt, attempting graceful shutdown...")

@@ -2,17 +2,17 @@ import torchvision.transforms as transforms
 
 # IMAGE_PATH = r'C:\Users\Selen\Desktop\LMU\multimodal_network\data\adni\images\init_test_images'
 # IMAGE_PATH = r'C:\Users\Selen\Desktop\LMU\multimodal_network\data\adni\images\nifti_images_tabular'
-# IMAGE_PATH = r'/Users/magdalinipaschali/Documents/NCANDA_T1_T2/T1_small'
 
-IMAGE_PATH = r'/scratch/users/paschali/NCANDA/T1'
+IMAGE_PATH = r'/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/NCANDA_T1_T2/T1_small'
+
+# IMAGE_PATH = r'/scratch/home/groups/kpohl/ncanda-multi-modal'
 
 # CSV_FILE = r'C:\Users\Selen\Desktop\LMU\multimodal_network\data\adni\labels'
 # CSV_FILE = r'C:\Users\Selen\Desktop\LMU\multimodal_network\data\adni\labels\tabular_image_labels'
 # CSV_FILE = r'/Users/magdalinipaschali/Documents/NCANDA_T1_T2/Tabular/full_per_visit_data_2021-03-26_processed cross_sectional_small.csv'
 
-TABULAR_DATA_FILE = r'C:\Users\Selen\Desktop\LMU\multimodal_network\data\adni\tabular\adni_tabular_images'
-
-CSV_FILE = r'/scratch/users/paschali/NCANDA/Tabular/full_per_visit_data_2021-03-26_processed cross_sectional_scratch.csv'
+TABULAR_DATA_FILE = r'/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/csv FILES/full_per_visit_data_2021-03-26_processed cross_sectional_scratch copy.csv'
+CSV_FILE = r'/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive/csv FILES/full_per_visit_data_2021-03-26_processed cross_sectional_scratch copy.csv'
 
 FEATURES = ["cesd_score","sex","visit_age","hispanic","race","ses_parent_yoe","pds_score",
             "bmi_zscore","cahalan_score","exceeds_bl_drinking_2","lssaga_dsm4_youth_d04_diag","lssaga_dsm4_youth_d05_diag",
@@ -44,7 +44,7 @@ IMAGE_SIZE = 64
 
 NUM_FEATURES = len(FEATURES)
 
-BATCH_SIZE = 12
+BATCH_SIZE = 2
 
 TRAIN_SIZE = 1
 VAL_SIZE = 1

@@ -1,0 +1,42 @@
+{
+    "os": "Darwin-21.6.0-x86_64-i386-64bit",
+    "python": "3.7.5",
+    "heartbeatAt": "2023-04-25T22:03:27.584754",
+    "startedAt": "2023-04-25T22:03:27.146465",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/MaggiePas/NCANDA_Contrastive.git",
+        "commit": "758576a23283b9b9a686310489bb694acd02f396"
+    },
+    "email": "102644645+mrfetter@users.noreply.github.com",
+    "root": "/Users/MaryFetter/Documents/GitHub/NCANDA_Contrastive",
+    "host": "DN525ip2.SUNet",
+    "username": "MaryFetter",
+    "executable": "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3",
+    "cpu_count": 2,
+    "cpu_count_logical": 4,
+    "cpu_freq": {
+        "current": 2900,
+        "min": 2900,
+        "max": 2900
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2900,
+            "min": 2900,
+            "max": 2900
+        }
+    ],
+    "disk": {
+        "total": 465.7246513366699,
+        "used": 19.502052307128906
+    },
+    "memory": {
+        "total": 8.0
+    }
+}

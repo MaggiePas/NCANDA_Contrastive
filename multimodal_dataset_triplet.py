@@ -80,7 +80,7 @@ class NCANDADatasetTriplet(Dataset):
 
         image_name = os.path.join(self.image_dir, subject_id)
 
-        image_path = image_name + '.nii.gz'
+        image_path = image_name + '.nii'
 
         image = nib.load(image_path)
         image = image.get_fdata()

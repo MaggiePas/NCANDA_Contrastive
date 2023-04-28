@@ -1,0 +1,1 @@
+{"lr_logging": 0.001, "trainer/global_step": 1, "_timestamp": 1682706669.91796, "_runtime": 15.033192873001099, "_step": 2, "train_macro_acc_step_step": 0.5, "train_loss_step": 1.6498581171035767, "epoch": 0, "_wandb": {"runtime": 16}}
