@@ -523,3 +523,8 @@
 2023-05-02 15:05:30,701 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
 2023-05-02 15:05:30,723 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
 2023-05-02 15:05:32,732 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 15:05:37,432 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:05:37,432 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:05:52,526 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:05:52,527 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:05:55,249 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
