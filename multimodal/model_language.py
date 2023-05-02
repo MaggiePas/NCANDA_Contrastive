@@ -25,20 +25,20 @@ class MultiModModelWithLanguage(LightningModule):
 
         self.scaler = scaler
 
-        self.resnet = resnet10(pretrained=False,
-                               spatial_dims=3,
-                               num_classes=120,
-                               n_input_channels=1
-                               )
+        # self.resnet = resnet10(pretrained=False,
+        #                        spatial_dims=3,
+        #                        num_classes=120,
+        #                        n_input_channels=1
+        #                        )
 
-        self.tokenizer = AutoTokenizer.from_pretrained('michiyasunaga/BioLinkBERT-base',
-                                                       cache_dir="/scratch/users/paschali/")
-        self.language_model = AutoModel.from_pretrained('michiyasunaga/BioLinkBERT-base',
-                                                        cache_dir="/scratch/users/paschali/")
+        # self.tokenizer = AutoTokenizer.from_pretrained('michiyasunaga/BioLinkBERT-base',
+        #                                                cache_dir="/scratch/users/ewesel/")
+        # self.language_model = AutoModel.from_pretrained('michiyasunaga/BioLinkBERT-base',
+        #                                                 cache_dir="/scratch/users/ewesel/")
                                                 
         # Freeze weights so those don't get trained        
-        for param in self.language_model.parameters():
-            param.requires_grad = False
+        # for param in self.language_model.parameters():
+        #     param.requires_grad = False
 
 
         self.NUM_FEATURES = len(FEATURES)
@@ -90,16 +90,16 @@ class MultiModModelWithLanguage(LightningModule):
         x is the input data
 
         """
-        # run the model for the image
-        self.language_model = self.language_model.to('cuda')
-        # self.tokenizer = self.tokenizer
+        # # run the model for the image
+        # self.language_model = self.language_model.to('cuda')
+        # # self.tokenizer = self.tokenizer
         
-        # print(img.shape)
-        img = torch.unsqueeze(img, 1)
-        img = img.to(torch.float32)
-        # print(img.type)
-        # print(img.shape)
-        img = self.resnet(img)
+        # # print(img.shape)
+        # img = torch.unsqueeze(img, 1)
+        # img = img.to(torch.float32)
+        # # print(img.type)
+        # # print(img.shape)
+        # img = self.resnet(img)
         
         batch_sentences = self.get_batch_sentences(tab)
         
@@ -144,8 +144,11 @@ class MultiModModelWithLanguage(LightningModule):
 
     def get_batch_sentences(self, tabular_to_encode):
         # return_tensors pt means pytorch
-        tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cpu().numpy())
-
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if device.type == "cpu":
+            tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cpu().numpy())
+        else: 
+            tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().gpu().numpy())
         batch_age = tabular_to_encode[:, 2]
         batch_sex = tabular_to_encode[:, 1]
         batch_cahalan_score = tabular_to_encode[:, 8]
@@ -304,10 +307,16 @@ class MultiModModelWithLanguage(LightningModule):
         y_pred_tag = torch.round(torch.sigmoid(y_pred))
 
         self.train_results_df['subject'] = tuple(subject_id)
-        self.train_results_df['label'] = y.squeeze().detach().cpu().numpy()
-        self.train_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
-
-        tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
+        
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if device.type == "cpu":
+            self.train_results_df['label'] = y.squeeze().detach().cpu().numpy()
+            self.train_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
+            tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
+        else: 
+            self.train_results_df['label'] = y.squeeze().detach().gpu().numpy()
+            self.train_results_df['prediction'] = y_pred_tag.detach().gpu().numpy()
+            tab_bef_normalization = self.scaler.inverse_transform(tab.detach().gpu().numpy())
         self.train_results_df['age'] = tab_bef_normalization[:, 2]
         self.train_results_df['sex'] = tab_bef_normalization[:, 1]
 
@@ -402,8 +411,10 @@ class MultiModModelWithLanguage(LightningModule):
 
     def training_epoch_end(self, outs):
         filename_out = '/scratch/users/ewesel/train_out_language_'
-        filename_out = '/Users/emilywesel/Desktop/NCANDA/train_out_language_' + str(
-            self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if device.type == "cpu":
+            filename_out = '/Users/emilywesel/Desktop/NCANDA/train_out_language_' 
+        filename_out += str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.train_results_df_all.to_csv(filename_out)
 
@@ -415,9 +426,11 @@ class MultiModModelWithLanguage(LightningModule):
 
     def validation_epoch_end(self, outputs):
         # log epoch metric
-
-        filename_out = '/Users/emilywesel/Desktop/NCANDA/val_out_language_' + str(
-            self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/scratch/users/ewesel/val_out_language_'
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if device.type == "cpu":
+            filename_out = '/Users/emilywesel/Desktop/NCANDA/val_out_language_' 
+        filename_out += str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.val_results_df_all.to_csv(filename_out)
 

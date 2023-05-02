@@ -220,12 +220,16 @@ class TripletModel(LightningModule):
         loss = 0.45 * bce_loss_f + 0.2 * center_loss_f + 0.35 * triplet_loss_f
 
         anchor_pred_tag = torch.round(torch.sigmoid(anchor_pred))
-        
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.train_results_df['subject'] = tuple(anchor_subj)
-        self.train_results_df['label'] = anchor_y.squeeze().detach().cpu().numpy()
-        self.train_results_df['prediction'] = anchor_pred_tag.detach().cpu().numpy()
-
-        tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cpu().numpy())
+        if device.type == "cpu":
+            self.train_results_df['label'] = anchor_y.squeeze().detach().cpu().numpy()
+            self.train_results_df['prediction'] = anchor_pred_tag.detach().cpu().numpy()
+            tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cpu().numpy())
+        else:
+            self.train_results_df['label'] = anchor_y.squeeze().detach().gpu().numpy()
+            self.train_results_df['prediction'] = anchor_pred_tag.detach().gpu().numpy()
+            tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().gpu().numpy())
         self.train_results_df['age'] = tab_bef_normalization[:,2]
         self.train_results_df['sex'] = tab_bef_normalization[:, 1]
         
@@ -287,10 +291,16 @@ class TripletModel(LightningModule):
         anchor_pred_tag = torch.round(torch.sigmoid(anchor_pred))
         
         self.val_results_df['subject'] = tuple(anchor_subj)
-        self.val_results_df['label'] = anchor_y.squeeze().detach().cpu().numpy()
-        self.val_results_df['prediction'] = anchor_pred_tag.detach().cpu().numpy()
         
-        tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cpu().numpy())
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if device.type == "cpu":
+            self.val_results_df['label'] = anchor_y.squeeze().detach().cpu().numpy()
+            self.val_results_df['prediction'] = anchor_pred_tag.detach().cpu().numpy()
+            tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cpu().numpy())
+        else: 
+            self.val_results_df['label'] = anchor_y.squeeze().detach().gpu().numpy()
+            self.val_results_df['prediction'] = anchor_pred_tag.detach().gpu().numpy()
+            tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().gpu().numpy())
         self.val_results_df['age'] = tab_bef_normalization[:,2]
         self.val_results_df['sex'] = tab_bef_normalization[:, 1]
         
@@ -377,7 +387,9 @@ class TripletModel(LightningModule):
     def training_epoch_end(self, outs):
         
         filename_out = '/scratch/users/ewesel/train_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
-        filename_out = '/Users/emilywesel/Desktop/NCANDA/train_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if device.type == "cpu":
+            filename_out = '/Users/emilywesel/Desktop/NCANDA/train_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.train_results_df_all.to_csv(filename_out)
 
@@ -392,7 +404,9 @@ class TripletModel(LightningModule):
         # log epoch metric
 
         filename_out = '/scratch/users/ewesel/val_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
-        filename_out = '/Users/emilywesel/Desktop/NCANDA/val_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if device.type == "cpu":
+            filename_out = '/Users/emilywesel/Desktop/NCANDA/val_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.val_results_df_all.to_csv(filename_out)
 

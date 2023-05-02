@@ -1,0 +1,525 @@
+2023-05-02 14:43:24,421 INFO    StreamThr :12830 [internal.py:wandb_internal():87] W&B internal server running at pid: 12830, started at: 2023-05-02 14:43:24.419670
+2023-05-02 14:43:24,424 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: status
+2023-05-02 14:43:24,427 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: status
+2023-05-02 14:43:24,428 DEBUG   SenderThread:12830 [sender.py:send():303] send: header
+2023-05-02 14:43:24,428 INFO    WriterThread:12830 [datastore.py:open_for_write():75] open: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/run-2di833cf.wandb
+2023-05-02 14:43:24,440 DEBUG   SenderThread:12830 [sender.py:send():303] send: run
+2023-05-02 14:43:24,941 INFO    SenderThread:12830 [dir_watcher.py:__init__():216] watching files in: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files
+2023-05-02 14:43:24,942 INFO    SenderThread:12830 [sender.py:_start_run_threads():928] run started: 2di833cf with start time 1683063804.41165
+2023-05-02 14:43:24,942 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:43:24,943 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: check_version
+2023-05-02 14:43:24,943 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:43:24,944 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: check_version
+2023-05-02 14:43:25,141 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: run_start
+2023-05-02 14:43:25,143 DEBUG   HandlerThread:12830 [system_info.py:__init__():31] System info init
+2023-05-02 14:43:25,143 DEBUG   HandlerThread:12830 [system_info.py:__init__():46] System info init done
+2023-05-02 14:43:25,143 INFO    HandlerThread:12830 [system_monitor.py:start():150] Starting system monitor
+2023-05-02 14:43:25,143 INFO    SystemMonitor:12830 [system_monitor.py:_start():116] Starting system asset monitoring threads
+2023-05-02 14:43:25,144 INFO    HandlerThread:12830 [system_monitor.py:probe():171] Collecting system info
+2023-05-02 14:43:25,144 DEBUG   HandlerThread:12830 [system_info.py:probe():195] Probing system
+2023-05-02 14:43:25,144 INFO    SystemMonitor:12830 [interfaces.py:start():168] Started cpu
+2023-05-02 14:43:25,145 INFO    SystemMonitor:12830 [interfaces.py:start():168] Started disk
+2023-05-02 14:43:25,145 INFO    SystemMonitor:12830 [interfaces.py:start():168] Started memory
+2023-05-02 14:43:25,146 INFO    SystemMonitor:12830 [interfaces.py:start():168] Started network
+2023-05-02 14:43:25,154 DEBUG   HandlerThread:12830 [system_info.py:_probe_git():180] Probing git
+2023-05-02 14:43:25,174 DEBUG   HandlerThread:12830 [system_info.py:_probe_git():188] Probing git done
+2023-05-02 14:43:25,174 DEBUG   HandlerThread:12830 [system_info.py:probe():241] Probing system done
+2023-05-02 14:43:25,174 DEBUG   HandlerThread:12830 [system_monitor.py:probe():180] {'os': 'macOS-10.16-x86_64-i386-64bit', 'python': '3.8.5', 'heartbeatAt': '2023-05-02T21:43:25.144713', 'startedAt': '2023-05-02T21:43:24.389878', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'main.py', 'codePath': 'main.py', 'git': {'remote': 'https://github.com/MaggiePas/NCANDA_Contrastive.git', 'commit': 'f2aeff2cbb0d73ccf36dc34447c9ef408280f44e'}, 'email': 'ewesel@stanford.edu', 'root': '/Users/emilywesel/Documents/GitHub/NCANDA_Contrastive', 'host': 'DN0a24b067.SUNet', 'username': 'emilywesel', 'executable': '/Users/emilywesel/opt/anaconda3/bin/python3', 'cpu_count': 4, 'cpu_count_logical': 8, 'cpu_freq': {'current': 2000, 'min': 2000, 'max': 2000}, 'cpu_freq_per_core': [{'current': 2000, 'min': 2000, 'max': 2000}], 'disk': {'total': 465.62699127197266, 'used': 14.272533416748047}, 'memory': {'total': 16.0}}
+2023-05-02 14:43:25,174 INFO    HandlerThread:12830 [system_monitor.py:probe():181] Finished collecting system info
+2023-05-02 14:43:25,174 INFO    HandlerThread:12830 [system_monitor.py:probe():184] Publishing system info
+2023-05-02 14:43:25,175 DEBUG   HandlerThread:12830 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-05-02 14:43:25,175 DEBUG   HandlerThread:12830 [system_info.py:_save_pip():67] Saving pip packages done
+2023-05-02 14:43:25,175 DEBUG   HandlerThread:12830 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-05-02 14:43:25,947 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/requirements.txt
+2023-05-02 14:43:25,948 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:43:25,948 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/conda-environment.yaml
+2023-05-02 14:43:29,197 DEBUG   HandlerThread:12830 [system_info.py:_save_conda():86] Saving conda packages done
+2023-05-02 14:43:29,198 INFO    HandlerThread:12830 [system_monitor.py:probe():186] Finished publishing system info
+2023-05-02 14:43:29,204 DEBUG   SenderThread:12830 [sender.py:send():303] send: files
+2023-05-02 14:43:29,204 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-metadata.json with policy now
+2023-05-02 14:43:29,211 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:43:29,211 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:43:29,374 DEBUG   SenderThread:12830 [sender.py:send():303] send: telemetry
+2023-05-02 14:43:29,800 DEBUG   SenderThread:12830 [sender.py:send():303] send: telemetry
+2023-05-02 14:43:29,884 INFO    Thread-16 :12830 [upload_job.py:push():143] Uploaded file /var/folders/lz/h5ydkzh14vb2n0xrqn1vkf2h0000gn/T/tmp6f0q5s1_wandb/hl83ajh6-wandb-metadata.json
+2023-05-02 14:43:29,954 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/conda-environment.yaml
+2023-05-02 14:43:29,955 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-metadata.json
+2023-05-02 14:43:29,955 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:43:31,964 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:43:44,389 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:43:44,390 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:43:56,035 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/config.yaml
+2023-05-02 14:43:59,650 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:43:59,651 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:44:14,755 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:44:14,756 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:44:25,147 DEBUG   SystemMonitor:12830 [system_monitor.py:_start():130] Starting system metrics aggregation loop
+2023-05-02 14:44:25,150 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:44:26,106 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:44:29,865 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:44:29,865 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:44:45,047 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:44:45,048 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:44:46,190 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:44:55,154 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:45:00,148 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:45:00,149 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:45:04,252 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:45:15,253 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:45:15,253 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:45:25,156 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:45:35,036 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:45:35,036 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:45:50,165 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:45:50,167 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:45:55,159 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:46:01,257 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:46:01,260 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:46:01,260 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:46:01,261 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:46:01,475 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:46:06,445 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:46:06,445 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:46:21,615 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:46:21,616 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:46:25,160 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:46:36,980 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:46:36,983 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:46:52,103 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:46:52,104 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:46:55,161 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:47:03,596 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:47:03,598 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:47:03,598 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:47:03,599 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:47:03,625 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:47:03,626 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:47:03,626 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:47:03,627 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:47:03,685 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:47:04,686 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:47:08,101 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:47:08,102 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:47:23,624 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:47:23,624 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:47:25,164 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:47:38,733 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:47:38,735 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:47:49,350 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:47:49,351 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:47:49,351 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:47:49,352 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:47:49,356 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:47:49,357 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:47:49,357 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:47:49,358 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:47:49,850 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:47:50,856 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:47:53,870 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:47:53,870 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:47:55,166 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:48:08,975 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:48:08,975 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:48:24,115 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:48:24,116 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:48:25,167 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:48:35,274 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:48:35,274 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:48:35,275 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:48:35,276 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:48:35,279 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:48:35,280 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:48:35,280 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:48:35,281 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:48:36,009 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:48:37,014 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:48:39,214 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:48:39,214 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:48:54,317 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:48:54,318 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:48:55,170 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:49:09,417 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:49:09,418 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:49:21,116 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:49:21,117 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:49:21,117 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:49:21,118 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:49:21,122 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:49:21,123 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:49:21,123 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:49:21,124 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:49:21,174 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:49:22,178 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:49:24,549 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:49:24,549 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:49:25,174 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:49:39,643 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:49:39,644 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:49:54,759 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:49:54,760 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:49:55,179 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:50:08,415 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:50:08,415 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:50:08,415 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:50:08,416 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:50:08,421 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:50:08,422 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:50:08,422 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:50:08,422 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:50:08,487 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:50:09,860 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:50:09,860 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:50:10,499 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:50:24,993 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:50:24,994 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:50:25,184 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:50:40,089 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:50:40,091 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:50:55,044 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:50:55,044 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:50:55,044 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:50:55,045 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:50:55,049 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:50:55,050 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:50:55,050 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:50:55,051 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:50:55,191 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:50:55,208 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:50:55,208 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:50:55,813 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:50:56,821 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:51:10,302 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:51:10,302 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:51:25,193 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:51:25,423 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:51:25,423 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:51:40,525 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:51:40,526 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:51:43,201 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:51:43,202 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:51:43,202 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:51:43,203 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:51:43,229 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:51:43,229 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:51:43,230 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:51:43,230 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:51:43,994 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:51:44,999 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:51:55,193 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:51:55,630 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:51:55,630 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:52:10,926 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:52:10,927 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:52:25,196 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:52:26,031 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:52:26,031 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:52:29,882 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:52:29,882 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:52:29,883 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:52:29,883 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:52:29,913 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:52:29,913 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:52:29,914 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:52:29,914 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:52:30,162 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:52:31,163 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:52:41,129 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:52:41,130 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:52:55,199 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:52:56,314 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:52:56,314 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:53:11,437 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:53:11,438 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:53:19,257 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:53:19,257 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:53:19,257 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:53:19,258 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:53:19,279 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:53:19,280 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:53:19,280 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:53:19,281 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:53:19,328 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:53:21,334 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:53:25,202 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:53:26,530 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:53:26,530 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:53:41,628 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:53:41,630 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:53:55,203 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:53:56,733 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:53:56,733 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:54:05,312 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:54:05,313 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:54:05,313 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:54:05,314 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:54:05,318 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:54:05,319 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:54:05,319 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:54:05,320 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:54:05,486 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:54:07,490 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:54:11,946 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:54:11,946 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:54:25,205 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:54:27,048 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:54:27,048 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:54:42,278 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:54:42,279 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:54:53,026 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:54:53,027 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:54:53,027 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:54:53,028 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:54:53,034 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:54:53,034 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:54:53,035 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:54:53,035 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:54:53,647 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:54:55,205 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:54:55,656 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:54:57,366 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:54:57,367 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:55:12,455 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:55:12,456 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:55:25,209 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:55:27,568 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:55:27,568 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:55:39,395 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:55:39,395 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:55:39,396 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:55:39,396 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:55:39,401 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:55:39,401 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:55:39,401 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:55:39,402 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:55:39,799 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:55:41,802 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:55:42,671 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:55:42,671 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:55:55,211 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:55:57,761 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:55:57,761 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:56:13,057 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:56:13,058 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:56:25,219 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:56:27,753 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:56:27,754 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:56:27,754 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:56:27,754 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:56:27,759 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:56:27,759 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:56:27,760 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:56:27,760 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:56:27,964 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:56:28,212 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:56:28,212 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:56:29,973 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:56:43,320 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:56:43,321 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:56:55,214 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:56:58,451 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:56:58,451 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:57:13,662 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:57:13,663 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:57:14,394 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:57:14,394 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:57:14,394 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:57:14,396 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:57:14,400 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:57:14,401 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:57:14,401 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:57:14,401 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:57:15,145 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:57:15,145 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:57:25,214 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:57:28,759 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:57:28,760 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:57:43,876 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:57:43,877 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:57:55,216 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:57:58,970 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:57:58,970 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:58:01,107 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:58:01,108 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:58:01,108 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:58:01,109 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:58:01,121 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:58:01,123 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:58:01,123 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:58:01,124 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:58:01,307 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:58:03,314 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:58:14,071 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:58:14,071 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:58:25,218 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:58:29,187 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:58:29,188 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:58:44,296 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:58:44,296 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:58:55,041 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:58:55,041 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:58:55,042 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:58:55,042 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:58:55,049 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:58:55,050 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:58:55,050 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:58:55,051 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:58:55,222 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:58:55,467 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:58:55,468 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:58:59,410 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:58:59,410 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:59:14,520 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:59:14,522 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:59:23,633 ERROR   SenderThread:12830 [internal_api.py:execute():212] 502 response executing GraphQL.
+2023-05-02 14:59:23,634 ERROR   SenderThread:12830 [internal_api.py:execute():213] 
+<html><head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>502 Server Error</title>
+</head>
+<body text=#000000 bgcolor=#ffffff>
+<h1>Error: Server Error</h1>
+<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>
+<h2></h2>
+</body></html>
+
+2023-05-02 14:59:25,760 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 14:59:34,520 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:59:34,521 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:59:48,965 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:59:48,967 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:59:48,967 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:59:48,969 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:59:48,979 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 14:59:48,980 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 14:59:48,980 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 14:59:48,981 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 14:59:49,648 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 14:59:49,801 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 14:59:49,801 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 14:59:51,656 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 14:59:55,228 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:00:04,931 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:00:04,931 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:00:20,056 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:00:20,057 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:00:25,228 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:00:35,173 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:00:35,173 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:00:50,282 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:00:50,282 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:00:52,343 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:00:52,344 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:00:52,344 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:00:52,345 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:00:52,355 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:00:52,356 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:00:52,357 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:00:52,358 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:00:52,798 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 15:00:53,800 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 15:00:55,229 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:01:05,399 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:01:05,399 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:01:20,526 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:01:20,527 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:01:25,230 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:01:35,625 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:01:35,625 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:01:44,361 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:01:44,361 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:01:44,362 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:01:44,362 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:01:44,379 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:01:44,379 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:01:44,380 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:01:44,380 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:01:44,961 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 15:01:45,965 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 15:01:50,721 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:01:50,721 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:01:55,234 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:02:05,824 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:02:05,825 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:02:20,936 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:02:20,937 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:02:25,236 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:02:31,361 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:02:31,362 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:02:31,362 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:02:31,362 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:02:31,372 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:02:31,373 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:02:31,373 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:02:31,374 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:02:32,105 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 15:02:34,113 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 15:02:36,043 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:02:36,043 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:02:51,141 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:02:51,143 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:02:55,237 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:03:06,240 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:03:06,241 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:03:15,608 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:03:15,608 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:03:15,609 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:03:15,609 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:03:15,618 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:03:15,618 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:03:15,619 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:03:15,619 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:03:16,249 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 15:03:18,255 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 15:03:21,345 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:03:21,346 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:03:25,240 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:03:36,451 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:03:36,452 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:03:51,562 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:03:51,563 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:03:55,245 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:04:00,075 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:04:00,075 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:04:00,076 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:04:00,076 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:04:00,089 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:04:00,090 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:04:00,090 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:04:00,090 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:04:00,401 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 15:04:02,406 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 15:04:06,675 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:04:06,675 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:04:21,784 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:04:21,785 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:04:25,246 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:04:36,889 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:04:36,889 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:04:44,334 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:04:44,334 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:04:44,334 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:04:44,335 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:04:44,347 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:04:44,348 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:04:44,348 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:04:44,349 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:04:44,567 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 15:04:46,577 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log
+2023-05-02 15:04:51,984 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:04:51,985 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:04:55,246 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:05:07,130 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:05:07,131 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:05:22,241 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: stop_status
+2023-05-02 15:05:22,242 DEBUG   SenderThread:12830 [sender.py:send_request():317] send_request: stop_status
+2023-05-02 15:05:25,249 DEBUG   SenderThread:12830 [sender.py:send():303] send: stats
+2023-05-02 15:05:30,690 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:05:30,690 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:05:30,691 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:05:30,691 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:05:30,700 DEBUG   HandlerThread:12830 [handler.py:handle_request():139] handle_request: partial_history
+2023-05-02 15:05:30,701 DEBUG   SenderThread:12830 [sender.py:send():303] send: history
+2023-05-02 15:05:30,701 DEBUG   SenderThread:12830 [sender.py:send():303] send: summary
+2023-05-02 15:05:30,701 INFO    SenderThread:12830 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2023-05-02 15:05:30,723 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/wandb-summary.json
+2023-05-02 15:05:32,732 INFO    Thread-13 :12830 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/wandb/run-20230502_144324-2di833cf/files/output.log

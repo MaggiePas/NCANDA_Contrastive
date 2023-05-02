@@ -1,0 +1,1 @@
+{"lr_logging/pg1": 0.001, "lr_logging/pg2": 0.0001, "trainer/global_step": 24, "_timestamp": 1683065130.699887, "_runtime": 1326.2882370948792, "_step": 48, "train_macro_acc_step_step": 0.5, "train_loss_step": 7.653155326843262, "train_bce_loss_step": 0.8539984226226807, "train_center_loss_step": 34.428489685058594, "train_triplet_loss_step": 1.0947370529174805, "epoch": 0}

@@ -15,6 +15,10 @@ from multimodal.model_language import MultiModModelWithLanguage
 from multimodal.daft_model import DAFTModel
 from multimodal.center_model import CenterModel
 from multimodal.triplet_model import TripletModel
+import torch
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = device.type
+
 
 def main_conv3d(wandb, wandb_logger):
     '''
@@ -30,7 +34,7 @@ def main_conv3d(wandb, wandb_logger):
     wandb.watch(model, log="all")
 
     # train the network
-    trainer = Trainer(max_epochs=15, logger=wandb_logger, log_every_n_steps=1, accelerator='cpu', devices=1)
+    trainer = Trainer(max_epochs=15, logger=wandb_logger, log_every_n_steps=1, accelerator=device, devices=1)
     trainer.fit(model, data)
 
 
@@ -48,7 +52,7 @@ def main_resnet(wandb, wandb_logger):
     wandb.watch(model, log="all")
 
     # train the network
-    trainer = Trainer(max_epochs=15, logger=wandb_logger, log_every_n_steps=1, accelerator='cpu', devices=1)
+    trainer = Trainer(max_epochs=15, logger=wandb_logger, log_every_n_steps=1, accelerator=device, devices=1)
     trainer.fit(model, data)
 
 
@@ -79,7 +83,7 @@ def main_multimodal(wandb, wandb_logger):
     lr_monitor = LearningRateMonitor(logging_interval='step')
 
     # train the network
-    trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, accelerator='cpu', devices=1, callbacks=[lr_monitor])
+    trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, accelerator=device, devices=1, callbacks=[lr_monitor])
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
 
 
@@ -106,7 +110,7 @@ def main_daft(wandb, wandb_logger):
     lr_monitor = LearningRateMonitor(logging_interval='step')
 
     # train the network
-    trainer = Trainer(max_epochs=30, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator='cpu', devices=1)
+    trainer = Trainer(max_epochs=30, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator=device, devices=1)
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
     
     
@@ -134,7 +138,7 @@ def main_language(wandb, wandb_logger):
     lr_monitor = LearningRateMonitor(logging_interval='step')
 
     # train the network
-    trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator='cpu', devices=1)
+    trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator=device, devices=1)
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
     
 
@@ -161,7 +165,7 @@ def main_center(wandb, wandb_logger):
     lr_monitor = LearningRateMonitor(logging_interval='step')
 
     # train the network
-    trainer = Trainer(max_epochs=35, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator='cpu', devices=1)
+    trainer = Trainer(max_epochs=35, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator=device, devices=1)
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
     
     
@@ -191,7 +195,7 @@ def main_triplet(wandb, wandb_logger):
     lr_monitor = LearningRateMonitor(logging_interval='step')
 
     # train the network
-    trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator='cpu', devices=1)
+    trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator=device, devices=1)
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
 
 
