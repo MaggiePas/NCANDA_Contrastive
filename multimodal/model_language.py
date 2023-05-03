@@ -299,7 +299,7 @@ class MultiModModelWithLanguage(LightningModule):
         batch_sentences = ["This subject is a " + str(pair[1]) + " year old " + str(pair[0]) + " who is a " + str(pair[2]) + " and " + str(pair[3])+ ". " +
                             str(pair[12]) + " is " + str(pair[9]) + ", and " + str(pair[10]) + " with a BMI of " + str(pair[11]) + ". " +
                             str(pair[12]) + " " + str(pair[4]) + " and " + str(pair[5]) + " and " + str(pair[6]) + " and " + str(pair[7]) + " and " + str(pair[8]) + ". "  +
-                            str(pair[12]) + " " + str(pair[13]) + str(pair[12]) + " " + str(pair[14]) + str(pair[12]) + " " + str(pair[15]) + str(pair[12]) + " " + str(pair[16]) + str(pair[12]) + " " + str(pair[17]) + str(pair[12]) + " " + str(pair[18]) for pair in batch_pairs]`
+                            str(pair[12]) + " " + str(pair[13]) + str(pair[12]) + " " + str(pair[14]) + str(pair[12]) + " " + str(pair[15]) + str(pair[12]) + " " + str(pair[16]) + str(pair[12]) + " " + str(pair[17]) + str(pair[12]) + " " + str(pair[18]) for pair in batch_pairs]
         print(batch_sentences)
         return batch_sentences
 
