@@ -131,7 +131,7 @@ def main_language(wandb, wandb_logger):
     # ge the model
     print("getting the model")
     model = MultiModModelWithLanguage(class_weight=data.class_weight, scaler=data.scaler)
-
+    print("received")
     # Optional
     wandb.watch(model, log="all")
 
