@@ -232,13 +232,22 @@ class CenterModel(LightningModule):
             self.train_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
             
             self.train_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.train_auc(torch.unsqueeze(y_pred_tag, 0), y)
+            self.train_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+
         else:
             self.train_accuracy(y_pred_tag, y)
             
             self.train_macro_accuracy(y_pred_tag, y)
+            self.train_auc(y_pred_tag, y)
+            self.train_macro_f1(y_pred_tag, y)
         
         self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
         self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
+        self.log('train_auc', self.train_auc, on_step=True, on_epoch=True)
+        self.log('train_macro_f1', self.train_macro_f1, on_step=True, on_epoch=True)
+
+
         # Log loss
         self.log('train_loss', loss, on_step=True, on_epoch=True)
         self.log('train_bce_loss', bce_loss_f, on_step=True, on_epoch=True)
@@ -334,6 +343,8 @@ class CenterModel(LightningModule):
         self.log("test loss", loss)
         self.log('test_bce_loss', bce_loss_f, on_step=True, on_epoch=True)
         self.log('test_center_loss', center_loss_f, on_step=True, on_epoch=True)
+        # self.log('train_f1', self.train_macro_f1, on_step=True, on_epoch=True)
+        # self.log('train_auc', self.train_auc, on_step=True, on_epoch=True)
 
         return loss
         
@@ -370,8 +381,8 @@ class CenterModel(LightningModule):
         # Clear the dataframe so the new epoch can start fresh
         self.val_results_df_all = pd.DataFrame(columns=self.results_column_names)
 
-        self.log('val_f1', self.val_macro_f1)
-        self.log('val_auc', self.val_auc)
+        # #self.log('val_f1', self.val_macro_f1)
+        # #self.log('val_auc', self.val_auc)
         self.log('val_acc_epoch', self.val_accuracy)
         self.log('val_macro_acc_epoch', self.val_macro_accuracy)
         

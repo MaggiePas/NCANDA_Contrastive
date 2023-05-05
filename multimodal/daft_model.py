@@ -256,8 +256,8 @@ class DAFTModel(LightningModule):
 
         self.log('val_acc_epoch', self.val_accuracy)
         self.log('val_macro_acc_epoch', self.val_macro_accuracy)
-        self.log('val_f1', self.val_macro_f1)
-        self.log('val_auc', self.val_auc)
+        #self.log('val_f1', self.val_macro_f1)
+        #self.log('val_auc', self.val_auc)
 
 
 def conv3d(in_channels, out_channels, kernel_size=3, stride=1):
