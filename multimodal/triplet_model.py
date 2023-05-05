@@ -106,17 +106,17 @@ class TripletModel(LightningModule):
         
         self.test_accuracy = torchmetrics.Accuracy(task='multiclass', average='micro', num_classes=2)
 
-        self.train_macro_f1 = torchmetrics.F1(task='multiclass', num_classes=2, average='macro')
+        self.train_macro_f1 = torchmetrics.classification. MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
 
-        self.train_auc = torchmetrics.AUC(task='multiclass', num_classes=2, average='macro')
+        self.train_auc = torchmetrics.classification. BinaryAUROC(task='multiclass', num_classes=2, average='macro')
 
-        self.val_macro_f1 = torchmetrics.F1(task='multiclass', num_classes=2, average='macro')
+        self.val_macro_f1 = torchmetrics.classification. MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
 
-        self.val_auc = torchmetrics.AUC(task='multiclass', num_classes=2, average='macro')
+        self.val_auc = torchmetrics.classification. BinaryAUROC(task='multiclass', num_classes=2, average='macro')
 
-        self.test_macro_f1 = torchmetrics.F1(task='multiclass', num_classes=2, average='macro')
+        self.test_macro_f1 = torchmetrics.classification. MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
         
-        self.test_auc = torchmetrics.AUC(task='multiclass', num_classes=2, average='macro')
+        self.test_auc = torchmetrics.classification. BinaryAUROC(task='multiclass', num_classes=2, average='macro')
         
         self.results_column_names = ['subject', 'label', 'prediction', 'age', 'sex']
 

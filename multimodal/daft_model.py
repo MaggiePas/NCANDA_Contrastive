@@ -57,6 +57,18 @@ class DAFTModel(LightningModule):
 
         self.test_accuracy = torchmetrics.Accuracy(task='multiclass', average='micro', num_classes=2)
 
+        self.train_macro_f1 = torchmetrics.classification. MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
+
+        self.train_auc = torchmetrics.classification. BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+
+        self.val_macro_f1 = torchmetrics.classification. MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
+
+        self.val_auc = torchmetrics.classification. BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+
+        self.test_macro_f1 = torchmetrics.classification. MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
+        
+        self.test_auc = torchmetrics.classification. BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+
         self.results_column_names = ['subject', 'label', 'prediction', 'age', 'sex']
 
         self.train_results_df = pd.DataFrame(columns=self.results_column_names)
@@ -244,6 +256,8 @@ class DAFTModel(LightningModule):
 
         self.log('val_acc_epoch', self.val_accuracy)
         self.log('val_macro_acc_epoch', self.val_macro_accuracy)
+        self.log('val_f1', self.val_macro_f1)
+        self.log('val_auc', self.val_auc)
 
 
 def conv3d(in_channels, out_channels, kernel_size=3, stride=1):
