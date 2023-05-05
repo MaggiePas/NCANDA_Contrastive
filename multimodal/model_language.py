@@ -26,16 +26,16 @@ class MultiModModelWithLanguage(LightningModule):
 
         self.scaler = scaler
 
-        # self.resnet = resnet10(pretrained=False,
-        #                        spatial_dims=3,
-        #                        num_classes=120,
-        #                        n_input_channels=1
-        #                        )
+        self.resnet = resnet10(pretrained=False,
+                               spatial_dims=3,
+                               num_classes=120,
+                               n_input_channels=1
+                               )
 
-        # self.tokenizer = AutoTokenizer.from_pretrained('michiyasunaga/BioLinkBERT-base',
-        #                                                cache_dir="/scratch/users/ewesel/")
-        # self.language_model = AutoModel.from_pretrained('michiyasunaga/BioLinkBERT-base',
-        #                                                 cache_dir="/scratch/users/ewesel/")
+        self.tokenizer = AutoTokenizer.from_pretrained('michiyasunaga/BioLinkBERT-base',
+                                                       cache_dir="/scratch/users/ewesel/")
+        self.language_model = AutoModel.from_pretrained('michiyasunaga/BioLinkBERT-base',
+                                                        cache_dir="/scratch/users/ewesel/")
                                                 
         # Freeze weights so those don't get trained        
         # for param in self.language_model.parameters():
@@ -91,16 +91,16 @@ class MultiModModelWithLanguage(LightningModule):
         x is the input data
 
         """
-        # # run the model for the image
-        # self.language_model = self.language_model.to('cuda')
-        # # self.tokenizer = self.tokenizer
+        # run the model for the image
+        self.language_model = self.language_model.to('cuda')
+        # self.tokenizer = self.tokenizer
         
-        # # print(img.shape)
-        # img = torch.unsqueeze(img, 1)
-        # img = img.to(torch.float32)
-        # # print(img.type)
-        # # print(img.shape)
-        # img = self.resnet(img)
+        # print(img.shape)
+        img = torch.unsqueeze(img, 1)
+        img = img.to(torch.float32)
+        # print(img.type)
+        # print(img.shape)
+        img = self.resnet(img)
         
         batch_sentences = self.get_batch_sentences(tab)
         
