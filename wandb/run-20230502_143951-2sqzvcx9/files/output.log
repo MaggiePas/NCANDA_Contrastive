@@ -72,5 +72,5 @@ Traceback (most recent call last):
   File "/Users/emilywesel/opt/anaconda3/lib/python3.8/site-packages/pytorch_lightning/strategies/strategy.py", line 390, in validation_step
     return self.model.validation_step(*args, **kwargs)
   File "/Users/emilywesel/Documents/GitHub/NCANDA_Contrastive/multimodal/triplet_model.py", line 301, in validation_step
-    self.val_results_df['label'] = anchor_y.squeeze().detach().gpu().numpy()
+    self.val_results_df['label'] = anchor_y.squeeze().detach().cuda().numpy()
 AttributeError: 'Tensor' object has no attribute 'gpu'

@@ -149,7 +149,7 @@ class MultiModModelWithLanguage(LightningModule):
         if device.type == "cpu":
             tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cpu().numpy())
         else: 
-            tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().gpu().numpy())
+            tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cuda().numpy())
         # batch_age = tabular_to_encode[:, 2]
         # batch_sex = tabular_to_encode[:, 1]
         # batch_cahalan_score = tabular_to_encode[:, 8]
@@ -343,9 +343,9 @@ class MultiModModelWithLanguage(LightningModule):
             self.train_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
             tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
         else: 
-            self.train_results_df['label'] = y.squeeze().detach().gpu().numpy()
-            self.train_results_df['prediction'] = y_pred_tag.detach().gpu().numpy()
-            tab_bef_normalization = self.scaler.inverse_transform(tab.detach().gpu().numpy())
+            self.train_results_df['label'] = y.squeeze().detach().cuda().numpy()
+            self.train_results_df['prediction'] = y_pred_tag.detach().cuda().numpy()
+            tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cuda().numpy())
         self.train_results_df['age'] = tab_bef_normalization[:, 2]
         self.train_results_df['sex'] = tab_bef_normalization[:, 1]
 

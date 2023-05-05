@@ -208,9 +208,9 @@ class CenterModel(LightningModule):
             self.train_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
             tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
         else: 
-            self.train_results_df['label'] = y.squeeze().detach().gpu().numpy()
-            self.train_results_df['prediction'] = y_pred_tag.detach().gpu().numpy()
-            tab_bef_normalization = self.scaler.inverse_transform(tab.detach().gpu().numpy())
+            self.train_results_df['label'] = y.squeeze().detach().cuda().numpy()
+            self.train_results_df['prediction'] = y_pred_tag.detach().cuda().numpy()
+            tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cuda().numpy())
         self.train_results_df['age'] = tab_bef_normalization[:,2]
         self.train_results_df['sex'] = tab_bef_normalization[:, 1]
         
@@ -259,9 +259,9 @@ class CenterModel(LightningModule):
             self.val_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
             tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
         else: 
-            self.val_results_df['label'] = y.squeeze().detach().gpu().numpy()
-            self.val_results_df['prediction'] = y_pred_tag.detach().gpu().numpy()
-            tab_bef_normalization = self.scaler.inverse_transform(tab.detach().gpu().numpy())
+            self.val_results_df['label'] = y.squeeze().detach().cuda().numpy()
+            self.val_results_df['prediction'] = y_pred_tag.detach().cuda().numpy()
+            tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cuda().numpy())
 
         self.val_results_df['age'] = tab_bef_normalization[:,2]
         self.val_results_df['sex'] = tab_bef_normalization[:, 1]
