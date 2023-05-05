@@ -50,17 +50,17 @@ class MultiModModel(LightningModule):
         
         self.test_accuracy = torchmetrics.Accuracy(task='multiclass', average='micro', num_classes=2)
         
-        self.train_macro_f1 = torchmetrics.classification. MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
+        self.train_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
 
-        self.train_auc = torchmetrics.classification. BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+        self.train_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
 
-        self.val_macro_f1 = torchmetrics.classification. MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
+        self.val_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
 
-        self.val_auc = torchmetrics.classification. BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+        self.val_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
 
-        self.test_macro_f1 = torchmetrics.classification. MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
+        self.test_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
         
-        self.test_auc = torchmetrics.classification. BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+        self.test_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
 
         self.results_column_names = ['subject', 'label', 'prediction', 'age', 'sex']
 
@@ -161,8 +161,8 @@ class MultiModModel(LightningModule):
             self.train_macro_accuracy(y_pred_tag, y)
         
         self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
-        self.log('train_f1', self.train_macro_f1, on_step=False, on_epoch=True)
-        self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
+        # self.log('train_f1', self.train_macro_f1, on_step=False, on_epoch=True)
+        # self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
         self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
         # Log loss
         self.log('train_loss', loss, on_step=True, on_epoch=True)
