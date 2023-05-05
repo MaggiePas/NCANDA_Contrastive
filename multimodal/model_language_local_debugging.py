@@ -74,6 +74,18 @@ class MultiModModelWithLanguage(LightningModule):
 
         self.test_accuracy = torchmetrics.Accuracy(task='multiclass', average='micro', num_classes=2)
 
+        self.train_macro_f1 = torchmetrics.F1(task='multiclass', num_classes=2, average='macro')
+
+        self.train_auc = torchmetrics.AUC(task='multiclass', num_classes=2, average='macro')
+
+        self.val_macro_f1 = torchmetrics.F1(task='multiclass', num_classes=2, average='macro')
+
+        self.val_auc = torchmetrics.AUC(task='multiclass', num_classes=2, average='macro')
+
+        self.test_macro_f1 = torchmetrics.F1(task='multiclass', num_classes=2, average='macro')
+        
+        self.test_auc = torchmetrics.AUC(task='multiclass', num_classes=2, average='macro')
+
         self.results_column_names = ['subject', 'label', 'prediction', 'age', 'sex']
 
         self.train_results_df = pd.DataFrame(columns=self.results_column_names)
@@ -423,6 +435,8 @@ class MultiModModelWithLanguage(LightningModule):
         # log epoch metric
         self.log('train_acc_epoch', self.train_accuracy)
         self.log('train_macro_acc_epoch', self.train_macro_accuracy)
+        self.log('train_f1', self.train_macro_f1)
+        self.log('train_auc', self.train_auc)
 
     def validation_epoch_end(self, outputs):
         # log epoch metric
@@ -439,3 +453,5 @@ class MultiModModelWithLanguage(LightningModule):
 
         self.log('val_acc_epoch', self.val_accuracy)
         self.log('val_macro_acc_epoch', self.val_macro_accuracy)
+        self.log('val_f1', self.val_macro_f1)
+        self.log('val_auc', self.val_auc)
