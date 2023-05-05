@@ -146,7 +146,6 @@ class MultiModModelWithLanguage(LightningModule):
     def get_batch_sentences(self, tabular_to_encode):
         # return_tensors pt means pytorch
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        #if device.type == "cpu":
         tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cpu().numpy())
         # else: 
         #     tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cuda().numpy())
@@ -180,10 +179,6 @@ class MultiModModelWithLanguage(LightningModule):
         batch_excess_bl_drinking_2 = tabular_to_encode["exceeds_bl_drinking_2"]
         batch_lssaga_dsm4_youth_d04_diag = tabular_to_encode["lssaga_dsm4_youth_d04_diag"]
         batch_lssaga_dsm4_youth_d05_diag = tabular_to_encode["lssaga_dsm4_youth_d05_diag"]
-        # batch_highrisk_yss_extern = tabular_to_encode[":, 12"]
-        # batch_highrisk_yss_intern = tabular_to_encode[:, 13]
-        # batch_highrisk_pss_extern = tabular_to_encode[:, 14]
-        # batch_highrisk_pss_intern = tabular_to_encode[:, 15]
         batch_highrisk_youthreport1_yfhi4 = tabular_to_encode["youthreport1_yfhi4"]
         batch_highrisk_youthreport1_yfhi3 = tabular_to_encode["youthreport1_yfhi3"]
         batch_highrisk_youthreport1_yfhi5 = tabular_to_encode["youthreport1_yfhi5"]
@@ -198,21 +193,115 @@ class MultiModModelWithLanguage(LightningModule):
         batch_rsq_emotion_regulation = tabular_to_encode["rsq_emotion_regulation"]
         batch_rsq_cognitive_restructuring = tabular_to_encode["rsq_cognitive_restructuring"]
 
-        batch_sex_l = list(batch_sex)
-        batch_age_l = list(batch_age.round(2))
-        batch_cahalan_score_l = list(batch_cahalan_score)
-        batch_excess_bl_drinking_2_l = list(batch_excess_bl_drinking_2)
-        batch_lssaga_dsm4_youth_d04_diag_l = list(batch_lssaga_dsm4_youth_d04_diag)
-        batch_lssaga_dsm4_youth_d05_diag_l = list(batch_lssaga_dsm4_youth_d05_diag)
-        batch_highrisk_yss_extern_l = list(batch_highrisk_yss_extern)
-        batch_highrisk_yss_intern_l = list(batch_highrisk_yss_intern)
-        batch_highrisk_pss_extern_l = list(batch_highrisk_pss_extern)
-        batch_highrisk_pss_intern_l = list(batch_highrisk_pss_intern)
-        batch_highrisk_youthreport1_yfhi4_l= list(batch_highrisk_youthreport1_yfhi4)
-        batch_highrisk_youthreport1_yfhi3_l = list(batch_highrisk_youthreport1_yfhi3)
-        batch_highrisk_youthreport1_yfhi5_l = list(batch_highrisk_youthreport1_yfhi5)
-        batch_highrisk_youthreport1_leq_c_cnc_l = list(batch_highrisk_youthreport1_leq_c_cnc)
+        batch_youthreport2_shq1 = tabular_to_encode["youthreport2_shq1"]
+        batch_youthreport2_shq2 = tabular_to_encode["youthreport2_shq2"]
+        batch_youthreport2_shq3 = tabular_to_encode["youthreport2_shq3"]
+        batch_youthreport2_shq4 = tabular_to_encode["youthreport2_shq4"]
+        batch_youthreport2_shq5 = tabular_to_encode["youthreport2_shq5"]
 
+        batch_shq_weekday_sleep = tabular_to_encode["shq_weekday_sleep"]
+        batch_shq_weekend_sleep = tabular_to_encode["shq_weekend_sleep"]
+        batch_shq_weekend_bedtime_delay = tabular_to_encode["shq_weekend_bedtime_delay"]
+        batch_shq_weekend_wakeup_delay = tabular_to_encode["shq_weekend_wakeup_delay"]
+
+        batch_youthreport2_shq1 = list(batch_youthreport2_shq1)
+        import datetime
+        new_arr = []
+        for t in batch_youthreport2_shq1:
+            if t == 0:
+                new_arr.append("unknown")
+            else:
+                dt = datetime.datetime.strptime(str(t), '%H%M')
+                new_arr.append(dt.strftime('%I:%M %p'))
+        batch_youthreport2_shq1 = new_arr
+
+        batch_youthreport2_shq2 = list(batch_youthreport2_shq2)
+        new_arr = []
+        for t in batch_youthreport2_shq2:
+            if t == 0:
+                new_arr.append("unknown")
+            else:
+                dt = datetime.datetime.strptime(str(t), '%H%M')
+                new_arr.append(dt.strftime('%I:%M %p'))
+        batch_youthreport2_shq2 = new_arr
+
+        batch_youthreport2_shq3 = list(batch_youthreport2_shq3)
+        new_arr = []
+        for t in batch_youthreport2_shq3:
+            if t == 0:
+                new_arr.append("unknown")
+            else:
+                dt = datetime.datetime.strptime(str(t), '%H%M')
+                new_arr.append(dt.strftime('%I:%M %p'))
+        batch_youthreport2_shq3 = new_arr
+
+        batch_youthreport2_shq4 = list(batch_youthreport2_shq4)
+        new_arr = []
+        for t in batch_youthreport2_shq4:
+            if t == 0:
+                new_arr.append("unknown")
+            else:
+                dt = datetime.datetime.strptime(str(t), '%H%M')
+                new_arr.append(dt.strftime('%I:%M %p'))
+        batch_youthreport2_shq4 = new_arr
+
+        batch_youthreport2_shq5 = list(batch_youthreport2_shq5) # average sleep quality
+
+        batch_shq_weekday_sleep = list(batch_shq_weekday_sleep)
+        batch_shq_weekend_sleep = list(batch_shq_weekend_sleep)
+        batch_shq_weekend_bedtime_delay = list(batch_shq_weekend_bedtime_delay)
+        batch_shq_weekend_wakeup_delay = list(batch_shq_weekend_wakeup_delay)
+
+        batch_support_comm_3 = tabular_to_encode["youthreport2_chks_set2_chks3"]
+        batch_support_comm_3_l = list(batch_support_comm_3)
+        batch_support_comm_3_sentence = "there are supportive and caring adults at school."
+
+        batch_support_comm_4 = tabular_to_encode["youthreport2_chks_set2_chks4"]
+        batch_support_comm_4_l = list(batch_support_comm_4)
+        batch_support_comm_4_sentence = "there are supportive adults."
+
+        batch_support_comm_5 = tabular_to_encode["youthreport2_chks_set4_chks5"]
+        batch_support_comm_5_l = list(batch_support_comm_5)
+        batch_support_comm_5_sentence = "there are caring adults in the neighborhood."
+
+        batch_support_comm_6 = tabular_to_encode["youthreport2_chks_set4_chks6"]
+        batch_support_comm_6_l = list(batch_support_comm_6)
+        batch_support_comm_6_sentence = "there are trustworthy adults."
+
+        batch_support_comm_7 = tabular_to_encode["youthreport2_chks_set5_chks7"]
+        batch_support_comm_7_l = list(batch_support_comm_7)
+        batch_support_comm_7_sentence = "a part of clubs, sports teams, church/temple, or other group activities."
+
+        batch_support_comm_8 = tabular_to_encode["youthreport2_chks_set5_chks8"]
+        batch_support_comm_8_sentence = "involved in music, art, literature, sports, or a hobby."
+        batch_support_comm_8_l = list(batch_support_comm_8)
+
+        batch_support_comm_9 = tabular_to_encode["youthreport2_chks_set5_chks9"]
+        batch_support_comm_9_sentence = "helpful towards other people."
+        batch_support_comm_9_l = list(batch_support_comm_9)
+
+        batch_support_comm_3_l = list(['generally does not feel like ' + batch_support_comm_3_sentence if 1 < x and x <= 2 
+                                                else 'sometimes feels ' + batch_support_comm_3_sentence if  2 < x and x <= 3
+                                                else 'generally does feel like ' + batch_support_comm_3_sentence if x >3 else "" for x in batch_support_comm_3_l])
+        batch_support_comm_4_l = list(['generally does not feel like ' + batch_support_comm_4_sentence if 1 < x and x <= 2 
+                                                else 'sometimes feels ' + batch_support_comm_4_sentence if  2 < x and x <= 3
+                                                else 'generally does feel like ' + batch_support_comm_4_sentence if x >3 else "" for x in batch_support_comm_4_l])
+        batch_support_comm_5_l = list(['generally does not feel like ' + batch_support_comm_5_sentence if 1 < x and x <= 2 
+                                                else 'sometimes feels ' + batch_support_comm_5_sentence if  2 < x and x <= 3
+                                                else 'generally does feel like ' + batch_support_comm_5_sentence if x >3 else "" for x in batch_support_comm_5_l])
+        batch_support_comm_6_l = list(['generally does not feel like ' + batch_support_comm_6_sentence if 1 < x and x <= 2 
+                                                else 'sometimes feels ' + batch_support_comm_6_sentence if  2 < x and x <= 3
+                                                else 'generally does feel like ' + batch_support_comm_6_sentence if x >3 else "" for x in batch_support_comm_6_l])
+        batch_support_comm_7_l = list(['generally does not feel like ' + batch_support_comm_7_sentence if 1 < x and x <= 2 
+                                                else 'sometimes feels ' + batch_support_comm_7_sentence if  2 < x and x <= 3
+                                                else 'generally does feel like ' + batch_support_comm_7_sentence if x >3 else "" for x in batch_support_comm_7_l])
+        batch_support_comm_8_l = list(['generally does not feel ' + batch_support_comm_8_sentence if 1 < x and x <= 2 
+                                                else 'sometimes feels ' + batch_support_comm_8_sentence if  2 < x and x <= 3
+                                                else 'generally does feel ' + batch_support_comm_8_sentence if x >3 else "" for x in batch_support_comm_8_l])
+        batch_support_comm_9_l = list(['generally does not feel ' + batch_support_comm_9_sentence if 1 < x and x <= 2 
+                                                else 'sometimes feels ' + batch_support_comm_9_sentence if  2 < x and x <= 3
+                                                else 'generally does feel ' + batch_support_comm_9_sentence if x >3 else "" for x in batch_support_comm_9_l])
+        # end
 
         batch_sex_l = list(batch_sex)
         batch_age_l = list(np.round(batch_age, 2))
@@ -245,10 +334,10 @@ class MultiModModelWithLanguage(LightningModule):
         batch_hispanic_l = list(map(lambda x: 'not Hispanic' if x == 0 else 'Hispanic', batch_hispanic_l))
 
         batch_race_l = list(batch_race)
-        batch_race_l = list(map(lambda x: 'Native American or American Indian' if x == 1 else
+        batch_race_l = list(map(lambda x: 'Native American' if x == 1 else
                                 ("Asian" if x == 2 else
                                 ("Pacific Islander" if x == 3 else
-                                ("African-American or Black" if x == 4 else
+                                ("Black" if x == 4 else
                                     ("White" if x == 5 else
                                     ("Other race or race not specified"))))), batch_race_l))
 
@@ -292,18 +381,26 @@ class MultiModModelWithLanguage(LightningModule):
                                                     else 'mostly agrees with sentiments like ' + rsq_cognitive_restructuring_list if x >3 else "" for x in batch_rsq_cognitive_restructuring_l])
 
 
-
         # add description of patients
         batch_pairs = list(zip(batch_sex_l, batch_age_l, batch_cahalan_score_l, batch_excess_bl_drinking_2_l, batch_lssaga_dsm4_youth_d04_diag_l, 
                                 batch_lssaga_dsm4_youth_d05_diag_l, batch_highrisk_youthreport1_yfhi4_l, batch_highrisk_youthreport1_yfhi3_l,
                                 batch_highrisk_youthreport1_yfhi5_l, batch_hispanic_l, batch_race_l, batch_bmi_l, batch_pronoun_l,
                                 batch_rsq_problem_solving_l, batch_rsq_emotion_expression_l, batch_batch_rsq_acceptance_l, batch_rsq_positive_thinking_l,
-                                batch_rsq_emotion_regulation_l, batch_rsq_cognitive_restructuring_l))
-        batch_sentences = ["This subject is a " + str(pair[1]) + " year old " + str(pair[0]) + " who is a " + str(pair[2]) + " and " + str(pair[3])+ ". " +
+                                batch_rsq_emotion_regulation_l, batch_rsq_cognitive_restructuring_l, batch_youthreport2_shq1, batch_youthreport2_shq2,
+                                batch_youthreport2_shq3, batch_youthreport2_shq4, batch_youthreport2_shq5, batch_shq_weekday_sleep, batch_shq_weekend_sleep,
+                                batch_shq_weekend_bedtime_delay , batch_shq_weekend_wakeup_delay, batch_support_comm_3_l, batch_support_comm_4_l, batch_support_comm_5_l,
+                            batch_support_comm_6_l, batch_support_comm_7_l, batch_support_comm_8_l, batch_support_comm_9_l
+        ))
+        batch_sentences = ["This subject is a " + str(pair[1]) + " year old " + str(pair[0]) + " who is a " + str(pair[2]) + " and " + str(pair[3]) + ". " +
                             str(pair[12]) + " is " + str(pair[9]) + ", and " + str(pair[10]) + " with a BMI of " + str(pair[11]) + ". " +
-                            str(pair[12]) + " " + str(pair[4]) + " and " + str(pair[5]) + " and " + str(pair[6]) + " and " + str(pair[7]) + " and " + str(pair[8]) + ". "  +
-                            str(pair[12]) + " " + str(pair[13]) + str(pair[12]) + " " + str(pair[14]) + str(pair[12]) + " " + str(pair[15]) + str(pair[12]) + " " + str(pair[16]) + str(pair[12]) + " " + str(pair[17]) + str(pair[12]) + " " + str(pair[18]) for pair in batch_pairs]
-        print(batch_sentences)
+                            str(pair[12]) + " goes to sleep at " + str(pair[19])+ " and wakes up at " + str(pair[21])+ " on weekdays, getting an average of " + str(pair[24]) + " hours of sleep on weekdays. " + 
+                            str(pair[12]) + " goes to sleep at " + str(pair[20]) + " and wakes up at " + str(pair[22]) + " on weekends, getting an average of " +  str(pair[25]) + " hours of sleep on weekends. " +
+                            "The weekend bedtime delay is " + str(pair[26]) + " and the weekend wakeup delay is " + str(pair[27])+ ". " + "On average, the sleep quality is " + str(pair[23])+ ". " +
+                            str(pair[12]) + " " + str(pair[4]) + " and " + str(pair[5]) + " and " + str(pair[6]) + " and " + str(pair[7]) + " and " + str(pair[8]) + " "  +
+                            str(pair[12]) + " " + str(pair[13]) + str(pair[12]) + " " + str(pair[14]) + str(pair[12]) + " " + str(pair[15]) + str(pair[12]) + " " + str(pair[16]) +
+                            str(pair[12]) + " " + str(pair[17]) + str(pair[12]) + " " + str(pair[18]) + str(pair[12]) + " " + str(pair[28]) + " "+str(pair[12]) + " " + str(pair[29]) + " " + str(pair[12]) + " " +
+                            str(pair[30]) +" " + str(pair[12]) + " " + str(pair[31]) + " " + str(pair[12]) + " " + str(pair[32]) + " " + str(pair[12]) + " " + str(pair[33]) +" "+ str(pair[12]) +
+                            " " + str(pair[34]) +  " " for pair in batch_pairs]
         return batch_sentences
 
     def configure_optimizers(self):
