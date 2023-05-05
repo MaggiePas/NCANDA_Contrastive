@@ -54,6 +54,14 @@ class MultiModModel(LightningModule):
 
         self.train_auc = torchmetrics.AUC(task='multiclass', num_classes=2, average='macro')
 
+        self.val_macro_f1 = torchmetrics.F1(task='multiclass', num_classes=2, average='macro')
+
+        self.val_auc = torchmetrics.AUC(task='multiclass', num_classes=2, average='macro')
+
+        self.test_macro_f1 = torchmetrics.F1(task='multiclass', num_classes=2, average='macro')
+        
+        self.test_auc = torchmetrics.AUC(task='multiclass', num_classes=2, average='macro')
+
         self.results_column_names = ['subject', 'label', 'prediction', 'age', 'sex']
 
         self.train_results_df = pd.DataFrame(columns=self.results_column_names)
@@ -153,6 +161,8 @@ class MultiModModel(LightningModule):
             self.train_macro_accuracy(y_pred_tag, y)
         
         self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
+        self.log('train_f1', self.train_macro_f1, on_step=False, on_epoch=True)
+        self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
         self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
         # Log loss
         self.log('train_loss', loss, on_step=True, on_epoch=True)
@@ -198,6 +208,8 @@ class MultiModModel(LightningModule):
         
         self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
         self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True)
+        self.log('val_f1', self.val_macro_f1, on_step=False, on_epoch=True)
+        self.log('val_auc', self.val_auc, on_step=False, on_epoch=True)
 
         # Log loss
         self.log('val_loss', loss, on_step=True, on_epoch=True)
@@ -229,7 +241,8 @@ class MultiModModel(LightningModule):
         
         self.log('test_acc_step', self.test_accuracy, on_step=True, on_epoch=False)
         self.log('test_macro_acc_step', self.test_macro_accuracy, on_step=True, on_epoch=True)
-        
+        self.log('test_f1', self.test_macro_f1, on_step=False, on_epoch=True)
+        self.log('test_auc', self.test_auc, on_step=False, on_epoch=True)
         self.log("test loss", loss)
 
         return loss
