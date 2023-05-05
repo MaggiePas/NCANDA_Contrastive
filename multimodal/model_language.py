@@ -146,10 +146,10 @@ class MultiModModelWithLanguage(LightningModule):
     def get_batch_sentences(self, tabular_to_encode):
         # return_tensors pt means pytorch
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        if device.type == "cpu":
-            tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cpu().numpy())
-        else: 
-            tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cuda().numpy())
+        #if device.type == "cpu":
+        tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cpu().numpy())
+        # else: 
+        #     tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cuda().numpy())
         # batch_age = tabular_to_encode[:, 2]
         # batch_sex = tabular_to_encode[:, 1]
         # batch_cahalan_score = tabular_to_encode[:, 8]

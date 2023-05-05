@@ -222,14 +222,14 @@ class TripletModel(LightningModule):
         anchor_pred_tag = torch.round(torch.sigmoid(anchor_pred))
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.train_results_df['subject'] = tuple(anchor_subj)
-        if device.type == "cpu":
-            self.train_results_df['label'] = anchor_y.squeeze().detach().cpu().numpy()
-            self.train_results_df['prediction'] = anchor_pred_tag.detach().cpu().numpy()
-            tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cpu().numpy())
-        else:
-            self.train_results_df['label'] = anchor_y.squeeze().detach().cuda().numpy()
-            self.train_results_df['prediction'] = anchor_pred_tag.detach().cuda().numpy()
-            tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cuda().numpy())
+        #if device.type == "cpu":
+        self.train_results_df['label'] = anchor_y.squeeze().detach().cpu().numpy()
+        self.train_results_df['prediction'] = anchor_pred_tag.detach().cpu().numpy()
+        tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cpu().numpy())
+        # else:
+        #     self.train_results_df['label'] = anchor_y.squeeze().detach().cuda().numpy()
+        #     self.train_results_df['prediction'] = anchor_pred_tag.detach().cuda().numpy()
+        #     tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cuda().numpy())
         self.train_results_df['age'] = tab_bef_normalization[:,2]
         self.train_results_df['sex'] = tab_bef_normalization[:, 1]
         
@@ -293,14 +293,14 @@ class TripletModel(LightningModule):
         self.val_results_df['subject'] = tuple(anchor_subj)
         
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        if device.type == "cpu":
-            self.val_results_df['label'] = anchor_y.squeeze().detach().cpu().numpy()
-            self.val_results_df['prediction'] = anchor_pred_tag.detach().cpu().numpy()
-            tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cpu().numpy())
-        else: 
-            self.val_results_df['label'] = anchor_y.squeeze().detach().cuda().numpy()
-            self.val_results_df['prediction'] = anchor_pred_tag.detach().cuda().numpy()
-            tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cuda().numpy())
+        #if device.type == "cpu":
+        self.val_results_df['label'] = anchor_y.squeeze().detach().cpu().numpy()
+        self.val_results_df['prediction'] = anchor_pred_tag.detach().cpu().numpy()
+        tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cpu().numpy())
+        # else: 
+        #     self.val_results_df['label'] = anchor_y.squeeze().detach().cuda().numpy()
+        #     self.val_results_df['prediction'] = anchor_pred_tag.detach().cuda().numpy()
+        #     tab_bef_normalization = self.scaler.inverse_transform(anchor_tab.detach().cuda().numpy())
         self.val_results_df['age'] = tab_bef_normalization[:,2]
         self.val_results_df['sex'] = tab_bef_normalization[:, 1]
         
