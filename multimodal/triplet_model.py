@@ -19,7 +19,7 @@ class CenterLoss(nn.Module):
         feat_dim (int): feature dimension.
     """
 
-    def __init__(self, num_classes=10, feat_dim=2, use_gpu=False):
+    def __init__(self, num_classes=10, feat_dim=2, use_gpu=True):
         super(CenterLoss, self).__init__()
         self.num_classes = num_classes
         self.feat_dim = feat_dim
@@ -88,7 +88,7 @@ class TripletModel(LightningModule):
         # final fc layer which takes concatenated imput
         self.fc5 = nn.Linear(64, 1)
         
-        self.center_loss = CenterLoss(num_classes=2, feat_dim=64, use_gpu=False)
+        self.center_loss = CenterLoss(num_classes=2, feat_dim=64, use_gpu=True)
 
         self.bce_loss = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
         
