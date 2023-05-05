@@ -50,6 +50,10 @@ class MultiModModel(LightningModule):
         
         self.test_accuracy = torchmetrics.Accuracy(task='multiclass', average='micro', num_classes=2)
         
+        self.train_macro_f1 = torchmetrics.F1(task='multiclass', num_classes=2, average='macro')
+
+        self.train_auc = torchmetrics.AUC(task='multiclass', num_classes=2, average='macro')
+
         self.results_column_names = ['subject', 'label', 'prediction', 'age', 'sex']
 
         self.train_results_df = pd.DataFrame(columns=self.results_column_names)
