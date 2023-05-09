@@ -215,6 +215,9 @@ class MultiModModelWithLanguage(LightningModule):
         batch_shq_weekend_sleep = tabular_to_encode["shq_weekend_sleep"]
         batch_shq_weekend_bedtime_delay = tabular_to_encode["shq_weekend_bedtime_delay"]
         batch_shq_weekend_wakeup_delay = tabular_to_encode["shq_weekend_wakeup_delay"]
+        x = "hi this is emily"
+        xx += x
+        print("made it")
 
         batch_youthreport2_shq1 = list(batch_youthreport2_shq1)
         import datetime
