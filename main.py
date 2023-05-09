@@ -79,7 +79,7 @@ def main_multimodal(wandb, wandb_logger):
     lr_monitor = LearningRateMonitor(logging_interval='step')
 
     # train the network
-    trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, accelerator='gpu', devices=1, callbacks=[lr_monitor])
+    trainer = Trainer(max_epochs=20, logger=wandb_logger, log_every_n_steps=1, accelerator='gpu', devices=1, callbacks=[lr_monitor])
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
 
 
@@ -201,7 +201,7 @@ if __name__ == '__main__':
     #     "batch_size": 1
     # }
 
-    wandb_logger = WandbLogger(wandb.init(project="ncanda-imaging", entity="magda"))
+    wandb_logger = WandbLogger(wandb.init(project="ncanda-imaging", entity="tulikaj"))
 
     # # run conv3d
     # main_conv3d(wandb, wandb_logger)
@@ -210,7 +210,7 @@ if __name__ == '__main__':
     # main_resnet(wandb, wandb_logger)
 
     # run multimodal
-    # main_multimodal(wandb, wandb_logger)
+    main_multimodal(wandb, wandb_logger)
     
     # run daft model
     # main_daft(wandb, wandb_logger)
@@ -222,4 +222,4 @@ if __name__ == '__main__':
     # main_center(wandb, wandb_logger)
     
     # run model with bce + center loss + triplet loss
-    main_triplet(wandb, wandb_logger)
+    #main_triplet(wandb, wandb_logger)

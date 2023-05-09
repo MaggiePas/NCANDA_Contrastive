@@ -3,7 +3,8 @@ from torch import nn
 from pytorch_lightning.core.module import LightningModule
 from torch.nn import functional as F
 from monai.networks.nets import resnet10, resnet18, resnet34, resnet50
-from settings import IMAGE_SIZE, FEATURES, BATCH_SIZE, TARGET
+from monai.networks.nets.swin_unetr import SwinUNETR
+from settings import IMAGE_SIZE, FEATURES, NUM_FEATURES, BATCH_SIZE, TARGET
 import torchmetrics
 import pandas as pd
 
@@ -65,13 +66,20 @@ class TripletModel(LightningModule):
 
         self.scaler = scaler
 
-        self.resnet = resnet10(pretrained=False,
-                              spatial_dims=3,
-                              num_classes=len(FEATURES),
-                              n_input_channels=1
-                              )
+        #self.resnet = resnet10(pretrained=False,
+        #                      spatial_dims=3,
+        #                      num_classes=len(FEATURES),
+        #                      n_input_channels=1
+        #                      )
+        self.swin_tf = SwinUNETR(
+            img_size=IMAGE_SIZE,
+            in_channels=1,
+            out_channels=1,
+            feature_size=12,  # feature size should be divisible by 12
+        )
+        self.swin_class_layer = nn.Linear(IMAGE_SIZE ** 3, NUM_FEATURES)
 
-        self.NUM_FEATURES = len(FEATURES)
+        self.NUM_FEATURES = NUM_FEATURES
 
         # fc layer only tabular data
         self.fc1 = nn.Linear(self.NUM_FEATURES, 128)
@@ -131,7 +139,13 @@ class TripletModel(LightningModule):
         # print(img.type)
         # print(img.shape)
         
-        img = self.resnet(img)
+        #print("Image input size is: {}".format(img.shape))
+        img = self.swin_tf(img)
+        img = torch.flatten(img, start_dim=1)
+        #print("Image flattened shape: {}".format(img.shape))
+        img = self.swin_class_layer(img)
+        #print("swin tf applied to image data in forward pass!")
+        #print("Image output size is: {}".format(img.shape))
 
         # change the dtype of the tabular data
         tab = tab.to(torch.float32)
@@ -376,7 +390,7 @@ class TripletModel(LightningModule):
     
     def training_epoch_end(self, outs):
         
-        filename_out = '/home/users/paschali/results/train_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/home/users/tulikaj/results/train_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.train_results_df_all.to_csv(filename_out)
 
@@ -390,7 +404,7 @@ class TripletModel(LightningModule):
     def validation_epoch_end(self, outputs):
         # log epoch metric
 
-        filename_out = '/home/users/paschali/results/val_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/home/users/tulikaj/results/val_out_center_age_triplet_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
         
         self.val_results_df_all.to_csv(filename_out)
 

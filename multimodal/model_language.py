@@ -32,9 +32,9 @@ class MultiModModelWithLanguage(LightningModule):
                                )
 
         self.tokenizer = AutoTokenizer.from_pretrained('michiyasunaga/BioLinkBERT-base',
-                                                       cache_dir="/scratch/users/paschali/")
+                                                       cache_dir="/scratch/users/tulikaj/")
         self.language_model = AutoModel.from_pretrained('michiyasunaga/BioLinkBERT-base',
-                                                        cache_dir="/scratch/users/paschali/")
+                                                        cache_dir="/scratch/users/tulikaj/")
                                                 
         # Freeze weights so those don't get trained        
         for param in self.language_model.parameters():
@@ -288,7 +288,7 @@ class MultiModModelWithLanguage(LightningModule):
 
     def training_epoch_end(self, outs):
 
-        filename_out = '/home/users/paschali/results/train_out_language_' + str(
+        filename_out = '/home/users/tulikaj/results/train_out_language_' + str(
             self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.train_results_df_all.to_csv(filename_out)
@@ -302,7 +302,7 @@ class MultiModModelWithLanguage(LightningModule):
     def validation_epoch_end(self, outputs):
         # log epoch metric
 
-        filename_out = '/home/users/paschali/results/val_out_language_' + str(
+        filename_out = '/home/users/tulikaj/results/val_out_language_' + str(
             self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
         self.val_results_df_all.to_csv(filename_out)
