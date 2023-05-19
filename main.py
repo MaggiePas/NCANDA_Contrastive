@@ -213,22 +213,22 @@ if __name__ == '__main__':
 
     wandb_logger = WandbLogger(wandb.init(project="ncanda-emily", entity="ewesel"))
 
-    # # run conv3d
+    # run conv3d
     # main_conv3d(wandb, wandb_logger)
 
-    # run resnet
+    # # run resnet
     # main_resnet(wandb, wandb_logger)
 
-    # run multimodal
+    # # run multimodal
     # main_multimodal(wandb, wandb_logger)
     
-    # run daft model
+    # # run daft model
     # main_daft(wandb, wandb_logger)
     
-    # run model with language
+    # # run model with language
     # main_language(wandb, wandb_logger)
     
-    # run model with bce + center loss
+    # # run model with bce + center loss
     # main_center(wandb, wandb_logger)
     
     # run model with bce + center loss + triplet loss
