@@ -198,7 +198,7 @@ class TripletModel(LightningModule):
 
     def training_step(self, batch, batch_idx):
         
-        
+        print("triplet train")
         anchor_img = batch['anchor'][0]
         anchor_tab = batch['anchor'][1]
         anchor_y = batch['anchor'][2]
@@ -246,7 +246,9 @@ class TripletModel(LightningModule):
         self.train_results_df['sex'] = tab_bef_normalization[:, 1]
         
         self.train_results_df_all = pd.concat([self.train_results_df_all , self.train_results_df], ignore_index=True)
-        
+        print("triplet train")
+        print(anchor_pred_tag)
+        print(anchor_y)
         if BATCH_SIZE == 1:
             self.train_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             
@@ -273,7 +275,7 @@ class TripletModel(LightningModule):
         return loss
 
     def validation_step(self, batch, batch_idx):
-
+        print("multimodal val")
         anchor_img = batch['anchor'][0]
         anchor_tab = batch['anchor'][1]
         anchor_y = batch['anchor'][2]

@@ -116,6 +116,7 @@ class DAFTModel(LightningModule):
         return [optimizer], [lr_scheduler]
 
     def training_step(self, batch, batch_idx):
+        print("daft train")
         img, tab, y, subject_id = batch
 
         y = y.to(torch.float)
