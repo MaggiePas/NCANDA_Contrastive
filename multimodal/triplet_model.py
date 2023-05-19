@@ -246,26 +246,26 @@ class TripletModel(LightningModule):
         self.train_results_df['sex'] = tab_bef_normalization[:, 1]
         
         self.train_results_df_all = pd.concat([self.train_results_df_all , self.train_results_df], ignore_index=True)
-        print("triplet train")
+        print("triplet train 2")
         print(anchor_pred_tag)
         print(anchor_y)
         if BATCH_SIZE == 1:
             self.train_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             
             self.train_macro_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
-            # self.train_auc(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
+            self.train_auc(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             self.train_macro_f1(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
         else:
             self.train_accuracy(anchor_pred_tag, anchor_y)
             
             self.train_macro_accuracy(anchor_pred_tag, anchor_y)
-            # self.train_auc(anchor_pred_tag, anchor_y)
+            self.train_auc(anchor_pred_tag, anchor_y)
             self.train_macro_f1(anchor_pred_tag, anchor_y)
         
         self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
         self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
         self.log('train_f1', self.train_macro_f1, on_step=False, on_epoch=True)
-        # self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
+        self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
         # Log loss
         self.log('train_loss', loss, on_step=True, on_epoch=True)
         self.log('train_bce_loss', bce_loss_f, on_step=True, on_epoch=True)
