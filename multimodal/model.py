@@ -155,14 +155,18 @@ class MultiModModel(LightningModule):
             self.train_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
             
             self.train_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.train_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+            self.train_auc(torch.unsqueeze(y_pred_tag, 0), y)
         else:
             self.train_accuracy(y_pred_tag, y)
             
             self.train_macro_accuracy(y_pred_tag, y)
+            self.train_macro_f1(y_pred_tag, y)
+            self.train_macro_auc(y_pred_tag, y)
         
         self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
-        # #self.log('train_f1', self.train_macro_f1, on_step=False, on_epoch=True)
-        # #self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
+        self.log('train_macro_f1', self.train_macro_f1, on_step=False, on_epoch=True)
+        self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
         self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
         # Log loss
         self.log('train_loss', loss, on_step=True, on_epoch=True)
@@ -201,6 +205,8 @@ class MultiModModel(LightningModule):
             self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
             
             self.val_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_auc(torch.unsqueeze(y_pred_tag, 0), y)
         else:
             self.val_accuracy(y_pred_tag, y)
             
@@ -208,8 +214,8 @@ class MultiModModel(LightningModule):
         
         self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
         self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True)
-        #self.log('val_f1', self.val_macro_f1, on_step=False, on_epoch=True)
-        #self.log('val_auc', self.val_auc, on_step=False, on_epoch=True)
+        self.log('val_macro_f1', self.val_macro_f1, on_step=False, on_epoch=True)
+        self.log('val_auc', self.val_auc, on_step=False, on_epoch=True)
 
         # Log loss
         self.log('val_loss', loss, on_step=True, on_epoch=True)
@@ -234,10 +240,14 @@ class MultiModModel(LightningModule):
             self.test_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
             
             self.test_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.test_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+            self.test_auc(torch.unsqueeze(y_pred_tag, 0), y)
         else:
             self.test_accuracy(y_pred_tag, y)
             
             self.test_macro_accuracy(y_pred_tag, y)
+            self.test_macro_f1(y_pred_tag, y)
+            self.test_auc(y_pred_tag, y)
         
         self.log('test_acc_step', self.test_accuracy, on_step=True, on_epoch=False)
         self.log('test_macro_acc_step', self.test_macro_accuracy, on_step=True, on_epoch=True)
@@ -262,8 +272,8 @@ class MultiModModel(LightningModule):
         # log epoch metric
         self.log('train_acc_epoch', self.train_accuracy)
         self.log('train_macro_acc_epoch', self.train_macro_accuracy)
-        #self.log('train_f1', self.train_macro_f1)
-        #self.log('train_auc', self.train_auc)
+        self.log('train_f1', self.train_macro_f1)
+        self.log('train_auc', self.train_auc)
         
     
     def validation_epoch_end(self, outputs):
@@ -278,8 +288,8 @@ class MultiModModel(LightningModule):
 
         # Clear the dataframe so the new epoch can start fresh
         self.val_results_df_all = pd.DataFrame(columns=self.results_column_names)
-        #self.log('val_f1', self.val_macro_f1)
-        #self.log('val_auc', self.val_auc)
+        self.log('val_f1', self.val_macro_f1)
+        self.log('val_auc', self.val_auc)
         self.log('val_acc_epoch', self.val_accuracy)
         self.log('val_macro_acc_epoch', self.val_macro_accuracy)
         

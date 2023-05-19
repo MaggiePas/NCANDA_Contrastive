@@ -295,13 +295,20 @@ class CenterModel(LightningModule):
             self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
             
             self.val_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_auc(torch.unsqueeze(y_pred_tag, 0), y)
         else:
             self.val_accuracy(y_pred_tag, y)
             
             self.val_macro_accuracy(y_pred_tag, y)
+            self.val_macro_f1(y_pred_tag, y)
+            self.val_auc(y_pred_tag, y)
         
         self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
         self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True)
+        self.log('val_macro_f1', self.val_macro_f1, on_step=False, on_epoch=True)
+        self.log('val_macro_f1', self.val_auc, on_step=False, on_epoch=True)
+
 
         # Log loss
         self.log('val_loss', loss, on_step=True, on_epoch=True)
@@ -333,10 +340,14 @@ class CenterModel(LightningModule):
             self.test_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
             
             self.test_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.test_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+            self.test_auc(torch.unsqueeze(y_pred_tag, 0), y)
         else:
             self.test_accuracy(y_pred_tag, y)
             
             self.test_macro_accuracy(y_pred_tag, y)
+            self.test_macro_f1(y_pred_tag, y)
+            self.test_auc(y_pred_tag, y)
         
         self.log('test_acc_step', self.test_accuracy, on_step=True, on_epoch=False)
         self.log('test_macro_acc_step', self.test_macro_accuracy, on_step=True, on_epoch=True)
@@ -344,8 +355,8 @@ class CenterModel(LightningModule):
         self.log("test loss", loss)
         self.log('test_bce_loss', bce_loss_f, on_step=True, on_epoch=True)
         self.log('test_center_loss', center_loss_f, on_step=True, on_epoch=True)
-        # self.log('train_f1', self.train_macro_f1, on_step=True, on_epoch=True)
-        # self.log('train_auc', self.train_auc, on_step=True, on_epoch=True)
+        self.log('test_f1', self.test_macro_f1, on_step=True, on_epoch=True)
+        self.log('test_auc', self.test_auc, on_step=True, on_epoch=True)
 
         return loss
         
@@ -382,8 +393,8 @@ class CenterModel(LightningModule):
         # Clear the dataframe so the new epoch can start fresh
         self.val_results_df_all = pd.DataFrame(columns=self.results_column_names)
 
-        # #self.log('val_f1', self.val_macro_f1)
-        # #self.log('val_auc', self.val_auc)
+        self.log('val_f1', self.val_macro_f1)
+        self.log('val_auc', self.val_auc)
         self.log('val_acc_epoch', self.val_accuracy)
         self.log('val_macro_acc_epoch', self.val_macro_accuracy)
         
