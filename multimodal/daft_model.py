@@ -159,6 +159,8 @@ class DAFTModel(LightningModule):
             self.train_macro_f1(y_pred_tag, y)
         self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
         self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
+        self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
+        self.log('train_macro_f1', self.train_macro_f1, on_step=False, on_epoch=True)
         # Log loss
         self.log('train_loss', loss, on_step=True, on_epoch=True)
 
@@ -205,8 +207,8 @@ class DAFTModel(LightningModule):
             self.val_macro_f1(y_pred_tag, y)
         self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
         self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True, prog_bar=True)
-        self.log('val_auc', self.train_auc, on_step=True, on_epoch=True)
-        self.log('val_macro_f1', self.train_macro_f1, on_step=True, on_epoch=True)
+        self.log('val_auc', self.val_auc, on_step=False, on_epoch=True)
+        self.log('val_macro_f1', self.val_macro_f1, on_step=False, on_epoch=True)
 
         # Log loss
         self.log('val_loss', loss, on_step=True, on_epoch=True, prog_bar=True)
