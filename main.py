@@ -24,6 +24,7 @@ def main_conv3d(wandb, wandb_logger):
     '''
     main function to run the conv3d architecture
     '''
+    seed_everything(23)
     # get the model
     model = AdniModel()
 
@@ -42,6 +43,7 @@ def main_resnet(wandb, wandb_logger):
     '''
     main function to run the resnet architecture
     '''
+    seed_everything(23)
     # ge the model
     model = ResNetModel()
 

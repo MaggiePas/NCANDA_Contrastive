@@ -377,6 +377,8 @@ class MultiModModelWithLanguage(LightningModule):
             self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
             self.val_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
         else:
             self.val_accuracy(y_pred_tag, y)
 

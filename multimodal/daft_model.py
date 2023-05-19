@@ -148,11 +148,15 @@ class DAFTModel(LightningModule):
             self.train_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
             self.train_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.train_auc(torch.unsqueeze(y_pred_tag, 0), y)
+            self.train_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+
         else:
             self.train_accuracy(y_pred_tag, y)
 
             self.train_macro_accuracy(y_pred_tag, y)
-
+            self.train_auc(y_pred_tag, y)
+            self.train_macro_f1(y_pred_tag, y)
         self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
         self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
         # Log loss
@@ -191,13 +195,18 @@ class DAFTModel(LightningModule):
             self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
             self.val_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_auc(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+
         else:
             self.val_accuracy(y_pred_tag, y)
-
             self.val_macro_accuracy(y_pred_tag, y)
-
+            self.val_auc(y_pred_tag, y)
+            self.val_macro_f1(y_pred_tag, y)
         self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
         self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True, prog_bar=True)
+        self.log('val_auc', self.train_auc, on_step=True, on_epoch=True)
+        self.log('val_macro_f1', self.train_macro_f1, on_step=True, on_epoch=True)
 
         # Log loss
         self.log('val_loss', loss, on_step=True, on_epoch=True, prog_bar=True)
@@ -216,19 +225,22 @@ class DAFTModel(LightningModule):
         y_pred_tag = torch.round(torch.sigmoid(y_pred))
 
         if BATCH_SIZE == 1:
-
+            self.test_auc(torch.unsqueeze(y_pred_tag, 0), y)
+            self.test_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
             self.test_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
-
             self.test_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+
         else:
             self.test_accuracy(y_pred_tag, y)
-
             self.test_macro_accuracy(y_pred_tag, y)
-
+            self.test_auc(y_pred_tag, y)
+            self.test_macro_f1(y_pred_tag, y)
         self.log('test_acc_step', self.test_accuracy, on_step=True, on_epoch=False)
         self.log('test_macro_acc_step', self.test_macro_accuracy, on_step=True, on_epoch=True)
-
         self.log("test loss", loss)
+        self.log('test_auc', self.test_auc, on_step=True, on_epoch=True)
+        self.log('test_macro_f1', self.test_macro_f1, on_step=True, on_epoch=True)
+        
 
         return loss
 
@@ -243,6 +255,8 @@ class DAFTModel(LightningModule):
 
         self.log('train_acc_epoch', self.train_accuracy)
         self.log('train_macro_acc_epoch', self.train_macro_accuracy)
+        self.log('train_f1', self.train_macro_f1)
+        self.log('train_auc', self.train_auc)
 
 
     def validation_epoch_end(self, outputs):
@@ -256,8 +270,8 @@ class DAFTModel(LightningModule):
 
         self.log('val_acc_epoch', self.val_accuracy)
         self.log('val_macro_acc_epoch', self.val_macro_accuracy)
-        #self.log('val_f1', self.val_macro_f1)
-        #self.log('val_auc', self.val_auc)
+        self.log('val_f1', self.val_macro_f1)
+        self.log('val_auc', self.val_auc)
 
 
 def conv3d(in_channels, out_channels, kernel_size=3, stride=1):

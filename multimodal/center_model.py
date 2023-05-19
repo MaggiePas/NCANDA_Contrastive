@@ -235,6 +235,7 @@ class CenterModel(LightningModule):
             self.train_auc(torch.unsqueeze(y_pred_tag, 0), y)
             self.train_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
 
+
         else:
             self.train_accuracy(y_pred_tag, y)
             
