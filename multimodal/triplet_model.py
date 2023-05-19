@@ -251,19 +251,19 @@ class TripletModel(LightningModule):
             self.train_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             
             self.train_macro_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
-            self.train_auc(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
+            # self.train_auc(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             self.train_macro_f1(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
         else:
             self.train_accuracy(anchor_pred_tag, anchor_y)
             
             self.train_macro_accuracy(anchor_pred_tag, anchor_y)
-            self.train_auc(anchor_pred_tag, anchor_y)
+            # self.train_auc(anchor_pred_tag, anchor_y)
             self.train_macro_f1(anchor_pred_tag, anchor_y)
         
         self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
         self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
         self.log('train_f1', self.train_macro_f1, on_step=False, on_epoch=True)
-        self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
+        # self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
         # Log loss
         self.log('train_loss', loss, on_step=True, on_epoch=True)
         self.log('train_bce_loss', bce_loss_f, on_step=True, on_epoch=True)
@@ -329,7 +329,7 @@ class TripletModel(LightningModule):
             self.val_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             
             self.val_macro_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
-            self.val_auc(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
+            # self.val_auc(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             self.val_macro_f1(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             
 
@@ -337,15 +337,15 @@ class TripletModel(LightningModule):
             self.val_accuracy(anchor_pred_tag, anchor_y)
             
             self.val_macro_accuracy(anchor_pred_tag, anchor_y)
-            self.val_auc(anchor_pred_tag, anchor_y)
+            # self.val_auc(anchor_pred_tag, anchor_y)
             self.val_macro_f1(anchor_pred_tag, anchor_y)
         self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
         self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True)
-        self.log('train_auc', self.train_auc, on_step=True, on_epoch=True)
+        # self.log('train_auc', self.train_auc, on_step=True, on_epoch=True)
         self.log('train_macro_f1', self.train_macro_f1, on_step=True, on_epoch=True)
         # Log loss
         self.log('val_f1', self.val_macro_f1, on_step=False, on_epoch=True)
-        self.log('val_auc', self.val_auc, on_step=False, on_epoch=True)
+        # self.log('val_auc', self.val_auc, on_step=False, on_epoch=True)
         self.log('val_loss', loss, on_step=True, on_epoch=True)
         self.log('val_bce_loss', bce_loss_f, on_step=True, on_epoch=True)
         self.log('val_center_loss', center_loss_f, on_step=True, on_epoch=True)
@@ -395,20 +395,20 @@ class TripletModel(LightningModule):
             
             self.test_macro_accuracy(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
 
-            self.test_auc(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
+            # self.test_auc(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             self.test_macro_f1(torch.unsqueeze(anchor_pred_tag, 0), anchor_y)
             
         else:
             self.test_accuracy(anchor_pred_tag, anchor_y)
             
             self.test_macro_accuracy(anchor_pred_tag, anchor_y)
-            self.test_auc(anchor_pred_tag, anchor_y)
+            # self.test_auc(anchor_pred_tag, anchor_y)
             self.test_macro_f1(anchor_pred_tag, anchor_y)
         
         self.log('test_acc_step', self.test_accuracy, on_step=True, on_epoch=False)
         self.log('test_macro_acc_step', self.test_macro_accuracy, on_step=True, on_epoch=True)
         self.log('test_f1', self.test_macro_f1, on_step=False, on_epoch=True)
-        self.log('test_auc', self.test_auc, on_step=False, on_epoch=True)
+        # self.log('test_auc', self.test_auc, on_step=False, on_epoch=True)
         
         self.log("test loss", loss)
         self.log('test_bce_loss', bce_loss_f, on_step=True, on_epoch=True)
@@ -433,7 +433,7 @@ class TripletModel(LightningModule):
         self.log('train_acc_epoch', self.train_accuracy)
         self.log('train_macro_acc_epoch', self.train_macro_accuracy)
         self.log('train_f1', self.train_macro_f1)
-        self.log('train_auc', self.train_auc)
+        # self.log('train_auc', self.train_auc)
         
     
     def validation_epoch_end(self, outputs):
@@ -449,7 +449,7 @@ class TripletModel(LightningModule):
         # Clear the dataframe so the new epoch can start fresh
         self.val_results_df_all = pd.DataFrame(columns=self.results_column_names)
         self.log('val_f1', self.val_macro_f1)
-        self.log('val_auc', self.val_auc)
+        # self.log('val_auc', self.val_auc)
         self.log('val_acc_epoch', self.val_accuracy)
         self.log('val_macro_acc_epoch', self.val_macro_accuracy)
         

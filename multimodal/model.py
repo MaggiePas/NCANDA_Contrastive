@@ -120,6 +120,7 @@ class MultiModModel(LightningModule):
         
 
     def training_step(self, batch, batch_idx):
+        print("train model.py")
 
         img, tab, y, subject_id = batch
         
@@ -200,6 +201,7 @@ class MultiModModel(LightningModule):
         
         self.val_results_df_all = pd.concat([self.val_results_df_all , self.val_results_df], ignore_index=True)
         
+        print("val model.py")
         if BATCH_SIZE == 1:
             
             self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)

@@ -430,6 +430,7 @@ class MultiModModelWithLanguage(LightningModule):
         return [optimizer], [lr_scheduler]
 
     def training_step(self, batch, batch_idx):
+        print("train model language")
 
         img, tab, y, subject_id = batch
 
@@ -484,6 +485,7 @@ class MultiModModelWithLanguage(LightningModule):
         return loss
 
     def validation_step(self, batch, batch_idx):
+        print("val model language")
 
         img, tab, y, subject_id = batch
         y = y.to(torch.float32)
