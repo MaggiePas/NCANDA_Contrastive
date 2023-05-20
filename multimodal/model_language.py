@@ -139,14 +139,14 @@ class MultiModModelWithLanguage(LightningModule):
         
         language_inputs = language_inputs.to('cuda')
 
-        language_outputs = language_inputs #self.language_model(**language_inputs)
+        # language_outputs = self.language_model(**language_inputs)
 
-        # 1 x 768
-        # We "pool" the model by simply taking the hidden state corresponding
-        # to the first token. We assume that this has been pre-trained
-        pooled_states = language_outputs.pooler_output
+        # # 1 x 768
+        # # We "pool" the model by simply taking the hidden state corresponding
+        # # to the first token. We assume that this has been pre-trained
+        # pooled_states = language_outputs.pooler_output
 
-        language_features_compressed = self.language_fc(pooled_states)
+        # language_features_compressed = self.language_fc(pooled_states)
 
         # concat image, tabular data and data from language model
         x = torch.cat((img, tab_without_age_sex), dim = 1)#, language_features_compressed), dim=1)
