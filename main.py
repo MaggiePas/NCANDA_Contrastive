@@ -141,7 +141,7 @@ def main_language(wandb, wandb_logger):
 
     # train the network
     trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator=device, devices=1)
-    trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader, truncation=True)
+    trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
     
 
 def main_center(wandb, wandb_logger):
