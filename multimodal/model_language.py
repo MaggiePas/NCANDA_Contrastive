@@ -168,6 +168,7 @@ class MultiModModelWithLanguage(LightningModule):
         # else: 
         #     tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cuda().numpy())
         batch_age = tabular_to_encode[:, 2]
+        print(batch_age)
         batch_sex = tabular_to_encode[:, 1]
         batch_cahalan_score = tabular_to_encode[:, 8]
         batch_excess_bl_drinking_2 = tabular_to_encode[:, 9]
