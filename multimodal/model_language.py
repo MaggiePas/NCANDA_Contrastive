@@ -164,6 +164,7 @@ class MultiModModelWithLanguage(LightningModule):
         # return_tensors pt means pytorch
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cpu().numpy())
+        print(tabular_to_encode)
         # else: 
         #     tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cuda().numpy())
         # batch_age = tabular_to_encode[:, 2]
