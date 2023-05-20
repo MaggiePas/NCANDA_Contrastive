@@ -238,15 +238,14 @@ class MultiModModelWithLanguage(LightningModule):
                 minute = int(time_str[2:])
                 
                 # Determine whether it's AM or PM based on the hour
-                meridiem = "am" if hour < 1200 else "pm"
+                meridiem = "am" if hour < 12 else "pm"
                 
                 # Convert the hour to 12-hour format
-                if hour >= 1300:
-                    hour -= 1200
+                if hour >= 13:
+                    hour -= 12
                 
                 # Format the time as a string
                 formatted_time = "{:02d}:{:02d}{}".format(hour, minute, meridiem)
-                
                 formatted_times.append(formatted_time)
         batch_youthreport2_shq1 = formatted_times
 
@@ -268,11 +267,11 @@ class MultiModModelWithLanguage(LightningModule):
                     minute = int(time_str[2:])
                     
                     # Determine whether it's AM or PM based on the hour
-                    meridiem = "am" if hour < 1200 else "pm"
+                    meridiem = "am" if hour < 12 else "pm"
                     
                     # Convert the hour to 12-hour format
-                    if hour >= 1300:
-                        hour -= 1200
+                    if hour >= 13:
+                        hour -= 12
                     
                     # Format the time as a string
                     formatted_time = "{:02d}:{:02d}{}".format(hour, minute, meridiem)
@@ -295,11 +294,11 @@ class MultiModModelWithLanguage(LightningModule):
                 minute = int(time_str[2:])
                 
                 # Determine whether it's AM or PM based on the hour
-                meridiem = "am" if hour < 1200 else "pm"
+                meridiem = "am" if hour < 12 else "pm"
                 
                 # Convert the hour to 12-hour format
-                if hour >= 1300:
-                    hour -= 1200
+                if hour >= 13:
+                    hour -= 12
                 
                 # Format the time as a string
                 formatted_time = "{:02d}:{:02d}{}".format(hour, minute, meridiem)
@@ -323,11 +322,11 @@ class MultiModModelWithLanguage(LightningModule):
                 minute = int(time_str[2:])
                 
                 # Determine whether it's AM or PM based on the hour
-                meridiem = "am" if hour < 1200 else "pm"
+                meridiem = "am" if hour < 12 else "pm"
                 
                 # Convert the hour to 12-hour format
-                if hour >= 1300:
-                    hour -= 1200
+                if hour >= 13:
+                    hour -= 12
                 
                 # Format the time as a string
                 formatted_time = "{:02d}:{:02d}{}".format(hour, minute, meridiem)
