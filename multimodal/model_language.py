@@ -221,7 +221,7 @@ class MultiModModelWithLanguage(LightningModule):
         batch_shq_weekend_sleep = tabular_to_encode[:, 123]#"shq_weekend_sleep"]
         batch_shq_weekend_bedtime_delay = tabular_to_encode[:, 124]#"shq_weekend_bedtime_delay"]
         batch_shq_weekend_wakeup_delay = tabular_to_encode[:, 125]#"shq_weekend_wakeup_delay"]
-
+        print(batch_youthreport2_shq1)
         batch_youthreport2_shq1 = list(batch_youthreport2_shq1)
         import datetime
         formatted_times = []
@@ -257,6 +257,7 @@ class MultiModModelWithLanguage(LightningModule):
         batch_youthreport2_shq1 = formatted_times
 
         batch_youthreport2_shq2 = list(batch_youthreport2_shq2)
+        print(batch_youthreport2_shq2)
         formatted_times = []
         for t in batch_youthreport2_shq2:
             if t <= 60:
@@ -264,8 +265,8 @@ class MultiModModelWithLanguage(LightningModule):
             else:
                 print(t)
                 time_str = str(t)
-                time_str = time_str.rstrip(".0")
-                time_str = str(t)
+                dot_index = time_str.index(".")
+                time_str = time_str[:dot_index]
                 if len(time_str) == 3:
                     time_str = "0" + time_str
                 print(time_str)
@@ -287,6 +288,7 @@ class MultiModModelWithLanguage(LightningModule):
         batch_youthreport2_shq2 = formatted_times
 
         batch_youthreport2_shq3 = list(batch_youthreport2_shq3)
+        print(batch_youthreport2_shq3)
         formatted_times = []
         for t in batch_youthreport2_shq3:
             if t <= 60:
@@ -294,7 +296,8 @@ class MultiModModelWithLanguage(LightningModule):
             else:
                 print(t)
                 time_str = str(t)
-                time_str = time_str.rstrip(".0")
+                dot_index = time_str.index(".")
+                time_str = time_str[:dot_index]
                 print(time_str)
                 if len(time_str) == 2:
                     time_str = "0" + time_str
@@ -319,6 +322,7 @@ class MultiModModelWithLanguage(LightningModule):
         batch_youthreport2_shq3 = formatted_times
 
         batch_youthreport2_shq4 = list(batch_youthreport2_shq4)
+        print(batch_youthreport2_shq4)
         formatted_times = []
         for t in batch_youthreport2_shq4:
             if t <= 60:
@@ -326,7 +330,8 @@ class MultiModModelWithLanguage(LightningModule):
             else:
                 print(t)
                 time_str = str(t)
-                time_str = time_str.rstrip(".0")
+                dot_index = time_str.index(".")
+                time_str = time_str[:dot_index]
                 print(time_str)
                 if len(time_str) == 2:
                     time_str = "0" + time_str
@@ -358,31 +363,31 @@ class MultiModModelWithLanguage(LightningModule):
         batch_shq_weekend_bedtime_delay = list(batch_shq_weekend_bedtime_delay)
         batch_shq_weekend_wakeup_delay = list(batch_shq_weekend_wakeup_delay)
 
-        batch_support_comm_3 = tabular_to_encode["youthreport2_chks_set2_chks3"]
+        batch_support_comm_3 = tabular_to_encode[:, 51]#"youthreport2_chks_set2_chks3"]
         batch_support_comm_3_l = list(batch_support_comm_3)
         batch_support_comm_3_sentence = "there are supportive and caring adults at school."
 
-        batch_support_comm_4 = tabular_to_encode["youthreport2_chks_set2_chks4"]
+        batch_support_comm_4 = tabular_to_encode[:, 52]#"youthreport2_chks_set2_chks4"]
         batch_support_comm_4_l = list(batch_support_comm_4)
         batch_support_comm_4_sentence = "there are supportive adults."
 
-        batch_support_comm_5 = tabular_to_encode["youthreport2_chks_set4_chks5"]
+        batch_support_comm_5 = tabular_to_encode[:, 53]#"youthreport2_chks_set4_chks5"]
         batch_support_comm_5_l = list(batch_support_comm_5)
         batch_support_comm_5_sentence = "there are caring adults in the neighborhood."
 
-        batch_support_comm_6 = tabular_to_encode["youthreport2_chks_set4_chks6"]
+        batch_support_comm_6 = tabular_to_encode[:, 54]#"youthreport2_chks_set4_chks6"]
         batch_support_comm_6_l = list(batch_support_comm_6)
         batch_support_comm_6_sentence = "there are trustworthy adults."
 
-        batch_support_comm_7 = tabular_to_encode["youthreport2_chks_set5_chks7"]
+        batch_support_comm_7 = tabular_to_encode[:, 55]#"youthreport2_chks_set5_chks7"]
         batch_support_comm_7_l = list(batch_support_comm_7)
         batch_support_comm_7_sentence = "a part of clubs, sports teams, church/temple, or other group activities."
 
-        batch_support_comm_8 = tabular_to_encode["youthreport2_chks_set5_chks8"]
+        batch_support_comm_8 = tabular_to_encode[:, 56]#"youthreport2_chks_set5_chks8"]
         batch_support_comm_8_sentence = "involved in music, art, literature, sports, or a hobby."
         batch_support_comm_8_l = list(batch_support_comm_8)
 
-        batch_support_comm_9 = tabular_to_encode["youthreport2_chks_set5_chks9"]
+        batch_support_comm_9 = tabular_to_encode[:, 58]#"youthreport2_chks_set5_chks9"]
         batch_support_comm_9_sentence = "helpful towards other people."
         batch_support_comm_9_l = list(batch_support_comm_9)
 
