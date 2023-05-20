@@ -635,8 +635,8 @@ class MultiModModelWithLanguage(LightningModule):
         else:
             self.val_accuracy(y_pred_tag, y)
             self.val_macro_accuracy(y_pred_tag, y)
-            self.val_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
-            self.val_auc(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_macro_f1(y_pred_tag, y)
+            self.val_auc(y_pred_tag, y)
 
         self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
         self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True)
