@@ -141,7 +141,8 @@ def main_language(wandb, wandb_logger):
 
     # train the network
     trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator=device, devices=1)
-    print(val_loader)
+    print("train samples is", len(train_loader))
+    print("val samples is", len(val_loader))
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
     
 
@@ -227,7 +228,7 @@ if __name__ == '__main__':
     # main_daft(wandb, wandb_logger)
     
     # # run model with language
-    #main_language(wandb, wandb_logger)
+    main_language(wandb, wandb_logger)
     
     # # run model with bce + center loss
     # main_center(wandb, wandb_logger)

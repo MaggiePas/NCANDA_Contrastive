@@ -138,7 +138,7 @@ class MultiModModelWithLanguage(LightningModule):
         language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding = True, truncation = True)
         
         language_inputs = language_inputs.to('cuda')
-        print(language_inputs.keys())
+        # print(language_inputs.keys())
         language_inputs["input_ids"] = language_inputs["input_ids"][:,:512]
         language_inputs["token_type_ids"] = language_inputs["token_type_ids"][:,:512]
         language_inputs["attention_mask"] = language_inputs["attention_mask"][:,:512]
@@ -169,11 +169,11 @@ class MultiModModelWithLanguage(LightningModule):
         # return_tensors pt means pytorch
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cpu().numpy())
-        print(tabular_to_encode)
+        # print(tabular_to_encode)
         # else: 
         #     tabular_to_encode = self.scaler.inverse_transform(tabular_to_encode.detach().cuda().numpy())
         batch_age = tabular_to_encode[:, 2]
-        print(batch_age)
+        # print(batch_age)
         batch_sex = tabular_to_encode[:, 1]
         batch_cahalan_score = tabular_to_encode[:, 8]
         batch_excess_bl_drinking_2 = tabular_to_encode[:, 9]
@@ -227,25 +227,22 @@ class MultiModModelWithLanguage(LightningModule):
         batch_shq_weekend_sleep = tabular_to_encode[:, 123]#"shq_weekend_sleep"]
         batch_shq_weekend_bedtime_delay = tabular_to_encode[:, 124]#"shq_weekend_bedtime_delay"]
         batch_shq_weekend_wakeup_delay = tabular_to_encode[:, 125]#"shq_weekend_wakeup_delay"]
-        print(batch_youthreport2_shq1)
+        # print(batch_youthreport2_shq1)
         batch_youthreport2_shq1 = list(batch_youthreport2_shq1)
         import datetime
         formatted_times = []
-        print(batch_youthreport2_shq1)
+        # print(batch_youthreport2_shq1)
         for t in batch_youthreport2_shq1:
             if t <= 60:
                 formatted_times.append("midnight")
             else:
-                print(t)
                 time_str = str(t)
                 dot_index = time_str.index(".")
                 time_str = time_str[:dot_index]
-                print(time_str)
                 if len(time_str) == 2:
                     time_str = "0" + time_str
                 if len(time_str) == 3:
                     time_str = "0" + time_str
-                print(time_str)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
                 minute = int(time_str[2:])
@@ -265,19 +262,16 @@ class MultiModModelWithLanguage(LightningModule):
         batch_youthreport2_shq1 = formatted_times
 
         batch_youthreport2_shq2 = list(batch_youthreport2_shq2)
-        print(batch_youthreport2_shq2)
         formatted_times = []
         for t in batch_youthreport2_shq2:
             if t <= 60:
                 formatted_times.append("midnight")
             else:
-                print(t)
                 time_str = str(t)
                 dot_index = time_str.index(".")
                 time_str = time_str[:dot_index]
                 if len(time_str) == 3:
                     time_str = "0" + time_str
-                print(time_str)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
                 minute = int(time_str[2:])
@@ -296,22 +290,18 @@ class MultiModModelWithLanguage(LightningModule):
         batch_youthreport2_shq2 = formatted_times
 
         batch_youthreport2_shq3 = list(batch_youthreport2_shq3)
-        print(batch_youthreport2_shq3)
         formatted_times = []
         for t in batch_youthreport2_shq3:
             if t <= 60:
                 formatted_times.append("midnight")
             else:
-                print(t)
                 time_str = str(t)
                 dot_index = time_str.index(".")
                 time_str = time_str[:dot_index]
-                print(time_str)
                 if len(time_str) == 2:
                     time_str = "0" + time_str
                 if len(time_str) == 3:
                     time_str = "0" + time_str
-                print(time_str)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
                 minute = int(time_str[2:])
@@ -330,22 +320,18 @@ class MultiModModelWithLanguage(LightningModule):
         batch_youthreport2_shq3 = formatted_times
 
         batch_youthreport2_shq4 = list(batch_youthreport2_shq4)
-        print(batch_youthreport2_shq4)
         formatted_times = []
         for t in batch_youthreport2_shq4:
             if t <= 60:
                 formatted_times.append("midnight")
             else:
-                print(t)
                 time_str = str(t)
                 dot_index = time_str.index(".")
                 time_str = time_str[:dot_index]
-                print(time_str)
                 if len(time_str) == 2:
                     time_str = "0" + time_str
                 if len(time_str) == 3:
                     time_str = "0" + time_str
-                print(time_str)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
                 minute = int(time_str[2:])
