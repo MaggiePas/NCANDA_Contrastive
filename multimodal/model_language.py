@@ -567,9 +567,9 @@ class MultiModModelWithLanguage(LightningModule):
         #     tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cuda().numpy())
         self.train_results_df['age'] = tab_bef_normalization[:, 2]
         self.train_results_df['sex'] = tab_bef_normalization[:, 1]
-
+        print("about to train some cats")
         self.train_results_df_all = pd.concat([self.train_results_df_all, self.train_results_df], ignore_index=True)
-
+        print("train targets,", y)
         if BATCH_SIZE == 1:
             self.train_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
@@ -582,6 +582,7 @@ class MultiModModelWithLanguage(LightningModule):
             self.train_macro_accuracy(y_pred_tag, y)
             self.train_macro_f1(y_pred_tag, y)
             self.train_auc(y_pred_tag, y)
+        
 
         self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
         self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
@@ -596,6 +597,7 @@ class MultiModModelWithLanguage(LightningModule):
         print("val model language")
 
         img, tab, y, subject_id = batch
+        
         y = y.to(torch.float32)
 
         y_pred = self(img, tab)
@@ -612,9 +614,9 @@ class MultiModModelWithLanguage(LightningModule):
         tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
         self.val_results_df['age'] = tab_bef_normalization[:, 2]
         self.val_results_df['sex'] = tab_bef_normalization[:, 1]
-
+        print("about to validate some cats")
         self.val_results_df_all = pd.concat([self.val_results_df_all, self.val_results_df], ignore_index=True)
-
+        print("targets val " , y)
         if BATCH_SIZE == 1:
 
             self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
