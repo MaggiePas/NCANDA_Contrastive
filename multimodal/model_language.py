@@ -232,8 +232,8 @@ class MultiModModelWithLanguage(LightningModule):
                 time_str = str(t).zfill(4)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
-                minute = int(time_str[2:])
-                
+                minute_str = time_str[2:].replace('.', '')  # Remove decimal points
+                minute = int(minute_str)
                 # Use datetime to create a time object
                 time_obj = datetime.time(hour=hour, minute=minute)
                 # Format the time using strftime with the desired format
@@ -251,8 +251,8 @@ class MultiModModelWithLanguage(LightningModule):
                 time_str = str(t).zfill(4)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
-                minute = int(time_str[2:])
-                
+                minute_str = time_str[2:].replace('.', '')  # Remove decimal points
+                minute = int(minute_str)
                 # Use datetime to create a time object
                 time_obj = datetime.time(hour=hour, minute=minute)
                 # Format the time using strftime with the desired format
@@ -270,8 +270,8 @@ class MultiModModelWithLanguage(LightningModule):
                 time_str = str(t).zfill(4)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
-                minute = int(time_str[2:])
-                
+                minute_str = time_str[2:].replace('.', '')  # Remove decimal points
+                minute = int(minute_str)
                 # Use datetime to create a time object
                 time_obj = datetime.time(hour=hour, minute=minute)
                 # Format the time using strftime with the desired format
@@ -290,8 +290,9 @@ class MultiModModelWithLanguage(LightningModule):
                 time_str = str(t).zfill(4)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
-                minute = int(time_str[2:])
-                
+                minute_str = time_str[2:].replace('.', '')  # Remove decimal points
+                minute = int(minute_str)
+            
                 # Use datetime to create a time object
                 time_obj = datetime.time(hour=hour, minute=minute)
                 # Format the time using strftime with the desired format
