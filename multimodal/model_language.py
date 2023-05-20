@@ -229,7 +229,15 @@ class MultiModModelWithLanguage(LightningModule):
             if t == 0:
                 new_arr.append("unknown")
             else:
-                dt = datetime.datetime.strptime(str(t), '%H%M')
+                try:
+                    dt = datetime.datetime.strptime(t, '%H%M')
+                except ValueError as e:
+                    # Extract the unconverted data from the error message
+                    unconverted_data = str(e).split(":")[1].strip()
+                    # Remove the unconverted data from the input string
+                    t = t.replace(unconverted_data, "")
+                    # Parse the modified string without the unconverted data
+                    dt = datetime.datetime.strptime(t, '%H%M')
                 new_arr.append(dt.strftime('%I:%M %p'))
         batch_youthreport2_shq1 = new_arr
 
@@ -239,7 +247,15 @@ class MultiModModelWithLanguage(LightningModule):
             if t == 0:
                 new_arr.append("unknown")
             else:
-                dt = datetime.datetime.strptime(str(t), '%H%M')
+                try:
+                    dt = datetime.datetime.strptime(t, '%H%M')
+                except ValueError as e:
+                    # Extract the unconverted data from the error message
+                    unconverted_data = str(e).split(":")[1].strip()
+                    # Remove the unconverted data from the input string
+                    t = t.replace(unconverted_data, "")
+                    # Parse the modified string without the unconverted data
+                    dt = datetime.datetime.strptime(t, '%H%M')
                 new_arr.append(dt.strftime('%I:%M %p'))
         batch_youthreport2_shq2 = new_arr
 
@@ -267,7 +283,15 @@ class MultiModModelWithLanguage(LightningModule):
             if t == 0:
                 new_arr.append("unknown")
             else:
-                dt = datetime.datetime.strptime(str(t), '%H%M.%f')
+                try:
+                    dt = datetime.datetime.strptime(t, '%H%M')
+                except ValueError as e:
+                    # Extract the unconverted data from the error message
+                    unconverted_data = str(e).split(":")[1].strip()
+                    # Remove the unconverted data from the input string
+                    t = t.replace(unconverted_data, "")
+                    # Parse the modified string without the unconverted data
+                    dt = datetime.datetime.strptime(t, '%H%M')
                 new_arr.append(dt.strftime('%I:%M %p'))
         batch_youthreport2_shq4 = new_arr
 
