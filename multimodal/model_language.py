@@ -139,6 +139,9 @@ class MultiModModelWithLanguage(LightningModule):
         
         language_inputs = language_inputs.to('cuda')
         print(language_inputs.keys())
+        language_inputs["input_ids"] = language_inputs["input_ids"][:,:512]
+        language_inputs["token_type_ids"] = language_inputs["token_type_ids"][:,:512]
+        language_inputs["attention_mask"] = language_inputs["attention_mask"][:,:512]
         print(language_inputs["input_ids"].shape, language_inputs["token_type_ids"].shape, language_inputs["attention_mask"].shape)
         language_outputs = self.language_model(**language_inputs)
         print(language_outputs)
@@ -370,6 +373,8 @@ class MultiModModelWithLanguage(LightningModule):
 
         batch_shq_weekday_sleep = np.round(batch_shq_weekday_sleep, 2)
         batch_shq_weekend_sleep = np.round(batch_shq_weekend_sleep, 2)
+        batch_shq_weekend_bedtime_delay = np.round(batch_shq_weekend_bedtime_delay, 2)
+        batch_shq_weekend_wakeup_delay = np.round(batch_shq_weekend_wakeup_delay, 2)
 
         batch_support_comm_3 = tabular_to_encode[:, 51]#"youthreport2_chks_set2_chks3"]
         batch_support_comm_3_l = list(batch_support_comm_3)
