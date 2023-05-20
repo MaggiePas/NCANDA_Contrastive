@@ -124,7 +124,7 @@ class MultiModModel(LightningModule):
 
         img, tab, y, subject_id = batch
         
-        img = torch.tensor(img).float()
+        img = img.clone().detach().requires_grad_(True).float() #torch.tensor(img).float()
         
         y = y.to(torch.float32)
 
