@@ -139,7 +139,7 @@ class MultiModModelWithLanguage(LightningModule):
         
         language_inputs = language_inputs.to('cuda')
 
-        language_outputs = self.language_model(**language_inputs)
+        language_outputs = language_inputs #self.language_model(**language_inputs)
 
         # 1 x 768
         # We "pool" the model by simply taking the hidden state corresponding
@@ -518,9 +518,9 @@ class MultiModModelWithLanguage(LightningModule):
         max_length = max(len(string) for string in batch_sentences)
         padded_strings = []
         for string in batch_sentences:
-            truncated_string = string[:512]
-            # padded_string = truncated_string.ljust(max_length, " ")
-        padded_strings.append(truncated_string)
+            truncated_string = string[:max_length]
+            padded_string = truncated_string.ljust(max_length, " ")
+        padded_strings.append(padded_string)
         return batch_sentences
 
     def configure_optimizers(self):
