@@ -496,9 +496,9 @@ class MultiModModelWithLanguage(LightningModule):
                                 batch_shq_weekend_bedtime_delay , batch_shq_weekend_wakeup_delay, batch_support_comm_3_l, batch_support_comm_4_l, batch_support_comm_5_l,
                             batch_support_comm_6_l, batch_support_comm_7_l, batch_support_comm_8_l, batch_support_comm_9_l
         ))
-        batch_sentences = ["This subject is a " + str(pair[1]) + " year old " + str(pair[0]) + " who is a " + str(pair[2]) + " and " + str(pair[3]) + ". " +
-                            str(pair[12]) + " is " + str(pair[9]) + ", and " + str(pair[10]) + " with a BMI of " + str(pair[11]) + ". " +
-                            str(pair[12]) + " goes to sleep at " + str(pair[19])+ " and wakes up at " + str(pair[21])+ " on weekdays, getting an average of " + str(pair[24]) + " hours of sleep on weekdays. " for pair in batch_pairs]# +
+        batch_sentences = ["This subject is a " + str(pair[1]) + " year old " + str(pair[0]) for pair in batch_pairs]#+ " who is a " + str(pair[2]) + " and " + str(pair[3]) + ". " +
+                            # str(pair[12]) + " is " + str(pair[9]) + ", and " + str(pair[10]) + " with a BMI of " + str(pair[11]) + ". " +
+                            # str(pair[12]) + " goes to sleep at " + str(pair[19])+ " and wakes up at " + str(pair[21])+ " on weekdays, getting an average of " + str(pair[24]) + " hours of sleep on weekdays. " for pair in batch_pairs]# +
         #                     str(pair[12]) + " goes to sleep at " + str(pair[20]) + " and wakes up at " + str(pair[22]) + " on weekends, getting an average of " +  str(pair[25]) + " hours of sleep on weekends. " +
         #                     "The weekend bedtime delay is " + str(pair[26]) + " and the weekend wakeup delay is " + str(pair[27])+ ". " + "On average, the sleep quality is " + str(pair[23])+ ". " +
         #                     str(pair[12]) + " " + str(pair[4]) + " and " + str(pair[5]) + " and " + str(pair[6]) + " and " + str(pair[7]) + " and " + str(pair[8]) + " "  +
