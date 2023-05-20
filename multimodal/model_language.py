@@ -138,9 +138,8 @@ class MultiModModelWithLanguage(LightningModule):
         language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding = True, truncation = True)
         
         language_inputs = language_inputs.to('cuda')
-        print(language_inputs)
-        so_flat = (**language_inputs)
-        language_outputs = self.language_model(so_flat[:512])
+        print(language_inputs.keys())
+        language_outputs = self.language_model(**language_inputs)
         print(language_outputs)
 
         # # 1 x 768
