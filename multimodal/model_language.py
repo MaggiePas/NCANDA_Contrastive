@@ -247,6 +247,8 @@ class MultiModModelWithLanguage(LightningModule):
                 
                 # Determine whether it's AM or PM based on the hour
                 meridiem = "am" if hour < 12 else "pm"
+                if hour >= 7:
+                    meridiem = "pm"
                 
                 # Convert the hour to 12-hour format
                 if hour >= 13:
@@ -516,10 +518,9 @@ class MultiModModelWithLanguage(LightningModule):
         max_length = max(len(string) for string in batch_sentences)
         padded_strings = []
         for string in batch_sentences:
-            truncated_string = string[:max_length]
-            padded_string = truncated_string.ljust(max_length, " ")
-
-        padded_strings.append(padded_string)
+            truncated_string = string[:512]
+            # padded_string = truncated_string.ljust(max_length, " ")
+        padded_strings.append(truncated_string)
         return batch_sentences
 
     def configure_optimizers(self):
@@ -539,6 +540,7 @@ class MultiModModelWithLanguage(LightningModule):
         print("train model language")
 
         img, tab, y, subject_id = batch
+
 
         # img = torch.tensor(img).float()
 
