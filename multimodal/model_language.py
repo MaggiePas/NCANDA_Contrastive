@@ -230,13 +230,14 @@ class MultiModModelWithLanguage(LightningModule):
                 new_arr.append("unknown")
             else:
                 time_str = str(t).zfill(4)
+                print(time_str)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
                 minute_str = time_str[2:].replace('.', '')  # Remove decimal points
                 minute = int(minute_str)
                 # Use datetime to create a time object
+                print("hii", hour, minute)
                 time_obj = datetime.time(hour=hour, minute=minute)
-                print("hii", time_obj)
                 # Format the time using strftime with the desired format
                 formatted_time = time_obj.strftime("%I:%M%p").lower()
                 
