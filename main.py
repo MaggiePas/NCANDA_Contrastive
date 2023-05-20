@@ -191,7 +191,7 @@ def main_triplet(wandb, wandb_logger):
     print("getting the model")
     model = MultiModModelWithLanguage(class_weight=data.class_weight, scaler=data.scaler)
     print("koday got it")
-    model = TripletModel(class_weight=data.class_weight, scaler=data.scaler)
+    # model = TripletModel(class_weight=data.class_weight, scaler=data.scaler)
 
     # Optional
     wandb.watch(model, log="all")
@@ -228,10 +228,10 @@ if __name__ == '__main__':
     # main_daft(wandb, wandb_logger)
     
     # # run model with language
-    main_language(wandb, wandb_logger)
+    # main_language(wandb, wandb_logger)
     
     # # run model with bce + center loss
     # main_center(wandb, wandb_logger)
     
     # run model with bce + center loss + triplet loss
-    # main_triplet(wandb, wandb_logger)
+    main_triplet(wandb, wandb_logger)
