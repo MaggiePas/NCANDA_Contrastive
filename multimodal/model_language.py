@@ -50,10 +50,10 @@ class MultiModModelWithLanguage(LightningModule):
         # self.NUM_FEATURES = 0
 
         # fc layer to make image size same as tabular data size
-        # self.fc = nn.Linear(400, 1)
+        self.fc = nn.Linear(400, 1)
 
         # combine resnet with final fc layer
-        # self.imagenet = nn.Sequential(self.resnet, self.fc)
+        self.imagenet = nn.Sequential(self.resnet, self.fc)
         # fc layer that maps language model inputs to smaller dimension
         self.language_fc = nn.Linear(768, 120)
 
@@ -554,7 +554,6 @@ class MultiModModelWithLanguage(LightningModule):
         print("subj id", subject_id) # four 
         print("df", self.train_results_df['subject']) # six, which is the batch size
         self.train_results_df['subject'] = tuple(subject_id)
-        # self.train_results_df['subject'] = pd.Series(subject_id[:len(self.train_results_df)], index=self.train_results_df.index)
 
         
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

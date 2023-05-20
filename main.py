@@ -191,7 +191,7 @@ def main_triplet(wandb, wandb_logger):
     print("getting the model")
     model = MultiModModelWithLanguage(class_weight=data.class_weight, scaler=data.scaler)
     print("koday got it")
-    # model = TripletModel(class_weight=data.class_weight, scaler=data.scaler)
+    model = TripletModel(class_weight=data.class_weight, scaler=data.scaler)
 
     # Optional
     wandb.watch(model, log="all")
