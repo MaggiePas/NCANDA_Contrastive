@@ -234,4 +234,4 @@ if __name__ == '__main__':
     # main_center(wandb, wandb_logger)
     
     # run model with bce + center loss + triplet loss
-    main_triplet(wandb, wandb_logger)
+    # main_triplet(wandb, wandb_logger)
