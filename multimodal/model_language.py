@@ -229,7 +229,9 @@ class MultiModModelWithLanguage(LightningModule):
             if t == 0:
                 formatted_times.append("unknown")
             else:
+                print(t)
                 time_str = str(t)
+                print(time_str)
                 if len(time_str) == 3:
                     time_str = "0" + time_str
                 print(time_str)
@@ -310,7 +312,6 @@ class MultiModModelWithLanguage(LightningModule):
         formatted_times = []
         for t in batch_youthreport2_shq4:
             if t == 0:
-                t = str(t)
                 formatted_times.append("unknown")
             else:
                 time_str = str(t)
