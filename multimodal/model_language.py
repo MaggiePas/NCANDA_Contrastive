@@ -139,7 +139,7 @@ class MultiModModelWithLanguage(LightningModule):
         
         language_inputs = language_inputs.to('cuda')
         print(language_inputs.keys())
-        print(len(language_inputs["input_ids"]), len(language_inputs["token_type_ids"]), len(language_inputs["attention_mask"]))
+        print(language_inputs["input_ids"].shape, language_inputs["token_type_ids"].shape, language_inputs["attention_mask"].shape)
         language_outputs = self.language_model(**language_inputs)
         print(language_outputs)
 
