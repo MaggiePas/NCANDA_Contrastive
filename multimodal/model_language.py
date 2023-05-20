@@ -229,6 +229,7 @@ class MultiModModelWithLanguage(LightningModule):
             if t == 0:
                 new_arr.append("unknown")
             else:
+                t = str(t)
                 try:
                     dt = datetime.datetime.strptime(t, '%H%M')
                 except ValueError as e:
@@ -247,6 +248,7 @@ class MultiModModelWithLanguage(LightningModule):
             if t == 0:
                 new_arr.append("unknown")
             else:
+                t = str(t)
                 try:
                     dt = datetime.datetime.strptime(t, '%H%M')
                 except ValueError as e:
@@ -265,6 +267,7 @@ class MultiModModelWithLanguage(LightningModule):
             if t == 0:
                 new_arr.append("unknown")
             else:
+                t = str(t)
                 try:
                     dt = datetime.datetime.strptime(t, '%H%M')
                 except ValueError as e:
@@ -281,6 +284,7 @@ class MultiModModelWithLanguage(LightningModule):
         new_arr = []
         for t in batch_youthreport2_shq4:
             if t == 0:
+                t = str(t)
                 new_arr.append("unknown")
             else:
                 try:
