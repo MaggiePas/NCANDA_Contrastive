@@ -496,16 +496,16 @@ class MultiModModelWithLanguage(LightningModule):
                                 batch_shq_weekend_bedtime_delay , batch_shq_weekend_wakeup_delay, batch_support_comm_3_l, batch_support_comm_4_l, batch_support_comm_5_l,
                             batch_support_comm_6_l, batch_support_comm_7_l, batch_support_comm_8_l, batch_support_comm_9_l
         ))
-        batch_sentences = ["This subject is a " + str(pair[1]) + " year old " + str(pair[0]) + " who is a " + str(pair[2]) + " and " + str(pair[3]) + ". " +
-                            str(pair[12]) + " is " + str(pair[9]) + ", and " + str(pair[10]) + " with a BMI of " + str(pair[11]) + ". " +
-                            str(pair[12]) + " goes to sleep at " + str(pair[19])+ " and wakes up at " + str(pair[21])+ " on weekdays, getting an average of " + str(pair[24]) + " hours of sleep on weekdays. " + 
-                            str(pair[12]) + " goes to sleep at " + str(pair[20]) + " and wakes up at " + str(pair[22]) + " on weekends, getting an average of " +  str(pair[25]) + " hours of sleep on weekends. " +
-                            "The weekend bedtime delay is " + str(pair[26]) + " and the weekend wakeup delay is " + str(pair[27])+ ". " + "On average, the sleep quality is " + str(pair[23])+ ". " +
-                            str(pair[12]) + " " + str(pair[4]) + " and " + str(pair[5]) + " and " + str(pair[6]) + " and " + str(pair[7]) + " and " + str(pair[8]) + " "  +
-                            str(pair[12]) + " " + str(pair[13]) + str(pair[12]) + " " + str(pair[14]) + str(pair[12]) + " " + str(pair[15]) + str(pair[12]) + " " + str(pair[16]) +
-                            str(pair[12]) + " " + str(pair[17]) + str(pair[12]) + " " + str(pair[18]) + str(pair[12]) + " " + str(pair[28]) + " "+str(pair[12]) + " " + str(pair[29]) + " " + str(pair[12]) + " " +
-                            str(pair[30]) +" " + str(pair[12]) + " " + str(pair[31]) + " " + str(pair[12]) + " " + str(pair[32]) + " " + str(pair[12]) + " " + str(pair[33]) +" "+ str(pair[12]) +
-                            " " + str(pair[34]) +  " " for pair in batch_pairs]
+        batch_sentences = ["This subject is a " + str(pair[1]) + " year old " + str(pair[0]) for pair in batch_pairs]#+ " who is a " + str(pair[2]) + " and " + str(pair[3]) + ". " +
+        #                     str(pair[12]) + " is " + str(pair[9]) + ", and " + str(pair[10]) + " with a BMI of " + str(pair[11]) + ". " +
+        #                     str(pair[12]) + " goes to sleep at " + str(pair[19])+ " and wakes up at " + str(pair[21])+ " on weekdays, getting an average of " + str(pair[24]) + " hours of sleep on weekdays. " + 
+        #                     str(pair[12]) + " goes to sleep at " + str(pair[20]) + " and wakes up at " + str(pair[22]) + " on weekends, getting an average of " +  str(pair[25]) + " hours of sleep on weekends. " +
+        #                     "The weekend bedtime delay is " + str(pair[26]) + " and the weekend wakeup delay is " + str(pair[27])+ ". " + "On average, the sleep quality is " + str(pair[23])+ ". " +
+        #                     str(pair[12]) + " " + str(pair[4]) + " and " + str(pair[5]) + " and " + str(pair[6]) + " and " + str(pair[7]) + " and " + str(pair[8]) + " "  +
+        #                     str(pair[12]) + " " + str(pair[13]) + str(pair[12]) + " " + str(pair[14]) + str(pair[12]) + " " + str(pair[15]) + str(pair[12]) + " " + str(pair[16]) +
+        #                     str(pair[12]) + " " + str(pair[17]) + str(pair[12]) + " " + str(pair[18]) + str(pair[12]) + " " + str(pair[28]) + " "+str(pair[12]) + " " + str(pair[29]) + " " + str(pair[12]) + " " +
+        #                     str(pair[30]) +" " + str(pair[12]) + " " + str(pair[31]) + " " + str(pair[12]) + " " + str(pair[32]) + " " + str(pair[12]) + " " + str(pair[33]) +" "+ str(pair[12]) +
+        #                     " " + str(pair[34]) +  " " for pair in batch_pairs]
         # max_length = max(len(string) for string in batch_sentences)
         # padded_strings = []
         # for string in batch_sentences:
