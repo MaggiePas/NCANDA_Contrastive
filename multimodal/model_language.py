@@ -506,13 +506,13 @@ class MultiModModelWithLanguage(LightningModule):
         #                     str(pair[12]) + " " + str(pair[17]) + str(pair[12]) + " " + str(pair[18]) + str(pair[12]) + " " + str(pair[28]) + " "+str(pair[12]) + " " + str(pair[29]) + " " + str(pair[12]) + " " +
         #                     str(pair[30]) +" " + str(pair[12]) + " " + str(pair[31]) + " " + str(pair[12]) + " " + str(pair[32]) + " " + str(pair[12]) + " " + str(pair[33]) +" "+ str(pair[12]) +
         #                     " " + str(pair[34]) +  " " for pair in batch_pairs]
-        # max_length = max(len(string) for string in batch_sentences)
-        # padded_strings = []
-        # for string in batch_sentences:
-        #     truncated_string = string[:max_length]
+        max_length = min(len(string) for string in batch_sentences)
+        padded_strings = []
+        for string in batch_sentences:
+            truncated_string = string[:max_length]
         #     padded_string = truncated_string.ljust(max_length, " ")
-        # padded_strings.append(padded_string)
-        return batch_sentences
+            padded_strings.append(truncated_string)
+        return padded_strings
 
     def configure_optimizers(self):
 
