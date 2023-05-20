@@ -259,7 +259,7 @@ class MultiModModelWithLanguage(LightningModule):
             if t == 0:
                 new_arr.append("unknown")
             else:
-                dt = datetime.datetime.strptime(str(t), '%H%M')
+                dt = datetime.datetime.strptime(str(t), '%H%M.%f')
                 new_arr.append(dt.strftime('%I:%M %p'))
         batch_youthreport2_shq4 = new_arr
 
