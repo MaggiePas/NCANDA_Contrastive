@@ -138,18 +138,20 @@ class MultiModModelWithLanguage(LightningModule):
         language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding = True, truncation = True)
         
         language_inputs = language_inputs.to('cuda')
+        print(language_inputs)
 
-        # language_outputs = self.language_model(**language_inputs)
+        language_outputs = self.language_model(**language_inputs)
+        print(language_outputs)
 
         # # 1 x 768
         # # We "pool" the model by simply taking the hidden state corresponding
         # # to the first token. We assume that this has been pre-trained
-        # pooled_states = language_outputs.pooler_output
+        pooled_states = language_outputs.pooler_output
 
-        # language_features_compressed = self.language_fc(pooled_states)
+        language_features_compressed = self.language_fc(pooled_states)
 
         # concat image, tabular data and data from language model
-        x = torch.cat((img, tab_without_age_sex), dim = 1)#, language_features_compressed), dim=1)
+        x = torch.cat((img, tab_without_age_sex, language_features_compressed), dim=1)
         # x = torch.cat((img, tab_without_age_sex), dim=1)
 
         x = F.relu(self.fc2(x))
@@ -365,6 +367,9 @@ class MultiModModelWithLanguage(LightningModule):
         batch_shq_weekend_sleep = list(batch_shq_weekend_sleep)
         batch_shq_weekend_bedtime_delay = list(batch_shq_weekend_bedtime_delay)
         batch_shq_weekend_wakeup_delay = list(batch_shq_weekend_wakeup_delay)
+
+        batch_shq_weekday_sleep = np.round(batch_shq_weekday_sleep, 2)
+        batch_shq_weekend_sleep = np.round(batch_shq_weekend_sleep, 2)
 
         batch_support_comm_3 = tabular_to_encode[:, 51]#"youthreport2_chks_set2_chks3"]
         batch_support_comm_3_l = list(batch_support_comm_3)
