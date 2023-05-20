@@ -226,12 +226,15 @@ class MultiModModelWithLanguage(LightningModule):
         import datetime
         formatted_times = []
         for t in batch_youthreport2_shq1:
-            if t == 0:
-                formatted_times.append("unknown")
+            if t <= 60:
+                formatted_times.append("midnight")
             else:
                 print(t)
                 time_str = str(t)
+                time_str = time_str.rstrip(".0")
                 print(time_str)
+                if len(time_str) == 2:
+                    time_str = "0" + time_str
                 if len(time_str) == 3:
                     time_str = "0" + time_str
                 print(time_str)
@@ -254,40 +257,45 @@ class MultiModModelWithLanguage(LightningModule):
         batch_youthreport2_shq2 = list(batch_youthreport2_shq2)
         formatted_times = []
         for t in batch_youthreport2_shq2:
-            if t == 0:
-                formatted_times.append("unknown")
+            if t <= 60:
+                formatted_times.append("midnight")
             else:
-                if t == 0:
-                    formatted_times.append("unknown")
-                else:
-                    time_str = str(t)
-                    if len(time_str) == 3:
-                        time_str = "0" + time_str
-                    print(time_str)
-                    # Extract the hour and minute components
-                    hour = int(time_str[:2])
-                    minute = int(time_str[2:])
-                    
-                    # Determine whether it's AM or PM based on the hour
-                    meridiem = "am" if hour < 12 else "pm"
-                    
-                    # Convert the hour to 12-hour format
-                    if hour >= 13:
-                        hour -= 12
-                    
-                    # Format the time as a string
-                    formatted_time = "{:02d}:{:02d}{}".format(hour, minute, meridiem)
-                    
-                    formatted_times.append(formatted_time)
+                print(t)
+                time_str = str(t)
+                time_str = time_str.rstrip(".0")
+                time_str = str(t)
+                if len(time_str) == 3:
+                    time_str = "0" + time_str
+                print(time_str)
+                # Extract the hour and minute components
+                hour = int(time_str[:2])
+                minute = int(time_str[2:])
+                
+                # Determine whether it's AM or PM based on the hour
+                meridiem = "am" if hour < 12 else "pm"
+                
+                # Convert the hour to 12-hour format
+                if hour >= 13:
+                    hour -= 12
+                
+                # Format the time as a string
+                formatted_time = "{:02d}:{:02d}{}".format(hour, minute, meridiem)
+                
+                formatted_times.append(formatted_time)
         batch_youthreport2_shq2 = formatted_times
 
         batch_youthreport2_shq3 = list(batch_youthreport2_shq3)
         formatted_times = []
         for t in batch_youthreport2_shq3:
-            if t == 0:
-                formatted_times.append("unknown")
+            if t <= 60:
+                formatted_times.append("midnight")
             else:
+                print(t)
                 time_str = str(t)
+                time_str = time_str.rstrip(".0")
+                print(time_str)
+                if len(time_str) == 2:
+                    time_str = "0" + time_str
                 if len(time_str) == 3:
                     time_str = "0" + time_str
                 print(time_str)
@@ -311,10 +319,15 @@ class MultiModModelWithLanguage(LightningModule):
         batch_youthreport2_shq4 = list(batch_youthreport2_shq4)
         formatted_times = []
         for t in batch_youthreport2_shq4:
-            if t == 0:
-                formatted_times.append("unknown")
+            if t <= 60:
+                formatted_times.append("midnight")
             else:
+                print(t)
                 time_str = str(t)
+                time_str = time_str.rstrip(".0")
+                print(time_str)
+                if len(time_str) == 2:
+                    time_str = "0" + time_str
                 if len(time_str) == 3:
                     time_str = "0" + time_str
                 print(time_str)
