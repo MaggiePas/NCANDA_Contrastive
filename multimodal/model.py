@@ -264,7 +264,7 @@ class MultiModModel(LightningModule):
     
     def training_epoch_end(self, outs):
         
-        filename_out = '/home/users/emilywesel/results/train_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/home/users/ewesel/results/train_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         if device.type == "cpu":
             filename_out = '/Users/emilywesel/Desktop/NCANDA/train_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
@@ -283,7 +283,7 @@ class MultiModModel(LightningModule):
     def validation_epoch_end(self, outputs):
         # log epoch metric
 
-        filename_out = '/home/users/emilywesel/results/val_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/home/users/ewesel/results/val_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         if device.type == "cpu":
             filename_out = '/Users/emilywesel/Desktop/NCANDA/val_out_' + str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
