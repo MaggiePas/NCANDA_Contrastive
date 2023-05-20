@@ -286,12 +286,12 @@ class MultimodalDataModule(pl.LightningDataModule):
 
     def train_dataloader(self):
 
-        return DataLoader(self.train, batch_size=2, shuffle=True)
+        return DataLoader(self.train, batch_size=BATCH_SIZE, shuffle=True)
 
     def val_dataloader(self):
 
-        return DataLoader(self.valid, batch_size=1, shuffle=False)
+        return DataLoader(self.valid, batch_size=BATCH_SIZE, shuffle=False)
 
     def test_dataloader(self):
 
-        return DataLoader(self.test, batch_size=1, shuffle=False)
+        return DataLoader(self.test, batch_size=BATCH_SIZE, shuffle=False)
