@@ -225,13 +225,15 @@ class MultiModModelWithLanguage(LightningModule):
         batch_youthreport2_shq1 = list(batch_youthreport2_shq1)
         import datetime
         formatted_times = []
+        print(batch_youthreport2_shq1)
         for t in batch_youthreport2_shq1:
             if t <= 60:
                 formatted_times.append("midnight")
             else:
                 print(t)
                 time_str = str(t)
-                time_str = time_str.rstrip(".0")
+                dot_index = time_str.index(".")
+                time_str = time_str[:dot_index]
                 print(time_str)
                 if len(time_str) == 2:
                     time_str = "0" + time_str
