@@ -139,8 +139,8 @@ class MultiModModelWithLanguage(LightningModule):
         
         language_inputs = language_inputs.to('cuda')
         print(language_inputs)
-
-        language_outputs = self.language_model(**language_inputs[:512])
+        so_flat = (**language_inputs)
+        language_outputs = self.language_model(so_flat[:512])
         print(language_outputs)
 
         # # 1 x 768
