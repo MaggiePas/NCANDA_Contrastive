@@ -564,9 +564,11 @@ class MultiModModelWithLanguage(LightningModule):
 
         y_pred_tag = torch.round(torch.sigmoid(y_pred))
 
-        print("subj id", subject_id)
-        print("df", self.train_results_df['subject'])
+        print("subj id", subject_id) # four 
+        print("df", self.train_results_df['subject']) # six, which is the batch size
         self.train_results_df['subject'] = tuple(subject_id)
+        # self.train_results_df['subject'] = pd.Series(subject_id[:len(self.train_results_df)], index=self.train_results_df.index)
+
         
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         #if device.type == "cpu":
