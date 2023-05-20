@@ -224,87 +224,117 @@ class MultiModModelWithLanguage(LightningModule):
 
         batch_youthreport2_shq1 = list(batch_youthreport2_shq1)
         import datetime
-        new_arr = []
+        formatted_times = []
         for t in batch_youthreport2_shq1:
             if t == 0:
-                new_arr.append("unknown")
+                formatted_times.append("unknown")
             else:
-                time_str = str(t).zfill(4)
+                time_str = str(t)
+                if len(t) == 3:
+                    t = "0" + t
                 print(time_str)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
-                minute_str = time_str[2:].replace('.', '')  # Remove decimal points
-                minute = int(minute_str)
-                # Use datetime to create a time object
-                print("hii", hour, minute)
-                time_obj = datetime.time(hour=hour, minute=minute)
-                # Format the time using strftime with the desired format
-                formatted_time = time_obj.strftime("%I:%M%p").lower()
+                minute = int(time_str[2:])
                 
-                new_arr.append(formatted_time)
-        batch_youthreport2_shq1 = new_arr
+                # Determine whether it's AM or PM based on the hour
+                meridiem = "am" if hour < 1200 else "pm"
+                
+                # Convert the hour to 12-hour format
+                if hour >= 1300:
+                    hour -= 1200
+                
+                # Format the time as a string
+                formatted_time = "{:02d}:{:02d}{}".format(hour, minute, meridiem)
+                
+                formatted_times.append(formatted_time)
+        batch_youthreport2_shq1 = formatted_times
 
         batch_youthreport2_shq2 = list(batch_youthreport2_shq2)
-        new_arr = []
+        formatted_times = []
         for t in batch_youthreport2_shq2:
             if t == 0:
-                new_arr.append("unknown")
+                formatted_times.append("unknown")
             else:
-                time_str = str(t).zfill(4)
-                # Extract the hour and minute components
-                hour = int(time_str[:2])
-                minute_str = time_str[2:].replace('.', '')  # Remove decimal points
-                minute = int(minute_str)
-                # Use datetime to create a time object
-                time_obj = datetime.time(hour=hour, minute=minute)
-                print("hii", time_obj)
-                # Format the time using strftime with the desired format
-                formatted_time = time_obj.strftime("%I:%M%p").lower()
-                
-                new_arr.append(formatted_time)
-        batch_youthreport2_shq2 = new_arr
+                if t == 0:
+                    formatted_times.append("unknown")
+                else:
+                    time_str = str(t)
+                    if len(t) == 3:
+                        t = "0" + t
+                    print(time_str)
+                    # Extract the hour and minute components
+                    hour = int(time_str[:2])
+                    minute = int(time_str[2:])
+                    
+                    # Determine whether it's AM or PM based on the hour
+                    meridiem = "am" if hour < 1200 else "pm"
+                    
+                    # Convert the hour to 12-hour format
+                    if hour >= 1300:
+                        hour -= 1200
+                    
+                    # Format the time as a string
+                    formatted_time = "{:02d}:{:02d}{}".format(hour, minute, meridiem)
+                    
+                    formatted_times.append(formatted_time)
+        batch_youthreport2_shq2 = formatted_times
 
         batch_youthreport2_shq3 = list(batch_youthreport2_shq3)
-        new_arr = []
+        formatted_times = []
         for t in batch_youthreport2_shq3:
             if t == 0:
-                new_arr.append("unknown")
+                formatted_times.append("unknown")
             else:
-                time_str = str(t).zfill(4)
+                time_str = str(t)
+                if len(t) == 3:
+                    t = "0" + t
+                print(time_str)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
-                minute_str = time_str[2:].replace('.', '')  # Remove decimal points
-                minute = int(minute_str)
-                # Use datetime to create a time object
-                time_obj = datetime.time(hour=hour, minute=minute)
-                print("hii", time_obj)
-                # Format the time using strftime with the desired format
-                formatted_time = time_obj.strftime("%I:%M%p").lower()
+                minute = int(time_str[2:])
                 
-                new_arr.append(formatted_time)
-        batch_youthreport2_shq3 = new_arr
+                # Determine whether it's AM or PM based on the hour
+                meridiem = "am" if hour < 1200 else "pm"
+                
+                # Convert the hour to 12-hour format
+                if hour >= 1300:
+                    hour -= 1200
+                
+                # Format the time as a string
+                formatted_time = "{:02d}:{:02d}{}".format(hour, minute, meridiem)
+                
+                formatted_times.append(formatted_time)
+        batch_youthreport2_shq3 = formatted_times
 
         batch_youthreport2_shq4 = list(batch_youthreport2_shq4)
-        new_arr = []
+        formatted_times = []
         for t in batch_youthreport2_shq4:
             if t == 0:
                 t = str(t)
-                new_arr.append("unknown")
+                formatted_times.append("unknown")
             else:
-                time_str = str(t).zfill(4)
+                time_str = str(t)
+                if len(t) == 3:
+                    t = "0" + t
+                print(time_str)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
-                minute_str = time_str[2:].replace('.', '')  # Remove decimal points
-                minute = int(minute_str)
-            
-                # Use datetime to create a time object
-                time_obj = datetime.time(hour=hour, minute=minute)
-                print("hii", time_obj)
-                # Format the time using strftime with the desired format
-                formatted_time = time_obj.strftime("%I:%M%p").lower()
+                minute = int(time_str[2:])
                 
-                new_arr.append(formatted_time)
-        batch_youthreport2_shq4 = new_arr
+                # Determine whether it's AM or PM based on the hour
+                meridiem = "am" if hour < 1200 else "pm"
+                
+                # Convert the hour to 12-hour format
+                if hour >= 1300:
+                    hour -= 1200
+                
+                # Format the time as a string
+                formatted_time = "{:02d}:{:02d}{}".format(hour, minute, meridiem)
+                
+                formatted_times.append(formatted_time)
+            
+        batch_youthreport2_shq4 = formatted_times
 
         batch_youthreport2_shq5 = list(batch_youthreport2_shq5) # average sleep quality
 
