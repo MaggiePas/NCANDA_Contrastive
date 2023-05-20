@@ -32,13 +32,13 @@ class MultiModModelWithLanguage(LightningModule):
                                n_input_channels=1
                                )
 
-        # self.tokenizer = AutoTokenizer.from_pretrained('michiyasunaga/BioLinkBERT-base',
-        #                                                cache_dir="/scratch/users/ewesel/")
-        # self.language_model = AutoModel.from_pretrained('michiyasunaga/BioLinkBERT-base',
-        #                                                 cache_dir="/scratch/users/ewesel/")
+        self.tokenizer = AutoTokenizer.from_pretrained('michiyasunaga/BioLinkBERT-base',
+                                                       cache_dir="/scratch/users/ewesel/")
+        self.language_model = AutoModel.from_pretrained('michiyasunaga/BioLinkBERT-base',
+                                                        cache_dir="/scratch/users/ewesel/")
         med_alpaca_model_path = "/home/users/ewesel/dir/from_github/NCANDA_Contrastive/medAlpaca/medalpaca"
-        self.tokenizer = AutoTokenizer.from_pretrained(med_alpaca_model_path)
-        self.language_model = AutoModel.from_pretrained(med_alpaca_model_path)
+        # self.tokenizer = AutoTokenizer.from_pretrained(med_alpaca_model_path)
+        # self.language_model = AutoModel.from_pretrained(med_alpaca_model_path)
                                                 
         # Freeze weights so those don't get trained        
         # for param in self.language_model.parameters():
