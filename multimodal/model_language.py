@@ -455,37 +455,37 @@ class MultiModModelWithLanguage(LightningModule):
         batch_bmi_l = list(batch_bmi)
         batch_bmi_l = list(round(l, 2) for l in batch_bmi_l)
 
-        batch_rsq_problem_solving_l = list(batch_rsq_problem_solving.values)
+        batch_rsq_problem_solving_l = list(batch_rsq_problem_solving)
         rsq_problem_solving_list = "\"I try to think of different ways to change the problem to fix the situation,\" "+ "\"I ask other people for help or ideas about how to make the problem better,\" " +"and " + "\"I do something to try to fix the problem or take action to change things.\" "
         batch_rsq_problem_solving_l = list(['mostly disagrees with sentiments like ' + rsq_problem_solving_list if 1 < x and x <= 2 
                                                 else 'sometimes agrees and sometimes disagrees with sentiments like ' + rsq_problem_solving_list if  2 < x and x <= 3
                                                 else 'mostly agrees with sentiments like ' + rsq_problem_solving_list if x >3 else "" for x in batch_rsq_problem_solving_l])
 
-        batch_rsq_emotion_expression_l = list(batch_rsq_emotion_expression.values)
+        batch_rsq_emotion_expression_l = list(batch_rsq_emotion_expression)
         rsq_emotion_expression_list = "\"I let someone or something know how I feel,\" "+ "\"I get sympathy, understanding, or support from someone (like a parent, friend, brother/sister, or teacher),\" " + "and " + "\"I let my feelings out (like by writing in my journal/diary, drawing/painting, complaining to let off steam, being sarcastic/making fun, listening to music, exercising, yelling, crying).\" "
         batch_rsq_emotion_expression_l = list(['mostly disagrees with sentiments like ' + rsq_emotion_expression_list if 1 < x <= 2 
                                                 else 'sometimes agrees and sometimes disagrees with sentiments like ' + rsq_emotion_expression_list if  2 < x and x <= 3
                                                 else 'mostly agrees with sentiments like ' + rsq_emotion_expression_list if x >3 else "" for x in batch_rsq_emotion_expression_l])
 
-        batch_batch_rsq_acceptance_l = list(batch_rsq_acceptance.values)
+        batch_batch_rsq_acceptance_l = list(batch_rsq_acceptance)
         rsq_acceptance_list = "\"I decide I'm okay with the way I am, even though I'm not perfect,\" " + "\"I realize that I have to live with things the way they are,\" " + "and " + "\"I just take things as they are; I go with the flow.\" "
         batch_batch_rsq_acceptance_l = list(['mostly disagrees with sentiments like ' + rsq_acceptance_list if 1 < x <= 2 
                                                 else 'sometimes agrees and sometimes disagrees with sentiments like ' + rsq_acceptance_list if  2 < x and x <= 3
                                                 else 'mostly agrees with sentiments like ' + rsq_acceptance_list if x >3 else "" for x in batch_batch_rsq_acceptance_l])
 
-        batch_rsq_positive_thinking_l = list(batch_rsq_positive_thinking.values)
+        batch_rsq_positive_thinking_l = list(batch_rsq_positive_thinking)
         rsq_positive_thinking_list = "\"I tell myself that I can get through this, or that I'll do better next time,\" " + "\"I tell myself that everything will be alright,\" " + "and " + "\"I think of ways to laugh about it so that it won't seem so bad.\" "
         batch_rsq_positive_thinking_l= list(['mostly disagrees with sentiments like ' + rsq_positive_thinking_list if 1 < x <= 2 
                                                 else 'sometimes agrees and sometimes disagrees with sentiments like ' + rsq_positive_thinking_list if  2 < x and x <= 3
                                                 else 'mostly agrees with sentiments like' + rsq_positive_thinking_list if x >3 else "" for x in batch_rsq_positive_thinking_l])
 
-        batch_rsq_emotion_regulation_l = list(batch_rsq_emotion_regulation.values)
+        batch_rsq_emotion_regulation_l = list(batch_rsq_emotion_regulation)
         rsq_emotion_regulation_list = "\"I get help from others when I'm trying to figure out how to deal with my feelings,\" " + "\"I do something to calm myself down when I'm having problems with others (like take deep breaths, listen to music, pray, take a break, walk, meditate),\" " +"and " + "\"I keep my feelings under control when I have to, then let them out when they won't make things worse.\" "
         batch_rsq_emotion_regulation_l= list(['mostly disagrees with sentiments like ' + rsq_emotion_regulation_list if 1 < x <= 2 
                                                 else 'sometimes agrees and sometimes disagree with sentiments like ' + rsq_emotion_regulation_list if  2 < x and x <= 3
                                                 else 'mostly agrees with sentiments like ' + rsq_emotion_regulation_list if x >3 else "" for x in batch_rsq_emotion_regulation_l])
 
-        batch_rsq_cognitive_restructuring_l = list(batch_rsq_cognitive_restructuring.values)
+        batch_rsq_cognitive_restructuring_l = list(batch_rsq_cognitive_restructuring)
         rsq_cognitive_restructuring_list = "\" I tell myself that things could be worse, I tell myself that it doesn\'t matter, that it isn\'t a big deal, and I think about the things I\'m learning from the situation, or something good that will come from it. \" "
         batch_rsq_cognitive_restructuring_l = list(['mostly disagrees with sentiments like ' + rsq_cognitive_restructuring_list if 1 < x and x <= 2 
                                                     else 'sometimes agrees and sometimes disagrees with sentiments like ' + rsq_cognitive_restructuring_list if 2 < x and x <= 3 
