@@ -230,8 +230,8 @@ class MultiModModelWithLanguage(LightningModule):
                 formatted_times.append("unknown")
             else:
                 time_str = str(t)
-                if len(t) == 3:
-                    t = "0" + t
+                if len(time_str) == 3:
+                    time_str = "0" + time_str
                 print(time_str)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
@@ -260,8 +260,8 @@ class MultiModModelWithLanguage(LightningModule):
                     formatted_times.append("unknown")
                 else:
                     time_str = str(t)
-                    if len(t) == 3:
-                        t = "0" + t
+                    if len(time_str) == 3:
+                        time_str = "0" + time_str
                     print(time_str)
                     # Extract the hour and minute components
                     hour = int(time_str[:2])
@@ -287,8 +287,8 @@ class MultiModModelWithLanguage(LightningModule):
                 formatted_times.append("unknown")
             else:
                 time_str = str(t)
-                if len(t) == 3:
-                    t = "0" + t
+                if len(time_str) == 3:
+                    time_str = "0" + time_str
                 print(time_str)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
@@ -315,8 +315,8 @@ class MultiModModelWithLanguage(LightningModule):
                 formatted_times.append("unknown")
             else:
                 time_str = str(t)
-                if len(t) == 3:
-                    t = "0" + t
+                if len(time_str) == 3:
+                    time_str = "0" + time_str
                 print(time_str)
                 # Extract the hour and minute components
                 hour = int(time_str[:2])
