@@ -142,9 +142,9 @@ class MultiModModelWithLanguage(LightningModule):
         language_inputs["input_ids"] = language_inputs["input_ids"][:,:512]
         language_inputs["token_type_ids"] = language_inputs["token_type_ids"][:,:512]
         language_inputs["attention_mask"] = language_inputs["attention_mask"][:,:512]
-        print(language_inputs["input_ids"].shape, language_inputs["token_type_ids"].shape, language_inputs["attention_mask"].shape)
+        # print(language_inputs["input_ids"].shape, language_inputs["token_type_ids"].shape, language_inputs["attention_mask"].shape)
         language_outputs = self.language_model(**language_inputs)
-        print(language_outputs)
+        # print(language_outputs)
 
         # # 1 x 768
         # # We "pool" the model by simply taking the hidden state corresponding
@@ -564,6 +564,8 @@ class MultiModModelWithLanguage(LightningModule):
 
         y_pred_tag = torch.round(torch.sigmoid(y_pred))
 
+        print(subject_id)
+        print(self.train_results_df['subject'])
         self.train_results_df['subject'] = tuple(subject_id)
         
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
