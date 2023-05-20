@@ -229,17 +229,17 @@ class MultiModModelWithLanguage(LightningModule):
             if t == 0:
                 new_arr.append("unknown")
             else:
-                t = str(t)
-                try:
-                    dt = datetime.datetime.strptime(t, '%H%M')
-                except ValueError as e:
-                    # Extract the unconverted data from the error message
-                    unconverted_data = str(e).split(":")[1].strip()
-                    # Remove the unconverted data from the input string
-                    t = t.replace(unconverted_data, "")
-                    # Parse the modified string without the unconverted data
-                    dt = datetime.datetime.strptime(t, '%H%M')
-                new_arr.append(dt.strftime('%I:%M %p'))
+                time_str = str(t).zfill(4)
+                # Extract the hour and minute components
+                hour = int(time_str[:2])
+                minute = int(time_str[2:])
+                
+                # Use datetime to create a time object
+                time_obj = datetime.time(hour=hour, minute=minute)
+                # Format the time using strftime with the desired format
+                formatted_time = time_obj.strftime("%I:%M%p").lower()
+                
+                new_arr.append(formatted_time)
         batch_youthreport2_shq1 = new_arr
 
         batch_youthreport2_shq2 = list(batch_youthreport2_shq2)
@@ -248,17 +248,17 @@ class MultiModModelWithLanguage(LightningModule):
             if t == 0:
                 new_arr.append("unknown")
             else:
-                t = str(t)
-                try:
-                    dt = datetime.datetime.strptime(t, '%H%M')
-                except ValueError as e:
-                    # Extract the unconverted data from the error message
-                    unconverted_data = str(e).split(":")[1].strip()
-                    # Remove the unconverted data from the input string
-                    t = t.replace(unconverted_data, "")
-                    # Parse the modified string without the unconverted data
-                    dt = datetime.datetime.strptime(t, '%H%M')
-                new_arr.append(dt.strftime('%I:%M %p'))
+                time_str = str(t).zfill(4)
+                # Extract the hour and minute components
+                hour = int(time_str[:2])
+                minute = int(time_str[2:])
+                
+                # Use datetime to create a time object
+                time_obj = datetime.time(hour=hour, minute=minute)
+                # Format the time using strftime with the desired format
+                formatted_time = time_obj.strftime("%I:%M%p").lower()
+                
+                new_arr.append(formatted_time)
         batch_youthreport2_shq2 = new_arr
 
         batch_youthreport2_shq3 = list(batch_youthreport2_shq3)
@@ -267,17 +267,17 @@ class MultiModModelWithLanguage(LightningModule):
             if t == 0:
                 new_arr.append("unknown")
             else:
-                t = str(t)
-                try:
-                    dt = datetime.datetime.strptime(t, '%H%M')
-                except ValueError as e:
-                    # Extract the unconverted data from the error message
-                    unconverted_data = str(e).split(":")[1].strip()
-                    # Remove the unconverted data from the input string
-                    t = t.replace(unconverted_data, "")
-                    # Parse the modified string without the unconverted data
-                    dt = datetime.datetime.strptime(t, '%H%M')
-                new_arr.append(dt.strftime('%I:%M %p'))
+                time_str = str(t).zfill(4)
+                # Extract the hour and minute components
+                hour = int(time_str[:2])
+                minute = int(time_str[2:])
+                
+                # Use datetime to create a time object
+                time_obj = datetime.time(hour=hour, minute=minute)
+                # Format the time using strftime with the desired format
+                formatted_time = time_obj.strftime("%I:%M%p").lower()
+                
+                new_arr.append(formatted_time)
         batch_youthreport2_shq3 = new_arr
 
         batch_youthreport2_shq4 = list(batch_youthreport2_shq4)
@@ -287,16 +287,17 @@ class MultiModModelWithLanguage(LightningModule):
                 t = str(t)
                 new_arr.append("unknown")
             else:
-                try:
-                    dt = datetime.datetime.strptime(t, '%H%M')
-                except ValueError as e:
-                    # Extract the unconverted data from the error message
-                    unconverted_data = str(e).split(":")[1].strip()
-                    # Remove the unconverted data from the input string
-                    t = t.replace(unconverted_data, "")
-                    # Parse the modified string without the unconverted data
-                    dt = datetime.datetime.strptime(t, '%H%M')
-                new_arr.append(dt.strftime('%I:%M %p'))
+                time_str = str(t).zfill(4)
+                # Extract the hour and minute components
+                hour = int(time_str[:2])
+                minute = int(time_str[2:])
+                
+                # Use datetime to create a time object
+                time_obj = datetime.time(hour=hour, minute=minute)
+                # Format the time using strftime with the desired format
+                formatted_time = time_obj.strftime("%I:%M%p").lower()
+                
+                new_arr.append(formatted_time)
         batch_youthreport2_shq4 = new_arr
 
         batch_youthreport2_shq5 = list(batch_youthreport2_shq5) # average sleep quality
