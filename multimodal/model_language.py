@@ -236,7 +236,7 @@ class MultiModModelWithLanguage(LightningModule):
                 minute = int(minute_str)
                 # Use datetime to create a time object
                 time_obj = datetime.time(hour=hour, minute=minute)
-                print(time_obj)
+                print("hii", time_obj)
                 # Format the time using strftime with the desired format
                 formatted_time = time_obj.strftime("%I:%M%p").lower()
                 
@@ -256,7 +256,7 @@ class MultiModModelWithLanguage(LightningModule):
                 minute = int(minute_str)
                 # Use datetime to create a time object
                 time_obj = datetime.time(hour=hour, minute=minute)
-                print(time_obj)
+                print("hii", time_obj)
                 # Format the time using strftime with the desired format
                 formatted_time = time_obj.strftime("%I:%M%p").lower()
                 
@@ -276,7 +276,7 @@ class MultiModModelWithLanguage(LightningModule):
                 minute = int(minute_str)
                 # Use datetime to create a time object
                 time_obj = datetime.time(hour=hour, minute=minute)
-                print(time_obj)
+                print("hii", time_obj)
                 # Format the time using strftime with the desired format
                 formatted_time = time_obj.strftime("%I:%M%p").lower()
                 
@@ -298,7 +298,7 @@ class MultiModModelWithLanguage(LightningModule):
             
                 # Use datetime to create a time object
                 time_obj = datetime.time(hour=hour, minute=minute)
-                print(time_obj)
+                print("hii", time_obj)
                 # Format the time using strftime with the desired format
                 formatted_time = time_obj.strftime("%I:%M%p").lower()
                 
