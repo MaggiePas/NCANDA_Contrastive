@@ -121,7 +121,7 @@ class MultiModModelWithLanguage(LightningModule):
         # forward tabular data
         tab_without_age_sex = F.relu(self.fc1(tab_without_age_sex))
 
-        language_inputs = self.tokenizer(batch_sentences, return_tensors="pt")
+        language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=40)
         
         language_inputs = language_inputs.to('cuda')
 
@@ -512,7 +512,7 @@ class MultiModModelWithLanguage(LightningModule):
         max_length = min(len(string) for string in batch_sentences)
         padded_strings = []
         for string in batch_sentences:
-            truncated_string = string[:65]
+            truncated_string = string#[:65]
         #     padded_string = truncated_string.ljust(max_length, " ")
             padded_strings.append(truncated_string)
         print(padded_strings)
