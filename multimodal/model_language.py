@@ -102,9 +102,9 @@ class MultiModModelWithLanguage(LightningModule):
         img = self.resnet(img)
         
         batch_sentences = self.get_batch_sentences(tab)
-        print("min", min(len(string) for string in batch_sentences))
-        print("max", max(len(string) for string in batch_sentences))
-        print("example", batch_sentences[0])
+        # print("min", min(len(string) for string in batch_sentences))
+        # print("max", max(len(string) for string in batch_sentences))
+        # print("example", batch_sentences[0])
         
         # change the dtype of the tabular data
         tab = tab.to(torch.float32)
@@ -121,7 +121,7 @@ class MultiModModelWithLanguage(LightningModule):
         # forward tabular data
         tab_without_age_sex = F.relu(self.fc1(tab_without_age_sex))
 
-        language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=60)
+        language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=1500)
         
         language_inputs = language_inputs.to('cuda')
 
