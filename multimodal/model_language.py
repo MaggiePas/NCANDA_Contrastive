@@ -121,7 +121,7 @@ class MultiModModelWithLanguage(LightningModule):
         # forward tabular data
         tab_without_age_sex = F.relu(self.fc1(tab_without_age_sex))
 
-        language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=500)
+        language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=512)
         
         language_inputs = language_inputs.to('cuda')
 
