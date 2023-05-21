@@ -52,13 +52,13 @@ class MultiModModelSwinEnc(LightningModule):
 
         self.train_F1_score = torchmetrics.F1Score(task='multiclass', average='macro', num_classes=2)
 
-        self.train_AUROC = torchmetrics.classification.BinaryAUROC(thresholds=5)
+        self.train_AUROC = torchmetrics.classification.BinaryAUROC(thresholds=None)
 
         self.val_macro_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
 
         self.val_F1_score = torchmetrics.F1Score(task='multiclass', num_classes=2)
 
-        self.val_AUROC = torchmetrics.classification.BinaryAUROC(thresholds=5)
+        self.val_AUROC = torchmetrics.classification.BinaryAUROC(thresholds=None)
 
         self.test_macro_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
 
