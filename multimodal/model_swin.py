@@ -10,7 +10,9 @@ import torchmetrics
 import pandas as pd
 
 
-class MultiModModel(LightningModule):
+USE_TAB_DATA = 0
+
+class MultiModModelSwinEnc(LightningModule):
     '''
     Swin Encoder Model Class including the training, validation and testing steps
     '''
@@ -23,33 +25,25 @@ class MultiModModel(LightningModule):
 
         self.scaler = scaler
 
-        # self.swin_tf = SwinUNETR(
-        #    img_size=IMAGE_SIZE,
-        #    in_channels=1,
-        #    out_channels=1,
-        #    feature_size=12,  # feature size should be divisible by 12
-        # )
-        # print("Initialized swin UNETR!")
-        # use pre-trained weights
-        # weight = torch.load("./model_swinvit.pt")
-
         self.swin_enc = CustomSwinEncoder(
             img_size=IMAGE_SIZE,
             in_channels=1,
             out_channels=1,
-            feature_size=12,  # feature size should be divisible by 12
+            feature_size=12,
         )
 
         self.swin_fc_layer = nn.Linear(24576, 120)
 
         self.NUM_FEATURES = NUM_FEATURES
 
-        # fc layer for tabular data
-        self.fc1 = nn.Linear(self.NUM_FEATURES, 120)
+        if USE_TAB_DATA:
+            # fc layer for tabular data
+            self.fc1 = nn.Linear(self.NUM_FEATURES, 120)
 
-        # first fc layer which takes concatenated input
-        self.fc2 = nn.Linear((120 + 120), 32)
-        # self.fc2 = nn.Linear(120, 32)
+            # first fc layer which takes concatenated input
+            self.fc2 = nn.Linear((120 + 120), 32)
+        else:
+            self.fc2 = nn.Linear(120, 32)
 
         # final fc layer which takes concatenated input
         self.fc3 = nn.Linear(32, 1)
@@ -90,28 +84,29 @@ class MultiModModel(LightningModule):
         x is the input data
 
         """
-        # run the model for the image
 
-        # print(img.shape)
         img = torch.unsqueeze(img, 1)
         img = img.to(torch.float32)
-        # print(img.shape)
 
         img = self.swin_enc(img)
         img = torch.flatten(img, start_dim=1)
         img = self.swin_fc_layer(img)
 
-        # change the dtype of the tabular data
-        tab = tab.to(torch.float32)
+        if USE_TAB_DATA:
+            # change the dtype of the tabular data
+            tab = tab.to(torch.float32)
 
-        # forward tabular data
-        tab = F.relu(self.fc1(tab))
+            # forward tabular data
+            tab = F.relu(self.fc1(tab))
 
-        # concat image and tabular data
-        x = torch.cat((img, tab), dim=1)
+            # concat image and tabular data
+            x = torch.cat((img, tab), dim=1)
 
-        x = img
-        x = F.relu(self.fc2(x))
+            # fc2 is the layer for the concatenated feature vector
+            x = F.relu(self.fc2(x))
+        else:
+            x = img
+            x = F.relu(self.fc2(x))
 
         out = self.fc3(x)
 
