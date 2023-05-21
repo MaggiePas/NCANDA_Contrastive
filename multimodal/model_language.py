@@ -102,6 +102,9 @@ class MultiModModelWithLanguage(LightningModule):
         img = self.resnet(img)
         
         batch_sentences = self.get_batch_sentences(tab)
+        print("min", min(len(string) for string in batch_sentences))
+        print("max", max(len(string) for string in batch_sentences))
+        print("example", batch_sentences[0])
         
         # change the dtype of the tabular data
         tab = tab.to(torch.float32)
@@ -509,7 +512,7 @@ class MultiModModelWithLanguage(LightningModule):
         max_length = min(len(string) for string in batch_sentences)
         padded_strings = []
         for string in batch_sentences:
-            truncated_string = string[:20]
+            truncated_string = string[:400]
         #     padded_string = truncated_string.ljust(max_length, " ")
             padded_strings.append(truncated_string)
         print(padded_strings)
