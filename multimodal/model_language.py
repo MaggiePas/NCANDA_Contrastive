@@ -512,7 +512,7 @@ class MultiModModelWithLanguage(LightningModule):
         max_length = min(len(string) for string in batch_sentences)
         padded_strings = []
         for string in batch_sentences:
-            truncated_string = string[:58]
+            truncated_string = string[:40]
         #     padded_string = truncated_string.ljust(max_length, " ")
             padded_strings.append(truncated_string)
         print(padded_strings)
