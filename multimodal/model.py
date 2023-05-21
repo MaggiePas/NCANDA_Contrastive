@@ -3,7 +3,10 @@ from torch import nn
 from pytorch_lightning.core.module import LightningModule
 from torch.nn import functional as F
 from monai.networks.nets import resnet10, resnet18, resnet34, resnet50
-from settings import IMAGE_SIZE, FEATURES, BATCH_SIZE, TARGET
+from monai.networks.nets.swin_unetr import SwinUNETR
+from monai.networks.blocks import UnetrBasicBlock
+from notes import CustomSwinEncoder
+from settings import IMAGE_SIZE, FEATURES, BATCH_SIZE, TARGET, NUM_FEATURES
 import torchmetrics
 import pandas as pd
 
@@ -21,20 +24,39 @@ class MultiModModel(LightningModule):
 
         self.scaler = scaler
 
-        self.resnet = resnet10(pretrained=False,
-                              spatial_dims=3,
-                              num_classes=120,
-                              n_input_channels=1
-                              )
+        #self.resnet = resnet10(pretrained=False,
+        #                    spatial_dims=3,
+        #                    num_classes=120,
+        #                     n_input_channels=1
+        #                     )
+        #self.swin_tf = SwinUNETR(
+        #    img_size=IMAGE_SIZE,
+        #    in_channels=1,
+        #    out_channels=1,
+        #    feature_size=12,  # feature size should be divisible by 12
+        #)
+        #print("Initialized swin UNETR!")
+        # use pre-trained weights
+        #weight = torch.load("./model_swinvit.pt")
+        
+        self.swin_enc = CustomSwinEncoder(
+            img_size=IMAGE_SIZE,
+            in_channels=1,
+            out_channels=1,
+            feature_size=12,  # feature size should be divisible by 12
+        )
 
-        self.NUM_FEATURES = len(FEATURES)
+        self.swin_class_layer = nn.Linear(24576, 120)
+
+        self.NUM_FEATURES = NUM_FEATURES
 
         # fc layer for tabular data
         self.fc1 = nn.Linear(self.NUM_FEATURES, 120)
 
         # first fc layer which takes concatenated imput
         self.fc2 = nn.Linear((120 + 120), 32)
-        
+        #self.fc2 = nn.Linear(120, 32)        
+
         # final fc layer which takes concatenated imput
         self.fc3 = nn.Linear(32, 1)
         
@@ -73,8 +95,20 @@ class MultiModModel(LightningModule):
         img = img.to(torch.float32)
         # print(img.type)
         # print(img.shape)
+
+
         
         img = self.resnet(img)
+        
+
+        #img = self.swin_tf(img)        
+        img = self.swin_enc(img)
+        #print(img.shape, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        img = torch.flatten(img, start_dim=1)
+        #print("Image flattened shape: {}".format(img.shape))
+        img = self.swin_class_layer(img)
+
+
 
         # change the dtype of the tabular data
         tab = tab.to(torch.float32)
@@ -84,7 +118,8 @@ class MultiModModel(LightningModule):
         
         # concat image and tabular data
         x = torch.cat((img, tab), dim=1)
-
+        
+        x = img
         x = F.relu(self.fc2(x))
 
         out = self.fc3(x)
@@ -95,7 +130,7 @@ class MultiModModel(LightningModule):
 
     def configure_optimizers(self):
 
-        optimizer = torch.optim.Adam(self.parameters(), lr=1e-3)
+        optimizer = torch.optim.Adam(self.parameters(), lr=5e-4) #1e-3
         
         scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10,20,35,50], gamma=0.8)
 
