@@ -11,7 +11,6 @@ model = MultiModModelSwinEnc.load_from_checkpoint(checkpoint_path)
 model.eval()
 
 print(model.learning_rate)
-print(model.scaler)
 
 #
 # # load val data
