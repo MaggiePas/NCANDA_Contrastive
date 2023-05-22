@@ -5,7 +5,7 @@ import numpy as np
 import torch
 from multimodal_dataset import resize
 from settings import IMAGE_SIZE
-import medcam
+from medcam import medcam
 
 
 checkpoint_path = "/home/users/tulikaj/NCANDA_Contrastive/lightning_logs/lxf2jrac/checkpoints/epoch=0-step=70.ckpt"
