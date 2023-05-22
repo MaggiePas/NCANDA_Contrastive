@@ -25,6 +25,8 @@ class MultiModModelSwinEnc(LightningModule):
 
         self.scaler = scaler
 
+        self.save_hyperparameters()
+
         self.swin_enc = CustomSwinEncoder(
             img_size=IMAGE_SIZE,
             in_channels=1,
