@@ -86,12 +86,16 @@ class MultiModModelSwinEnc(LightningModule):
         x is the input data
 
         """
+        #print("image shape, forward pass initially", img.shape)
 
         img = torch.unsqueeze(img, 1)
         img = img.to(torch.float32)
 
         img = self.swin_enc(img)
+        #print("image shape after swin encoder", img.shape)
+
         img = torch.flatten(img, start_dim=1)
+        #print("image shap after flattening, before swin fc layer", img.shape)
         img = self.swin_fc_layer(img)
 
         if USE_TAB_DATA:
