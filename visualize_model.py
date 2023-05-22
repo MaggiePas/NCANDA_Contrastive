@@ -23,6 +23,8 @@ data.prepare_data()
 val_loader = data.val_dataloader()
 
 for batch in val_loader:
+    print(type(batch))
+    print(len(batch))
     # Every time forward is called, attention maps will be generated and saved in the directory "attention_maps"
     output = model(batch)
 
