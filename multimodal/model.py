@@ -16,19 +16,32 @@ class MultiModModel(LightningModule):
     Resnet Model Class including the training, validation and testing steps
     '''
 
-    def __init__(self, class_weight, scaler):
+    def __init__(self, class_weight=None, scaler=None):
 
         super().__init__()
-        
+ 
+        if class_weight is None:
+            data = NCANDADataModule()
+            data.prepare_data()
+            class_weight=data.class_weight
+        if scaler is None:
+            data = NCANDADataModule()
+            data.prepare_data()
+            scaler=data.scaler
+ 
         self.class_weight = class_weight
 
         self.scaler = scaler
 
-        #self.resnet = resnet10(pretrained=False,
-        #                    spatial_dims=3,
-        #                    num_classes=120,
-        #                     n_input_channels=1
-        #                     )
+        self.save_hyperparameters()
+
+        self.view_maps = nn.Identity()
+
+        self.resnet = resnet10(pretrained=False,
+                            spatial_dims=3,
+                            num_classes=120,
+                             n_input_channels=1
+                             )
         #self.swin_tf = SwinUNETR(
         #    img_size=IMAGE_SIZE,
         #    in_channels=1,
@@ -39,23 +52,23 @@ class MultiModModel(LightningModule):
         # use pre-trained weights
         #weight = torch.load("./model_swinvit.pt")
         
-        self.swin_enc = CustomSwinEncoder(
-            img_size=IMAGE_SIZE,
-            in_channels=1,
-            out_channels=1,
-            feature_size=12,  # feature size should be divisible by 12
-        )
+        #self.swin_enc = CustomSwinEncoder(
+        #    img_size=IMAGE_SIZE,
+        #    in_channels=1,
+        #    out_channels=1,
+        #    feature_size=12,  # feature size should be divisible by 12
+        #)
 
-        self.swin_class_layer = nn.Linear(24576, 120)
+        #self.swin_class_layer = nn.Linear(24576, 120)
 
         self.NUM_FEATURES = NUM_FEATURES
 
         # fc layer for tabular data
-        self.fc1 = nn.Linear(self.NUM_FEATURES, 120)
+        #self.fc1 = nn.Linear(self.NUM_FEATURES, 120)
 
         # first fc layer which takes concatenated imput
-        self.fc2 = nn.Linear((120 + 120), 32)
-        #self.fc2 = nn.Linear(120, 32)        
+        #self.fc2 = nn.Linear((120 + 120), 32)
+        self.fc2 = nn.Linear(120, 32)        
 
         # final fc layer which takes concatenated imput
         self.fc3 = nn.Linear(32, 1)
@@ -82,44 +95,37 @@ class MultiModModel(LightningModule):
 
         self.val_results_df = pd.DataFrame(columns=self.results_column_names)
 
-    def forward(self, img, tab):
+    def forward(self, img, tab=None):
         """
 
         x is the input data
 
         """
         # run the model for the image
-
-        # print(img.shape)
         img = torch.unsqueeze(img, 1)
         img = img.to(torch.float32)
-        # print(img.type)
-        # print(img.shape)
-
-
         
+        # to view attention maps
+        img = img.reshape((img.shape[0], IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE))
+        img = self.view_maps(img)
+        img = img.reshape((img.shape[0], 1, IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE)) 
+        
+
+        print(img.shape, "before resnet the shape is..") 
         img = self.resnet(img)
-        
-
-        #img = self.swin_tf(img)        
-        img = self.swin_enc(img)
-        #print(img.shape, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        img = torch.flatten(img, start_dim=1)
-        #print("Image flattened shape: {}".format(img.shape))
-        img = self.swin_class_layer(img)
-
-
+        print("aftre resnet the shape is ...", img.shape)
+        img = torch.flatten(img, start_dim=1) 
 
         # change the dtype of the tabular data
-        tab = tab.to(torch.float32)
+        #tab = tab.to(torch.float32)
 
         # forward tabular data
-        tab = F.relu(self.fc1(tab))
+        #tab = F.relu(self.fc1(tab))
         
         # concat image and tabular data
-        x = torch.cat((img, tab), dim=1)
-        
-        x = img
+        #x = torch.cat((img, tab), dim=1)
+        x = img        
+
         x = F.relu(self.fc2(x))
 
         out = self.fc3(x)

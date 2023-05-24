@@ -31,10 +31,11 @@ class MultiModModelSwinEnc(LightningModule):
             img_size=IMAGE_SIZE,
             in_channels=1,
             out_channels=1,
-            feature_size=12,
+            feature_size=48,
         )
 
-        self.swin_fc_layer = nn.Linear(24576, 120)
+        #self.swin_fc_layer = nn.Linear(24576, 120)
+        self.swin_fc_layer = nn.Linear(98304, 120)
 
         self.NUM_FEATURES = NUM_FEATURES
 
@@ -80,7 +81,7 @@ class MultiModModelSwinEnc(LightningModule):
 
         self.val_results_df = pd.DataFrame(columns=self.results_column_names)
 
-    def forward(self, img, tab):
+    def forward(self, img, tab=None):
         """
 
         x is the input data
@@ -95,7 +96,7 @@ class MultiModModelSwinEnc(LightningModule):
         #print("image shape after swin encoder", img.shape)
 
         img = torch.flatten(img, start_dim=1)
-        #print("image shap after flattening, before swin fc layer", img.shape)
+        print("image shap after flattening, before swin fc layer", img.shape)
         img = self.swin_fc_layer(img)
 
         if USE_TAB_DATA:
@@ -122,7 +123,7 @@ class MultiModModelSwinEnc(LightningModule):
 
     def configure_optimizers(self):
 
-        optimizer = torch.optim.Adam(self.parameters(), lr=5e-4)  # 1e-3
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-3)  # 1e-3
 
         scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.8)
 
