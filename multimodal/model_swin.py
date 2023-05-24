@@ -43,6 +43,9 @@ class MultiModModelSwinEnc(LightningModule):
                out_channels=1,
                feature_size=12,  # feature size should be divisible by 12
             )
+        weight = torch.load("./model_swinvit.pt")
+        self.swin_enc.load_from(weights=weight)
+        print("Using pretrained self-supervied Swin UNETR backbone weights !")
 
         # self.swin_fc_layer = nn.Linear(24576, 120)
         # self.swin_fc_layer = nn.Linear(98304, 120)
