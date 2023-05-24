@@ -35,7 +35,31 @@ class MultiModModelSwinEnc(LightningModule):
         )
 
         #self.swin_fc_layer = nn.Linear(24576, 120)
-        self.swin_fc_layer = nn.Linear(98304, 120)
+        #self.swin_fc_layer = nn.Linear(98304, 120)
+        self.post_swin_conv3d_1 = nn.Conv3d(
+            in_channels=1,
+            out_channels=16,
+            kernel_size=2,
+            stride=2,
+            padding=0,
+            bias=True
+        )
+        self.post_swin_conv3d_2 = nn.Conv3d(
+            in_channels=16,
+            out_channels=60,
+            kernel_size=2,
+            stride=2,
+            padding=0,
+            bias=True
+        )
+        self.post_swin_conv3d_3 = nn.Conv3d(
+            in_channels=60,
+            out_channels=120,
+            kernel_size=2,
+            stride=2,
+            padding=0,
+            bias=True
+        )
 
         self.NUM_FEATURES = NUM_FEATURES
 
@@ -95,9 +119,13 @@ class MultiModModelSwinEnc(LightningModule):
         img = self.swin_enc(img)
         #print("image shape after swin encoder", img.shape)
 
+        #img = torch.flatten(img, start_dim=1)
+        #print("image shap after flattening, before swin fc layer", img.shape)
+        #img = self.swin_fc_layer(img)
+        img = self.post_swin_conv3d_1(img)
+        img = self.post_swin_conv3d_2(img)
+        img = self.post_swin_conv3d_3(img)
         img = torch.flatten(img, start_dim=1)
-        print("image shap after flattening, before swin fc layer", img.shape)
-        img = self.swin_fc_layer(img)
 
         if USE_TAB_DATA:
             # change the dtype of the tabular data
