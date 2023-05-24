@@ -41,7 +41,7 @@ class MultiModModelSwinEnc(LightningModule):
                img_size=IMAGE_SIZE,
                in_channels=1,
                out_channels=1,
-               feature_size=12,  # feature size should be divisible by 12
+               feature_size=48,  # feature size should be divisible by 12
             )
         weight = torch.load("./model_swinvit.pt")
         self.swin_enc.load_from(weights=weight)
