@@ -247,6 +247,9 @@ class MultiModModelSwinEnc(LightningModule):
         else:
             self.val_accuracy(y_pred_tag, y)
 
+            print("computing val_macro_acc_epoch for step epoch right now...")
+            print(f"y_pred_tag = {y_pred_tag}")
+            print(f"y = {y}")
             self.val_macro_accuracy(y_pred_tag, y)
 
             self.val_F1_score(y_pred_tag, y)
