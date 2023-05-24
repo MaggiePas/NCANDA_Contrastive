@@ -8,6 +8,8 @@ from notes import CustomSwinEncoder
 from settings import IMAGE_SIZE, FEATURES, BATCH_SIZE, TARGET, NUM_FEATURES
 import torchmetrics
 import pandas as pd
+from torchmetrics.classification import MulticlassAccuracy
+
 
 USE_TAB_DATA = 0
 
@@ -31,7 +33,7 @@ class MultiModModelSwinEnc(LightningModule):
             img_size=IMAGE_SIZE,
             in_channels=1,
             out_channels=1,
-            feature_size=48,
+            feature_size=12,
         )
 
         # self.swin_fc_layer = nn.Linear(24576, 120)
@@ -148,7 +150,7 @@ class MultiModModelSwinEnc(LightningModule):
 
     def configure_optimizers(self):
 
-        optimizer = torch.optim.Adam(self.parameters(), lr=1e-3)  # 1e-3
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-5)  # 1e-3
 
         scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.8)
 
