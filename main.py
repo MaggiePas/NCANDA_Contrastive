@@ -12,7 +12,7 @@ from multimodal_dataset_triplet import NCANDADataTripletModule
 
 from ResNet.model import ResNetModel
 from multimodal.model import MultiModModel
-#from multimodal.model_swin import MultiModModelSwinEnc
+from multimodal.model_swin import MultiModModelSwinEnc
 from multimodal.model_language import MultiModModelWithLanguage
 from multimodal.daft_model import DAFTModel
 from multimodal.center_model import CenterModel
@@ -71,7 +71,7 @@ def main_multimodal(wandb, wandb_logger):
     val_loader = data.val_dataloader()
 
     # get the model
-    model = MultiModModel(class_weight=data.class_weight, scaler=data.scaler)
+    model = MultiModModelSwinEnc(class_weight=data.class_weight, scaler=data.scaler)
 
     # Optional
     wandb.watch(model, log="all")
@@ -79,7 +79,7 @@ def main_multimodal(wandb, wandb_logger):
     lr_monitor = LearningRateMonitor(logging_interval='step')
 
     # train the network
-    trainer = Trainer(max_epochs=1, logger=wandb_logger, log_every_n_steps=1, accelerator='gpu', devices=1, callbacks=[lr_monitor])
+    trainer = Trainer(max_epochs=10, logger=wandb_logger, log_every_n_steps=1, accelerator='gpu', devices=1, callbacks=[lr_monitor])
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
 
 
