@@ -9,8 +9,8 @@ from settings import IMAGE_SIZE, FEATURES, BATCH_SIZE, TARGET, NUM_FEATURES
 import torchmetrics
 import pandas as pd
 
-
 USE_TAB_DATA = 0
+
 
 class MultiModModelSwinEnc(LightningModule):
     '''
@@ -34,32 +34,27 @@ class MultiModModelSwinEnc(LightningModule):
             feature_size=48,
         )
 
-        #self.swin_fc_layer = nn.Linear(24576, 120)
-        #self.swin_fc_layer = nn.Linear(98304, 120)
-        self.post_swin_conv3d_1 = nn.Conv3d(
-            in_channels=1,
-            out_channels=16,
+        # self.swin_fc_layer = nn.Linear(24576, 120)
+        # self.swin_fc_layer = nn.Linear(98304, 120)
+        self.post_swin_conv_1 = nn.Conv3d(
+            in_channels=192,
+            out_channels=96,
             kernel_size=2,
             stride=2,
             padding=0,
             bias=True
         )
-        self.post_swin_conv3d_2 = nn.Conv3d(
-            in_channels=16,
-            out_channels=60,
-            kernel_size=2,
-            stride=2,
-            padding=0,
-            bias=True
-        )
-        self.post_swin_conv3d_3 = nn.Conv3d(
-            in_channels=60,
+        self.post_swin_relu_1 = nn.ReLU()
+        self.post_swin_maxpool = nn.MaxPool3d(kernel_size=2, stride=2)
+        self.post_swin_conv_2 = nn.Conv3d(
+            in_channels=96,
             out_channels=120,
             kernel_size=2,
             stride=2,
             padding=0,
             bias=True
         )
+        self.post_swin_relu_2 = nn.ReLU()
 
         self.NUM_FEATURES = NUM_FEATURES
 
@@ -111,20 +106,22 @@ class MultiModModelSwinEnc(LightningModule):
         x is the input data
 
         """
-        #print("image shape, forward pass initially", img.shape)
+        # print("image shape, forward pass initially", img.shape)
 
         img = torch.unsqueeze(img, 1)
         img = img.to(torch.float32)
 
         img = self.swin_enc(img)
-        #print("image shape after swin encoder", img.shape)
+        # print("image shape after swin encoder", img.shape)
 
-        #img = torch.flatten(img, start_dim=1)
-        #print("image shap after flattening, before swin fc layer", img.shape)
-        #img = self.swin_fc_layer(img)
-        img = self.post_swin_conv3d_1(img)
-        img = self.post_swin_conv3d_2(img)
-        img = self.post_swin_conv3d_3(img)
+        # img = torch.flatten(img, start_dim=1)
+        # print("image shap after flattening, before swin fc layer", img.shape)
+        # img = self.swin_fc_layer(img)
+        img = self.post_swin_conv_1(img)
+        img = self.post_swin_relu_1(img)
+        img = self.post_swin_maxpool(img)
+        img = self.post_swin_conv_2(img)
+        img = self.post_swin_relu_2(img)
         img = torch.flatten(img, start_dim=1)
 
         if USE_TAB_DATA:
@@ -321,4 +318,3 @@ class MultiModModelSwinEnc(LightningModule):
 
         self.log('val_acc_epoch', self.val_accuracy)
         self.log('val_macro_acc_epoch', self.val_macro_accuracy)
-
