@@ -39,7 +39,7 @@ class MultiModModelSwinEnc(LightningModule):
         # self.swin_fc_layer = nn.Linear(24576, 120)
         # self.swin_fc_layer = nn.Linear(98304, 120)
         self.post_swin_conv_1 = nn.Conv3d(
-            in_channels=192,
+            in_channels=48,
             out_channels=96,
             kernel_size=2,
             stride=2,
