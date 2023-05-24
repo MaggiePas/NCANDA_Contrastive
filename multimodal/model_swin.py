@@ -47,24 +47,37 @@ class MultiModModelSwinEnc(LightningModule):
         # self.swin_fc_layer = nn.Linear(24576, 120)
         # self.swin_fc_layer = nn.Linear(98304, 120)
         self.post_swin_conv_1 = nn.Conv3d(
-            in_channels=48,
-            out_channels=96,
+            in_channels=1,
+            out_channels=30,
             kernel_size=2,
             stride=2,
             padding=0,
             bias=True
         )
         self.post_swin_relu_1 = nn.ReLU()
-        self.post_swin_maxpool = nn.MaxPool3d(kernel_size=2, stride=2)
+        self.post_swin_maxpool_1 = nn.MaxPool3d(kernel_size=2, stride=2)
+
         self.post_swin_conv_2 = nn.Conv3d(
-            in_channels=96,
-            out_channels=120,
+            in_channels=30,
+            out_channels=60,
             kernel_size=2,
             stride=2,
             padding=0,
             bias=True
         )
         self.post_swin_relu_2 = nn.ReLU()
+        self.post_swin_maxpool_2 = nn.MaxPool3d(kernel_size=2, stride=2)
+
+        self.post_swin_conv_3 = nn.Conv3d(
+            in_channels=60,
+            out_channels=120,
+            kernel_size=2,
+            stride=2,
+            padding=0,
+            bias=True
+        )
+        self.post_swin_relu_3 = nn.ReLU()
+        self.post_swin_maxpool_3 = nn.MaxPool3d(kernel_size=2, stride=2)
 
         self.NUM_FEATURES = NUM_FEATURES
 
@@ -129,9 +142,14 @@ class MultiModModelSwinEnc(LightningModule):
         # img = self.swin_fc_layer(img)
         img = self.post_swin_conv_1(img)
         img = self.post_swin_relu_1(img)
-        img = self.post_swin_maxpool(img)
+        img = self.post_swin_maxpool_1(img)
         img = self.post_swin_conv_2(img)
         img = self.post_swin_relu_2(img)
+        img = self.post_swin_maxpool_2(img)
+        img = self.post_swin_conv_3(img)
+        img = self.post_swin_relu_3(img)
+        img = self.post_swin_maxpool_3(img)
+
         img = torch.flatten(img, start_dim=1)
 
         if USE_TAB_DATA:
