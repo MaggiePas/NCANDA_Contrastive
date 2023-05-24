@@ -29,12 +29,20 @@ class MultiModModelSwinEnc(LightningModule):
 
         self.save_hyperparameters()
 
+        """
         self.swin_enc = CustomSwinEncoder(
             img_size=IMAGE_SIZE,
             in_channels=1,
             out_channels=1,
             feature_size=12,
         )
+        """
+        self.swin_enc = SwinUNETR(
+               img_size=IMAGE_SIZE,
+               in_channels=1,
+               out_channels=1,
+               feature_size=12,  # feature size should be divisible by 12
+            )
 
         # self.swin_fc_layer = nn.Linear(24576, 120)
         # self.swin_fc_layer = nn.Linear(98304, 120)
@@ -113,8 +121,8 @@ class MultiModModelSwinEnc(LightningModule):
         img = torch.unsqueeze(img, 1)
         img = img.to(torch.float32)
 
-        #img = self.swin_enc(img)
-        # print("image shape after swin encoder", img.shape)
+        img = self.swin_enc(img)
+        print("image shape after swin encoder", img.shape)
 
         # img = torch.flatten(img, start_dim=1)
         # print("image shap after flattening, before swin fc layer", img.shape)
