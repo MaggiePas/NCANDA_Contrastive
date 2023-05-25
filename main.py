@@ -222,13 +222,13 @@ if __name__ == '__main__':
     # main_resnet(wandb, wandb_logger)
 
     # # run multimodal
-    # main_multimodal(wandb, wandb_logger)
+    main_multimodal(wandb, wandb_logger)
     
     # # run daft model
     # main_daft(wandb, wandb_logger)
     
     # # run model with language
-    main_language(wandb, wandb_logger)
+    # main_language(wandb, wandb_logger)
     
     # # run model with bce + center loss
     # main_center(wandb, wandb_logger)
