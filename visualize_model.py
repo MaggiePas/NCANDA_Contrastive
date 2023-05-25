@@ -10,10 +10,10 @@ from medcam import medcam
 from multimodal.model import MultiModModel
 
 
-checkpoint_folder = "2tlih8au"
-checkpoint_file = "epoch=9-step=700.ckpt"
+checkpoint_folder = "full_swin_unetr_48_with_pretrained"
+checkpoint_file = "epoch=19-step=4240.ckpt"
 checkpoint_path = f'/home/users/tulikaj/NCANDA_Contrastive/lightning_logs/{checkpoint_folder}/checkpoints/{checkpoint_file}'
-layer_name = "swin_enc.encoder1.layer.conv1.conv"
+layer_name = "swin_enc"
 
 model = MultiModModelSwinEnc.load_from_checkpoint(checkpoint_path)
 
@@ -21,7 +21,7 @@ model = MultiModModelSwinEnc.load_from_checkpoint(checkpoint_path)
 
 # Inject model with M3d-CAM
 model = medcam.inject(model, output_dir=f"attention_maps/{checkpoint_folder}/",
-                     backend='ggcam', layer=(layer_name), save_maps=True)
+                     backend='gcam', layer=(layer_name), save_maps=True)
 # set in evaluation mode (no grads)
 model.eval()
 
@@ -37,7 +37,6 @@ for batch in val_loader:
     # Every time forward is called, attention maps will be generated and saved in the directory "attention_maps"
     output = model(batch[0])
     break
-
 
 """
 image_path = "/home/groups/kpohl/ncanda-multi-modal/T1/NCANDA_S00083.nii.gz"

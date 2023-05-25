@@ -41,11 +41,11 @@ class MultiModModelSwinEnc(LightningModule):
                img_size=IMAGE_SIZE,
                in_channels=1,
                out_channels=1,
-               feature_size=48,  # feature size should be divisible by 12
+               feature_size=12,  # feature size should be divisible by 12
             )
-        weight = torch.load("./model_swinvit.pt")
-        self.swin_enc.load_from(weights=weight)
-        print("Using pretrained self-supervied Swin UNETR backbone weights !")
+        #weight = torch.load("./model_swinvit.pt")
+        #self.swin_enc.load_from(weights=weight)
+        #print("Using pretrained self-supervied Swin UNETR backbone weights !")
 
         # self.swin_fc_layer = nn.Linear(24576, 120)
         # self.swin_fc_layer = nn.Linear(98304, 120)
@@ -179,7 +179,7 @@ class MultiModModelSwinEnc(LightningModule):
 
     def configure_optimizers(self):
 
-        optimizer = torch.optim.Adam(self.parameters(), lr=1e-5)  # 1e-3
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-4)  # 1e-3
 
         scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.8)
 

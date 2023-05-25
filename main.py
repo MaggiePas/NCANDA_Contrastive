@@ -79,7 +79,7 @@ def main_multimodal(wandb, wandb_logger):
     lr_monitor = LearningRateMonitor(logging_interval='step')
 
     # train the network
-    trainer = Trainer(max_epochs=10, logger=wandb_logger, log_every_n_steps=1, accelerator='gpu', devices=1, callbacks=[lr_monitor])
+    trainer = Trainer(max_epochs=20, logger=wandb_logger, log_every_n_steps=1, accelerator='gpu', devices=1, callbacks=[lr_monitor])
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
 
 
