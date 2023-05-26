@@ -7,6 +7,8 @@ from settings import IMAGE_SIZE, FEATURES, BATCH_SIZE, TARGET
 import torchmetrics
 import pandas as pd
 from transformers import AutoTokenizer, AutoModel
+from transformers import LlamaTokenizer
+
 import os
 import numpy as np
 
@@ -32,7 +34,7 @@ class MultiModModelWithLanguage(LightningModule):
                                n_input_channels=1
                                )
         base = 'michiyasunaga/BioLinkBERT-base'
-        self.tokenizer = AutoTokenizer.from_pretrained("medalpaca/medalpaca-13b", cache_dir = "/scratch/users/ewesel/")
+        self.tokenizer = LlamaTokenizer.from_pretrained("medalpaca/medalpaca-13b", cache_dir = "/scratch/users/ewesel/")
         self.language_model = AutoModel.from_pretrained("medalpaca/medalpaca-13b", cache_dir = "/scratch/users/ewesel/")
                                                 
         # Freeze weights so those don't get trained        
