@@ -32,10 +32,8 @@ class MultiModModelWithLanguage(LightningModule):
                                n_input_channels=1
                                )
         base = 'michiyasunaga/BioLinkBERT-base'
-        self.tokenizer = AutoTokenizer.from_pretrained('kbressem/medAlpaca',
-                                                       cache_dir="/scratch/users/ewesel/")
-        self.language_model = AutoModel.from_pretrained('kbressem/medAlpaca',
-                                                        cache_dir="/scratch/users/ewesel/")
+        self.tokenizer = AutoTokenizer.from_pretrained("/home/users/ewesel/dir/from_github/NCANDA_Contrastive/medAlpaca/")
+        self.language_model = AutoModel.from_pretrained("/home/users/ewesel/dir/from_github/NCANDA_Contrastive/medAlpaca/")
                                                 
         # Freeze weights so those don't get trained        
         for param in self.language_model.parameters():
