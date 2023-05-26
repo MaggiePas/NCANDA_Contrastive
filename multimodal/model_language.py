@@ -7,7 +7,7 @@ from settings import IMAGE_SIZE, FEATURES, BATCH_SIZE, TARGET
 import torchmetrics
 import pandas as pd
 from transformers import AutoTokenizer, AutoModel
-from transformers import LlamaTokenizer
+from transformers import pipeline
 
 import os
 import numpy as np
@@ -34,7 +34,12 @@ class MultiModModelWithLanguage(LightningModule):
                                n_input_channels=1
                                )
         base = 'michiyasunaga/BioLinkBERT-base'
-        self.tokenizer = LlamaTokenizer.from_pretrained("medalpaca/medalpaca-13b", cache_dir = "/scratch/users/ewesel/")
+
+        qa_pipeline = pipeline("question-answering", model="medalpaca/medalpaca-7b", tokenizer="medalpaca/medalpaca-7b")
+        question = "What are the symptoms of diabetes?"
+        context = "Diabetes is a metabolic disease that causes high blood sugar. The symptoms include increased thirst, frequent urination, and unexplained weight loss."
+        answer = qa_pipeline({"question": question, "context": context})
+        self.tokenizer = AutoTokenizer.from_pretrained("medalpaca/medalpaca-13b", cache_dir = "/scratch/users/ewesel/")
         self.language_model = AutoModel.from_pretrained("medalpaca/medalpaca-13b", cache_dir = "/scratch/users/ewesel/")
                                                 
         # Freeze weights so those don't get trained        
