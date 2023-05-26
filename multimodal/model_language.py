@@ -560,158 +560,158 @@ class MultiModModelWithLanguage(LightningModule):
             padded_strings.append(truncated_string)
         return padded_strings
 
-    # def configure_optimizers(self):
+    def configure_optimizers(self):
 
-    #     optimizer = torch.optim.Adam(self.parameters(), lr=1e-3)
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-3)
 
-    #     scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.8)
+        scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.8)
 
-    #     lr_scheduler = {
-    #         'scheduler': scheduler,
-    #         'name': 'lr_logging'
-    #     }
+        lr_scheduler = {
+            'scheduler': scheduler,
+            'name': 'lr_logging'
+        }
 
-    #     return [optimizer], [lr_scheduler]
+        return [optimizer], [lr_scheduler]
 
-    # def training_step(self, batch, batch_idx):
+    def training_step(self, batch, batch_idx):
 
-    #     img, tab, y, subject_id = batch
+        img, tab, y, subject_id = batch
 
-    #     # img = torch.tensor(img).float()
+        # img = torch.tensor(img).float()
 
-    #     y = y.to(torch.float32)
+        y = y.to(torch.float32)
 
-    #     y_pred = self(img, tab)
+        y_pred = self(img, tab)
 
-    #     loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
+        loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
 
-    #     loss = loss_func(y_pred, y.squeeze())
+        loss = loss_func(y_pred, y.squeeze())
 
-    #     y_pred_tag = torch.round(torch.sigmoid(y_pred))
+        y_pred_tag = torch.round(torch.sigmoid(y_pred))
 
-    #     self.train_results_df['subject'] = tuple(subject_id)
-    #     self.train_results_df['label'] = y.squeeze().detach().cpu().numpy()
-    #     self.train_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
+        self.train_results_df['subject'] = tuple(subject_id)
+        self.train_results_df['label'] = y.squeeze().detach().cpu().numpy()
+        self.train_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
 
-    #     tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
-    #     self.train_results_df['age'] = tab_bef_normalization[:, 2]
-    #     self.train_results_df['sex'] = tab_bef_normalization[:, 1]
+        tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
+        self.train_results_df['age'] = tab_bef_normalization[:, 2]
+        self.train_results_df['sex'] = tab_bef_normalization[:, 1]
 
-    #     self.train_results_df_all = pd.concat([self.train_results_df_all, self.train_results_df], ignore_index=True)
+        self.train_results_df_all = pd.concat([self.train_results_df_all, self.train_results_df], ignore_index=True)
 
-    #     if BATCH_SIZE == 1:
-    #         self.train_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+        if BATCH_SIZE == 1:
+            self.train_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
-    #         self.train_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
-    #     else:
-    #         self.train_accuracy(y_pred_tag, y)
+            self.train_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+        else:
+            self.train_accuracy(y_pred_tag, y)
 
-    #         self.train_macro_accuracy(y_pred_tag, y)
+            self.train_macro_accuracy(y_pred_tag, y)
 
-    #     self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
-    #     self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
-    #     # Log loss
-    #     self.log('train_loss', loss, on_step=True, on_epoch=True)
+        self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
+        self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
+        # Log loss
+        self.log('train_loss', loss, on_step=True, on_epoch=True)
 
-    #     return loss
+        return loss
 
-    # def validation_step(self, batch, batch_idx):
+    def validation_step(self, batch, batch_idx):
 
-    #     img, tab, y, subject_id = batch
-    #     y = y.to(torch.float32)
+        img, tab, y, subject_id = batch
+        y = y.to(torch.float32)
 
-    #     y_pred = self(img, tab)
+        y_pred = self(img, tab)
 
-    #     loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
+        loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
 
-    #     loss = loss_func(y_pred, y.squeeze())
-    #     y_pred_tag = torch.round(torch.sigmoid(y_pred))
+        loss = loss_func(y_pred, y.squeeze())
+        y_pred_tag = torch.round(torch.sigmoid(y_pred))
 
-    #     self.val_results_df['subject'] = tuple(subject_id)
-    #     self.val_results_df['label'] = y.squeeze().detach().cpu().numpy()
-    #     self.val_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
+        self.val_results_df['subject'] = tuple(subject_id)
+        self.val_results_df['label'] = y.squeeze().detach().cpu().numpy()
+        self.val_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
 
-    #     tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
-    #     self.val_results_df['age'] = tab_bef_normalization[:, 2]
-    #     self.val_results_df['sex'] = tab_bef_normalization[:, 1]
+        tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
+        self.val_results_df['age'] = tab_bef_normalization[:, 2]
+        self.val_results_df['sex'] = tab_bef_normalization[:, 1]
 
-    #     self.val_results_df_all = pd.concat([self.val_results_df_all, self.val_results_df], ignore_index=True)
+        self.val_results_df_all = pd.concat([self.val_results_df_all, self.val_results_df], ignore_index=True)
 
-    #     if BATCH_SIZE == 1:
+        if BATCH_SIZE == 1:
 
-    #         self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
-    #         self.val_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
-    #     else:
-    #         self.val_accuracy(y_pred_tag, y)
+            self.val_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+        else:
+            self.val_accuracy(y_pred_tag, y)
 
-    #         self.val_macro_accuracy(y_pred_tag, y)
+            self.val_macro_accuracy(y_pred_tag, y)
 
-    #     self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
-    #     self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True)
+        self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
+        self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True)
 
-    #     # Log loss
-    #     self.log('val_loss', loss, on_step=True, on_epoch=True)
+        # Log loss
+        self.log('val_loss', loss, on_step=True, on_epoch=True)
 
-    #     return loss
+        return loss
 
-    # def test_step(self, batch, batch_idx):
+    def test_step(self, batch, batch_idx):
 
-    #     img, tab, y, subject_id = batch
-    #     y = y.to(torch.float32)
+        img, tab, y, subject_id = batch
+        y = y.to(torch.float32)
 
-    #     y_pred = self(img, tab)
+        y_pred = self(img, tab)
 
-    #     loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
+        loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
 
-    #     loss = loss_func(y_pred,
-    #                      y.squeeze())  # loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze(), pos_weights = )
+        loss = loss_func(y_pred,
+                         y.squeeze())  # loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze(), pos_weights = )
 
-    #     y_pred_tag = torch.round(torch.sigmoid(y_pred))
+        y_pred_tag = torch.round(torch.sigmoid(y_pred))
 
-    #     if BATCH_SIZE == 1:
+        if BATCH_SIZE == 1:
 
-    #         self.test_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.test_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
-    #         self.test_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
-    #     else:
-    #         self.test_accuracy(y_pred_tag, y)
+            self.test_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+        else:
+            self.test_accuracy(y_pred_tag, y)
 
-    #         self.test_macro_accuracy(y_pred_tag, y)
+            self.test_macro_accuracy(y_pred_tag, y)
 
-    #     self.log('test_acc_step', self.test_accuracy, on_step=True, on_epoch=False)
-    #     self.log('test_macro_acc_step', self.test_macro_accuracy, on_step=True, on_epoch=True)
+        self.log('test_acc_step', self.test_accuracy, on_step=True, on_epoch=False)
+        self.log('test_macro_acc_step', self.test_macro_accuracy, on_step=True, on_epoch=True)
 
-    #     self.log("test loss", loss)
+        self.log("test loss", loss)
 
-    #     return loss
+        return loss
 
-    # def training_epoch_end(self, outs):
+    def training_epoch_end(self, outs):
 
-    #     filename_out = '/home/users/ewesel/results/train_out_language_' + str(
-    #         self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/home/users/ewesel/results/train_out_language_' + str(
+            self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
-    #     self.train_results_df_all.to_csv(filename_out)
+        self.train_results_df_all.to_csv(filename_out)
 
-    #     # Clear the dataframe so the new epoch can start fresh
-    #     self.train_results_df_all = pd.DataFrame(columns=self.results_column_names)
-    #     # log epoch metric
-    #     self.log('train_acc_epoch', self.train_accuracy)
-    #     self.log('train_macro_acc_epoch', self.train_macro_accuracy)
+        # Clear the dataframe so the new epoch can start fresh
+        self.train_results_df_all = pd.DataFrame(columns=self.results_column_names)
+        # log epoch metric
+        self.log('train_acc_epoch', self.train_accuracy)
+        self.log('train_macro_acc_epoch', self.train_macro_accuracy)
 
-    # def validation_epoch_end(self, outputs):
-    #     # log epoch metric
+    def validation_epoch_end(self, outputs):
+        # log epoch metric
 
-    #     filename_out = '/home/users/ewesel/results/val_out_language_' + str(
-    #         self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+        filename_out = '/home/users/ewesel/results/val_out_language_' + str(
+            self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
-    #     self.val_results_df_all.to_csv(filename_out)
+        self.val_results_df_all.to_csv(filename_out)
 
-    #     # Clear the dataframe so the new epoch can start fresh
-    #     self.val_results_df_all = pd.DataFrame(columns=self.results_column_names)
+        # Clear the dataframe so the new epoch can start fresh
+        self.val_results_df_all = pd.DataFrame(columns=self.results_column_names)
 
-    #     self.log('val_acc_epoch', self.val_accuracy)
-    #     self.log('val_macro_acc_epoch', self.val_macro_accuracy)
+        self.log('val_acc_epoch', self.val_accuracy)
+        self.log('val_macro_acc_epoch', self.val_macro_accuracy)
 
 
 # import torch
@@ -883,193 +883,193 @@ class MultiModModelWithLanguage(LightningModule):
 
     
 
-    def configure_optimizers(self):
+    # def configure_optimizers(self):
 
-        optimizer = torch.optim.Adam(self.parameters(), lr=1e-3)
+    #     optimizer = torch.optim.Adam(self.parameters(), lr=1e-3)
 
-        scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.8)
+    #     scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.8)
 
-        lr_scheduler = {
-            'scheduler': scheduler,
-            'name': 'lr_logging'
-        }
+    #     lr_scheduler = {
+    #         'scheduler': scheduler,
+    #         'name': 'lr_logging'
+    #     }
 
-        return [optimizer], [lr_scheduler]
+    #     return [optimizer], [lr_scheduler]
 
-    def training_step(self, batch, batch_idx):
+    # def training_step(self, batch, batch_idx):
 
-        img, tab, y, subject_id = batch
+    #     img, tab, y, subject_id = batch
 
 
-        # img = torch.tensor(img).float()
+    #     # img = torch.tensor(img).float()
 
-        y = y.to(torch.float32)
+    #     y = y.to(torch.float32)
 
-        y_pred = self(img, tab)
+    #     y_pred = self(img, tab)
 
-        loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
+    #     loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
 
-        loss = loss_func(y_pred, y.squeeze())
+    #     loss = loss_func(y_pred, y.squeeze())
 
-        y_pred_tag = torch.round(torch.sigmoid(y_pred))
+    #     y_pred_tag = torch.round(torch.sigmoid(y_pred))
 
-        # print("subj id", subject_id) # four 
-        # print("df", self.train_results_df['subject']) # six, which is the batch size
-        self.train_results_df['subject'] = tuple(subject_id)
+    #     # print("subj id", subject_id) # four 
+    #     # print("df", self.train_results_df['subject']) # six, which is the batch size
+    #     self.train_results_df['subject'] = tuple(subject_id)
 
         
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        #if device.type == "cpu":
-        self.train_results_df['label'] = y.squeeze().detach().cpu().numpy()
-        self.train_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
-        tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
-        # else: 
-        #     self.train_results_df['label'] = y.squeeze().detach().cuda().numpy()
-        #     self.train_results_df['prediction'] = y_pred_tag.detach().cuda().numpy()
-        #     tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cuda().numpy())
-        self.train_results_df['age'] = tab_bef_normalization[:, 2]
-        self.train_results_df['sex'] = tab_bef_normalization[:, 1]
-        # print("about to train some cats")
-        self.train_results_df_all = pd.concat([self.train_results_df_all, self.train_results_df], ignore_index=True)
-        # print("train targets,", y)
-        if BATCH_SIZE == 1:
-            self.train_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+    #     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    #     #if device.type == "cpu":
+    #     self.train_results_df['label'] = y.squeeze().detach().cpu().numpy()
+    #     self.train_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
+    #     tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
+    #     # else: 
+    #     #     self.train_results_df['label'] = y.squeeze().detach().cuda().numpy()
+    #     #     self.train_results_df['prediction'] = y_pred_tag.detach().cuda().numpy()
+    #     #     tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cuda().numpy())
+    #     self.train_results_df['age'] = tab_bef_normalization[:, 2]
+    #     self.train_results_df['sex'] = tab_bef_normalization[:, 1]
+    #     # print("about to train some cats")
+    #     self.train_results_df_all = pd.concat([self.train_results_df_all, self.train_results_df], ignore_index=True)
+    #     # print("train targets,", y)
+    #     if BATCH_SIZE == 1:
+    #         self.train_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
-            self.train_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
-            self.train_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
-            self.train_auc(torch.unsqueeze(y_pred_tag, 0), y)
-        else:
-            self.train_accuracy(y_pred_tag, y)
+    #         self.train_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+    #         self.train_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+    #         self.train_auc(torch.unsqueeze(y_pred_tag, 0), y)
+    #     else:
+    #         self.train_accuracy(y_pred_tag, y)
 
-            self.train_macro_accuracy(y_pred_tag, y)
-            self.train_macro_f1(y_pred_tag, y)
-            self.train_auc(y_pred_tag, y)
+    #         self.train_macro_accuracy(y_pred_tag, y)
+    #         self.train_macro_f1(y_pred_tag, y)
+    #         self.train_auc(y_pred_tag, y)
         
 
-        self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
-        self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
-        self.log('train_macro_f1', self.val_macro_f1, on_step=False, on_epoch=True)
-        self.log('train_auc', self.val_auc, on_step=False, on_epoch=True)
-        # Log loss
-        self.log('train_loss', loss, on_step=True, on_epoch=True)
+    #     self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
+    #     self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
+    #     self.log('train_macro_f1', self.val_macro_f1, on_step=False, on_epoch=True)
+    #     self.log('train_auc', self.val_auc, on_step=False, on_epoch=True)
+    #     # Log loss
+    #     self.log('train_loss', loss, on_step=True, on_epoch=True)
 
-        return loss
+    #     return loss
 
-    def validation_step(self, batch, batch_idx):
-        # print("val model language")
+    # def validation_step(self, batch, batch_idx):
+    #     # print("val model language")
 
-        img, tab, y, subject_id = batch
+    #     img, tab, y, subject_id = batch
         
-        y = y.to(torch.float32)
+    #     y = y.to(torch.float32)
 
-        y_pred = self(img, tab)
+    #     y_pred = self(img, tab)
 
-        loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
+    #     loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
 
-        loss = loss_func(y_pred, y.squeeze())
-        y_pred_tag = torch.round(torch.sigmoid(y_pred))
+    #     loss = loss_func(y_pred, y.squeeze())
+    #     y_pred_tag = torch.round(torch.sigmoid(y_pred))
 
-        self.val_results_df['subject'] = tuple(subject_id)
-        self.val_results_df['label'] = y.squeeze().detach().cpu().numpy()
-        self.val_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
+    #     self.val_results_df['subject'] = tuple(subject_id)
+    #     self.val_results_df['label'] = y.squeeze().detach().cpu().numpy()
+    #     self.val_results_df['prediction'] = y_pred_tag.detach().cpu().numpy()
 
-        tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
-        self.val_results_df['age'] = tab_bef_normalization[:, 2]
-        self.val_results_df['sex'] = tab_bef_normalization[:, 1]
-        # print("about to validate some cats")
-        self.val_results_df_all = pd.concat([self.val_results_df_all, self.val_results_df], ignore_index=True)
-        # print("targets val " , y)
-        if BATCH_SIZE == 1:
+    #     tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
+    #     self.val_results_df['age'] = tab_bef_normalization[:, 2]
+    #     self.val_results_df['sex'] = tab_bef_normalization[:, 1]
+    #     # print("about to validate some cats")
+    #     self.val_results_df_all = pd.concat([self.val_results_df_all, self.val_results_df], ignore_index=True)
+    #     # print("targets val " , y)
+    #     if BATCH_SIZE == 1:
 
-            self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+    #         self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
-            self.val_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
-            self.val_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
-            self.val_auc(torch.unsqueeze(y_pred_tag, 0), y)
-        else:
-            self.val_accuracy(y_pred_tag, y)
-            self.val_macro_accuracy(y_pred_tag, y)
-            self.val_macro_f1(y_pred_tag, y)
-            self.val_auc(y_pred_tag, y)
+    #         self.val_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+    #         self.val_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+    #         self.val_auc(torch.unsqueeze(y_pred_tag, 0), y)
+    #     else:
+    #         self.val_accuracy(y_pred_tag, y)
+    #         self.val_macro_accuracy(y_pred_tag, y)
+    #         self.val_macro_f1(y_pred_tag, y)
+    #         self.val_auc(y_pred_tag, y)
 
-        self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
-        self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True)
-        self.log('val_macro_f1', self.val_macro_f1, on_step=False, on_epoch=True)
-        self.log('val_auc', self.val_auc, on_step=False, on_epoch=True)
+    #     self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
+    #     self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True)
+    #     self.log('val_macro_f1', self.val_macro_f1, on_step=False, on_epoch=True)
+    #     self.log('val_auc', self.val_auc, on_step=False, on_epoch=True)
 
-        # Log loss
-        self.log('val_loss', loss, on_step=True, on_epoch=True)
+    #     # Log loss
+    #     self.log('val_loss', loss, on_step=True, on_epoch=True)
 
-        return loss
+    #     return loss
 
-    def test_step(self, batch, batch_idx):
+    # def test_step(self, batch, batch_idx):
 
-        img, tab, y, subject_id = batch
-        y = y.to(torch.float32)
+    #     img, tab, y, subject_id = batch
+    #     y = y.to(torch.float32)
 
-        y_pred = self(img, tab)
+    #     y_pred = self(img, tab)
 
-        loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
+    #     loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
 
-        loss = loss_func(y_pred,
-                         y.squeeze())  # loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze(), pos_weights = )
+    #     loss = loss_func(y_pred,
+    #                      y.squeeze())  # loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze(), pos_weights = )
 
-        y_pred_tag = torch.round(torch.sigmoid(y_pred))
+    #     y_pred_tag = torch.round(torch.sigmoid(y_pred))
 
-        if BATCH_SIZE == 1:
+    #     if BATCH_SIZE == 1:
 
-            self.test_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+    #         self.test_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
-            self.test_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
-            self.test_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
-            self.test_auc(torch.unsqueeze(y_pred_tag, 0), y)
-        else:
-            self.test_accuracy(y_pred_tag, y)
+    #         self.test_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+    #         self.test_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+    #         self.test_auc(torch.unsqueeze(y_pred_tag, 0), y)
+    #     else:
+    #         self.test_accuracy(y_pred_tag, y)
 
-            self.test_macro_accuracy(y_pred_tag, y)
-            self.test_macro_f1(y_pred_tag, y)
-            self.test_auc(y_pred_tag, y)
+    #         self.test_macro_accuracy(y_pred_tag, y)
+    #         self.test_macro_f1(y_pred_tag, y)
+    #         self.test_auc(y_pred_tag, y)
 
-        self.log('test_acc_step', self.test_accuracy, on_step=True, on_epoch=False)
-        self.log('test_macro_acc_step', self.test_macro_accuracy, on_step=True, on_epoch=True)
-        self.log('test_macro_f1', self.val_macro_f1, on_step=False, on_epoch=True)
-        self.log('test_auc', self.val_auc, on_step=False, on_epoch=True)
+    #     self.log('test_acc_step', self.test_accuracy, on_step=True, on_epoch=False)
+    #     self.log('test_macro_acc_step', self.test_macro_accuracy, on_step=True, on_epoch=True)
+    #     self.log('test_macro_f1', self.val_macro_f1, on_step=False, on_epoch=True)
+    #     self.log('test_auc', self.val_auc, on_step=False, on_epoch=True)
 
-        self.log("test loss", loss)
+    #     self.log("test loss", loss)
 
-        return loss
+    #     return loss
 
-    def training_epoch_end(self, outs):
-        filename_out = '/scratch/users/ewesel/train_out_language_'
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        if device.type == "cpu":
-            filename_out = '/Users/emilywesel/Desktop/NCANDA/train_out_language_' 
-        filename_out += str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+    # def training_epoch_end(self, outs):
+    #     filename_out = '/scratch/users/ewesel/train_out_language_'
+    #     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    #     if device.type == "cpu":
+    #         filename_out = '/Users/emilywesel/Desktop/NCANDA/train_out_language_' 
+    #     filename_out += str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
-        self.train_results_df_all.to_csv(filename_out)
+    #     self.train_results_df_all.to_csv(filename_out)
 
-        # Clear the dataframe so the new epoch can start fresh
-        self.train_results_df_all = pd.DataFrame(columns=self.results_column_names)
-        # log epoch metric
-        self.log('train_acc_epoch', self.train_accuracy)
-        self.log('train_macro_acc_epoch', self.train_macro_accuracy)
-        self.log('train_macro_f1', self.train_macro_f1)
-        self.log('train_auc', self.train_auc)
+    #     # Clear the dataframe so the new epoch can start fresh
+    #     self.train_results_df_all = pd.DataFrame(columns=self.results_column_names)
+    #     # log epoch metric
+    #     self.log('train_acc_epoch', self.train_accuracy)
+    #     self.log('train_macro_acc_epoch', self.train_macro_accuracy)
+    #     self.log('train_macro_f1', self.train_macro_f1)
+    #     self.log('train_auc', self.train_auc)
 
 
-    def validation_epoch_end(self, outputs):
-        # log epoch metric
-        filename_out = '/scratch/users/ewesel/val_out_language_'
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        if device.type == "cpu":
-            filename_out = '/Users/emilywesel/Desktop/NCANDA/val_out_language_' 
-        filename_out += str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
+    # def validation_epoch_end(self, outputs):
+    #     # log epoch metric
+    #     filename_out = '/scratch/users/ewesel/val_out_language_'
+    #     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    #     if device.type == "cpu":
+    #         filename_out = '/Users/emilywesel/Desktop/NCANDA/val_out_language_' 
+    #     filename_out += str(self.current_epoch) + '_' + TARGET + '_' + self.trainer.logger.experiment.name + '.csv'
 
-        self.val_results_df_all.to_csv(filename_out)
+    #     self.val_results_df_all.to_csv(filename_out)
 
-        # Clear the dataframe so the new epoch can start fresh
-        self.val_results_df_all = pd.DataFrame(columns=self.results_column_names)
-        self.log('val_macro_f1', self.val_macro_f1)
-        self.log('val_auc', self.val_auc)
-        self.log('val_acc_epoch', self.val_accuracy)
-        self.log('val_macro_acc_epoch', self.val_macro_accuracy)
+    #     # Clear the dataframe so the new epoch can start fresh
+    #     self.val_results_df_all = pd.DataFrame(columns=self.results_column_names)
+    #     self.log('val_macro_f1', self.val_macro_f1)
+    #     self.log('val_auc', self.val_auc)
+    #     self.log('val_acc_epoch', self.val_accuracy)
+    #     self.log('val_macro_acc_epoch', self.val_macro_accuracy)
