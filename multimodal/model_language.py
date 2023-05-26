@@ -54,8 +54,8 @@ class MultiModModelWithLanguage(LightningModule):
         # fc layer that maps language model inputs to smaller dimension
         self.language_fc = nn.Linear(768, 120)
 
-        # fc layer for tabular data. We substract 63 because age and sex are encoded as sentences
-        self.fc1 = nn.Linear((self.NUM_FEATURES - 63), 120)
+        # fc layer for tabular data. We substract 62 because age and sex are encoded as sentences
+        self.fc1 = nn.Linear((self.NUM_FEATURES - 62), 120)
 
         # first fc layer which takes concatenated input
         self.fc2 = nn.Linear((120 + 120 + 120), 32)
