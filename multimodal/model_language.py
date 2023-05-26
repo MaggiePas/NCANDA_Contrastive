@@ -602,13 +602,22 @@ class MultiModModelWithLanguage(LightningModule):
             self.train_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
             self.train_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.train_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+            self.train_auc(torch.unsqueeze(y_pred_tag, 0), y)
+            
+            
+    #     self.log('train_auc', self.val_auc, on_step=False, on_epoch=True)
         else:
             self.train_accuracy(y_pred_tag, y)
 
             self.train_macro_accuracy(y_pred_tag, y)
+            self.train_macro_f1(y_pred_tag, y)
+            self.train_auc(y_pred_tag, y)
 
         self.log('train_acc_step', self.train_accuracy, on_step=False, on_epoch=True)
         self.log('train_macro_acc_step', self.train_macro_accuracy, on_step=True, on_epoch=True)
+        self.log('train_macro_f1', self.train_macro_f1, on_step=False, on_epoch=True)
+        self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
         # Log loss
         self.log('train_loss', loss, on_step=True, on_epoch=True)
 
@@ -633,6 +642,7 @@ class MultiModModelWithLanguage(LightningModule):
         tab_bef_normalization = self.scaler.inverse_transform(tab.detach().cpu().numpy())
         self.val_results_df['age'] = tab_bef_normalization[:, 2]
         self.val_results_df['sex'] = tab_bef_normalization[:, 1]
+        
 
         self.val_results_df_all = pd.concat([self.val_results_df_all, self.val_results_df], ignore_index=True)
 
@@ -641,13 +651,19 @@ class MultiModModelWithLanguage(LightningModule):
             self.val_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
             self.val_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_macro_f1(torch.unsqueeze(y_pred_tag, 0), y)
+            self.val_auc(torch.unsqueeze(y_pred_tag, 0), y)
         else:
             self.val_accuracy(y_pred_tag, y)
 
             self.val_macro_accuracy(y_pred_tag, y)
+            self.val_macro_f1(y_pred_tag, y)
+            self.val_auc(y_pred_tag, y)
 
         self.log('val_acc_step', self.val_accuracy, on_step=False, on_epoch=True)
         self.log('val_macro_acc_step', self.val_macro_accuracy, on_step=True, on_epoch=True)
+        self.log('val_macro_f1', self.val_macro_f1, on_step=False, on_epoch=True)
+        self.log('val_auc', self.val_auc, on_step=False, on_epoch=True)
 
         # Log loss
         self.log('val_loss', loss, on_step=True, on_epoch=True)
@@ -697,6 +713,8 @@ class MultiModModelWithLanguage(LightningModule):
         # log epoch metric
         self.log('train_acc_epoch', self.train_accuracy)
         self.log('train_macro_acc_epoch', self.train_macro_accuracy)
+        self.log('train_macro_f1', self.train_macro_f1, on_step=False, on_epoch=True)
+        self.log('train_auc', self.train_auc, on_step=False, on_epoch=True)
 
     def validation_epoch_end(self, outputs):
         # log epoch metric
@@ -711,6 +729,8 @@ class MultiModModelWithLanguage(LightningModule):
 
         self.log('val_acc_epoch', self.val_accuracy)
         self.log('val_macro_acc_epoch', self.val_macro_accuracy)
+        self.log('val_macro_f1', self.val_macro_f1, on_step=False, on_epoch=True)
+        self.log('val_auc', self.val_auc, on_step=False, on_epoch=True)
 
 
 # import torch
