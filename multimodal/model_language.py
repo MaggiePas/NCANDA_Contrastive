@@ -31,10 +31,10 @@ class MultiModModelWithLanguage(LightningModule):
                                num_classes=120,
                                n_input_channels=1
                                )
-
-        self.tokenizer = AutoTokenizer.from_pretrained('michiyasunaga/BioLinkBERT-base',
+        base = 'michiyasunaga/BioLinkBERT-base'
+        self.tokenizer = AutoTokenizer.from_pretrained('kbressem/medAlpaca',
                                                        cache_dir="/scratch/users/ewesel/")
-        self.language_model = AutoModel.from_pretrained('michiyasunaga/BioLinkBERT-base',
+        self.language_model = AutoModel.from_pretrained('kbressem/medAlpaca',
                                                         cache_dir="/scratch/users/ewesel/")
                                                 
         # Freeze weights so those don't get trained        
