@@ -30,17 +30,18 @@ class MultiModModelWithLanguage(LightningModule):
 
         self.resnet = resnet10(pretrained=False,
                                spatial_dims=3,
-                               num_classes=120,
+                               num_classes=120, # might change this one
                                n_input_channels=1
                                )
         base = 'michiyasunaga/BioLinkBERT-base'
+        base = "bert-base-uncased"
 
-        qa_pipeline = pipeline("question-answering", model="medalpaca/medalpaca-7b", tokenizer="medalpaca/medalpaca-7b")
-        question = "What are the symptoms of diabetes?"
-        context = "Diabetes is a metabolic disease that causes high blood sugar. The symptoms include increased thirst, frequent urination, and unexplained weight loss."
-        answer = qa_pipeline({"question": question, "context": context})
-        self.tokenizer = AutoTokenizer.from_pretrained("medalpaca/medalpaca-13b", cache_dir = "/scratch/users/ewesel/")
-        self.language_model = AutoModel.from_pretrained("medalpaca/medalpaca-13b", cache_dir = "/scratch/users/ewesel/")
+        # qa_pipeline = pipeline("question-answering", model="medalpaca/medalpaca-7b", tokenizer="medalpaca/medalpaca-7b")
+        # question = "What are the symptoms of diabetes?"
+        # context = "Diabetes is a metabolic disease that causes high blood sugar. The symptoms include increased thirst, frequent urination, and unexplained weight loss."
+        # answer = qa_pipeline({"question": question, "context": context})
+        self.tokenizer = AutoTokenizer.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
+        self.language_model = AutoModel.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
                                                 
         # Freeze weights so those don't get trained        
         for param in self.language_model.parameters():
@@ -59,7 +60,7 @@ class MultiModModelWithLanguage(LightningModule):
         # fc layer that maps language model inputs to smaller dimension
         self.language_fc = nn.Linear(768, 120)
 
-        # fc layer for tabular data. We substract 62 because age and sex are encoded as sentences
+        # fc layer for tabular data. We substract 31 because age and sex are encoded as sentences
         self.fc1 = nn.Linear((self.NUM_FEATURES - 31), 120)
 
         # first fc layer which takes concatenated input
