@@ -61,7 +61,7 @@ class MultiModModelWithLanguage(LightningModule):
         self.language_fc = nn.Linear(768, 120)
 
         # fc layer for tabular data. We substract 31 because age and sex are encoded as sentences
-        self.fc1 = nn.Linear((self.NUM_FEATURES - 31), 120)
+        self.fc1 = nn.Linear((self.NUM_FEATURES - 0), 120)
 
         # first fc layer which takes concatenated input
         self.fc2 = nn.Linear((120 + 120 + 120), 32)
