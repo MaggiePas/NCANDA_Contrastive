@@ -58,13 +58,13 @@ class MultiModModelWithLanguage(LightningModule):
         # combine resnet with final fc layer
         # self.imagenet = nn.Sequential(self.resnet, self.fc)
         # fc layer that maps language model inputs to smaller dimension
-        self.language_fc = nn.Linear(768, 60)
+        self.language_fc = nn.Linear(768, 240)
 
         # fc layer for tabular data. We substract 31 because age and sex are encoded as sentences
-        self.fc1 = nn.Linear((self.NUM_FEATURES - 0), 60)
+        self.fc1 = nn.Linear((self.NUM_FEATURES - 0), 240)
 
         # first fc layer which takes concatenated input
-        self.fc2 = nn.Linear((60 + 60 + 60), 32)
+        self.fc2 = nn.Linear((240 + 240 + 240), 32)
 
         # final fc layer which takes concatenated imput
         self.fc3 = nn.Linear(32, 1)
