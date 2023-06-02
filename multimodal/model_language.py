@@ -64,7 +64,7 @@ class MultiModModelWithLanguage(LightningModule):
         self.fc1 = nn.Linear((self.NUM_FEATURES - 0), 240)
 
         # first fc layer which takes concatenated input
-        self.fc2 = nn.Linear((240 + 240 + 240), 32)
+        self.fc2 = nn.Linear((240 + 240), 32)
 
         # final fc layer which takes concatenated imput
         self.fc3 = nn.Linear(32, 1)
