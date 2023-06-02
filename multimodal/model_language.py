@@ -101,124 +101,124 @@ class MultiModModelWithLanguage(LightningModule):
         self.val_results_df_all = pd.DataFrame(columns=self.results_column_names)
 
         self.val_results_df = pd.DataFrame(columns=self.results_column_names)
-    def forward(self, img, tab):
-        """
-        x is the input data
-        """
-        # run the model for the image
-        
-        # To run the correlation triplet
-        # print(img.shape)
-        img = torch.unsqueeze(img, 1)
-        img = img.to(torch.float32)
-        # print(img.shape)
-        img = self.resnet(img)
-        # change the dtype of the tabular data
-        tab = tab.to(torch.float32)
-        tab = F.relu(self.fc1(tab))
-        tab = F.relu(self.fc2(tab))
-        img = F.relu(self.fc2(img))
-        img = img.unsqueeze(0)
-        tab = tab.unsqueeze(1)
-        x = F.conv1d(img, tab, padding=self.embedding_dimension - 1, groups=img.size(1))
-        x = x.squeeze()
-        # get the final concatenated embedding
-        out1 = self.fc7(x)
-        out2 = self.fc5(F.relu(out1))
-        out2 = torch.squeeze(out2)
-        return out2, out1
-
     # def forward(self, img, tab):
     #     """
-
     #     x is the input data
-
     #     """
     #     # run the model for the image
-    #     self.language_model = self.language_model.to('cuda')
-    #     # self.tokenizer = self.tokenizer
         
+    #     # To run the correlation triplet
     #     # print(img.shape)
     #     img = torch.unsqueeze(img, 1)
     #     img = img.to(torch.float32)
-    #     # print(img.type)
     #     # print(img.shape)
     #     img = self.resnet(img)
-        
-    #     batch_sentences = self.get_batch_sentences(tab)
-    #     # print("min", min(len(string) for string in batch_sentences))
-    #     # print("max", max(len(string) for string in batch_sentences))
-    #     # print("example", batch_sentences[0])
-        
     #     # change the dtype of the tabular data
     #     tab = tab.to(torch.float32)
+    #     tab = F.relu(self.fc1(tab))
+    #     tab = F.relu(self.fc2(tab))
+    #     img = F.relu(self.fc2(img))
+    #     img = img.unsqueeze(0)
+    #     tab = tab.unsqueeze(1)
+    #     x = F.conv1d(img, tab, padding=self.embedding_dimension - 1, groups=img.size(1))
+    #     x = x.squeeze()
+    #     # get the final concatenated embedding
+    #     out1 = self.fc7(x)
+    #     out2 = self.fc5(F.relu(out1))
+    #     out2 = torch.squeeze(out2)
+    #     return out2, out1
+
+    def forward(self, img, tab):
+        """
+
+        x is the input data
+
+        """
+        # run the model for the image
+        self.language_model = self.language_model.to('cuda')
+        # self.tokenizer = self.tokenizer
         
-    #     ind_to_keep = list(range(0, self.NUM_FEATURES))
-
-    #     # ind_to_keep.remove(2)
-
-    #     # ind_to_keep.remove(3)
-    #     # ind_to_keep.remove(1)
-    #     # ind_to_keep.remove(8)
-    #     # ind_to_keep.remove(9)
-    #     # ind_to_keep.remove(10)
-    #     # ind_to_keep.remove(11)
-    #     # ind_to_keep.remove(12)
-    #     # ind_to_keep.remove(13)
-    #     # ind_to_keep.remove(14)
-    #     # ind_to_keep.remove(15)
-    #     # ind_to_keep.remove(16)
-    #     # ind_to_keep.remove(17)
-    #     # ind_to_keep.remove(18)
-    #     # ind_to_keep.remove(19)
-    #     # ind_to_keep.remove(4)
-    #     # ind_to_keep.remove(7)
-    #     # ind_to_keep.remove(56)
-    #     # ind_to_keep.remove(57)
-    #     # ind_to_keep.remove(58)
-    #     # ind_to_keep.remove(59)
-    #     # ind_to_keep.remove(60)
-    #     # ind_to_keep.remove(61)
-    #     # ind_to_keep.remove(117)
-    #     # ind_to_keep.remove(118)
-    #     # ind_to_keep.remove(119)
-    #     # ind_to_keep.remove(121)
-    #     # ind_to_keep.remove(122)
-    #     # ind_to_keep.remove(123)
-    #     # ind_to_keep.remove(124)
-    #     # ind_to_keep.remove(125)
-
-
-    #     # Remove age and sex from tabular vector since we are using them as language model input
-    #     tab_without_age_sex = tab[:,ind_to_keep]
+        # print(img.shape)
+        img = torch.unsqueeze(img, 1)
+        img = img.to(torch.float32)
+        # print(img.type)
+        # print(img.shape)
+        img = self.resnet(img)
         
-    #     # forward tabular data
-    #     tab_without_age_sex = F.relu(self.fc1(tab_without_age_sex))
-
-    #     language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=512)
+        batch_sentences = self.get_batch_sentences(tab)
+        # print("min", min(len(string) for string in batch_sentences))
+        # print("max", max(len(string) for string in batch_sentences))
+        # print("example", batch_sentences[0])
         
-    #     language_inputs = language_inputs.to('cuda')
+        # change the dtype of the tabular data
+        tab = tab.to(torch.float32)
+        
+        ind_to_keep = list(range(0, self.NUM_FEATURES))
 
-    #     language_outputs = self.language_model(**language_inputs)
+        # ind_to_keep.remove(2)
 
-    #     # 1 x 768
-    #     # We "pool" the model by simply taking the hidden state corresponding
-    #     # to the first token. We assume that this has been pre-trained
-    #     pooled_states = language_outputs.pooler_output
+        # ind_to_keep.remove(3)
+        # ind_to_keep.remove(1)
+        # ind_to_keep.remove(8)
+        # ind_to_keep.remove(9)
+        # ind_to_keep.remove(10)
+        # ind_to_keep.remove(11)
+        # ind_to_keep.remove(12)
+        # ind_to_keep.remove(13)
+        # ind_to_keep.remove(14)
+        # ind_to_keep.remove(15)
+        # ind_to_keep.remove(16)
+        # ind_to_keep.remove(17)
+        # ind_to_keep.remove(18)
+        # ind_to_keep.remove(19)
+        # ind_to_keep.remove(4)
+        # ind_to_keep.remove(7)
+        # ind_to_keep.remove(56)
+        # ind_to_keep.remove(57)
+        # ind_to_keep.remove(58)
+        # ind_to_keep.remove(59)
+        # ind_to_keep.remove(60)
+        # ind_to_keep.remove(61)
+        # ind_to_keep.remove(117)
+        # ind_to_keep.remove(118)
+        # ind_to_keep.remove(119)
+        # ind_to_keep.remove(121)
+        # ind_to_keep.remove(122)
+        # ind_to_keep.remove(123)
+        # ind_to_keep.remove(124)
+        # ind_to_keep.remove(125)
 
-    #     language_features_compressed = self.language_fc(pooled_states)
 
-    #     # concat image, tabular data and data from language model
-    #     #img
-    #     x = torch.cat((tab_without_age_sex, language_features_compressed), dim=1)
+        # Remove age and sex from tabular vector since we are using them as language model input
+        tab_without_age_sex = tab[:,ind_to_keep]
+        
+        # forward tabular data
+        tab_without_age_sex = F.relu(self.fc1(tab_without_age_sex))
 
-    #     x = F.relu(self.fc2(x))
+        language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=512)
+        
+        language_inputs = language_inputs.to('cuda')
 
-    #     out = self.fc3(x)
+        language_outputs = self.language_model(**language_inputs)
 
-    #     out = torch.squeeze(out)
+        # 1 x 768
+        # We "pool" the model by simply taking the hidden state corresponding
+        # to the first token. We assume that this has been pre-trained
+        pooled_states = language_outputs.pooler_output
 
-    #     return out
+        language_features_compressed = self.language_fc(pooled_states)
+
+        # concat image, tabular data and data from language model
+        #img
+        x = torch.cat((tab_without_age_sex, language_features_compressed), dim=1)
+
+        x = F.relu(self.fc2(x))
+
+        out = self.fc3(x)
+
+        out = torch.squeeze(out)
+
+        return out
 
     # def get_batch_sentences(self, tabular_to_encode):
     #     # return_tensors pt means pytorch
