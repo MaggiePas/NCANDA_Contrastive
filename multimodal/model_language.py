@@ -625,7 +625,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         y = y.to(torch.float32)
 
-        y_pred = self(img, tab)
+        y_pred = self(img)#, tab)
 
         loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
 
@@ -720,7 +720,7 @@ class MultiModModelWithLanguage(LightningModule):
         img, tab, y, subject_id = batch
         y = y.to(torch.float32)
 
-        y_pred = self(img, tab)
+        y_pred = self(img)#, tab)
 
         loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
 
