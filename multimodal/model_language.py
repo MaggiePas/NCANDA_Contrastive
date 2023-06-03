@@ -152,10 +152,11 @@ class MultiModModelWithLanguage(LightningModule):
         example_feature_map = feature_maps[0]
         print("example_map", example_feature_map)
         example_feature_map_np = example_feature_map.cpu().detach().numpy()
+        print("example_map_np", example_feature_map)
 
 
         # Plot the feature map
-        if len(example_feature_map != 0):
+        if len(example_feature_map_np) != 0:
             plt.imshow(example_feature_map_np, cmap='gray')  # Assuming grayscale feature maps
             plt.show()
         
