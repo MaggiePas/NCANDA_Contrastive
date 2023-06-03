@@ -8,7 +8,6 @@ import torchmetrics
 import pandas as pd
 from transformers import AutoTokenizer, AutoModel
 from transformers import pipeline
-import matplotlib.pyplot as plt
 
 import os
 import numpy as np
@@ -45,8 +44,8 @@ class MultiModModelWithLanguage(LightningModule):
         # self.language_model = AutoModel.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
                                                 
         # Freeze weights so those don't get trained        
-        # for param in self.language_model.parameters():
-        #     param.requires_grad = False
+        for param in self.language_model.parameters():
+            param.requires_grad = False
 
 
         self.NUM_FEATURES = len(FEATURES)
@@ -136,65 +135,26 @@ class MultiModModelWithLanguage(LightningModule):
 
         """
         # run the model for the image
-        # self.language_model = self.language_model.to('cuda')
+        self.language_model = self.language_model.to('cuda')
         # self.tokenizer = self.tokenizer
-        from torchvision import transforms
-
         
         # print(img.shape)
-        preprocess = transforms.Compose([
-            transforms.Resize(256),
-            transforms.CenterCrop(224),
-            # transforms.ToTensor()
-        ])
+        img = torch.unsqueeze(img, 1)
+        img = img.to(torch.float32)
+        img = self.resnet(img)
 
+        feature_maps = img[-1]
 
-        img = preprocess(img)
-        img = torch.unsqueeze(img, 0) # used to be one 
-        # img = img.to(torch.float32)
-        # img = self.resnet(img)
-        import torchvision.models as models
-        resnet = models.resnet50(pretrained=True)
-        resnet.eval()
-
-       
-        #feature_maps = img[-1]
-
-        with torch.no_grad():
-            activations = resnet.conv1(img)
-            activations = resnet.bn1(activations)
-            activations = resnet.relu(activations)
-            activations = resnet.maxpool(activations)
-
-        for t in range(activations.size(1)):
-            temporal_slice = activations[:, t, :, :, :]
-
-        for layer_name, layer_module in resnet.layer1._modules.items():
-            temporal_slice = layer_module(temporal_slice)
-
-            # Reshape the activations to remove the batch dimension
-            temporal_slice = torch.squeeze(temporal_slice, 0)
-
-            plt.figure()
-            plt.imshow(temporal_slice[0].detach().numpy(), cmap='gray')
-            plt.title(f"Layer 1, Temporal Slice: {t}, {layer_name}")
-            plt.show()
-
-        # for layer_name, layer_module in resnet.layer1._modules.items():
-        #     activations = layer_module(activations)
-        #     plt.figure()
-        #     plt.imshow(activations[0][0].detach().numpy(), cmap='gray')
-        #     plt.title(f"Layer 1: {layer_name}")
-        #     plt.show()
-
+        import matplotlib.pyplot as plt
 
         # Assuming feature_maps shape is (batch_size, channels, height, width)
         # You can select a specific example from the batch if needed
-        # example_feature_map = feature_maps[0]
+        example_feature_map = feature_maps[0]
+        print(example_feature_map)
 
-        # # Plot the feature map
-        # plt.imshow(example_feature_map[0], cmap='gray')  # Assuming grayscale feature maps
-        # plt.show()
+        # Plot the feature map
+        plt.imshow(example_feature_map[0], cmap='gray')  # Assuming grayscale feature maps
+        plt.show()
         
         batch_sentences = self.get_batch_sentences(tab)
         # print("min", min(len(string) for string in batch_sentences))
@@ -257,7 +217,7 @@ class MultiModModelWithLanguage(LightningModule):
         # to the first token. We assume that this has been pre-trained
         # pooled_states = language_outputs.pooler_output
 
-        # language_features_compressed = self.language_fc(pooled_states)
+        language_features_compressed = self.language_fc(pooled_states)
 
         # concat image, tabular data and data from language model
         #img, tab_without_age_sex, language_features_compressed
