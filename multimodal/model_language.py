@@ -210,7 +210,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         # concat image, tabular data and data from language model
         #img
-        x = torch.cat((tab_without_age_sex, language_features_compressed), dim=1)
+        x = torch.cat((img, tab_without_age_sex), dim=1)
 
         x = F.relu(self.fc2(x))
 
