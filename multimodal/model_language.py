@@ -150,12 +150,14 @@ class MultiModModelWithLanguage(LightningModule):
         # Assuming feature_maps shape is (batch_size, channels, height, width)
         # You can select a specific example from the batch if needed
         example_feature_map = feature_maps[0]
+        print("example_map", example_feature_map)
         example_feature_map_np = example_feature_map.cpu().detach().numpy()
 
 
         # Plot the feature map
-        plt.imshow(example_feature_map_np, cmap='gray')  # Assuming grayscale feature maps
-        plt.show()
+        if len(example_feature_map != 0):
+            plt.imshow(example_feature_map_np, cmap='gray')  # Assuming grayscale feature maps
+            plt.show()
         
         batch_sentences = self.get_batch_sentences(tab)
         # print("min", min(len(string) for string in batch_sentences))
@@ -673,7 +675,7 @@ class MultiModModelWithLanguage(LightningModule):
         img, tab, y, subject_id = batch
         y = y.to(torch.float32)
 
-        y_pred = self(img, tab)
+        y_pred = self(img)#, tab)
 
         loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
 
