@@ -139,7 +139,7 @@ class MultiModModelWithLanguage(LightningModule):
         # self.tokenizer = self.tokenizer
         
         # print(img.shape)
-        img = torch.unsqueeze(img, 1)
+        img = torch.unsqueeze(img, 0) # used to be one 
         # img = img.to(torch.float32)
         # img = self.resnet(img)
         import torchvision.models as models
