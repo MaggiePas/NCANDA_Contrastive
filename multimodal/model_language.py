@@ -159,8 +159,8 @@ class MultiModModelWithLanguage(LightningModule):
 
         # Plot the feature map
         # if len(example_feature_map_np) != 0:
-            # plt.imshow(example_feature_map_np, cmap='gray')  # Assuming grayscale feature maps
-            # plt.show()
+        plt.imshow(example_feature_map_np, cmap='gray')  # Assuming grayscale feature maps
+        plt.show()
         
         batch_sentences = self.get_batch_sentences(tab)
         # print("min", min(len(string) for string in batch_sentences))
