@@ -140,20 +140,36 @@ class MultiModModelWithLanguage(LightningModule):
         
         # print(img.shape)
         img = torch.unsqueeze(img, 1)
-        img = img.to(torch.float32)
-        img = self.resnet(img)
+        # img = img.to(torch.float32)
+        # img = self.resnet(img)
+        import torchvision.models as models
+        resnet = models.resnet50(pretrained=True)
+        resnet.eval()
 
-        feature_maps = img[-1]
+        #feature_maps = img[-1]
+
+        with torch.no_grad():
+            activations = resnet.conv1(img)
+            activations = resnet.bn1(activations)
+            activations = resnet.relu(activations)
+            activations = resnet.maxpool(activations)
+
+        for layer_name, layer_module in resnet.layer1._modules.items():
+            activations = layer_module(activations)
+            plt.figure()
+            plt.imshow(activations[0][0].detach().numpy(), cmap='gray')
+            plt.title(f"Layer 1: {layer_name}")
+            plt.show()
 
         import matplotlib.pyplot as plt
 
         # Assuming feature_maps shape is (batch_size, channels, height, width)
         # You can select a specific example from the batch if needed
-        example_feature_map = feature_maps[0]
+        # example_feature_map = feature_maps[0]
 
-        # Plot the feature map
-        plt.imshow(example_feature_map[0], cmap='gray')  # Assuming grayscale feature maps
-        plt.show()
+        # # Plot the feature map
+        # plt.imshow(example_feature_map[0], cmap='gray')  # Assuming grayscale feature maps
+        # plt.show()
         
         batch_sentences = self.get_batch_sentences(tab)
         # print("min", min(len(string) for string in batch_sentences))
