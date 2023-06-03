@@ -154,7 +154,7 @@ class MultiModModelWithLanguage(LightningModule):
 
 
         # Plot the feature map
-        plt.imshow(example_feature_map_np[0], cmap='gray')  # Assuming grayscale feature maps
+        plt.imshow(example_feature_map_np, cmap='gray')  # Assuming grayscale feature maps
         plt.show()
         
         batch_sentences = self.get_batch_sentences(tab)
