@@ -8,6 +8,7 @@ import torchmetrics
 import pandas as pd
 from transformers import AutoTokenizer, AutoModel
 from transformers import pipeline
+import matplotlib.pyplot as plt
 
 import os
 import numpy as np
@@ -165,14 +166,27 @@ class MultiModModelWithLanguage(LightningModule):
             activations = resnet.relu(activations)
             activations = resnet.maxpool(activations)
 
+        for t in range(activations.size(1)):
+            temporal_slice = activations[:, t, :, :, :]
+
         for layer_name, layer_module in resnet.layer1._modules.items():
-            activations = layer_module(activations)
+            temporal_slice = layer_module(temporal_slice)
+
+            # Reshape the activations to remove the batch dimension
+            temporal_slice = torch.squeeze(temporal_slice, 0)
+
             plt.figure()
-            plt.imshow(activations[0][0].detach().numpy(), cmap='gray')
-            plt.title(f"Layer 1: {layer_name}")
+            plt.imshow(temporal_slice[0].detach().numpy(), cmap='gray')
+            plt.title(f"Layer 1, Temporal Slice: {t}, {layer_name}")
             plt.show()
 
-        import matplotlib.pyplot as plt
+        # for layer_name, layer_module in resnet.layer1._modules.items():
+        #     activations = layer_module(activations)
+        #     plt.figure()
+        #     plt.imshow(activations[0][0].detach().numpy(), cmap='gray')
+        #     plt.title(f"Layer 1: {layer_name}")
+        #     plt.show()
+
 
         # Assuming feature_maps shape is (batch_size, channels, height, width)
         # You can select a specific example from the batch if needed
