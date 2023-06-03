@@ -221,7 +221,7 @@ class MultiModModelWithLanguage(LightningModule):
         # to the first token. We assume that this has been pre-trained
         # pooled_states = language_outputs.pooler_output
 
-        language_features_compressed = self.language_fc(pooled_states)
+        # language_features_compressed = self.language_fc(pooled_states)
 
         # concat image, tabular data and data from language model
         #img, tab_without_age_sex, language_features_compressed
