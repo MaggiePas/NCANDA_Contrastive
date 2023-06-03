@@ -141,9 +141,19 @@ class MultiModModelWithLanguage(LightningModule):
         # print(img.shape)
         img = torch.unsqueeze(img, 1)
         img = img.to(torch.float32)
-        # print(img.type)
-        # print(img.shape)
         img = self.resnet(img)
+
+        feature_maps = img[-1]
+
+        import matplotlib.pyplot as plt
+
+        # Assuming feature_maps shape is (batch_size, channels, height, width)
+        # You can select a specific example from the batch if needed
+        example_feature_map = feature_maps[0]
+
+        # Plot the feature map
+        plt.imshow(example_feature_map[0], cmap='gray')  # Assuming grayscale feature maps
+        plt.show()
         
         batch_sentences = self.get_batch_sentences(tab)
         # print("min", min(len(string) for string in batch_sentences))
