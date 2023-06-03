@@ -64,7 +64,7 @@ class MultiModModelWithLanguage(LightningModule):
         self.fc1 = nn.Linear((self.NUM_FEATURES - 0), 240)
 
         # first fc layer which takes concatenated input
-        self.fc2 = nn.Linear((240 + 240), 32)
+        self.fc2 = nn.Linear((240+0), 32)
 
         # final fc layer which takes concatenated imput
         self.fc3 = nn.Linear(32, 1)
@@ -219,8 +219,8 @@ class MultiModModelWithLanguage(LightningModule):
         language_features_compressed = self.language_fc(pooled_states)
 
         # concat image, tabular data and data from language model
-        #img
-        x = torch.cat((img, tab_without_age_sex), dim=1)
+        #img, tab_without_age_sex, language_features_compressed
+        x = img #torch.cat((img), dim=1)
 
         x = F.relu(self.fc2(x))
 
