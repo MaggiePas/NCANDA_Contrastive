@@ -155,6 +155,7 @@ class MultiModModelWithLanguage(LightningModule):
         print("example_map", example_feature_map)
         example_feature_map_np = example_feature_map.cpu().detach().numpy()
         print("example_map_np", example_feature_map)
+        example_feature_map_2d = example_feature_map_np.reshape((15, 16))
 
 
         # Plot the feature map
