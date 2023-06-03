@@ -144,7 +144,7 @@ class MultiModModelWithLanguage(LightningModule):
         preprocess = transforms.Compose([
             transforms.Resize(256),
             transforms.CenterCrop(224),
-            transforms.ToTensor()
+            # transforms.ToTensor()
         ])
 
 
