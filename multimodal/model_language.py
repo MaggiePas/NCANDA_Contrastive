@@ -137,8 +137,18 @@ class MultiModModelWithLanguage(LightningModule):
         # run the model for the image
         # self.language_model = self.language_model.to('cuda')
         # self.tokenizer = self.tokenizer
+        from torchvision import transforms
+
         
         # print(img.shape)
+        preprocess = transforms.Compose([
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor()
+        ])
+
+
+        img = preprocess(img)
         img = torch.unsqueeze(img, 0) # used to be one 
         # img = img.to(torch.float32)
         # img = self.resnet(img)
@@ -146,6 +156,7 @@ class MultiModModelWithLanguage(LightningModule):
         resnet = models.resnet50(pretrained=True)
         resnet.eval()
 
+       
         #feature_maps = img[-1]
 
         with torch.no_grad():
