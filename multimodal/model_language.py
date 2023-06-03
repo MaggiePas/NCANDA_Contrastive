@@ -40,12 +40,12 @@ class MultiModModelWithLanguage(LightningModule):
         # question = "What are the symptoms of diabetes?"
         # context = "Diabetes is a metabolic disease that causes high blood sugar. The symptoms include increased thirst, frequent urination, and unexplained weight loss."
         # answer = qa_pipeline({"question": question, "context": context})
-        self.tokenizer = AutoTokenizer.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
-        self.language_model = AutoModel.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
+        # self.tokenizer = AutoTokenizer.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
+        # self.language_model = AutoModel.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
                                                 
         # Freeze weights so those don't get trained        
-        for param in self.language_model.parameters():
-            param.requires_grad = False
+        # for param in self.language_model.parameters():
+        #     param.requires_grad = False
 
 
         self.NUM_FEATURES = len(FEATURES)
@@ -135,7 +135,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         """
         # run the model for the image
-        self.language_model = self.language_model.to('cuda')
+        # self.language_model = self.language_model.to('cuda')
         # self.tokenizer = self.tokenizer
         
         # print(img.shape)
@@ -205,18 +205,18 @@ class MultiModModelWithLanguage(LightningModule):
         # forward tabular data
         tab_without_age_sex = F.relu(self.fc1(tab_without_age_sex))
 
-        language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=512)
+        # language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=512)
         
-        language_inputs = language_inputs.to('cuda')
+        # language_inputs = language_inputs.to('cuda')
 
-        language_outputs = self.language_model(**language_inputs)
+        # language_outputs = self.language_model(**language_inputs)
 
         # 1 x 768
         # We "pool" the model by simply taking the hidden state corresponding
         # to the first token. We assume that this has been pre-trained
-        pooled_states = language_outputs.pooler_output
+        # pooled_states = language_outputs.pooler_output
 
-        language_features_compressed = self.language_fc(pooled_states)
+        # language_features_compressed = self.language_fc(pooled_states)
 
         # concat image, tabular data and data from language model
         #img, tab_without_age_sex, language_features_compressed
