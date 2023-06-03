@@ -44,8 +44,8 @@ class MultiModModelWithLanguage(LightningModule):
         # self.language_model = AutoModel.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
                                                 
         # Freeze weights so those don't get trained        
-        for param in self.language_model.parameters():
-            param.requires_grad = False
+        # for param in self.language_model.parameters():
+        #     param.requires_grad = False
 
 
         self.NUM_FEATURES = len(FEATURES)
@@ -135,7 +135,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         """
         # run the model for the image
-        self.language_model = self.language_model.to('cuda')
+        # self.language_model = self.language_model.to('cuda')
         # self.tokenizer = self.tokenizer
         
         # print(img.shape)
