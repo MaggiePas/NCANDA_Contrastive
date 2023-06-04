@@ -129,7 +129,7 @@ class MultiModModelWithLanguage(LightningModule):
     #     out2 = torch.squeeze(out2)
     #     return out2, out1
 
-    def forward(self, img, tab):
+    def forward(self, img, tab=None):
         """
 
         x is the input data
@@ -175,15 +175,15 @@ class MultiModModelWithLanguage(LightningModule):
         # plt.imshow(example_feature_map_2d, cmap='gray')  # Assuming grayscale feature maps
         # plt.show()
         
-        batch_sentences = self.get_batch_sentences(tab)
-        # print("min", min(len(string) for string in batch_sentences))
-        # print("max", max(len(string) for string in batch_sentences))
-        # print("example", batch_sentences[0])
+        # batch_sentences = self.get_batch_sentences(tab)
+        # # print("min", min(len(string) for string in batch_sentences))
+        # # print("max", max(len(string) for string in batch_sentences))
+        # # print("example", batch_sentences[0])
         
-        # change the dtype of the tabular data
-        tab = tab.to(torch.float32)
+        # # change the dtype of the tabular data
+        # tab = tab.to(torch.float32)
         
-        ind_to_keep = list(range(0, self.NUM_FEATURES))
+        # ind_to_keep = list(range(0, self.NUM_FEATURES))
 
         # ind_to_keep.remove(2)
 
@@ -220,10 +220,10 @@ class MultiModModelWithLanguage(LightningModule):
 
 
         # Remove age and sex from tabular vector since we are using them as language model input
-        tab_without_age_sex = tab[:,ind_to_keep]
+        # tab_without_age_sex = tab[:,ind_to_keep]
         
-        # forward tabular data
-        tab_without_age_sex = F.relu(self.fc1(tab_without_age_sex))
+        # # forward tabular data
+        # tab_without_age_sex = F.relu(self.fc1(tab_without_age_sex))
 
         # language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=512)
         
