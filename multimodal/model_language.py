@@ -37,7 +37,7 @@ class MultiModModelWithLanguage(LightningModule):
         base = 'michiyasunaga/BioLinkBERT-base'
         base = "roberta-base"
         base = "distilbert-base-uncased"
-        base = "bert-base-uncased"
+        #base = "bert-base-uncased"
 
         # qa_pipeline = pipeline("question-answering", model="medalpaca/medalpaca-7b", tokenizer="medalpaca/medalpaca-7b")
         # question = "What are the symptoms of diabetes?"
