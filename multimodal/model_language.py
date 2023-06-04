@@ -156,7 +156,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         img = self.resnet(img)
         torch.set_printoptions(threshold=float('inf'))
-        print(img[0][0])
+        print(img[0, 0, :, :])
 
 
         # print("imageee", img.shape)
@@ -168,9 +168,9 @@ class MultiModModelWithLanguage(LightningModule):
         # # Assuming feature_maps shape is (batch_size, channels, height, width)
         # # You can select a specific example from the batch if needed
         # print(feature_maps.shape)
-        example_feature_map = feature_maps
+        example_feature_map = feature_maps[0]
         example_feature_map = example_feature_map.reshape(64, 64)
-        print("example_map", example_feature_map[0])
+        print("example_map", example_feature_map)
         # example_feature_map_np = example_feature_map.cpu().detach().numpy()
         # print("example_map_np", example_feature_map)
 
