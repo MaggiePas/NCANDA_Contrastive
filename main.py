@@ -137,8 +137,6 @@ def main_language(wandb, wandb_logger):
     model = MultiModModelWithLanguage(class_weight=data.class_weight, scaler=data.scaler)
     print("received")
     model = medcam.inject(model, output_dir="attention_maps", save_maps=True)
-    device = torch.device('cuda:0')  # Assuming you have a GPU available
-
     model.to(device)
 
     # Optional
