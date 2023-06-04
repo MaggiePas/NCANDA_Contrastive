@@ -137,7 +137,7 @@ def main_language(wandb, wandb_logger):
     model = MultiModModelWithLanguage(class_weight=data.class_weight, scaler=data.scaler)
     print("received")
     model = model.to(device)
-    # model = medcam.inject(model, output_dir="attention_maps", save_maps=True)
+    model = medcam.inject(model, backend='gcam', output_dir="attention_maps", save_maps=True)
     model = model.to(device)
     # model.to(device)
 
