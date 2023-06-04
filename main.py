@@ -136,10 +136,6 @@ def main_language(wandb, wandb_logger):
     print("getting the model")
     model = MultiModModelWithLanguage(class_weight=data.class_weight, scaler=data.scaler)
     print("received")
-    model = model.to(device)
-    model = medcam.inject(model, backend='gcam', output_dir="attention_maps", save_maps=True)
-    model = model.to(device)
-    # model.to(device)
 
     # Optional
     wandb.watch(model, log="all")
@@ -150,7 +146,7 @@ def main_language(wandb, wandb_logger):
     trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator=device, devices=1)
     print("train samples is", len(train_loader))
     print("val samples is", len(val_loader))
-    trainer.fit(model=model.to(device), train_dataloaders=train_loader, val_dataloaders=val_loader)
+    trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
     
 
 def main_center(wandb, wandb_logger):
@@ -235,18 +231,6 @@ if __name__ == '__main__':
     # main_daft(wandb, wandb_logger)
     
     # # run model with language
-    import matplotlib.pyplot as plt
-    x = [1, 2, 3, 4, 5]
-    y = [2, 4, 6, 8, 10]
-
-    # Create a figure and axes
-    fig, ax = plt.subplots()
-
-    # Plot the line graph
-    ax.plot(x, y)
-
-    # Show the plot
-    plt.show()
     main_language(wandb, wandb_logger)
     
     # # run model with bce + center loss

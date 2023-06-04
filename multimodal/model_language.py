@@ -31,18 +31,19 @@ class MultiModModelWithLanguage(LightningModule):
 
         self.resnet = resnet10(pretrained=False,
                                spatial_dims=3,
-                               num_classes=64*64, # might change this one
+                               num_classes=240, # might change this one
                                n_input_channels=1
                                )
         base = 'michiyasunaga/BioLinkBERT-base'
-        #base = "bert-base-uncased"
+        base = "roberta-base"
+        base = "bert-base-uncased"
 
         # qa_pipeline = pipeline("question-answering", model="medalpaca/medalpaca-7b", tokenizer="medalpaca/medalpaca-7b")
         # question = "What are the symptoms of diabetes?"
         # context = "Diabetes is a metabolic disease that causes high blood sugar. The symptoms include increased thirst, frequent urination, and unexplained weight loss."
         # answer = qa_pipeline({"question": question, "context": context})
-        # self.tokenizer = AutoTokenizer.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
-        # self.language_model = AutoModel.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
+        self.tokenizer = AutoTokenizer.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
+        self.language_model = AutoModel.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
                                                 
         # Freeze weights so those don't get trained        
         # for param in self.language_model.parameters():
@@ -62,10 +63,10 @@ class MultiModModelWithLanguage(LightningModule):
         self.language_fc = nn.Linear(768, 240)
 
         # fc layer for tabular data. We substract 31 because age and sex are encoded as sentences
-        self.fc1 = nn.Linear((self.NUM_FEATURES - 0), 64*64)
+        self.fc1 = nn.Linear((self.NUM_FEATURES - 0), 240)
 
         # first fc layer which takes concatenated input
-        self.fc2 = nn.Linear((64*64+0), 32)
+        self.fc2 = nn.Linear((240 + 240 + 240), 32)
 
         # final fc layer which takes concatenated imput
         self.fc3 = nn.Linear(32, 1)
@@ -136,8 +137,8 @@ class MultiModModelWithLanguage(LightningModule):
 
         """
         # run the model for the image
-        # self.language_model = self.language_model.to('cuda')
-        # self.tokenizer = self.tokenizer
+        self.language_model = self.language_model.to('cuda')
+        self.tokenizer = self.tokenizer
         
         # print(img.shape)
 
@@ -149,26 +150,23 @@ class MultiModModelWithLanguage(LightningModule):
         # Plot the axial slice
         # plt.imshow(axial_slice, cmap='gray')
         # plt.show()
-        print(img.shape)
         img = torch.unsqueeze(img, 1)
         img = img.to(torch.float32)
 
         img = self.resnet(img)
-        print(img.shape)
         # torch.set_printoptions(threshold=float('inf'))
         # print(img[0, 0, :, :])
 
 
         # print("imageee", img.shape)
 
-        feature_maps = img
 
         # import matplotlib.pyplot as plt
 
         # # Assuming feature_maps shape is (batch_size, channels, height, width)
         # # You can select a specific example from the batch if needed
         # print(feature_maps.shape)
-        example_feature_map = feature_maps[0]
+        # example_feature_map = feature_maps[0]
         # example_feature_map = example_feature_map.reshape(64, 64)
         # print("example_map", example_feature_map)
         # example_feature_map_np = example_feature_map.cpu().detach().numpy()
@@ -180,15 +178,15 @@ class MultiModModelWithLanguage(LightningModule):
         # plt.imshow(example_feature_map_2d, cmap='gray')  # Assuming grayscale feature maps
         # plt.show()
         
-        # batch_sentences = self.get_batch_sentences(tab)
+        batch_sentences = self.get_batch_sentences(tab)
         # # print("min", min(len(string) for string in batch_sentences))
         # # print("max", max(len(string) for string in batch_sentences))
         # # print("example", batch_sentences[0])
         
         # # change the dtype of the tabular data
-        # tab = tab.to(torch.float32)
+        tab = tab.to(torch.float32)
         
-        # ind_to_keep = list(range(0, self.NUM_FEATURES))
+        ind_to_keep = list(range(0, self.NUM_FEATURES))
 
         # ind_to_keep.remove(2)
 
@@ -225,27 +223,27 @@ class MultiModModelWithLanguage(LightningModule):
 
 
         # Remove age and sex from tabular vector since we are using them as language model input
-        # tab_without_age_sex = tab[:,ind_to_keep]
+        tab_without_age_sex = tab[:,ind_to_keep]
         
         # # forward tabular data
-        # tab_without_age_sex = F.relu(self.fc1(tab_without_age_sex))
+        tab_without_age_sex = F.relu(self.fc1(tab_without_age_sex))
 
-        # language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=512)
+        language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=512)
         
-        # language_inputs = language_inputs.to('cuda')
+        language_inputs = language_inputs.to('cuda')
 
-        # language_outputs = self.language_model(**language_inputs)
+        language_outputs = self.language_model(**language_inputs)
 
         # 1 x 768
         # We "pool" the model by simply taking the hidden state corresponding
         # to the first token. We assume that this has been pre-trained
         # pooled_states = language_outputs.pooler_output
 
-        # language_features_compressed = self.language_fc(pooled_states)
+        language_features_compressed = self.language_fc(pooled_states)
 
         # concat image, tabular data and data from language model
         #img, tab_without_age_sex, language_features_compressed
-        x = img #torch.cat((img), dim=1)
+        x = torch.cat((img, tab_without_age_sex, language_features_compressed), dim=1)
 
         x = F.relu(self.fc2(x))
 
