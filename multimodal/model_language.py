@@ -31,7 +31,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         self.resnet = resnet10(pretrained=False,
                                spatial_dims=3,
-                               num_classes=240, # might change this one
+                               num_classes=64*64, # might change this one
                                n_input_channels=1
                                )
         base = 'michiyasunaga/BioLinkBERT-base'
@@ -166,8 +166,8 @@ class MultiModModelWithLanguage(LightningModule):
         # # Assuming feature_maps shape is (batch_size, channels, height, width)
         # # You can select a specific example from the batch if needed
         # print(feature_maps.shape)
-        # example_feature_map = feature_maps
-        # print("example_map", example_feature_map)
+        example_feature_map = feature_maps
+        print("example_map", list(example_feature_map))
         # example_feature_map_np = example_feature_map.cpu().detach().numpy()
         # print("example_map_np", example_feature_map)
 
