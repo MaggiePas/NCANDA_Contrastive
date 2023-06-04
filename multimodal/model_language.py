@@ -36,6 +36,7 @@ class MultiModModelWithLanguage(LightningModule):
                                )
         base = 'michiyasunaga/BioLinkBERT-base'
         base = "roberta-base"
+        base = "distilbert-base-uncased"
         base = "bert-base-uncased"
 
         # qa_pipeline = pipeline("question-answering", model="medalpaca/medalpaca-7b", tokenizer="medalpaca/medalpaca-7b")
@@ -46,8 +47,8 @@ class MultiModModelWithLanguage(LightningModule):
         self.language_model = AutoModel.from_pretrained(base, cache_dir = "/scratch/users/ewesel/")
                                                 
         # Freeze weights so those don't get trained        
-        # for param in self.language_model.parameters():
-        #     param.requires_grad = False
+        for param in self.language_model.parameters():
+            param.requires_grad = False
 
 
         self.NUM_FEATURES = len(FEATURES)
@@ -237,7 +238,7 @@ class MultiModModelWithLanguage(LightningModule):
         # 1 x 768
         # We "pool" the model by simply taking the hidden state corresponding
         # to the first token. We assume that this has been pre-trained
-        # pooled_states = language_outputs.pooler_output
+        pooled_states = language_outputs.pooler_output
 
         language_features_compressed = self.language_fc(pooled_states)
 
