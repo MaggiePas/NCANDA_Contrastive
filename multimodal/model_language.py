@@ -37,7 +37,7 @@ class MultiModModelWithLanguage(LightningModule):
         base = 'michiyasunaga/BioLinkBERT-base'
         base = "roberta-base"
         # base = "distil-bert-base-uncased"
-        #base = "bert-base-uncased"
+        base = "bert-base-uncased"
 
         # qa_pipeline = pipeline("question-answering", model="medalpaca/medalpaca-7b", tokenizer="medalpaca/medalpaca-7b")
         # question = "What are the symptoms of diabetes?"
@@ -621,7 +621,7 @@ class MultiModModelWithLanguage(LightningModule):
         max_length = min(len(string) for string in batch_sentences)
         padded_strings = []
         for string in batch_sentences:
-            truncated_string = string[:1000]
+            truncated_string = string#[:1000]
         #     padded_string = truncated_string.ljust(max_length, " ")
             padded_strings.append(truncated_string)
         return padded_strings
