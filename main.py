@@ -136,8 +136,8 @@ def main_language(wandb, wandb_logger):
     print("getting the model")
     model = MultiModModelWithLanguage(class_weight=data.class_weight, scaler=data.scaler)
     print("received")
-    # model = medcam.inject(model, output_dir="attention_maps", save_maps=True)
-    model.to(device)
+    model = medcam.inject(model, output_dir="attention_maps", save_maps=True)
+    # model.to(device)
 
     # Optional
     wandb.watch(model, log="all")
@@ -148,7 +148,7 @@ def main_language(wandb, wandb_logger):
     trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator=device, devices=1)
     print("train samples is", len(train_loader))
     print("val samples is", len(val_loader))
-    trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
+    trainer.fit(model=model.to(device), train_dataloaders=train_loader, val_dataloaders=val_loader)
     
 
 def main_center(wandb, wandb_logger):
