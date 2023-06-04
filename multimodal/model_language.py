@@ -691,10 +691,11 @@ class MultiModModelWithLanguage(LightningModule):
         return loss
 
     def validation_step(self, batch, batch_idx):
-        print(subject_id)
-        print(y)
+
 
         img, tab, y, subject_id = batch
+        print(subject_id)
+        print(y)
         y = y.to(torch.float32)
 
         y_pred = self(img, tab)
