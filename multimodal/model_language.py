@@ -8,6 +8,7 @@ import torchmetrics
 import pandas as pd
 from transformers import AutoTokenizer, AutoModel
 from transformers import pipeline
+import matplotlib.pyplot as plt
 
 import os
 import numpy as np
@@ -139,29 +140,39 @@ class MultiModModelWithLanguage(LightningModule):
         # self.tokenizer = self.tokenizer
         
         # print(img.shape)
+        
+        print("talking to the image")
+        image_data = img.get_fdata()
+        axial_slice_index = image_data.shape[2] // 2
+        axial_slice = image_data[:, :, axial_slice_index]
+        # Plot the axial slice
+        plt.imshow(axial_slice, cmap='gray')
+        plt.show()
+
         img = torch.unsqueeze(img, 1)
         img = img.to(torch.float32)
         img = self.resnet(img)
-        print("imageee", img.shape)
 
-        feature_maps = img[-1]
+        # print("imageee", img.shape)
 
-        import matplotlib.pyplot as plt
+        # feature_maps = img[-1]
 
-        # Assuming feature_maps shape is (batch_size, channels, height, width)
-        # You can select a specific example from the batch if needed
-        print(feature_maps.shape)
-        example_feature_map = feature_maps
-        print("example_map", example_feature_map)
-        example_feature_map_np = example_feature_map.cpu().detach().numpy()
-        print("example_map_np", example_feature_map)
-        example_feature_map_2d = example_feature_map_np.reshape((15, 16))
+        # import matplotlib.pyplot as plt
+
+        # # Assuming feature_maps shape is (batch_size, channels, height, width)
+        # # You can select a specific example from the batch if needed
+        # print(feature_maps.shape)
+        # example_feature_map = feature_maps
+        # print("example_map", example_feature_map)
+        # example_feature_map_np = example_feature_map.cpu().detach().numpy()
+        # print("example_map_np", example_feature_map)
+        # example_feature_map_2d = example_feature_map_np.reshape((15, 16))
 
 
-        # Plot the feature map
-        # if len(example_feature_map_np) != 0:
-        plt.imshow(example_feature_map_2d, cmap='gray')  # Assuming grayscale feature maps
-        plt.show()
+        # # Plot the feature map
+        # # if len(example_feature_map_np) != 0:
+        # plt.imshow(example_feature_map_2d, cmap='gray')  # Assuming grayscale feature maps
+        # plt.show()
         
         batch_sentences = self.get_batch_sentences(tab)
         # print("min", min(len(string) for string in batch_sentences))

@@ -3,6 +3,8 @@ import os
 from pytorch_lightning import Trainer, seed_everything
 from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import LearningRateMonitor
+from medcam import medcam
+
 
 from conv3D.model import AdniModel
 # from dataset import odule
@@ -134,6 +136,10 @@ def main_language(wandb, wandb_logger):
     print("getting the model")
     model = MultiModModelWithLanguage(class_weight=data.class_weight, scaler=data.scaler)
     print("received")
+    # model = medcam.inject(model, output_dir="attention_maps", save_maps=True)
+
+
+
     # Optional
     wandb.watch(model, log="all")
 
@@ -228,6 +234,18 @@ if __name__ == '__main__':
     # main_daft(wandb, wandb_logger)
     
     # # run model with language
+    import matplotlib.pyplot as plt
+    x = [1, 2, 3, 4, 5]
+    y = [2, 4, 6, 8, 10]
+
+    # Create a figure and axes
+    fig, ax = plt.subplots()
+
+    # Plot the line graph
+    ax.plot(x, y)
+
+    # Show the plot
+    plt.show()
     main_language(wandb, wandb_logger)
     
     # # run model with bce + center loss
