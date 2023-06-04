@@ -165,11 +165,11 @@ class MultiModModelWithLanguage(LightningModule):
 
         # # Assuming feature_maps shape is (batch_size, channels, height, width)
         # # You can select a specific example from the batch if needed
-        print(feature_maps.shape)
-        example_feature_map = feature_maps
-        print("example_map", example_feature_map)
-        example_feature_map_np = example_feature_map.cpu().detach().numpy()
-        print("example_map_np", example_feature_map)
+        # print(feature_maps.shape)
+        # example_feature_map = feature_maps
+        # print("example_map", example_feature_map)
+        # example_feature_map_np = example_feature_map.cpu().detach().numpy()
+        # print("example_map_np", example_feature_map)
 
 
         # # Plot the feature map
