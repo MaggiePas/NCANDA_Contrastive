@@ -156,18 +156,18 @@ class MultiModModelWithLanguage(LightningModule):
 
         # print("imageee", img.shape)
 
-        # feature_maps = img[-1]
+        feature_maps = img
 
         # import matplotlib.pyplot as plt
 
         # # Assuming feature_maps shape is (batch_size, channels, height, width)
         # # You can select a specific example from the batch if needed
-        # print(feature_maps.shape)
-        # example_feature_map = feature_maps
-        # print("example_map", example_feature_map)
-        # example_feature_map_np = example_feature_map.cpu().detach().numpy()
-        # print("example_map_np", example_feature_map)
-        # example_feature_map_2d = example_feature_map_np.reshape((15, 16))
+        print(feature_maps.shape)
+        example_feature_map = feature_maps
+        print("example_map", example_feature_map)
+        example_feature_map_np = example_feature_map.cpu().detach().numpy()
+        print("example_map_np", example_feature_map)
+        example_feature_map_2d = example_feature_map_np.reshape((15, 16))
 
 
         # # Plot the feature map
