@@ -62,10 +62,10 @@ class MultiModModelWithLanguage(LightningModule):
         self.language_fc = nn.Linear(768, 240)
 
         # fc layer for tabular data. We substract 31 because age and sex are encoded as sentences
-        self.fc1 = nn.Linear((self.NUM_FEATURES - 0), 240)
+        self.fc1 = nn.Linear((self.NUM_FEATURES - 0), 64*64)
 
         # first fc layer which takes concatenated input
-        self.fc2 = nn.Linear((240+0), 32)
+        self.fc2 = nn.Linear((64*64+0), 32)
 
         # final fc layer which takes concatenated imput
         self.fc3 = nn.Linear(32, 1)
@@ -640,6 +640,8 @@ class MultiModModelWithLanguage(LightningModule):
     def training_step(self, batch, batch_idx):
 
         img, tab, y, subject_id = batch
+        print(subject_id)
+        print(y)
 
         # img = torch.tensor(img).float()
 
@@ -689,6 +691,8 @@ class MultiModModelWithLanguage(LightningModule):
         return loss
 
     def validation_step(self, batch, batch_idx):
+        print(subject_id)
+        print(y)
 
         img, tab, y, subject_id = batch
         y = y.to(torch.float32)
