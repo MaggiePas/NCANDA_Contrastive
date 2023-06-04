@@ -149,10 +149,13 @@ class MultiModModelWithLanguage(LightningModule):
         # Plot the axial slice
         # plt.imshow(axial_slice, cmap='gray')
         # plt.show()
-
+        print(img.shape)
         img = torch.unsqueeze(img, 1)
         img = img.to(torch.float32)
+        print(img.shape)
         img = self.resnet(img)
+        print(img.shape)
+
 
         # print("imageee", img.shape)
 
@@ -167,7 +170,6 @@ class MultiModModelWithLanguage(LightningModule):
         print("example_map", example_feature_map)
         example_feature_map_np = example_feature_map.cpu().detach().numpy()
         print("example_map_np", example_feature_map)
-        example_feature_map_2d = example_feature_map_np.reshape((15, 16))
 
 
         # # Plot the feature map
