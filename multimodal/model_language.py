@@ -142,10 +142,10 @@ class MultiModModelWithLanguage(LightningModule):
         # print(img.shape)
 
         print("talking to the image")
-        image_data = img.get_fdata()
-        axial_slice_index = image_data.shape[2] // 2
-        axial_slice = image_data[:, :, axial_slice_index]
-        print(axial_slice)
+        # image_data = img.get_fdata()
+        # axial_slice_index = image_data.shape[2] // 2
+        # axial_slice = image_data[:, :, axial_slice_index]
+        # print(axial_slice)
         # Plot the axial slice
         # plt.imshow(axial_slice, cmap='gray')
         # plt.show()
