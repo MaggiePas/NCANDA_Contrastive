@@ -37,8 +37,8 @@ class MultiModModelWithLanguage(LightningModule):
         base = 'michiyasunaga/BioLinkBERT-base'
         base = "roberta-base"
         # base = "distil-bert-base-uncased"
-        base = "bert-base-uncased"
-        base = "distilroberta-base"
+        # base = "bert-base-uncased"
+        # base = "distilroberta-base"
 
         # qa_pipeline = pipeline("question-answering", model="medalpaca/medalpaca-7b", tokenizer="medalpaca/medalpaca-7b")
         # question = "What are the symptoms of diabetes?"
@@ -65,7 +65,7 @@ class MultiModModelWithLanguage(LightningModule):
         self.language_fc = nn.Linear(768, 240)
 
         # fc layer for tabular data. We substract 31 because age and sex are encoded as sentences
-        self.fc1 = nn.Linear((self.NUM_FEATURES - 0), 240)
+        self.fc1 = nn.Linear((self.NUM_FEATURES - 34), 240)
 
         # first fc layer which takes concatenated input
         self.fc2 = nn.Linear((240 + 240 + 240), 32)
