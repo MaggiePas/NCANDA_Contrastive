@@ -38,6 +38,7 @@ class MultiModModelWithLanguage(LightningModule):
         base = "roberta-base"
         # base = "distil-bert-base-uncased"
         base = "bert-base-uncased"
+        base = "distilroberta-base"
 
         # qa_pipeline = pipeline("question-answering", model="medalpaca/medalpaca-7b", tokenizer="medalpaca/medalpaca-7b")
         # question = "What are the symptoms of diabetes?"
@@ -244,7 +245,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         # concat image, tabular data and data from language model
         #img, tab_without_age_sex, language_features_compressed
-        x = torch.cat((tab_without_age_sex, language_features_compressed, img), dim=1)
+        x = torch.cat((img, tab_without_age_sex, language_features_compressed), dim=1)
 
         x = F.relu(self.fc2(x))
 
@@ -621,7 +622,7 @@ class MultiModModelWithLanguage(LightningModule):
         max_length = min(len(string) for string in batch_sentences)
         padded_strings = []
         for string in batch_sentences:
-            truncated_string = string[:400]
+            truncated_string = string#[:400]
         #     padded_string = truncated_string.ljust(max_length, " ")
             padded_strings.append(truncated_string)
         return padded_strings
