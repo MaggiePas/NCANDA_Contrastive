@@ -31,7 +31,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         self.resnet = resnet10(pretrained=False,
                                spatial_dims=3,
-                               num_classes=240, # might change this one
+                               num_classes=200, # might change this one
                                n_input_channels=1
                                )
         base = 'michiyasunaga/BioLinkBERT-base'
@@ -62,13 +62,13 @@ class MultiModModelWithLanguage(LightningModule):
         # combine resnet with final fc layer
         # self.imagenet = nn.Sequential(self.resnet, self.fc)
         # fc layer that maps language model inputs to smaller dimension
-        self.language_fc = nn.Linear(768, 240)
+        self.language_fc = nn.Linear(768, 200)
 
         # fc layer for tabular data. We substract 31 because age and sex are encoded as sentences
-        self.fc1 = nn.Linear((self.NUM_FEATURES - 31), 240)
+        self.fc1 = nn.Linear((self.NUM_FEATURES-0), 200)
 
         # first fc layer which takes concatenated input
-        self.fc2 = nn.Linear((240 + 240 + 240), 32)
+        self.fc2 = nn.Linear((200 + 200 + 200), 32)
 
         # final fc layer which takes concatenated imput
         self.fc3 = nn.Linear(32, 1)
@@ -190,38 +190,38 @@ class MultiModModelWithLanguage(LightningModule):
         
         ind_to_keep = list(range(0, self.NUM_FEATURES))
 
-        ind_to_keep.remove(2)
+        # ind_to_keep.remove(2)
 
-        ind_to_keep.remove(3)
-        ind_to_keep.remove(1)
-        ind_to_keep.remove(8)
-        ind_to_keep.remove(9)
-        ind_to_keep.remove(10)
-        ind_to_keep.remove(11)
-        ind_to_keep.remove(12)
-        ind_to_keep.remove(13)
-        ind_to_keep.remove(14)
-        ind_to_keep.remove(15)
-        ind_to_keep.remove(16)
-        ind_to_keep.remove(17)
-        ind_to_keep.remove(18)
-        ind_to_keep.remove(19)
-        ind_to_keep.remove(4)
-        ind_to_keep.remove(7)
-        ind_to_keep.remove(56)
-        ind_to_keep.remove(57)
-        ind_to_keep.remove(58)
-        ind_to_keep.remove(59)
-        ind_to_keep.remove(60)
-        ind_to_keep.remove(61)
-        ind_to_keep.remove(117)
-        ind_to_keep.remove(118)
-        ind_to_keep.remove(119)
-        ind_to_keep.remove(121)
-        ind_to_keep.remove(122)
-        ind_to_keep.remove(123)
-        ind_to_keep.remove(124)
-        ind_to_keep.remove(125)
+        # ind_to_keep.remove(3)
+        # ind_to_keep.remove(1)
+        # ind_to_keep.remove(8)
+        # ind_to_keep.remove(9)
+        # ind_to_keep.remove(10)
+        # ind_to_keep.remove(11)
+        # ind_to_keep.remove(12)
+        # ind_to_keep.remove(13)
+        # ind_to_keep.remove(14)
+        # ind_to_keep.remove(15)
+        # ind_to_keep.remove(16)
+        # ind_to_keep.remove(17)
+        # ind_to_keep.remove(18)
+        # ind_to_keep.remove(19)
+        # ind_to_keep.remove(4)
+        # ind_to_keep.remove(7)
+        # ind_to_keep.remove(56)
+        # ind_to_keep.remove(57)
+        # ind_to_keep.remove(58)
+        # ind_to_keep.remove(59)
+        # ind_to_keep.remove(60)
+        # ind_to_keep.remove(61)
+        # ind_to_keep.remove(117)
+        # ind_to_keep.remove(118)
+        # ind_to_keep.remove(119)
+        # ind_to_keep.remove(121)
+        # ind_to_keep.remove(122)
+        # ind_to_keep.remove(123)
+        # ind_to_keep.remove(124)
+        # ind_to_keep.remove(125)
 
 
         # Remove age and sex from tabular vector since we are using them as language model input
