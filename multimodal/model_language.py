@@ -32,13 +32,13 @@ class MultiModModelWithLanguage(LightningModule):
 
         self.resnet = resnet10(pretrained=False,
                                spatial_dims=3,
-                               num_classes=120, # might change this one
+                               num_classes=220, # might change this one
                                n_input_channels=1
                                )
         base = 'michiyasunaga/BioLinkBERT-base'
-        base = "roberta-base"
-        # base = "distil-bert-base-uncased"
-        base = "bert-base-uncased"
+        # base = "roberta-base"
+        base = "distil-bert-base-uncased"
+        # base = "bert-base-uncased"
         # base = "distilroberta-base"
 
         # qa_pipeline = pipeline("question-answering", model="medalpaca/medalpaca-7b", tokenizer="medalpaca/medalpaca-7b")
@@ -63,13 +63,13 @@ class MultiModModelWithLanguage(LightningModule):
         # combine resnet with final fc layer
         # self.imagenet = nn.Sequential(self.resnet, self.fc)
         # fc layer that maps language model inputs to smaller dimension
-        self.language_fc = nn.Linear(768, 120)
+        self.language_fc = nn.Linear(768, 220)
 
         # fc layer for tabular data. We substract 31 because age and sex are encoded as sentences
-        self.fc1 = nn.Linear((self.NUM_FEATURES-0), 120)
+        self.fc1 = nn.Linear((self.NUM_FEATURES-0), 220)
 
         # first fc layer which takes concatenated input
-        self.fc2 = nn.Linear((120 + 0 + 0), 32)
+        self.fc2 = nn.Linear((220 + 220 + 220), 32)
 
         # final fc layer which takes concatenated imput
         self.fc3 = nn.Linear(32, 1)
@@ -247,7 +247,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         # concat image, tabular data and data from language model
         #img, tab_without_age_sex, language_features_compressed
-        x = tab_without_age_sex #torch.cat((img, tab_without_age_sex, language_features_compressed), dim=1)
+        x = torch.cat((img, tab_without_age_sex, language_features_compressed), dim=1)
 
         x = F.relu(self.fc2(x))
 
