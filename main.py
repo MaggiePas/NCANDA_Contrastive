@@ -4,6 +4,8 @@ from pytorch_lightning import Trainer, seed_everything
 from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import LearningRateMonitor
 from medcam import medcam
+import shap 
+import numpy as np
 
 
 from conv3D.model import AdniModel
@@ -147,6 +149,10 @@ def main_language(wandb, wandb_logger):
     print("train samples is", len(train_loader))
     print("val samples is", len(val_loader))
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
+    # e = shap.DeepExplainer(model, train_loader)
+    # shap_values = e.shap_values(val_loader)
+    # shap_numpy = [np.swapaxes(np.swapaxes(s, 1, -1), 1, 2) for s in shap_values]
+    # test_numpy = np.swapaxes(np.swapaxes(test_images.numpy(), 1, -1), 1, 2)
     
 
 def main_center(wandb, wandb_logger):

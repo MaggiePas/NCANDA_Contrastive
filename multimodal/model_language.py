@@ -9,6 +9,7 @@ import pandas as pd
 from transformers import AutoTokenizer, AutoModel
 from transformers import pipeline
 import matplotlib.pyplot as plt
+import shap
 
 import os
 import numpy as np
@@ -31,7 +32,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         self.resnet = resnet10(pretrained=False,
                                spatial_dims=3,
-                               num_classes=220, # might change this one
+                               num_classes=120, # might change this one
                                n_input_channels=1
                                )
         base = 'michiyasunaga/BioLinkBERT-base'
@@ -62,13 +63,13 @@ class MultiModModelWithLanguage(LightningModule):
         # combine resnet with final fc layer
         # self.imagenet = nn.Sequential(self.resnet, self.fc)
         # fc layer that maps language model inputs to smaller dimension
-        self.language_fc = nn.Linear(768, 220)
+        self.language_fc = nn.Linear(768, 120)
 
         # fc layer for tabular data. We substract 31 because age and sex are encoded as sentences
-        self.fc1 = nn.Linear((self.NUM_FEATURES-0), 220)
+        self.fc1 = nn.Linear((self.NUM_FEATURES-0), 120)
 
         # first fc layer which takes concatenated input
-        self.fc2 = nn.Linear((220 + 220 + 220), 32)
+        self.fc2 = nn.Linear((120 + 0 + 0), 32)
 
         # final fc layer which takes concatenated imput
         self.fc3 = nn.Linear(32, 1)
@@ -229,6 +230,7 @@ class MultiModModelWithLanguage(LightningModule):
         
         # # forward tabular data
         tab_without_age_sex = F.relu(self.fc1(tab_without_age_sex))
+        
 
         language_inputs = self.tokenizer(batch_sentences, return_tensors="pt", padding='max_length', truncation=True, max_length=512)
         
@@ -245,13 +247,24 @@ class MultiModModelWithLanguage(LightningModule):
 
         # concat image, tabular data and data from language model
         #img, tab_without_age_sex, language_features_compressed
-        x = torch.cat((img, tab_without_age_sex, language_features_compressed), dim=1)
+        x = img #torch.cat((img, tab_without_age_sex, language_features_compressed), dim=1)
 
         x = F.relu(self.fc2(x))
 
         out = self.fc3(x)
 
         out = torch.squeeze(out)
+        # tab_without_age_sex_np = tab_without_age_sex.detach().cpu().numpy()
+        # img_np = img.detach().cpu().numpy()
+        # x_np = x.detach().cpu().numpy()
+
+        # Initialize the DeepExplainer
+        # explainer = shap.DeepExplainer(model, data=[img_np, tab_without_age_sex_np, x_np])
+
+        # # Compute Shapley values for a specific data point
+        # data_point_idx = 0  # Index of the data point you want to explain
+        # shap_values = explainer.shap_values([img_np[data_point_idx], tab_without_age_sex_np[data_point_idx], x_np[data_point_idx]])
+
 
         return out
 
