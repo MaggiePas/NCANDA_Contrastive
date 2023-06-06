@@ -247,7 +247,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         # concat image, tabular data and data from language model
         #img, tab_without_age_sex, language_features_compressed
-        x = img #torch.cat((img, tab_without_age_sex, language_features_compressed), dim=1)
+        x = tab_without_age_sex #torch.cat((img, tab_without_age_sex, language_features_compressed), dim=1)
 
         x = F.relu(self.fc2(x))
 
@@ -258,7 +258,7 @@ class MultiModModelWithLanguage(LightningModule):
         # img_np = img.detach().cpu().numpy()
         # x_np = x.detach().cpu().numpy()
 
-        # Initialize the DeepExplainer
+        # # Initialize the DeepExplainer
         # explainer = shap.DeepExplainer(model, data=[img_np, tab_without_age_sex_np, x_np])
 
         # # Compute Shapley values for a specific data point
