@@ -124,7 +124,7 @@ def main_language(wandb, wandb_logger):
     '''
     main function to run the multimodal architecture
     '''
-    seed_everything(23)
+    seed_everything(231)
     # load the data
     data = NCANDADataModule()
 
