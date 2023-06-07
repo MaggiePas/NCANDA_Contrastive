@@ -43,10 +43,12 @@ FEATURES = ["cesd_score","sex","visit_age","hispanic","race","ses_parent_yoe","p
 TARGET = 'depressive_symptoms'
 
 IMAGE_SIZE = 64
+#IMAGE_SIZE = 128
 
 NUM_FEATURES = len(FEATURES)
 
-BATCH_SIZE = 2
+#BATCH_SIZE = 2
+BATCH_SIZE = 1
 
 TRAIN_SIZE = 1
 VAL_SIZE = 1

@@ -11,8 +11,8 @@ import pandas as pd
 from torchmetrics.classification import MulticlassAccuracy
 
 
-USE_TAB_DATA = 0
-
+USE_TAB_DATA = 1
+CROSS_CORR = 1
 
 class MultiModModelSwinEnc(LightningModule):
     '''
@@ -49,8 +49,22 @@ class MultiModModelSwinEnc(LightningModule):
 
         # self.swin_fc_layer = nn.Linear(24576, 120)
         # self.swin_fc_layer = nn.Linear(98304, 120)
+        
+        out_channels_0 = 1
+        if IMAGE_SIZE == 128:
+            self.post_swin_conv_0 = nn.Conv3d(
+                in_channels=1,
+                out_channels=60,
+                kernel_size=2,
+                stride=2,
+                padding=0,
+                bias=True
+            )
+            self.post_swin_relu_0 = nn.ReLU()
+            out_channels_0 = 60        
+
         self.post_swin_conv_1 = nn.Conv3d(
-            in_channels=1,
+            in_channels=out_channels_0,
             out_channels=30,
             kernel_size=2,
             stride=2,
@@ -87,14 +101,17 @@ class MultiModModelSwinEnc(LightningModule):
         if USE_TAB_DATA:
             # fc layer for tabular data
             self.fc1 = nn.Linear(self.NUM_FEATURES, 120)
+        
+        self.fc2 = nn.Linear(120, 32)
 
-            # first fc layer which takes concatenated input
-            self.fc2 = nn.Linear((120 + 120), 32)
+        if USE_TAB_DATA:
+            if CROSS_CORR:
+                self.fc3 = nn.Linear(32*2 - 1, 1)
+            else:
+                # final fc layer which takes concatenated input
+                self.fc3 = nn.Linear(64, 1)
         else:
-            self.fc2 = nn.Linear(120, 32)
-
-        # final fc layer which takes concatenated input
-        self.fc3 = nn.Linear(32, 1)
+            self.fc3 = nn.Linear(32, 1)
 
         self.train_macro_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
 
@@ -143,6 +160,11 @@ class MultiModModelSwinEnc(LightningModule):
         # img = torch.flatten(img, start_dim=1)
         # print("image shap after flattening, before swin fc layer", img.shape)
         # img = self.swin_fc_layer(img)
+        
+        if IMAGE_SIZE == 128:
+            img = self.post_swin_conv_0(img)
+            img = self.post_swin_relu_0(img)
+
         img = self.post_swin_conv_1(img)
         img = self.post_swin_relu_1(img)
         img = self.post_swin_maxpool_1(img)
@@ -161,16 +183,26 @@ class MultiModModelSwinEnc(LightningModule):
 
             # forward tabular data
             tab = F.relu(self.fc1(tab))
+            
+            # forward tab through shared fc layer
+            tab = F.relu(self.fc2(tab))
+            
+            # forward image through shared fc layer
+            img = F.relu(self.fc2(img))
 
-            # concat image and tabular data
-            x = torch.cat((img, tab), dim=1)
+            if CROSS_CORR:
+                img = img.unsqueeze(0)
+                tab = tab.unsqueeze(1)
+                x = F.conv1d(img, tab, padding=32-1, groups=img.size(1))
+                x = x.squeeze()
+            else:
+                # concat image and tabular data
+                x = torch.cat((img, tab), dim=1)
 
-            # fc2 is the layer for the concatenated feature vector
-            x = F.relu(self.fc2(x))
         else:
-            x = img
-            x = F.relu(self.fc2(x))
+            x = F.relu(self.fc2(img))
 
+        # forward concatenated feature vector through another fc layer
         out = self.fc3(x)
 
         out = torch.squeeze(out)
