@@ -9,7 +9,7 @@ from multimodal.model import MultiModModel
 import matplotlib.pyplot as plt
 
 
-checkpoint_folder = "swin_UNETR_12_cross_corr_128ImgSize/checkpoints"
+checkpoint_folder = "swin_UNETR_12_cross_corr_128ImgSize"
 checkpoint_file = "epoch=19-step=8480.ckpt"
 checkpoint_path = f'/home/users/tulikaj/NCANDA_Contrastive/lightning_logs/{checkpoint_folder}/checkpoints/{checkpoint_file}'
 layer_name = "swin_enc"
