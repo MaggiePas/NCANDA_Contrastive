@@ -9,8 +9,8 @@ from multimodal.model import MultiModModel
 import matplotlib.pyplot as plt
 
 
-checkpoint_folder = "full_swin_48_pretrained_new"
-checkpoint_file = "epoch=19-step=4240.ckpt"
+checkpoint_folder = "swin_UNETR_12_cross_corr_128ImgSize/checkpoints"
+checkpoint_file = "epoch=19-step=8480.ckpt"
 checkpoint_path = f'/home/users/tulikaj/NCANDA_Contrastive/lightning_logs/{checkpoint_folder}/checkpoints/{checkpoint_file}'
 layer_name = "swin_enc"
 output_dir = f"attention_maps/{checkpoint_folder}/"
@@ -24,20 +24,21 @@ def saliency(img, model):
     model.eval()
     # set input grad to true
     img.requires_grad = True
-    preds = model(input)
+    preds = model(img)
     score, indices = torch.max(preds, 1)
     # backward pass to get gradients of score predicted class w.r.t. input image
     score.backward()
     # get max along channel axis
-    slc, _ = torch.max(torch.abs(input.grad[0]), dim=0)
+    slc, _ = img.grad[1]
     # normalize to [0..1]
     slc = (slc - slc.min()) / (slc.max() - slc.min())
     # plot image and its saliency map in
     return slc
 
 
-# get model from checkpoint
+print("loading model from checkpoint")
 model = MultiModModelSwinEnc.load_from_checkpoint(checkpoint_path)
+print("Done")
 
 # load val data
 data = NCANDADataModule()
