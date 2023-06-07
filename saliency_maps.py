@@ -50,4 +50,16 @@ val_loader = data.val_dataloader()
 for batch in val_loader:
     slc = saliency(batch[0], batch[1], model)
     print(type(slc), slc.shape)
+    # show slices of img and slc
+    img = batch[0]
+    plt.figure(figsize=(10, 10))
+    plt.subplot(1, 2, 1)
+    plt.imshow(np.transpose(img[0, 0, :, :, 64].detach().numpy(), (1, 2, 0)))
+    plt.xticks([])
+    plt.yticks([])
+    plt.subplot(1, 2, 2)
+    plt.imshow(slc[0, 0, :, :, 64].numpy(), cmap=plt.cm.hot)
+    plt.xticks([])
+    plt.yticks([])
+    plt.savefig("saliency_x_y_slice.png")
     break
