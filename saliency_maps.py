@@ -52,6 +52,7 @@ for batch in val_loader:
     print(type(slc), slc.shape)
     # show slices of img and slc
     img = batch[0]
+    """
     plt.figure(figsize=(10, 10))
     plt.subplot(1, 2, 1)
     print(f"shape of img sliced: {img[0, :, :, 64].detach().numpy().shape}")
@@ -64,4 +65,19 @@ for batch in val_loader:
     plt.xticks([])
     plt.yticks([])
     plt.savefig("saliency_x_y_slice.png")
+    """
+
+    # Create a new figure
+    fig, ax = plt.subplots()
+
+    # Plot the base image
+    ax.imshow(img[0, :, :, 64].detach().numpy(), cmap='gray')
+
+    # Plot the overlay image with adjusted transparency
+    ax.imshow(slc[:, :, 64].numpy(), cmap='viridis', vmin=0.4, vmax=1)
+
+    plt.colorbar()
+
+    plt.savefig("saliency_x_y_slice.png")
+
     break
