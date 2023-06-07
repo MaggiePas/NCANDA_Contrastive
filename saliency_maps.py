@@ -74,9 +74,10 @@ for batch in val_loader:
     ax.imshow(img[0, :, :, 64].detach().numpy(), cmap='gray')
 
     # Plot the overlay image with adjusted transparency
-    ax.imshow(slc[:, :, 64].numpy(), cmap='viridis', vmin=0.4, vmax=1)
+    heatmap = ax.imshow(slc[:, :, 64].numpy(), cmap='viridis', vmin=0.4, vmax=1)
 
-    plt.colorbar()
+    # Add a colorbar to the plot using the axes
+    colorbar = plt.colorbar(heatmap, ax=ax)
 
     plt.savefig("saliency_x_y_slice.png")
 
