@@ -49,7 +49,7 @@ class MultiModModelSwinEnc(LightningModule):
 
         # self.swin_fc_layer = nn.Linear(24576, 120)
         # self.swin_fc_layer = nn.Linear(98304, 120)
-        
+        self.post_swin_conv_0, self.post_swin_relu_0 = None, None
         out_channels_0 = 1
         if IMAGE_SIZE == 128:
             self.post_swin_conv_0 = nn.Conv3d(
@@ -177,7 +177,7 @@ class MultiModModelSwinEnc(LightningModule):
 
         img = torch.flatten(img, start_dim=1)
 
-        if USE_TAB_DATA:
+        if USE_TAB_DATA and tab is not None:
             # change the dtype of the tabular data
             tab = tab.to(torch.float32)
 
@@ -199,6 +199,16 @@ class MultiModModelSwinEnc(LightningModule):
                 # concat image and tabular data
                 x = torch.cat((img, tab), dim=1)
 
+        elif USE_TAB_DATA:
+            tab = torch.ones((1, self.NUM_FEATURES), dtype=torch.float32)
+            tab = F.relu(self.fc1(tab))
+            tab = F.relu(self.fc2(tab))
+            img = F.relu(self.fc2(img))
+            
+            img = img.unsqueeze(0)
+            tab = tab.unsqueeze(1)
+            x = F.conv1d(img, tab, padding=32-1, groups=img.size(1))
+            x = x.squeeze()
         else:
             x = F.relu(self.fc2(img))
 

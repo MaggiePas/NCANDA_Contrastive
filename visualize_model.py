@@ -7,12 +7,14 @@ from multimodal_dataset import resize
 from settings import IMAGE_SIZE
 from medcam import medcam
 import os
-from multimodal.model import MultiModModel
+from multimodal.model_swin import MultiModModelSwinEnc
 import matplotlib.pyplot as plt
 
 
-checkpoint_folder = "full_swin_48_pretrained_new"
+checkpoint_folder = "swin_UNETR_12_cross_corr"
+#checkpoint_folder = "e48qyy41"
 checkpoint_file = "epoch=19-step=4240.ckpt"
+#checkpoint_file = "epoch=0-step=424.ckpt"
 checkpoint_path = f'/home/users/tulikaj/NCANDA_Contrastive/lightning_logs/{checkpoint_folder}/checkpoints/{checkpoint_file}'
 layer_name = "swin_enc"
 output_dir = f"attention_maps/{checkpoint_folder}/"
@@ -36,7 +38,8 @@ for batch in val_loader:
     #print(type(batch))
     #print(len(batch))
     #print(batch[0])
-    #print(batch[0].shape)
+    #print(type(batch[0]), type(batch[1]), type(batch[2]), type(batch[3]))
+    #print(batch[0].shape, batch[1].shape, batch[2].shape, batch[3])
     # Every time forward is called, attention maps will be generated and saved in the directory "attention_maps"
     output = model(batch[0])
     break

@@ -13,6 +13,7 @@ from multimodal_dataset_triplet import NCANDADataTripletModule
 from ResNet.model import ResNetModel
 from multimodal.model import MultiModModel
 from multimodal.model_swin import MultiModModelSwinEnc
+from multimodal.model_only_tab import MultiModModelOnlyTab
 from multimodal.model_language import MultiModModelWithLanguage
 from multimodal.daft_model import DAFTModel
 from multimodal.center_model import CenterModel
@@ -71,6 +72,8 @@ def main_multimodal(wandb, wandb_logger):
     val_loader = data.val_dataloader()
 
     # get the model
+    #model = MultiModModel(class_weight=data.class_weight, scaler=data.scaler)
+
     model = MultiModModelSwinEnc(class_weight=data.class_weight, scaler=data.scaler)
 
     # Optional
