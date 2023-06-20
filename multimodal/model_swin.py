@@ -127,6 +127,10 @@ class MultiModModelSwinEnc(LightningModule):
 
         self.test_macro_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
 
+        self.test_F1_score = torchmetrics.F1Score(task='multiclass', num_classes=2)
+
+        self.test_AUROC = torchmetrics.classification.BinaryAUROC(thresholds=None)
+
         self.train_accuracy = torchmetrics.Accuracy(task='multiclass', average='micro', num_classes=2)
 
         self.val_accuracy = torchmetrics.Accuracy(task='multiclass', average='micro', num_classes=2)
@@ -346,23 +350,30 @@ class MultiModModelSwinEnc(LightningModule):
 
         loss_func = torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(self.class_weight).float())
 
-        loss = loss_func(y_pred,
-                         y.squeeze())  # loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze(), pos_weights = )
-
+        loss = loss_func(y_pred, y.squeeze())
         y_pred_tag = torch.round(torch.sigmoid(y_pred))
 
         if BATCH_SIZE == 1:
-
             self.test_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
 
             self.test_macro_accuracy(torch.unsqueeze(y_pred_tag, 0), y)
+
+            self.test_F1_score(torch.unsqueeze(y_pred_tag, 0), y)
+
+            self.test_AUROC(torch.unsqueeze(y_pred_tag, 0), y)
         else:
             self.test_accuracy(y_pred_tag, y)
 
             self.test_macro_accuracy(y_pred_tag, y)
 
+            self.test_F1_score(y_pred_tag, y)
+
+            self.test_AUROC(y_pred_tag, y)
+
         self.log('test_acc_step', self.test_accuracy, on_step=True, on_epoch=False)
         self.log('test_macro_acc_step', self.test_macro_accuracy, on_step=True, on_epoch=True)
+        self.log('test_F1_score', self.test_F1_score, on_step=True, on_epoch=True)
+        self.log('test_AUROC', self.test_AUROC, on_step=True, on_epoch=True)
 
         self.log("test loss", loss)
 
@@ -394,3 +405,8 @@ class MultiModModelSwinEnc(LightningModule):
 
         self.log('val_acc_epoch', self.val_accuracy)
         self.log('val_macro_acc_epoch', self.val_macro_accuracy)
+
+    def test_epoch_end(self, outputs):
+        # log test set evaluation metrics
+        self.log('test_acc_epoch', self.test_accuracy)
+        self.log('test_macro_acc_epoch', self.test_macro_accuracy)

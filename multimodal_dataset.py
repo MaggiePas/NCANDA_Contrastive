@@ -107,19 +107,29 @@ class NCANDADataModule(pl.LightningDataModule):
         all_labels = csv_df[TARGET]
         subjects = csv_df['subject']
         all_labels = np.array(all_labels)
-        train_subj, test_subj, y_train, y_test = train_test_split(subjects, all_labels, stratify=all_labels)
+        train_subj, test_subj, y_train, y_test = train_test_split(subjects,
+                                                                  all_labels,
+                                                                  test_size=0.1,
+                                                                  random_state=0,
+                                                                  shuffle=True,
+                                                                  stratify=all_labels)
+        # now get validation set from train_subj and y_train
+        train_subj, val_subj, y_train, y_val = train_test_split(train_subj,
+                                                                  y_train,
+                                                                  test_size=0.11,
+                                                                  random_state=0,
+                                                                  shuffle=True,
+                                                                  stratify=all_labels)
 
-        return train_subj, test_subj, y_train, y_test
-        
-    
-    def normalize_tabular_data(self, train_index, test_index, csv_file):
+        return train_subj, test_subj, val_subj, y_train, y_test, y_val
 
+    def normalize_tabular_data(self, train_index, test_index, val_index, csv_file):
         scaler = MinMaxScaler(feature_range=(-1, 1))
-
         csv_df = pd.read_csv(csv_file)
 
         train_subjects = csv_df.loc[csv_df['subject'].isin(train_index)]
         test_subjects = csv_df.loc[csv_df['subject'].isin(test_index)]
+        val_subjects = csv_df.loc[csv_df['subject'].isin(val_index)]
 
         # we don't want to normalize based on subject, negative valence and depressive symptoms
         X_train = train_subjects[FEATURES]
@@ -138,7 +148,15 @@ class NCANDADataModule(pl.LightningDataModule):
         X_test.insert(0, 'subject', test_subjects.loc[:, 'subject'], True)
         X_test.insert(1, TARGET, test_subjects.loc[:, TARGET], True)
 
-        return X_train, X_test, scaler
+        X_val = val_subjects[FEATURES]
+        X_val = scaler.transform(X_val)
+
+        X_val = pd.DataFrame(data=X_val, columns=FEATURES)
+        X_val = X_val.set_index(val_subjects.index)
+        X_val.insert(0, 'subject', val_subjects.loc[:, 'subject'], True)
+        X_val.insert(1, TARGET, val_subjects.loc[:, TARGET], True)
+
+        return X_train, X_test, X_val, scaler
     
     def calculate_class_weight(self, X_train):
 
@@ -153,9 +171,9 @@ class NCANDADataModule(pl.LightningDataModule):
 
     def prepare_data(self):
 
-        train_subj, test_subj, y_train, y_test = self.get_stratified_split(CSV_FILE)
+        train_subj, test_subj, val_subj, y_train, y_test, y_val = self.get_stratified_split(CSV_FILE)
         
-        X_train, X_test, self.scaler = self.normalize_tabular_data(train_subj, test_subj, CSV_FILE)
+        X_train, X_test, X_val, self.scaler = self.normalize_tabular_data(train_subj, test_subj, val_subj, CSV_FILE)
         
         self.class_weight = self.calculate_class_weight(X_train)
 
@@ -165,12 +183,19 @@ class NCANDADataModule(pl.LightningDataModule):
 
         print(f'Train dataset length: {self.train.__len__()}')
 
-        self.validation = NCANDADataset(image_dir=IMAGE_PATH,
-                                        input_tabular=X_test, transform=transformation,
-                                        target_transform=target_transformations)
+        self.test = NCANDADataset(image_dir=IMAGE_PATH,
+                                  input_tabular=X_test, transform=transformation,
+                                  target_transform=target_transformations)
                                         
+        print(f'Test dataset length: {self.test.__len__()}')
+
+        self.validation = NCANDADataset(image_dir=IMAGE_PATH,
+                                        input_tabular=X_val, transform=transformation,
+                                        target_transform=target_transformations)
+
         print(f'Validation dataset length: {self.validation.__len__()}')
-        self.test = self.validation
+
+        #self.test = self.validation
 
     def train_dataloader(self):
         return DataLoader(self.train, batch_size=BATCH_SIZE, shuffle=True, num_workers=1, drop_last = True)
