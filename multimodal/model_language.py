@@ -288,24 +288,29 @@ class MultiModModelWithLanguage(LightningModule):
 
     #     return batch_sentences
 
-    def backtranslate(paragraph, source_lang, target_lang):
+    def backtranslate_sentences(sentences, source_lang, target_lang):
         translate_client = translate.Client()
 
-        # Translate the paragraph to the target language
-        translation = translate_client.translate(
-            paragraph,
-            target_language=target_lang
-        )
-        translated_text = translation['translatedText']
+        translated_sentences = []
 
-        # Translate the text back to the source language
-        back_translation = translate_client.translate(
-            translated_text,
-            target_language=source_lang
-        )
-        backtranslated_text = back_translation['translatedText']
+        for sentence in sentences:
+            # Translate the sentence to the target language
+            translation = translate_client.translate(
+                sentence,
+                target_language=target_lang
+            )
+            translated_text = translation['translatedText']
 
-        return backtranslated_text
+            # Translate the text back to the source language
+            back_translation = translate_client.translate(
+                translated_text,
+                target_language=source_lang
+            )
+            backtranslated_text = back_translation['translatedText']
+
+            translated_sentences.append(backtranslated_text)
+
+        return translated_sentences
 
     def get_batch_sentences(self, tabular_to_encode):
         # return_tensors pt means pytorch
@@ -665,7 +670,7 @@ class MultiModModelWithLanguage(LightningModule):
         source_lang = "en"  # Source language is English
         target_lang = "fr"  # Target language is French
 
-        augmented_paragraphs = backtranslate(batch_sentences, source_lang, target_lang)
+        augmented_paragraphs = backtranslate_sentences(batch_sentences, source_lang, target_lang)
 
         return augmented_paragraphs
 
