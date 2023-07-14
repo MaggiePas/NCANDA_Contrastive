@@ -10,7 +10,7 @@ from transformers import AutoTokenizer, AutoModel
 from transformers import pipeline
 import matplotlib.pyplot as plt
 import shap
-from google.cloud import translate_v2 as translate
+# from google.cloud import translate_v2 as translate
 import random
 
 
