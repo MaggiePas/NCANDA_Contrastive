@@ -288,7 +288,7 @@ class MultiModModelWithLanguage(LightningModule):
 
     #     return batch_sentences
 
-    def backtranslate_sentences(sentences, source_lang, target_lang):
+    def backtranslate_sentences(self, sentences, source_lang, target_lang):
         translate_client = translate.Client()
 
         translated_sentences = []
