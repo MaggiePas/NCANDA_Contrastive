@@ -670,7 +670,7 @@ class MultiModModelWithLanguage(LightningModule):
         source_lang = "en"  # Source language is English
         target_lang = "fr"  # Target language is French
 
-        augmented_paragraphs = backtranslate_sentences(batch_sentences, source_lang, target_lang)
+        augmented_paragraphs = self.backtranslate_sentences(batch_sentences, source_lang, target_lang)
 
         return augmented_paragraphs
 
