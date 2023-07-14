@@ -11,6 +11,7 @@ from transformers import pipeline
 import matplotlib.pyplot as plt
 import shap
 from google.cloud import translate_v2 as translate
+import random
 
 
 import os
@@ -311,6 +312,12 @@ class MultiModModelWithLanguage(LightningModule):
             translated_sentences.append(backtranslated_text)
 
         return translated_sentences
+
+    def shuffle_sentences(self, paragraph):
+        sentences = paragraph.split('. ')  # Split the paragraph into sentences
+        random.shuffle(sentences)  # Shuffle the order of sentences
+        shuffled_paragraph = '. '.join(sentences)  # Rejoin the shuffled sentences
+        return shuffled_paragraph
 
     def get_batch_sentences(self, tabular_to_encode):
         # return_tensors pt means pytorch
@@ -670,7 +677,8 @@ class MultiModModelWithLanguage(LightningModule):
         source_lang = "en"  # Source language is English
         target_lang = "fr"  # Target language is French
 
-        augmented_paragraphs = self.backtranslate_sentences(batch_sentences, source_lang, target_lang)
+        augmented_paragraphs = self.shuffle_sentences(batch_sentences)
+        # augmented_paragraphs = self.backtranslate_sentences(batch_sentences, source_lang, target_lang)
 
         return augmented_paragraphs
 
