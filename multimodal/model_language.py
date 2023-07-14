@@ -10,6 +10,8 @@ from transformers import AutoTokenizer, AutoModel
 from transformers import pipeline
 import matplotlib.pyplot as plt
 import shap
+from google.cloud import translate_v2 as translate
+
 
 import os
 import numpy as np
@@ -285,6 +287,25 @@ class MultiModModelWithLanguage(LightningModule):
     #     batch_sentences = ["This subject is " + pair[0] + " and " + str(pair[1]) + " years old" for pair in batch_pairs]
 
     #     return batch_sentences
+
+    def backtranslate(paragraph, source_lang, target_lang):
+        translate_client = translate.Client()
+
+        # Translate the paragraph to the target language
+        translation = translate_client.translate(
+            paragraph,
+            target_language=target_lang
+        )
+        translated_text = translation['translatedText']
+
+        # Translate the text back to the source language
+        back_translation = translate_client.translate(
+            translated_text,
+            target_language=source_lang
+        )
+        backtranslated_text = back_translation['translatedText']
+
+        return backtranslated_text
 
     def get_batch_sentences(self, tabular_to_encode):
         # return_tensors pt means pytorch
@@ -638,7 +659,15 @@ class MultiModModelWithLanguage(LightningModule):
             truncated_string = string#[:400]
         #     padded_string = truncated_string.ljust(max_length, " ")
             padded_strings.append(truncated_string)
-        return padded_strings
+
+
+        # Example usage
+        source_lang = "en"  # Source language is English
+        target_lang = "fr"  # Target language is French
+
+        augmented_paragraphs = backtranslate(batch_sentences, source_lang, target_lang)
+
+        return augmented_paragraphs
 
     def configure_optimizers(self):
 
