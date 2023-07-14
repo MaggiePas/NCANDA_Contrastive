@@ -313,11 +313,15 @@ class MultiModModelWithLanguage(LightningModule):
 
     #     return translated_sentences
 
-    def shuffle_sentences(self, paragraph):
-        sentences = paragraph.split('. ')  # Split the paragraph into sentences
-        random.shuffle(sentences)  # Shuffle the order of sentences
-        shuffled_paragraph = '. '.join(sentences)  # Rejoin the shuffled sentences
-        return shuffled_paragraph
+    def shuffle_sentences(self, paragraphs):
+        shuffled_paragraphs = []
+        for paragraph in paragraphs:
+            sentences = paragraph.split('. ')
+            # Split the paragraph into sentences
+            random.shuffle(sentences)  # Shuffle the order of sentences
+            shuffled_paragraph = '. '.join(sentences)  # Rejoin the shuffled sentences
+            shuffled_paragraphs.append(shuffled_paragraph)
+        return shuffled_paragraphs
 
     def get_batch_sentences(self, tabular_to_encode):
         # return_tensors pt means pytorch
@@ -678,8 +682,10 @@ class MultiModModelWithLanguage(LightningModule):
         target_lang = "fr"  # Target language is French
 
         augmented_paragraphs = self.shuffle_sentences(batch_sentences)
+        #choose between english and french randomly 
         # augmented_paragraphs = self.backtranslate_sentences(batch_sentences, source_lang, target_lang)
 
+        #separately, then together
         return augmented_paragraphs
 
     def configure_optimizers(self):
