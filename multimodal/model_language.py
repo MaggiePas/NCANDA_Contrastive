@@ -10,7 +10,7 @@ from transformers import AutoTokenizer, AutoModel
 from transformers import pipeline
 import matplotlib.pyplot as plt
 import shap
-# from google.cloud import translate_v2 as translate
+from google.cloud import translate_v2 as translate
 import random
 
 
@@ -289,39 +289,39 @@ class MultiModModelWithLanguage(LightningModule):
 
     #     return batch_sentences
 
-    # def backtranslate_sentences(self, sentences, source_lang, target_lang):
-    #     translate_client = translate.Client()
+    def backtranslate_sentences(self, sentences, source_lang, target_lang):
+        translate_client = translate.Client()
 
-    #     translated_sentences = []
+        translated_sentences = []
 
-    #     for sentence in sentences:
-    #         # Translate the sentence to the target language
-    #         translation = translate_client.translate(
-    #             sentence,
-    #             target_language=target_lang
-    #         )
-    #         translated_text = translation['translatedText']
+        for sentence in sentences:
+            # Translate the sentence to the target language
+            translation = translate_client.translate(
+                sentence,
+                target_language=target_lang
+            )
+            translated_text = translation['translatedText']
 
-    #         # Translate the text back to the source language
-    #         back_translation = translate_client.translate(
-    #             translated_text,
-    #             target_language=source_lang
-    #         )
-    #         backtranslated_text = back_translation['translatedText']
+            # Translate the text back to the source language
+            back_translation = translate_client.translate(
+                translated_text,
+                target_language=source_lang
+            )
+            backtranslated_text = back_translation['translatedText']
 
-    #         translated_sentences.append(backtranslated_text)
+            translated_sentences.append(backtranslated_text)
 
-    #     return translated_sentences
+        return translated_sentences
 
-    def shuffle_sentences(self, paragraphs):
-        shuffled_paragraphs = []
-        for paragraph in paragraphs:
-            sentences = paragraph.split('. ')
-            # Split the paragraph into sentences
-            random.shuffle(sentences)  # Shuffle the order of sentences
-            shuffled_paragraph = '. '.join(sentences)  # Rejoin the shuffled sentences
-            shuffled_paragraphs.append(shuffled_paragraph)
-        return shuffled_paragraphs
+    # def shuffle_sentences(self, paragraphs):
+    #     shuffled_paragraphs = []
+    #     for paragraph in paragraphs:
+    #         sentences = paragraph.split('. ')
+    #         # Split the paragraph into sentences
+    #         random.shuffle(sentences)  # Shuffle the order of sentences
+    #         shuffled_paragraph = '. '.join(sentences)  # Rejoin the shuffled sentences
+    #         shuffled_paragraphs.append(shuffled_paragraph)
+    #     return shuffled_paragraphs
 
     def get_batch_sentences(self, tabular_to_encode):
         # return_tensors pt means pytorch
