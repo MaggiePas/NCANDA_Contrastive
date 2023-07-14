@@ -289,29 +289,29 @@ class MultiModModelWithLanguage(LightningModule):
 
     #     return batch_sentences
 
-    def backtranslate_sentences(self, sentences, source_lang, target_lang):
-        translate_client = translate.Client()
+    # def backtranslate_sentences(self, sentences, source_lang, target_lang):
+    #     translate_client = translate.Client()
 
-        translated_sentences = []
+    #     translated_sentences = []
 
-        for sentence in sentences:
-            # Translate the sentence to the target language
-            translation = translate_client.translate(
-                sentence,
-                target_language=target_lang
-            )
-            translated_text = translation['translatedText']
+    #     for sentence in sentences:
+    #         # Translate the sentence to the target language
+    #         translation = translate_client.translate(
+    #             sentence,
+    #             target_language=target_lang
+    #         )
+    #         translated_text = translation['translatedText']
 
-            # Translate the text back to the source language
-            back_translation = translate_client.translate(
-                translated_text,
-                target_language=source_lang
-            )
-            backtranslated_text = back_translation['translatedText']
+    #         # Translate the text back to the source language
+    #         back_translation = translate_client.translate(
+    #             translated_text,
+    #             target_language=source_lang
+    #         )
+    #         backtranslated_text = back_translation['translatedText']
 
-            translated_sentences.append(backtranslated_text)
+    #         translated_sentences.append(backtranslated_text)
 
-        return translated_sentences
+    #     return translated_sentences
 
     def shuffle_sentences(self, paragraph):
         sentences = paragraph.split('. ')  # Split the paragraph into sentences
