@@ -320,6 +320,10 @@ class MultiModModelWithLanguage(LightningModule):
             # Split the paragraph into sentences
             random.shuffle(sentences)  # Shuffle the order of sentences
             shuffled_paragraph = '. '.join(sentences)  # Rejoin the shuffled sentences
+            for _ in range (10):
+                random.shuffle(sentences)
+                temp = '. '.join(sentences)
+                shuffled_paragraph += temp
             shuffled_paragraphs.append(shuffled_paragraph)
         return shuffled_paragraphs
 
