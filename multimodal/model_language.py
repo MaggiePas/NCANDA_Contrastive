@@ -348,12 +348,12 @@ class MultiModModelWithLanguage(LightningModule):
         for _ in range(num_replacements):
             selected_word = None
             while not selected_word:
-                word_index = nltk.rand.randint(0, len(words) - 1)
+                word_index = random.randint(0, len(words) - 1)
                 selected_word = words[word_index]
                 synonyms = self.get_synonyms(selected_word)
 
             if synonyms:
-                synonym = nltk.rand.choice(synonyms)
+                synonym = random.choice(synonyms)
                 words[word_index] = synonym
 
             augmented_sentences.append(" ".join(words))
