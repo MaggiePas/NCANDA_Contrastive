@@ -14,6 +14,7 @@ from google.cloud import translate_v2 as translate
 import random
 import nltk
 from nltk.corpus import wordnet
+nltk.download('wordnet')
 
 
 import os
