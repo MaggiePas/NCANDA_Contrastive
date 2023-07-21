@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 import shap
 from google.cloud import translate_v2 as translate
 import random
+import nltk
+from nltk.corpus import wordnet
 
 
 import os
@@ -326,8 +328,7 @@ class MultiModModelWithLanguage(LightningModule):
                 shuffled_paragraph += temp
             shuffled_paragraphs.append(shuffled_paragraph)
         return shuffled_paragraphs
-    import nltk
-    from nltk.corpus import wordnet
+    
 
     # Function to get synonyms of a word
     def get_synonyms(self, word):
