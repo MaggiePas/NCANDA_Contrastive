@@ -15,6 +15,7 @@ import random
 import nltk
 from nltk.corpus import wordnet
 nltk.download('wordnet')
+nltk.download('punkt')
 
 
 import os
