@@ -326,6 +326,45 @@ class MultiModModelWithLanguage(LightningModule):
                 shuffled_paragraph += temp
             shuffled_paragraphs.append(shuffled_paragraph)
         return shuffled_paragraphs
+    import nltk
+    from nltk.corpus import wordnet
+
+    # Function to get synonyms of a word
+    def get_synonyms(self, word):
+        synonyms = set()
+        for syn in wordnet.synsets(word):
+            for lemma in syn.lemmas():
+                synonyms.add(lemma.name())
+        return list(synonyms)
+
+    # Function to perform synonym replacement in a sentence
+    def synonym_replacement(self, sentence, num_replacements=5):
+        words = nltk.word_tokenize(sentence)
+        augmented_sentences = [sentence]
+
+        for _ in range(num_replacements):
+            selected_word = None
+            while not selected_word:
+                word_index = nltk.rand.randint(0, len(words) - 1)
+                selected_word = words[word_index]
+                synonyms = self.get_synonyms(selected_word)
+
+            if synonyms:
+                synonym = nltk.rand.choice(synonyms)
+                words[word_index] = synonym
+
+            augmented_sentences.append(" ".join(words))
+
+        return augmented_sentences
+    def augment_paragraphs(self, paragraphs, num_replacements=1):
+        augmented_paragraphs = []
+        for paragraph in paragraphs:
+            sentences = nltk.sent_tokenize(paragraph)
+            augmented_sentences = []
+            for sentence in sentences:
+                augmented_sentences.extend(self.synonym_replacement(sentence, num_replacements))
+            augmented_paragraphs.append(" ".join(augmented_sentences))
+        return augmented_paragraphs
 
     def get_batch_sentences(self, tabular_to_encode):
         # return_tensors pt means pytorch
@@ -687,8 +726,9 @@ class MultiModModelWithLanguage(LightningModule):
 
         # augmented_paragraphs = self.shuffle_sentences(batch_sentences)
         #choose between english and french randomly 
-        augmented_paragraphs = self.backtranslate_sentences(batch_sentences, source_lang, target_lang)
-
+        # augmented_paragraphs = self.backtranslate_sentences(batch_sentences, source_lang, target_lang)
+        
+        augmented_paragraphs = self.augment_paragraphs(batch_sentences)
         #separately, then together
         return augmented_paragraphs
 
