@@ -747,7 +747,7 @@ class MultiModModelWithLanguage(LightningModule):
     def training_step(self, batch, batch_idx):
 
         img, tab, y, subject_id = batch
-        img_cpu = img.detach().cpu().numpy()
+        img.detach().cpu().numpy()
         # print(subject_id)
 
         # print(y)
@@ -759,10 +759,11 @@ class MultiModModelWithLanguage(LightningModule):
             scales=(0.9, 1.2),
             degrees=10,
         )
-        # temp = img[0]
-        # image_data_new = temp.reshape(1, 64, 64, 64)
-        transformed = transform(img_cpu)
-        img = transformed
+        temp = img[0]
+        image_data_new = temp.reshape(1, 64, 64, 64)
+        transformed = transform(image_data_new)
+        img[0] = transformed
+        img = torch.from_numpy(img)
 
 
         y = y.to(torch.float32)

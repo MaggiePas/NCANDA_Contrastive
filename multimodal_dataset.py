@@ -87,6 +87,17 @@ class NCANDADataset(Dataset):
         image = image / image.max()
 
         image = resize(image, (IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE))
+
+        # if (self.do_transform):
+        #     transform = tio.RandomAffine(
+        #     scales=(0.9, 1.2),
+        #     degrees=10,
+        # )
+        # temp = img[0]
+        # image_data_new = temp.reshape(1, 64, 64, 64)
+        # transformed = transform(image_data_new)
+        # img = transformed
+
         
         label = self.y.values[idx]
         tab = self.X.values[idx]
