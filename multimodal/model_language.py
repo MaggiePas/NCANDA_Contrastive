@@ -747,21 +747,22 @@ class MultiModModelWithLanguage(LightningModule):
     def training_step(self, batch, batch_idx):
 
         img, tab, y, subject_id = batch
-        print(subject_id)
+        image_data_new = img
+        # print(subject_id)
 
-        print(y)
-        print("talking to the image")
-        img.clone().detach()
-        print(img.shape)
+        # print(y)
+        # print("talking to the image")
+        # img.clone().detach()
+        # print(img.shape)
         # image_data = img.get_fdata()
         transform = tio.RandomAffine(
             scales=(0.9, 1.2),
             degrees=10,
         )
-        temp = img[0]
-        image_data_new = temp.reshape(1, 64, 64, 64)
+        # temp = img[0]
+        # image_data_new = temp.reshape(1, 64, 64, 64)
         transformed = transform(image_data_new)
-        img[0] = transformed
+        img = transformed
 
 
         y = y.to(torch.float32)
