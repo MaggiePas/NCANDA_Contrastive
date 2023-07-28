@@ -758,7 +758,7 @@ class MultiModModelWithLanguage(LightningModule):
             scales=(0.9, 1.2),
             degrees=10,
         )
-        image_data_new = img.reshape(1, 240, 240, 240)
+        # image_data_new = img.reshape(1, 240, 240, 240)
         transformed = transform(img)
         img = transformed
 
