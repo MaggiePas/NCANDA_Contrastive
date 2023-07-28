@@ -751,6 +751,7 @@ class MultiModModelWithLanguage(LightningModule):
 
         print(y)
         print("talking to the image")
+        img = torch.tensor(img).float()
         image_data = img.get_fdata()
         transform = tio.RandomAffine(
             scales=(0.9, 1.2),
@@ -760,7 +761,6 @@ class MultiModModelWithLanguage(LightningModule):
         transformed = transform(image_data_new)
         img = transformed
 
-        # img = torch.tensor(img).float()
 
         y = y.to(torch.float32)
 
