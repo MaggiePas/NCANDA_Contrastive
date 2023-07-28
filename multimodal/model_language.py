@@ -747,7 +747,7 @@ class MultiModModelWithLanguage(LightningModule):
     def training_step(self, batch, batch_idx):
 
         img, tab, y, subject_id = batch
-        img_cpu = img.cpu()
+        img_cpu = img.detach().cpu().numpy()
         # print(subject_id)
 
         # print(y)
