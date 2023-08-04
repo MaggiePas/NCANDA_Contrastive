@@ -92,7 +92,14 @@ class NCANDADataset(Dataset):
             transform = tio.RandomAffine(
             scales=(0.9, 1.2),
             degrees=10,
-        )
+            )
+            image = tio.ScalarImage(tensor=image)
+
+            # Apply the transformation to the image
+            transformed_image = transform(image)
+
+            # Access the transformed image as a Torch tensor
+            image = transformed_image.data
             
             # temp = img[0]
             # image_data_new = temp.reshape(1, 64, 64, 64)
