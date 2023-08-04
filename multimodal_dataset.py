@@ -93,13 +93,22 @@ class NCANDADataset(Dataset):
             scales=(0.9, 1.2),
             degrees=10,
             )
-            image = tio.ScalarImage(tensor=image)
+            image = torch.tensor(image)
+
+            # Add a singleton channel dimension to convert it to 4D
+            image = torch.unsqueeze(image, 0)
+
+            # Convert the Torch tensor to a TorchIO ScalarImage
+            tio_image = tio.ScalarImage(tensor=image)
 
             # Apply the transformation to the image
-            transformed_image = transform(image)
+            transformed_image = transform(tio_image)
 
             # Access the transformed image as a Torch tensor
-            image = transformed_image.data
+            image = transformed_image.data.squeeze(0)
+
+            # Convert the Torch tensor back to a NumPy array
+            image = image.numpy()
             
             # temp = img[0]
             # image_data_new = temp.reshape(1, 64, 64, 64)
