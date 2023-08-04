@@ -745,9 +745,10 @@ class MultiModModelWithLanguage(LightningModule):
         return [optimizer], [lr_scheduler]
 
     def training_step(self, batch, batch_idx):
+        self.do_transform = True
 
         img, tab, y, subject_id = batch
-        img_cpu = img.detach().cpu().numpy()
+        # img_cpu = img.detach().cpu().numpy()
         # print(subject_id)
 
         # print(y)
@@ -755,15 +756,15 @@ class MultiModModelWithLanguage(LightningModule):
         # img.clone().detach()
         # print(img.shape)
         # image_data = img.get_fdata()
-        transform = tio.RandomAffine(
-            scales=(0.9, 1.2),
-            degrees=10,
-        )
-        temp = img_cpu[0]
-        image_data_new = temp.reshape(1, 64, 64, 64)
-        transformed = transform(image_data_new)
-        img_cpu[0] = transformed[0]
-        img = torch.from_numpy(img_cpu)
+        # transform = tio.RandomAffine(
+        #     scales=(0.9, 1.2),
+        #     degrees=10,
+        # )
+        # temp = img_cpu[0]
+        # image_data_new = temp.reshape(1, 64, 64, 64)
+        # transformed = transform(image_data_new)
+        # img_cpu[0] = transformed[0]
+        # img = torch.from_numpy(img_cpu)
 
 
         y = y.to(torch.float32)
@@ -812,6 +813,7 @@ class MultiModModelWithLanguage(LightningModule):
         return loss
 
     def validation_step(self, batch, batch_idx):
+        self.do_transform = False
 
 
         img, tab, y, subject_id = batch
@@ -862,6 +864,7 @@ class MultiModModelWithLanguage(LightningModule):
         return loss
 
     def test_step(self, batch, batch_idx):
+        self.do_transform = False
 
         img, tab, y, subject_id = batch
         y = y.to(torch.float32)
