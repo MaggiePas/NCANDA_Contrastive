@@ -39,6 +39,7 @@ class MultiModModelWithLanguage(LightningModule):
         self.class_weight = class_weight
 
         self.scaler = scaler
+        self.do_transform = True
 
         self.resnet = resnet10(pretrained=False,
                                spatial_dims=3,
