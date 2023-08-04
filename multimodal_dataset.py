@@ -88,7 +88,7 @@ class NCANDADataset(Dataset):
 
         image = resize(image, (IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE))
 
-        if (self.transform):
+        if (self.transform and np.random.choice([0, 1]) == 0 ):
             transform = tio.RandomAffine(
             scales=(0.9, 1.2),
             degrees=10,
