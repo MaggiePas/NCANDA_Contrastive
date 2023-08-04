@@ -148,6 +148,8 @@ def main_language(wandb, wandb_logger):
     trainer = Trainer(max_epochs=60, logger=wandb_logger, log_every_n_steps=1, callbacks=[lr_monitor], accelerator=device, devices=1)
     print("train samples is", len(train_loader))
     print("val samples is", len(val_loader))
+    model.do_transform = True
+
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
     # e = shap.DeepExplainer(model, train_loader)
     # shap_values = e.shap_values(val_loader)
