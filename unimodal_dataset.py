@@ -108,7 +108,7 @@ class ASDataset(Dataset):
         image = np.array(image, dtype=np.float32)
 
         # scale images between [0,1]
-        # image = image[0:53, 100:350, 175:425]
+        image = image[0:53, 100:350, 175:425]
 
         image = image / image.max()
 

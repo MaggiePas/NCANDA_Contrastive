@@ -2,9 +2,6 @@ import nibabel as nib
 import numpy as np
 import pandas as pd
 
-IMAGE_PATH = r'/scratch/users/ewesel/data'
-IMAGE_SIZE = 128
-IMAGE_SIZE0 = 53
 
 import wandb
 import os
@@ -76,8 +73,6 @@ if __name__ == '__main__':
     # }
 
     wandb_logger = WandbLogger(wandb.init(project="ncanda-emily", entity="ewesel"))
-    df = pd.read_excel("scores.xlsx")
-
 
     # run conv3d
     # main_conv3d(wandb, wandb_logger)
