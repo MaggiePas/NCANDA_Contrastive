@@ -158,7 +158,7 @@ class ASDataModule(pl.LightningDataModule):
         super().__init__()
 
     def get_stratified_split(self, csv_file):
-        df = pd.read_csv("scores.csv")
+        df = pd.read_csv(csv_file)
         df['total_bin'] = df['total'].apply(categorize_total)
         all_labels = df[TARGET]
         subjects = df['filename']
