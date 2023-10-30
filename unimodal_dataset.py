@@ -11,10 +11,11 @@ from sklearn.model_selection import train_test_split
 
 
 from settings import CSV_FILE, IMAGE_PATH, IMAGE_SIZE, VAL_SIZE, TEST_SIZE, FEATURES, TARGET, BATCH_SIZE, transformation, target_transformations
-IMAGE_PATH = r'/scratch/users/ewesel/data'
+IMAGE_PATH = r'/scratch/users/ewesel/data/processed_images'
+CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
 IMAGE_SIZE = 128
 IMAGE_SIZE0 = 53
-TARGET = 'M0_'
+TARGET = 'total_bin'
 from torch.utils.data import DataLoader
 from scipy.interpolate import interpn
 from sklearn.preprocessing import MinMaxScaler
@@ -76,18 +77,17 @@ class ASDataset(Dataset):
         self.image_dir = image_dir
         self.transform = transform
         self.target_transform = target_transform
-        self.input_tab = input_tabular
-        self.y = self.input_tab[TARGET]
-        self.X = self.input_tab[FEATURES]
-        df = pd.read_excel("scores.xlsx")
+        # self.input_tab = input_tabular
+        self.X = list(df["filename"])
+        df = pd.read_csv("scores.csv")
         df['total_bin'] = df['total'].apply(categorize_total)
         labels = list(df['total_bin'])
         labels.insert(0, 1)
 
-        self.labels = labels
+        self.y = labels
 
     def __len__(self):
-        return len(self.input_tab)
+        return 49#len(self.X)
 
     def __getitem__(self, idx):
         # Convert idx from tensor to list due to pandas bug (that arises when using pytorch's random_split)
@@ -95,7 +95,7 @@ class ASDataset(Dataset):
             idx = idx.tolist()
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
-        image_name = os.path.join(self.image_dir, self.input_tab.iloc[idx, 0])
+        image_name = os.path.join(self.image_dir, 'M0_')#self.input_tab.iloc[idx, 0])
 
         subject_id = self.input_tab.iloc[idx, 0]
 
@@ -143,12 +143,13 @@ class ASDataset(Dataset):
 
         
         label = self.y.values[idx]
-        tab = self.X.values[idx]
+        # tab = self.X.values[idx]
 
         if self.target_transform:
             label = self.target_transform(label)
 
-        return image, tab, label, subject_id
+        # return image, tab, label, subject_id
+        return image, label, subject_id
 
 
 class ASDataModule(pl.LightningDataModule):
@@ -157,43 +158,15 @@ class ASDataModule(pl.LightningDataModule):
         super().__init__()
 
     def get_stratified_split(self, csv_file):
-        csv_df = pd.read_csv(csv_file)
-        all_labels = csv_df[TARGET]
-        subjects = csv_df['subject']
+        df = pd.read_csv("scores.csv")
+        df['total_bin'] = df['total'].apply(categorize_total)
+        all_labels = df[TARGET]
+        subjects = df['filename']
         all_labels = np.array(all_labels)
         train_subj, test_subj, y_train, y_test = train_test_split(subjects, all_labels, stratify=all_labels)
 
         return train_subj, test_subj, y_train, y_test
         
-    
-    def normalize_tabular_data(self, train_index, test_index, csv_file):
-
-        scaler = MinMaxScaler(feature_range=(-1, 1))
-
-        csv_df = pd.read_csv(csv_file)
-
-        train_subjects = csv_df.loc[csv_df['subject'].isin(train_index)]
-        test_subjects = csv_df.loc[csv_df['subject'].isin(test_index)]
-
-        # we don't want to normalize based on subject, negative valence and depressive symptoms
-        X_train = train_subjects[FEATURES]
-        X_train = scaler.fit_transform(X_train)
-
-        X_train = pd.DataFrame(data=X_train, columns=FEATURES)
-        X_train = X_train.set_index(train_subjects.index)
-        X_train.insert(0, 'subject', train_subjects.loc[:, 'subject'], True)
-        X_train.insert(1, TARGET, train_subjects.loc[:, TARGET], True)
-
-        X_test = test_subjects[FEATURES]
-        X_test = scaler.transform(X_test)
-
-        X_test = pd.DataFrame(data=X_test, columns=FEATURES)
-        X_test = X_test.set_index(test_subjects.index)
-        X_test.insert(0, 'subject', test_subjects.loc[:, 'subject'], True)
-        X_test.insert(1, TARGET, test_subjects.loc[:, TARGET], True)
-
-        return X_train, X_test, scaler
-    
     def calculate_class_weight(self, X_train):
 
         y_train = X_train.loc[:, TARGET]
@@ -211,7 +184,7 @@ class ASDataModule(pl.LightningDataModule):
         
         X_train, X_test, self.scaler = self.normalize_tabular_data(train_subj, test_subj, CSV_FILE)
         
-        self.class_weight = self.calculate_class_weight(X_train)
+        # self.class_weight = self.calculate_class_weight(X_train)
 
         self.train = ASDataset(image_dir=IMAGE_PATH,
                                    input_tabular=X_train, transform=transformation,
