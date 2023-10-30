@@ -7,7 +7,8 @@ import torchio as tio
 import pytorch_lightning as pl
 import numpy as np
 from sklearn.model_selection import train_test_split
-
+import warnings
+warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 
 
 from settings import CSV_FILE, IMAGE_PATH, IMAGE_SIZE, VAL_SIZE, TEST_SIZE, FEATURES, TARGET, BATCH_SIZE, transformation, target_transformations
@@ -23,8 +24,7 @@ from sklearn.preprocessing import MinMaxScaler
 def resize(mat, new_size, interp_mode='linear'):
     """
     resize: resamples a "matrix" of spatial samples to a desired "resolution" or spatial sampling frequency via interpolation
-    Args:
-        mat:                matrix to be "resized" i.e. resampled
+    Args:        mat:                matrix to be "resized" i.e. resampled
         new_size:         desired output resolution
         interp_mode:        interpolation method
     Returns:
@@ -79,7 +79,7 @@ class ASDataset(Dataset):
         self.target_transform = target_transform
         # self.input_tab = input_tabular
         self.X = list(df["filename"])
-        df = pd.read_csv("scores.csv")
+        df = pd.read_csv(CSV_FILE)
         df['total_bin'] = df['total'].apply(categorize_total)
         labels = list(df['total_bin'])
         labels.insert(0, 1)
