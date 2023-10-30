@@ -91,7 +91,7 @@ class NCANDADatasetTriplet(Dataset):
         # scale images between [0,1]
         image = image / image.max()
         # print(f'Old size: {np.shape(image)}')
-        image = resize(image, (IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE))
+        image = resize(image, (IMAGE_SIZE, IMAGE_SIZE, IMAGE_SIZE)) #128, 128 or even 64
         # print(f'New size: {np.shape(image)}')
         subject_data = self.input_tab.loc[self.input_tab['subject'] == subject_id]
         label = subject_data['depressive_symptoms'].values[0]
