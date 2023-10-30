@@ -161,7 +161,7 @@ class ASDataModule(pl.LightningDataModule):
         df = pd.read_csv(csv_file)
         df['total_bin'] = df['total'].apply(categorize_total)
         all_labels = df[TARGET]
-        subjects = df['filename']
+        subjects = df['filename ']
         all_labels = np.array(all_labels)
         train_subj, test_subj, y_train, y_test = train_test_split(subjects, all_labels, stratify=all_labels)
 
