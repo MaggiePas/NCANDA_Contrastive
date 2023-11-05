@@ -118,9 +118,8 @@ class ASDataset(Dataset):
         image = image / image.max()
 
         image = resize(image, (IMAGE_SIZE0, IMAGE_SIZE, IMAGE_SIZE))
-
         
-        label = self.y.values[idx]
+        label = self.labels[idx]
         # tab = self.X.values[idx]
 
         if self.target_transform:
