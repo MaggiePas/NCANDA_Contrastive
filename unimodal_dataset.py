@@ -79,17 +79,13 @@ class ASDataset(Dataset):
         self.target_transform = target_transform
         self.subjects = subjects
         # self.input_tab = input_tabular
-
         df = pd.read_csv(CSV_FILE)
-        #remove the A from subjects list 
         self.X = list(df["filename"])
         self.X_train = df[df['filename'].isin(subjects)]
         df['total_bin'] = df['total'].apply(categorize_total)
         labels = list(df['total_bin'])
         labels.insert(0, 1)
         labels.insert(50, labels[-1])
-
-
         self.y = labels
 
     def __len__(self):
@@ -164,14 +160,34 @@ class ASDataModule(pl.LightningDataModule):
         super().__init__()
 
     def get_stratified_split(self, csv_file):
+        group_by_construct_train = {1: [], 0: []}
+        group_by_construct_test = {1: [], 0: []}
         df = pd.read_csv(csv_file)
+        X = list(df["filename"])
         df['total_bin'] = df['total'].apply(categorize_total)
-        all_labels = df[TARGET]
-        subjects = df['filename ']
-        all_labels = np.array(all_labels)
-        train_subj, test_subj, y_train, y_test = train_test_split(subjects, all_labels, stratify=all_labels)
+        labels = list(df['total_bin'])
+        labels.insert(0, 1)
+        labels.insert(50, labels[-1])
+        all_labels = labels
+        train_subj, test_subj, y_train, y_test = train_test_split(X, all_labels, stratify=all_labels)
 
-        return train_subj, test_subj, y_train, y_test
+        train_subj_df = df[df['filename'].isin(list(train_subj))]
+
+        test_subj_df = df[df['filename'].isin(list(test_subj))]
+
+        for subject in train_subj:
+            subj_visits = df[df['filename'] == subject]
+            subj_label = labels[(int)(subject)]
+            group_by_construct_train[subj_label.values[0]].append(subject)
+
+        for subject in test_subj:
+            subj_visits = df[df['filename'] == subject]
+            subj_label = labels[(int)(subject)]
+            group_by_construct_test[subj_label.values[0]].append(subject)
+
+        return train_subj, test_subj, y_train, y_test, group_by_construct_train, group_by_construct_test
+
+  
         
     def calculate_class_weight(self, X_train):
 
