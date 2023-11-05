@@ -21,8 +21,23 @@ from ResNet.model import ResNetModel
 import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 device = device.type
+from torch import nn
+from torchvision.models import resnet18 
 
+class ResNetModel(nn.Module):
+    def __init__(self, in_channels=8):  # Update in_channels to match the input data
+        super(ResNetModel, self).__init__()
+        self.resnet = resnet18(pretrained=False)
+        # Replace the first convolutional layer to accept the input channels
+        self.resnet.conv1 = nn.Conv2d(in_channels, 64, kernel_size=7, stride=2, padding=3, bias=False)
+        # Other operations...
 
+    def forward(self, x):
+        # Example forward pass
+        x = self.resnet(x)
+        # Other operations...
+        return x
+    
 def main_conv3d(wandb, wandb_logger):
     '''
     main function to run the conv3d architecture
