@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 
 
 from settings import CSV_FILE, IMAGE_PATH, IMAGE_SIZE, VAL_SIZE, TEST_SIZE, FEATURES, TARGET, BATCH_SIZE, transformation, target_transformations
-IMAGE_PATH = r'/scratch/users/ewesel/data/processed_images'
+IMAGE_PATH = r'/scratch/users/ewesel/data/chest_scans'
 CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
 IMAGE_SIZE = 128
 IMAGE_SIZE0 = 53
@@ -73,21 +73,27 @@ def categorize_total(total):
     
 class ASDataset(Dataset):
     
-    def __init__(self, image_dir, input_tabular, transform, target_transform):
+    def __init__(self, image_dir, subjects, transform, target_transform):
         self.image_dir = image_dir
         self.transform = transform
         self.target_transform = target_transform
+        self.subjects = subjects
         # self.input_tab = input_tabular
-        self.X = list(df["filename"])
+
         df = pd.read_csv(CSV_FILE)
+        #remove the A from subjects list 
+        self.X = list(df["filename"])
+        self.X_train = df[df['filename'].isin(subjects)]
         df['total_bin'] = df['total'].apply(categorize_total)
         labels = list(df['total_bin'])
         labels.insert(0, 1)
+        labels.insert(50, labels[-1])
+
 
         self.y = labels
 
     def __len__(self):
-        return 49#len(self.X)
+        return len(self.X)
 
     def __getitem__(self, idx):
         # Convert idx from tensor to list due to pandas bug (that arises when using pytorch's random_split)
@@ -181,19 +187,15 @@ class ASDataModule(pl.LightningDataModule):
     def prepare_data(self):
 
         train_subj, test_subj, y_train, y_test = self.get_stratified_split(CSV_FILE)
-        
-        X_train, X_test, self.scaler = self.normalize_tabular_data(train_subj, test_subj, CSV_FILE)
-        
+                
         # self.class_weight = self.calculate_class_weight(X_train)
 
-        self.train = ASDataset(image_dir=IMAGE_PATH,
-                                   input_tabular=X_train, transform=transformation,
+        self.train = ASDataset(image_dir=IMAGE_PATH, subjects = train_subj, transform=transformation,
                                    target_transform=target_transformations)
 
         print(f'Train dataset length: {self.train.__len__()}')
 
-        self.validation = ASDataset(image_dir=IMAGE_PATH,
-                                        input_tabular=X_test, transform=transformation,
+        self.validation = ASDataset(image_dir=IMAGE_PATH, subjects = test_subj, transform=transformation,
                                         target_transform=target_transformations)
                                         
         print(f'Validation dataset length: {self.validation.__len__()}')
