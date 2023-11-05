@@ -29,7 +29,7 @@ def main_conv3d(wandb, wandb_logger):
     '''
     seed_everything(23)
     # get the model
-    model = AdniModel()
+    model = AdniModel(in_channels=8)
 
     # load the data
     data = ASDataModule()
@@ -48,7 +48,7 @@ def main_resnet(wandb, wandb_logger):
     '''
     seed_everything(23)
     # ge the model
-    model = ResNetModel()
+    model = ResNetModel(in_channels=8)
 
     # load the data
     data = ASDataModule()
