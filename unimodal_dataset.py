@@ -90,13 +90,13 @@ class ASDataset(Dataset):
         # self.y = labels
 
     def __len__(self):
-        print(len(self.X))
-        return len(self.X)
+        return len(self.subjects)
 
     def __getitem__(self, idx):
         # Convert idx from tensor to list due to pandas bug (that arises when using pytorch's random_split)
         if isinstance(idx, torch.Tensor):
             idx = idx.tolist()
+        print(idx)
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
         image_name = os.path.join(self.image_dir, 'M0_')#self.input_tab.iloc[idx, 0])
