@@ -97,6 +97,8 @@ class ASDataset(Dataset):
         if isinstance(idx, torch.Tensor):
             idx = idx.tolist()
         print("not idf", idx)
+        print("subjects:", self.subjects)
+
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
         image_name = os.path.join(self.image_dir, 'M0_'+str(idx))#self.input_tab.iloc[idx, 0])
