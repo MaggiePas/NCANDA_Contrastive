@@ -61,9 +61,6 @@ def main_resnet(wandb, wandb_logger):
     trainer.fit(model, data)
 
 
-
-
-
 if __name__ == '__main__':
 
     # create wandb objects to track runs
