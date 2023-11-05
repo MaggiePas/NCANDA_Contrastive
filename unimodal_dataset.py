@@ -73,11 +73,12 @@ def categorize_total(total):
     
 class ASDataset(Dataset):
     
-    def __init__(self, image_dir, subjects, transform, target_transform):
+    def __init__(self, image_dir, subjects, transform, target_transform, labels):
         self.image_dir = image_dir
         self.transform = transform
         self.target_transform = target_transform
         self.subjects = subjects
+        self.labels = labels
         # self.input_tab = input_tabular
         # df = pd.read_csv(CSV_FILE)
         # self.X = list(df["filename"])
@@ -117,33 +118,6 @@ class ASDataset(Dataset):
 
         image = resize(image, (IMAGE_SIZE0, IMAGE_SIZE, IMAGE_SIZE))
 
-        if (self.transform and np.random.choice([0, 1]) == 0 ):
-            transform = tio.RandomAffine(
-            scales=(0.9, 1.2),
-            degrees=10,
-            )
-            image = torch.tensor(image)
-
-            # Add a singleton channel dimension to convert it to 4D
-            image = torch.unsqueeze(image, 0)
-
-            # Convert the Torch tensor to a TorchIO ScalarImage
-            tio_image = tio.ScalarImage(tensor=image)
-
-            # Apply the transformation to the image
-            transformed_image = transform(tio_image)
-
-            # Access the transformed image as a Torch tensor
-            image = transformed_image.data.squeeze(0)
-
-            # Convert the Torch tensor back to a NumPy array
-            image = image.numpy()
-            
-            # temp = img[0]
-            # image_data_new = temp.reshape(1, 64, 64, 64)
-            # transformed = transform(image_data_new)
-            # img = transformed
-
         
         label = self.y.values[idx]
         # tab = self.X.values[idx]
@@ -179,23 +153,23 @@ class ASDataModule(pl.LightningDataModule):
         print(len(train_subj), len(test_subj), len(y_train), len(y_test))
 
 
-        for subject in train_subj:
-            subj_visits = df[df['filename'] == subject]
-            idx = (int)(subject)
-            idx -= 1
-            if idx >= 50:
-                idx -=1
-            subj_label = labels[idx]
-            # group_by_construct_train[subj_label].append(subject)
+        # for subject in train_subj:
+        #     subj_visits = df[df['filename'] == subject]
+        #     idx = (int)(subject)
+        #     idx -= 1
+        #     if idx >= 50:
+        #         idx -=1
+        #     subj_label = labels[idx]
+        #     # group_by_construct_train[subj_label].append(subject)
 
-        for subject in test_subj:
-            subj_visits = df[df['filename'] == subject]
-            idx = (int)(subject)
-            idx -= 1
-            if idx >= 50:
-                idx -=1
-            subj_label = labels[idx]
-            # group_by_construct_test[subj_label].append(subject)
+        # for subject in test_subj:
+        #     subj_visits = df[df['filename'] == subject]
+        #     idx = (int)(subject)
+        #     idx -= 1
+        #     if idx >= 50:
+        #         idx -=1
+        #     subj_label = labels[idx]
+        #     # group_by_construct_test[subj_label].append(subject)
 
         return train_subj, test_subj, y_train, y_test#, group_by_construct_train, group_by_construct_test
 
@@ -219,12 +193,12 @@ class ASDataModule(pl.LightningDataModule):
         # self.class_weight = self.calculate_class_weight(X_train)
 
         self.train = ASDataset(image_dir=IMAGE_PATH, subjects = train_subj, transform=transformation,
-                                   target_transform=target_transformations)
+                                   target_transform=target_transformations, labels = y_train)
 
         print(f'Train dataset length: {self.train.__len__()}')
 
         self.validation = ASDataset(image_dir=IMAGE_PATH, subjects = test_subj, transform=transformation,
-                                        target_transform=target_transformations)
+                                        target_transform=target_transformations, labels = y_test)
                                         
         print(f'Validation dataset length: {self.validation.__len__()}')
         self.test = self.validation
