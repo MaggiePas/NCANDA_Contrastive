@@ -98,10 +98,11 @@ class ASDataset(Dataset):
             idx = idx.tolist()
         print("not idf", idx)
         print("subjects:", self.subjects)
+        subject_id = self.subjects[idx]
 
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
-        image_name = os.path.join(self.image_dir, 'M0_'+str(idx))#self.input_tab.iloc[idx, 0])
+        image_name = os.path.join(self.image_dir, 'M0_'+str(subject_id))#self.input_tab.iloc[idx, 0])
 
         image_path = image_name + '.nii.gz'
 
