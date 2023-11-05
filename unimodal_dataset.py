@@ -124,6 +124,7 @@ class ASDataset(Dataset):
 
         if self.target_transform:
             label = self.target_transform(label)
+        image = image.astype(np.float32)
 
         # return image, tab, label, subject_id
         return image, label#, subject_id
