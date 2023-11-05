@@ -169,8 +169,8 @@ class ASDataModule(pl.LightningDataModule):
 
         df['total_bin'] = df['total'].apply(categorize_total)
         labels = list(df['total_bin'])
-        # labels.insert(0, 1)
-        # labels.insert(50, labels[-1])
+        labels.insert(0, 1)
+        labels.insert(50, labels[-1])
         all_labels = labels
         train_subj, test_subj, y_train, y_test = train_test_split(X, all_labels, stratify=all_labels)
         print("train_subj", train_subj,"\n train_sub", test_subj, "\n y_train:", y_train)
