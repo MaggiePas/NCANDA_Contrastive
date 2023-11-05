@@ -169,8 +169,7 @@ class ASDataModule(pl.LightningDataModule):
 
         df['total_bin'] = df['total'].apply(categorize_total)
         labels = list(df['total_bin'])
-        labels.insert(0, 1)
-        labels.insert(50, labels[-1])
+
         all_labels = labels
         print(len(X))
         train_subj, test_subj, y_train, y_test = train_test_split(X, all_labels, stratify=all_labels)
@@ -178,7 +177,7 @@ class ASDataModule(pl.LightningDataModule):
 
         test_subj_df = df[df['filename'].isin(list(test_subj))]
         print(len(train_subj), len(test_subj), len(y_train), len(y_test))
-        
+
 
         for subject in train_subj:
             subj_visits = df[df['filename'] == subject]
