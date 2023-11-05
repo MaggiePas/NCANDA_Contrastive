@@ -172,22 +172,30 @@ class ASDataModule(pl.LightningDataModule):
         labels.insert(0, 1)
         labels.insert(50, labels[-1])
         all_labels = labels
+        print(len(X))
         train_subj, test_subj, y_train, y_test = train_test_split(X, all_labels, stratify=all_labels)
-        print("train_subj", train_subj,"\n train_sub", test_subj, "\n y_train:", y_train)
         train_subj_df = df[df['filename'].isin(list(train_subj))]
 
         test_subj_df = df[df['filename'].isin(list(test_subj))]
+        print(len(train_subj), len(test_subj), len(y_train), len(y_test))
+        
 
         for subject in train_subj:
             subj_visits = df[df['filename'] == subject]
-            print((int)(subject), len(labels))
-            subj_label = labels[(int)(subject)]
+            idx = (int)(subject)
+            idx -= 1
+            if idx >= 50:
+                idx -=1
+            subj_label = labels[idx]
             # group_by_construct_train[subj_label].append(subject)
 
         for subject in test_subj:
             subj_visits = df[df['filename'] == subject]
-            print((int)(subject), len(labels))
-            subj_label = labels[(int)(subject)]
+            idx = (int)(subject)
+            idx -= 1
+            if idx >= 50:
+                idx -=1
+            subj_label = labels[idx]
             # group_by_construct_test[subj_label].append(subject)
 
         return train_subj, test_subj, y_train, y_test#, group_by_construct_train, group_by_construct_test
