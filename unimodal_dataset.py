@@ -96,8 +96,8 @@ class ASDataset(Dataset):
         # Convert idx from tensor to list due to pandas bug (that arises when using pytorch's random_split)
         if isinstance(idx, torch.Tensor):
             idx = idx.tolist()
-        print("not idf", idx)
-        print("subjects:", self.subjects)
+        # print("not idf", idx)
+        # print("subjects:", self.subjects)
         subject_id = self.subjects[idx]
 
 
@@ -126,7 +126,7 @@ class ASDataset(Dataset):
             label = self.target_transform(label)
 
         # return image, tab, label, subject_id
-        return image, label, subject_id
+        return image, label#, subject_id
 
 
 class ASDataModule(pl.LightningDataModule):
