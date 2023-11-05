@@ -89,6 +89,7 @@ class ASDataset(Dataset):
         # self.y = labels
 
     def __len__(self):
+        print(len(self.X))
         return len(self.X)
 
     def __getitem__(self, idx):
