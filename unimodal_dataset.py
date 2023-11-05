@@ -177,12 +177,14 @@ class ASDataModule(pl.LightningDataModule):
 
         for subject in train_subj:
             subj_visits = df[df['filename'] == subject]
-            subj_label = labels[(int)(subject)-1]
+            print((int)(subject), len(labels))
+            subj_label = labels[(int)(subject)]
             # group_by_construct_train[subj_label].append(subject)
 
         for subject in test_subj:
             subj_visits = df[df['filename'] == subject]
-            subj_label = labels[(int)(subject)-1]
+            print((int)(subject), len(labels))
+            subj_label = labels[(int)(subject)]
             # group_by_construct_test[subj_label].append(subject)
 
         return train_subj, test_subj, y_train, y_test#, group_by_construct_train, group_by_construct_test
