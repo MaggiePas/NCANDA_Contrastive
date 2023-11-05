@@ -96,12 +96,10 @@ class ASDataset(Dataset):
         # Convert idx from tensor to list due to pandas bug (that arises when using pytorch's random_split)
         if isinstance(idx, torch.Tensor):
             idx = idx.tolist()
-        print(idx)
+        print("not idf", idx)
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
-        image_name = os.path.join(self.image_dir, 'M0_')#self.input_tab.iloc[idx, 0])
-
-        subject_id = self.input_tab.iloc[idx, 0]
+        image_name = os.path.join(self.image_dir, 'M0_'+idx)#self.input_tab.iloc[idx, 0])
 
         image_path = image_name + '.nii.gz'
 
