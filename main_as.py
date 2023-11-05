@@ -21,30 +21,15 @@ from ResNet.model import ResNetModel
 import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 device = device.type
-from torch import nn
-from torchvision.models import resnet18 
 
-class ResNetModel(nn.Module):
-    def __init__(self, in_channels=8):  # Update in_channels to match the input data
-        super(ResNetModel, self).__init__()
-        self.resnet = resnet18(pretrained=False)
-        # Replace the first convolutional layer to accept the input channels
-        self.resnet.conv1 = nn.Conv2d(in_channels, 64, kernel_size=7, stride=2, padding=3, bias=False)
-        # Other operations...
 
-    def forward(self, x):
-        # Example forward pass
-        x = self.resnet(x)
-        # Other operations...
-        return x
-    
 def main_conv3d(wandb, wandb_logger):
     '''
     main function to run the conv3d architecture
     '''
     seed_everything(23)
     # get the model
-    model = AdniModel(in_channels=8)
+    model = AdniModel()
 
     # load the data
     data = ASDataModule()
@@ -63,7 +48,7 @@ def main_resnet(wandb, wandb_logger):
     '''
     seed_everything(23)
     # ge the model
-    model = ResNetModel(in_channels=8)
+    model = ResNetModel()
 
     # load the data
     data = ASDataModule()
@@ -74,6 +59,8 @@ def main_resnet(wandb, wandb_logger):
     # train the network
     trainer = Trainer(max_epochs=15, logger=wandb_logger, log_every_n_steps=1, accelerator=device, devices=1)
     trainer.fit(model, data)
+
+
 
 
 
