@@ -24,7 +24,6 @@ class ResNetModel(LightningModule):
         # self.net = nn.Sequential(self.resnet, self.fc)
 
     def forward(self, x):
-        x = torch.unsqueeze(x, 0)
         out = self.net(x)
         # out = out.view(-1, 5)
         return out
@@ -57,6 +56,7 @@ class ResNetModel(LightningModule):
     def validation_step(self, batch, batch_idx):
         x, y = batch
         y = y.to(torch.long)
+        x = torch.unsqueeze(x, 1)
         print(f'input bacth shape: {x.shape}')
         print(f'label batch shape: {y.shape}')
 
