@@ -36,7 +36,10 @@ class ResNetModel(LightningModule):
 
         y_pred = self(x)
 
+        print("train predatory", y_pred)
+        print("prey", y)
         loss = F.cross_entropy(y_pred, y)
+        print("loss aquired")
         y_pred = torch.argmax(y_pred, dim=1)
         y_pred += 1
         acc = (y_pred == y).float().mean()
@@ -55,9 +58,10 @@ class ResNetModel(LightningModule):
 
         y_pred = self(x)
 
-        print("predatory", y_pred)
+        print("cal predatory", y_pred)
         print("prey", y)
         loss = F.cross_entropy(y_pred, y)
+        print("loss aquired")
         y_pred = torch.argmax(y_pred, dim=1)
         y_pred += 1
         acc = (y_pred == y).float().mean()
@@ -75,7 +79,10 @@ class ResNetModel(LightningModule):
 
         y_pred = self(x)
 
+        print(" test predatory", y_pred)
+        print("prey", y)
         loss = F.cross_entropy(y_pred, y)
+        print("loss aquired")
         y_pred = torch.argmax(y_pred, dim=1)
         y_pred += 1
         acc = (y_pred == y).float().mean()
