@@ -16,7 +16,7 @@ class ResNetModel(LightningModule):
 
         self.resnet = resnet10(pretrained=False,
                                spatial_dims=3,
-                               n_input_channels=1,
+                               n_input_channels=8,
                                )
 
         # add a new fc layer
