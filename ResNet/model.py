@@ -42,7 +42,7 @@ class ResNetModel(LightningModule):
         print("loss aquired")
         y_pred = torch.argmax(y_pred, dim=1)
         y_pred += 1
-        acc = (y_pred == y).float().mean()
+        acc = 0#(y_pred == y).float().mean()
 
         # Log loss and accuracy
         self.log('train_loss', loss)
@@ -64,7 +64,7 @@ class ResNetModel(LightningModule):
         print("loss aquired")
         y_pred = torch.argmax(y_pred, dim=1)
         y_pred += 1
-        acc = (y_pred == y).float().mean()
+        acc = 0#(y_pred == y).float().mean()
 
 
         # Log loss and accuracy
@@ -85,7 +85,7 @@ class ResNetModel(LightningModule):
         print("loss aquired")
         y_pred = torch.argmax(y_pred, dim=1)
         y_pred += 1
-        acc = (y_pred == y).float().mean()
+        acc = 0#(y_pred == y).float().mean()
 
         # Log loss and accuracy
         self.log('test_loss', loss)
