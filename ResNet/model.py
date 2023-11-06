@@ -3,6 +3,9 @@ from torch import nn
 from pytorch_lightning.core.module import LightningModule
 from torch.nn import functional as F
 from monai.networks.nets import resnet10
+torch.backends.cudnn.enabled = False
+
+
 
 class ResNetModel(LightningModule):
     '''
