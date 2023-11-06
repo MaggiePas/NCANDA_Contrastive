@@ -20,7 +20,7 @@ class ResNetModel(LightningModule):
                                )
 
         # add a new fc layer
-        self.fc = nn.Linear(400, 8)
+        self.fc = nn.Linear(400, 5)
 
         # combine the nets
         self.net = nn.Sequential(self.resnet, self.fc)
