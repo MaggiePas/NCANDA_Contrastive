@@ -35,8 +35,6 @@ class ResNetModel(LightningModule):
 
         out = self.net(x)
         out = out.view(-1, 5)  
-        out = out.requires_grad_(True)
-
         return out
 
     def configure_optimizers(self):
@@ -53,6 +51,7 @@ class ResNetModel(LightningModule):
         y_pred = self(x)
         
         y_pred = y_pred.view(-1, 5)
+        y_pred = y_pred.requires_grad_(True)
         y_pred = torch.argmax(y_pred, dim=1)
         y_pred+=1
         y_pred = y_pred.to(y.dtype)
@@ -77,6 +76,7 @@ class ResNetModel(LightningModule):
 
         
         y_pred = y_pred.view(-1, 5)
+        y_pred = y_pred.requires_grad_(True)
         y_pred = torch.argmax(y_pred, dim=1)
         print("predatory", y_pred)
         
@@ -100,6 +100,8 @@ class ResNetModel(LightningModule):
         y = y.to(torch.float32)
 
         y_pred = self(x)
+        y_pred = y_pred.view(-1, 5)
+        y_pred = y_pred.requires_grad_(True)
         y_pred = torch.argmax(y_pred, dim=1)
         y_pred+=1
         y_pred = y_pred.to(y.dtype)
