@@ -22,7 +22,7 @@ class ResNetModel(LightningModule):
 
         # # combine the nets
         # self.net = nn.Sequential(self.resnet, self.fc)
-
+        self.loss = nn.CrossEntropyLoss()
     def forward(self, x):
         out = self.net(x)
         # out = out.view(-1, 5)
@@ -65,7 +65,7 @@ class ResNetModel(LightningModule):
 
         print("cal predatory", y_pred)
         print("prey", y)
-        loss = F.cross_entropy(y_pred, y)
+        loss = self.loss(y_pred, y)
         print("loss aquired")
         y_pred = torch.argmax(y_pred, dim=1)
         print(f'argmax output shape: {y_pred.shape}')
