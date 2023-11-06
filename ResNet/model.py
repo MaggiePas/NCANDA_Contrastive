@@ -15,13 +15,13 @@ class ResNetModel(LightningModule):
     def __init__(self):
         super().__init__()
 
-        self.resnet = resnet10(pretrained=False, spatial_dims=3, n_input_channels=4)
+        self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, n_classes=5)
 
-        # add a new fc layer
-        self.fc = nn.Linear(400, 5)
+        # # add a new fc layer
+        # self.fc = nn.Linear(400, 5)
 
-        # combine the nets
-        self.net = nn.Sequential(self.resnet, self.fc)
+        # # combine the nets
+        # self.net = nn.Sequential(self.resnet, self.fc)
 
     def forward(self, x):
         x = torch.unsqueeze(x, 0)
