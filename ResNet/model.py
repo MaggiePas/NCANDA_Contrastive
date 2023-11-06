@@ -15,7 +15,7 @@ class ResNetModel(LightningModule):
         self.resnet = resnet10(pretrained=False, spatial_dims=3, n_input_channels=8)
 
         # add a new fc layer
-        self.fc = nn.Linear(400, 5)
+        self.fc = nn.Linear(400, 5*8)
 
         # combine the nets
         self.net = nn.Sequential(self.resnet, self.fc)
@@ -35,6 +35,7 @@ class ResNetModel(LightningModule):
         y = y.to(torch.float32)
 
         y_pred = self(x)
+        y_pred = torch.argmax(y_pred, dim=1)
 
         loss = F.cross_entropy(y_pred, y)
         acc = (torch.argmax(y_pred, dim=1) == y).float().mean()
@@ -50,6 +51,7 @@ class ResNetModel(LightningModule):
         y = y.to(torch.float32)
 
         y_pred = self(x)
+        y_pred = torch.argmax(y_pred, dim=1)
 
         loss = F.cross_entropy(y_pred, y)
         acc = (torch.argmax(y_pred, dim=1) == y).float().mean()
@@ -65,6 +67,7 @@ class ResNetModel(LightningModule):
         y = y.to(torch.float32)
 
         y_pred = self(x)
+        y_pred = torch.argmax(y_pred, dim=1)
 
         loss = F.cross_entropy(y_pred, y)
         acc = (torch.argmax(y_pred, dim=1) == y).float().mean()
