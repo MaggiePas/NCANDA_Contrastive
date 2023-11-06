@@ -37,7 +37,6 @@ class ResNetModel(LightningModule):
 
         out = self.net(x)
         out = out.view(-1, 5)  
-        out = out.requires_grad_(True)
         return out
 
     def configure_optimizers(self):
