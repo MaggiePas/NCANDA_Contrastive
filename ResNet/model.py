@@ -53,7 +53,7 @@ class ResNetModel(LightningModule):
         y_pred = self(x)
         print(y_pred)
 
-        loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze())
+        loss = F.cross_entropy(y_pred, y)
 
         preds = torch.argmax(y_pred, dim=1)
         acc = (preds == y).float().mean()
@@ -71,7 +71,7 @@ class ResNetModel(LightningModule):
 
         y_pred = self(x)
 
-        loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze())
+        loss = F.cross_entropy(y_pred, y)
 
         preds = torch.argmax(y_pred, dim=1)
         acc = (preds == y).float().mean()
@@ -89,7 +89,7 @@ class ResNetModel(LightningModule):
 
         y_pred = self(x)
 
-        loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze())
+        loss = F.cross_entropy(y_pred, y)
 
         preds = torch.argmax(y_pred, dim=1)
         acc = (preds == y).float().mean()
