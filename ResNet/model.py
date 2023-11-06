@@ -4,7 +4,7 @@ from pytorch_lightning.core.module import LightningModule
 from torch.nn import functional as F
 from monai.networks.nets import resnet10
 torch.backends.cudnn.enabled = False
-
+import numpy as np
 
 
 class ResNetModel(LightningModule):
@@ -18,7 +18,7 @@ class ResNetModel(LightningModule):
         self.resnet = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1)
 
         # add a new fc layer
-        self.fc = nn.Linear(400, 5*1)
+        self.fc = nn.Linear(400, 5)
 
         # combine the nets
         self.net = nn.Sequential(self.resnet, self.fc)
@@ -26,7 +26,7 @@ class ResNetModel(LightningModule):
     def forward(self, x):
         x = torch.unsqueeze(x, 0)
         out = self.net(x)
-        out = out.view(-1, 5)
+        # out = out.view(-1, 5)
         return out
 
     def configure_optimizers(self):
@@ -45,7 +45,8 @@ class ResNetModel(LightningModule):
         print("loss aquired")
         y_pred = torch.argmax(y_pred, dim=1)
         y_pred += 1
-        acc = 0#(y_pred == y).float().mean()
+        # acc = 0#
+        acc = np.sum(y_pred == y).float().mean() * 100.0
 
         # Log loss and accuracy
         self.log('train_loss', loss)
@@ -56,10 +57,11 @@ class ResNetModel(LightningModule):
     def validation_step(self, batch, batch_idx):
         x, y = batch
         y = y.to(torch.long)
-        
-
+        print(f'input bacth shape: {x.shape}')
+        print(f'label batch shape: {y.shape}')
 
         y_pred = self(x)
+        print(f'model outpit shape: {y_pred.shape}')
 
         print("cal predatory", y_pred)
         print("prey", y)
@@ -67,8 +69,9 @@ class ResNetModel(LightningModule):
         print("loss aquired")
         y_pred = torch.argmax(y_pred, dim=1)
         y_pred += 1
-        acc = 0#(y_pred == y).float().mean()
-
+        # acc = 0#(y_pred == y).float().mean()
+        acc = np.sum(y_pred == y).float().mean() * 100.0
+        print(f'accuracy: {acc}')
 
         # Log loss and accuracy
         self.log('val_loss', loss)
@@ -78,9 +81,12 @@ class ResNetModel(LightningModule):
 
     def test_step(self, batch, batch_idx):
         x, y = batch
+        print(f'input bacth shape: {x.shape}')
+        print(f'label batch shape: {y.shape}')
         y = y.to(torch.long)
 
         y_pred = self(x)
+        print(f'model outpit shape: {y_pred.shape}')
 
         print(" test predatory", y_pred)
         print("prey", y)
