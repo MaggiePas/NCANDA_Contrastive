@@ -36,6 +36,7 @@ class ResNetModel(LightningModule):
 
         y_pred = self(x)
         y_pred = torch.argmax(y_pred, dim=1)
+        y_preds = y_preds.to(torch.float32)
 
         loss = F.cross_entropy(y_pred, y)
         acc = (torch.argmax(y_pred, dim=1) == y).float().mean()
@@ -49,9 +50,12 @@ class ResNetModel(LightningModule):
     def validation_step(self, batch, batch_idx):
         x, y = batch
         y = y.to(torch.float32)
+        
+
 
         y_pred = self(x)
         y_pred = torch.argmax(y_pred, dim=1)
+        y_preds = y_preds.to(torch.float32)
 
         loss = F.cross_entropy(y_pred, y)
         acc = (torch.argmax(y_pred, dim=1) == y).float().mean()
@@ -68,6 +72,7 @@ class ResNetModel(LightningModule):
 
         y_pred = self(x)
         y_pred = torch.argmax(y_pred, dim=1)
+        y_preds = y_preds.to(torch.float32)
 
         loss = F.cross_entropy(y_pred, y)
         acc = (torch.argmax(y_pred, dim=1) == y).float().mean()
