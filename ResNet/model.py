@@ -35,7 +35,7 @@ class ResNetModel(LightningModule):
 
         out = self.net(x)
         out = out.view(-1, 5)  
-        out.requires_grad = True
+        out = out.requires_grad_(True)
 
         return out
 
