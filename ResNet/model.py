@@ -71,6 +71,8 @@ class ResNetModel(LightningModule):
 
         y_pred = self(x)
 
+        print("predatory", y_pred)
+        print("prey", y)
         loss = F.cross_entropy(y_pred, y)
 
         preds = torch.argmax(y_pred, dim=1)
