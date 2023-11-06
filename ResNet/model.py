@@ -15,10 +15,10 @@ class ResNetModel(LightningModule):
     def __init__(self):
         super().__init__()
 
-        self.resnet = resnet10(pretrained=False, spatial_dims=3, n_input_channels=8)
+        self.resnet = resnet10(pretrained=False, spatial_dims=3, n_input_channels=4)
 
         # add a new fc layer
-        self.fc = nn.Linear(400, 5*8)
+        self.fc = nn.Linear(400, 5*4)
 
         # combine the nets
         self.net = nn.Sequential(self.resnet, self.fc)
