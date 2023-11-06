@@ -16,7 +16,7 @@ class ResNetModel(LightningModule):
 
         self.resnet = resnet10(pretrained=False,
                                spatial_dims=3,
-                               n_input_channels=8,
+                               n_input_channels=1,
                                )
 
         # add a new fc layer
@@ -51,6 +51,7 @@ class ResNetModel(LightningModule):
         y = y.to(torch.float32)
 
         y_pred = self(x)
+        print(y_pred)
 
         loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze())
 
