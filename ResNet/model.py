@@ -57,25 +57,29 @@ class ResNetModel(LightningModule):
         x, y = batch
         y = y.to(torch.long)
         x = torch.unsqueeze(x, 1)
-        print(f'input bacth shape: {x.shape}')
+        print(f'input batch shape: {x.shape}')
         print(f'label batch shape: {y.shape}')
 
         y_pred = self(x)
-        print(f'model outpit shape: {y_pred.shape}')
+        print(f'model output shape: {y_pred.shape}')
 
         print("cal predatory", y_pred)
         print("prey", y)
         loss = F.cross_entropy(y_pred, y)
         print("loss aquired")
         y_pred = torch.argmax(y_pred, dim=1)
+        print(f'argmax output shape: {y_pred.shape}')
         y_pred += 1
         # acc = 0#(y_pred == y).float().mean()
-        acc = np.sum(y_pred == y).float().mean() * 100.0
-        print(f'accuracy: {acc}')
+        print(f'y_pred argmax: {y_pred}')
+        print(f'label: {y}')
+
+        # acc = np.sum(y_pred == y).float().mean() * 100.0
+        # print(f'accuracy: {acc}')
 
         # Log loss and accuracy
         self.log('val_loss', loss)
-        self.log('val_acc', acc, prog_bar=True)
+        # self.log('val_acc', acc, prog_bar=True)
 
         return loss
 
