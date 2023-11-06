@@ -39,6 +39,7 @@ class ResNetModel(LightningModule):
 
         loss = F.cross_entropy(y_pred, y)
         y_pred = torch.argmax(y_pred, dim=1)
+        y_pred += 1
         acc = (y_pred == y).float().mean()
 
         # Log loss and accuracy
@@ -59,6 +60,7 @@ class ResNetModel(LightningModule):
         
         loss = F.cross_entropy(y_pred, y)
         y_pred = torch.argmax(y_pred, dim=1)
+        y_pred += 1
         acc = (y_pred == y).float().mean()
 
 
@@ -77,6 +79,7 @@ class ResNetModel(LightningModule):
 
         loss = F.cross_entropy(y_pred, y)
         y_pred = torch.argmax(y_pred, dim=1)
+        y_pred += 1
         acc = (y_pred == y).float().mean()
 
         # Log loss and accuracy
