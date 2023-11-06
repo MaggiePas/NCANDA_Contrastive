@@ -32,10 +32,9 @@ class ResNetModel(LightningModule):
 
     def training_step(self, batch, batch_idx):
         x, y = batch
-        y = y.to(torch.float32)
+        y = y.to(torch.long)
 
         y_pred = self(x)
-        y_pred = y_pred.to(torch.float32)
 
         loss = F.cross_entropy(y_pred, y)
         y_pred = torch.argmax(y_pred, dim=1)
@@ -50,14 +49,14 @@ class ResNetModel(LightningModule):
 
     def validation_step(self, batch, batch_idx):
         x, y = batch
-        y = y.to(torch.float32)
+        y = y.to(torch.long)
         
 
 
         y_pred = self(x)
-        y_pred = y_pred.to(torch.float32)
 
-        
+        print("predatory", y_pred)
+        print("prey", y)
         loss = F.cross_entropy(y_pred, y)
         y_pred = torch.argmax(y_pred, dim=1)
         y_pred += 1
@@ -72,10 +71,9 @@ class ResNetModel(LightningModule):
 
     def test_step(self, batch, batch_idx):
         x, y = batch
-        y = y.to(torch.float32)
+        y = y.to(torch.long)
 
         y_pred = self(x)
-        y_pred = y_pred.to(torch.float32)
 
         loss = F.cross_entropy(y_pred, y)
         y_pred = torch.argmax(y_pred, dim=1)
