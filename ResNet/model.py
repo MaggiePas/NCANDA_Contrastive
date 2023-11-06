@@ -55,8 +55,8 @@ class ResNetModel(LightningModule):
 
         loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze())
 
-        preds = torch.round(torch.sigmoid(y_pred))
-        acc = (preds == y).sum().item() / len(y)
+        preds = torch.argmax(y_pred, dim=1)
+        acc = (preds == y).float().mean()
 
         # Log loss and accuracy
         self.log('train_loss', loss)
@@ -73,8 +73,8 @@ class ResNetModel(LightningModule):
 
         loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze())
 
-        preds = torch.round(torch.sigmoid(y_pred))
-        acc = (preds == y).sum().item() / len(y)
+        preds = torch.argmax(y_pred, dim=1)
+        acc = (preds == y).float().mean()
 
         # Log loss and accuracy
         self.log('train_loss', loss)
@@ -91,8 +91,8 @@ class ResNetModel(LightningModule):
 
         loss = F.binary_cross_entropy(torch.sigmoid(y_pred), y.squeeze())
 
-        preds = torch.round(torch.sigmoid(y_pred))
-        acc = (preds == y).sum().item() / len(y)
+        preds = torch.argmax(y_pred, dim=1)
+        acc = (preds == y).float().mean()
 
         # Log loss and accuracy
         self.log('train_loss', loss)
