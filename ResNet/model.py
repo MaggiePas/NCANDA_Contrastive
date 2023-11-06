@@ -20,7 +20,7 @@ class ResNetModel(LightningModule):
                                )
 
         # add a new fc layer
-        self.fc = nn.Linear(400, [8, 5])
+        self.fc = nn.Linear(400, 5*8)
 
         # combine the nets
         self.net = nn.Sequential(self.resnet, self.fc)
@@ -34,8 +34,7 @@ class ResNetModel(LightningModule):
         x = torch.unsqueeze(x, 0)
 
         out = self.net(x)
-
-        out = torch.squeeze(out)
+        out = out.view(-1, 5)  
 
         return out
 
@@ -52,6 +51,7 @@ class ResNetModel(LightningModule):
 
         y_pred = self(x)
         print(y_pred)
+        y_pred = y_pred.view(-1, 5)
 
         loss = F.cross_entropy(y_pred, y)
 
