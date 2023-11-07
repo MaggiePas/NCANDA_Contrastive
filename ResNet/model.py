@@ -56,7 +56,7 @@ class ResNetModel(LightningModule):
     def validation_step(self, batch, batch_idx):
         x, y = batch
         y = y #.to(torch.long)
-        y = torch.sub(y, 1.0)
+        y = torch.sub(y, 1)
         print(f'label after sub: {y}')
         x = torch.unsqueeze(x, 1)
         print(f'input batch shape: {x.shape}')
