@@ -45,7 +45,10 @@ class ResNetModel(LightningModule):
         print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
         # acc = 0#
-        acc = np.sum(y_pred == y).float().mean() * 100.0
+        acc = (y_pred == y).float().mean()
+        print(f'y_pred argmax: {y_pred}')
+        print(f'label: {y}')
+        print("score", acc)
 
         # Log loss and accuracy
         print(y)
@@ -76,8 +79,9 @@ class ResNetModel(LightningModule):
         acc = (y_pred == y).float().mean()
         print(f'y_pred argmax: {y_pred}')
         print(f'label: {y}')
+        print("score", acc)
 
-        acc = np.sum(y_pred == y).float().mean() * 100.0
+        # acc = np.sum(y_pred == y).float().mean() * 100.0
         # print(f'accuracy: {acc}')
 
         # Log loss and accuracy
@@ -102,7 +106,10 @@ class ResNetModel(LightningModule):
         print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
 
-        acc = np.sum(y_pred == y).float().mean() * 100.0
+        acc = (y_pred == y).float().mean()
+        print(f'y_pred argmax: {y_pred}')
+        print(f'label: {y}')
+        print("score", acc)
 
         # Log loss and accuracy
         self.log('test_loss', loss)
