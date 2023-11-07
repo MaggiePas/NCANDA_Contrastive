@@ -44,11 +44,11 @@ class ResNetModel(LightningModule):
         loss = F.cross_entropy(y_pred, y)
         print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
-        y_pred += 1
         # acc = 0#
         # acc = np.sum(y_pred == y).float().mean() * 100.0
 
         # Log loss and accuracy
+        print(y)
         self.log('train_loss', loss)
         # self.log('train_acc', acc, prog_bar=True)
 
@@ -102,7 +102,6 @@ class ResNetModel(LightningModule):
         print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
 
-        y_pred += 1
         # acc = np.sum(y_pred == y).float().mean() * 100.0
 
         # Log loss and accuracy
