@@ -35,14 +35,15 @@ class ResNetModel(LightningModule):
     def training_step(self, batch, batch_idx):
         x, y = batch
         y = y.to(torch.long)
-
+        x = torch.unsqueeze(x, 1)
         y_pred = self(x)
+        y = torch.sub(y, 1)
 
         print("train predatory", y_pred)
         print("prey", y)
         loss = F.cross_entropy(y_pred, y)
         print("loss aquired")
-        y_pred = torch.argmax(y_pred, dim=1)
+        y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
         y_pred += 1
         # acc = 0#
         acc = np.sum(y_pred == y).float().mean() * 100.0
@@ -93,12 +94,14 @@ class ResNetModel(LightningModule):
 
         y_pred = self(x)
         print(f'model outpit shape: {y_pred.shape}')
+        y = torch.sub(y, 1)
 
         print(" test predatory", y_pred)
         print("prey", y)
         loss = F.cross_entropy(y_pred, y)
         print("loss aquired")
-        y_pred = torch.argmax(y_pred, dim=1)
+        y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
+
         y_pred += 1
         acc = 0#(y_pred == y).float().mean()
 
