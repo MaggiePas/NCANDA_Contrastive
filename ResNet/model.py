@@ -103,10 +103,10 @@ class ResNetModel(LightningModule):
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
 
         y_pred += 1
-        acc = 0#(y_pred == y).float().mean()
+        # acc = np.sum(y_pred == y).float().mean() * 100.0
 
         # Log loss and accuracy
         self.log('test_loss', loss)
-        self.log('test_acc', acc, prog_bar=True)
+        # self.log('test_acc', acc, prog_bar=True)
 
         return loss
