@@ -29,7 +29,7 @@ class ResNetModel(LightningModule):
         return out
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=1e-4)
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-4, capturable=True)
         return optimizer
 
     def training_step(self, batch, batch_idx):
@@ -55,7 +55,7 @@ class ResNetModel(LightningModule):
 
     def validation_step(self, batch, batch_idx):
         x, y = batch
-        y = y.to(torch.long)
+        y = y #.to(torch.long)
         x = torch.unsqueeze(x, 1)
         print(f'input batch shape: {x.shape}')
         print(f'label batch shape: {y.shape}')
