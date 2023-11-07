@@ -67,7 +67,7 @@ class ResNetModel(LightningModule):
         print("prey", y)
         loss = self.loss(y_pred, y)
         print("loss aquired")
-        y_pred = torch.argmax(torch.softmax(y_pred), dim=1)
+        y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
         print(f'argmax output shape: {y_pred.shape}')
         y_pred += 1
         # acc = 0#(y_pred == y).float().mean()
