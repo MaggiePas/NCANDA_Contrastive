@@ -56,6 +56,8 @@ class ResNetModel(LightningModule):
     def validation_step(self, batch, batch_idx):
         x, y = batch
         y = y #.to(torch.long)
+        y = torch.sub(y, 1.0)
+        print(f'label after sub: {y}')
         x = torch.unsqueeze(x, 1)
         print(f'input batch shape: {x.shape}')
         print(f'label batch shape: {y.shape}')
@@ -69,7 +71,7 @@ class ResNetModel(LightningModule):
         print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
         print(f'argmax output shape: {y_pred.shape}')
-        y_pred += 1
+        # y_pred += 1
         # acc = 0#(y_pred == y).float().mean()
         print(f'y_pred argmax: {y_pred}')
         print(f'label: {y}')
