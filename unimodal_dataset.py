@@ -8,7 +8,7 @@ import pytorch_lightning as pl
 import numpy as np
 from sklearn.model_selection import train_test_split
 import warnings
-import TotalSegmenator
+import TotalSegmentator
 import subprocess
 
 warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
@@ -108,14 +108,13 @@ class ASDataset(Dataset):
         image_name = os.path.join(self.image_dir, 'M0_'+str(subject_id))#self.input_tab.iloc[idx, 0])
 
         image_path = image_name + '.nii.gz'
-        inputfile = f'M0_{i}.nii.gz'
-        outputfile = f'segmentations/M0_{i}_heart.nii.gz'
+        outputfile = self.image_dir + "/"+f'segmentations/M0_{str(subject_id)}_heart.nii.gz'
 
         # Run TotalSegmentator command
-        command = f'TotalSegmentator -i {inputfile} -o {outputfile} --roi_subset heart --preview'
+        command = f'TotalSegmentator -i {image_path} -o {outputfile} --roi_subset heart --preview'
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
 
-        image = nib.load(image_path)
+        image = nib.load(outputfile)
         image = image.get_fdata()
 
 
