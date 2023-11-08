@@ -114,6 +114,9 @@ class ASDataset(Dataset):
         # Run TotalSegmentator command
         command = f'TotalSegmentator -i {image_path} -o {outputfile} --roi_subset heart --preview'
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        if result.returncode != 0:
+            raise RuntimeError(f"TotalSegmentator command failed with error: {result.stderr}")
+
         print(result.stdout)
 
         image = nib.load(outputfile)
