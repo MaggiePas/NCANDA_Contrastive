@@ -108,7 +108,8 @@ class ASDataset(Dataset):
         image_name = os.path.join(self.image_dir, 'M0_'+str(subject_id))#self.input_tab.iloc[idx, 0])
 
         image_path = image_name + '.nii.gz'
-        outputfile = self.image_dir + "/"+f'segmentations/M0_{str(subject_id)}_heart.nii.gz'
+        
+        outputfile = "/scratch/users/ewesel/data/chest_scans/segmentations" + "/"+f'M0_{str(subject_id)}_heart.nii.gz'
 
         # Run TotalSegmentator command
         command = f'TotalSegmentator -i {image_path} -o {outputfile} --roi_subset heart --preview'
