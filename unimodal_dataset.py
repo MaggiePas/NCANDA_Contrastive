@@ -8,7 +8,7 @@ import pytorch_lightning as pl
 import numpy as np
 from sklearn.model_selection import train_test_split
 import warnings
-import TotalSegmentator
+# import TotalSegmentator
 import subprocess
 
 warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
@@ -112,16 +112,16 @@ class ASDataset(Dataset):
         outputfile = "/scratch/users/ewesel/data/chest_scans/segmentations" + "/"+f'M0_{str(subject_id)}_heart.nii.gz'
 
         # Run TotalSegmentator command
-        command = 'pip install TotalSegmentator'
-        result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        command = f'TotalSegmentator -i {image_path} -o {outputfile} --roi_subset heart --preview'
-        result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        if result.returncode != 0:
-            raise RuntimeError(f"TotalSegmentator command failed with error: {result.stderr}")
+        # command = 'pip install TotalSegmentator'
+        # result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        # command = f'TotalSegmentator -i {image_path} -o {outputfile} --roi_subset heart'
+        # result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        # if result.returncode != 0:
+        #     raise RuntimeError(f"TotalSegmentator command failed with error: {result.stderr}")
 
-        print(result.stdout)
+        # print(result.stdout)
 
-        image = nib.load(outputfile)
+        image = nib.load(image_path)
         image = image.get_fdata()
 
 
@@ -129,7 +129,7 @@ class ASDataset(Dataset):
         image = np.array(image, dtype=np.float32)
 
         # scale images between [0,1]
-        # image = image[0:53, 100:350, 175:425]
+        image = image[0:53, 100:350, 175:425]
 
         image = image / image.max()
 
