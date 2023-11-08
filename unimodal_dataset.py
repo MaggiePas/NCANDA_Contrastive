@@ -8,7 +8,7 @@ import pytorch_lightning as pl
 import numpy as np
 from sklearn.model_selection import train_test_split
 import warnings
-# import TotalSegmentator
+import TotalSegmentator
 import subprocess
 
 warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
