@@ -112,6 +112,8 @@ class ASDataset(Dataset):
         outputfile = "/scratch/users/ewesel/data/chest_scans/segmentations" + "/"+f'M0_{str(subject_id)}_heart.nii.gz'
 
         # Run TotalSegmentator command
+        command = 'pip install TotalSegmentator'
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
         command = f'TotalSegmentator -i {image_path} -o {outputfile} --roi_subset heart --preview'
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         if result.returncode != 0:
