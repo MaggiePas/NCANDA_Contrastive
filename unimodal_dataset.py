@@ -120,7 +120,7 @@ class ASDataset(Dataset):
         #     raise RuntimeError(f"TotalSegmentator command failed with error: {result.stderr}")
 
         # print(result.stdout)
-        totalsegmentator(image_path, outputfile, roi_subset= ["heart"])
+        totalsegmentator(image_path, outputfile)#, roi_subset= ["heart"])
 
         image = nib.load(image_path)
         image = image.get_fdata()
