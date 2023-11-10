@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 import warnings
 from totalsegmentator.python_api import totalsegmentator
 import subprocess
+from collections import Counter
 
 warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 
@@ -161,6 +162,13 @@ class ASDataModule(pl.LightningDataModule):
 
         df['total_bin'] = df['total'].apply(categorize_total)
         labels = list(df['total_bin'])
+        # Use Counter to get counts
+        counts = Counter(labels)
+
+        # Print counts
+        for value, count in counts.items():
+            print(f"{value}: {count} times")
+
 
         all_labels = labels
         print(len(X))
