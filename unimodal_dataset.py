@@ -167,7 +167,7 @@ class ASDataModule(pl.LightningDataModule):
 
         # Print counts
         for value, count in counts.items():
-            print(f"{value}: {count} times")
+            print(f"emil yyyy {value}: {count} times")
 
 
         all_labels = labels
