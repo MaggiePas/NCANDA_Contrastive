@@ -12,7 +12,7 @@ class ResNetModel(LightningModule):
     Resnet Model Class including the training, validation, and testing steps
     '''
 
-    def __init__(self):
+    def __init__(self, class_weights = None):
         super().__init__()
 
         self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=5)
@@ -22,7 +22,8 @@ class ResNetModel(LightningModule):
 
         # # combine the nets
         # self.net = nn.Sequential(self.resnet, self.fc)
-        self.loss = nn.CrossEntropyLoss()
+        # self.loss = nn.CrossEntropyLoss()
+        self.loss = nn.CrossEntropyLoss(weight=torch.Tensor(class_weights) if class_weights else None)
     def forward(self, x):
         out = self.net(x)
         # out = out.view(-1, 5)

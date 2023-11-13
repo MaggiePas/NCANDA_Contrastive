@@ -47,11 +47,11 @@ def main_resnet(wandb, wandb_logger):
     main function to run the resnet architecture
     '''
     seed_everything(23)
-    # ge the model
-    model = ResNetModel()
-
+   
     # load the data
     data = ASDataModule()
+     # ge the model
+    model = ResNetModel(class_weight=data.class_weight)
 
     # Optional
     wandb.watch(model, log="all")

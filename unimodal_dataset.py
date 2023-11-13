@@ -126,12 +126,12 @@ class ASDataset(Dataset):
         #     raise RuntimeError(f"TotalSegmentator command failed with error: {result.stderr}")
 
         # print(result.stdout)
-        mp.set_start_method('spawn', force=True)
-        totalsegmentator(image_path, outputfile, roi_subset= ["heart"])
-        mp.set_start_method('fork', force=True)
+        # mp.set_start_method('spawn', force=True)
+        # totalsegmentator(image_path, outputfile, roi_subset= ["heart"])
+        # mp.set_start_method('fork', force=True)
 
 
-        image = nib.load(outputfile)
+        image = nib.load(image_path)
         image = image.get_fdata()
 
 
