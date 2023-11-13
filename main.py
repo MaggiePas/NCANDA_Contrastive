@@ -81,6 +81,7 @@ def main_multimodal(wandb, wandb_logger):
     val_loader = data.val_dataloader()
 
     # ge the model
+    print(data.class_weight)
     model = MultiModModel(class_weight=data.class_weight, scaler=data.scaler)
 
     # Optional
@@ -136,6 +137,7 @@ def main_language(wandb, wandb_logger):
 
     # ge the model
     print("getting the model")
+    print(data.class_weight)
     model = MultiModModelWithLanguage(class_weight=data.class_weight, scaler=data.scaler)
     print("received")
 
