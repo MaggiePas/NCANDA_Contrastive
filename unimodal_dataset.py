@@ -11,6 +11,8 @@ import warnings
 from totalsegmentator.python_api import totalsegmentator
 import subprocess
 from collections import Counter
+import torch.multiprocessing as mp
+
 
 warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 
@@ -124,9 +126,12 @@ class ASDataset(Dataset):
         #     raise RuntimeError(f"TotalSegmentator command failed with error: {result.stderr}")
 
         # print(result.stdout)
-        # totalsegmentator(image_path, outputfile, roi_subset= ["heart"])
+        mp.set_start_method('spawn', force=True)
+        totalsegmentator(image_path, outputfile, roi_subset= ["heart"])
+        mp.set_start_method('fork', force=True)
 
-        image = nib.load(image_path)
+
+        image = nib.load(outputfile)
         image = image.get_fdata()
 
 
@@ -134,7 +139,7 @@ class ASDataset(Dataset):
         image = np.array(image, dtype=np.float32)
 
         # scale images between [0,1]
-        image = image[0:53, 100:350, 175:425]
+        # image = image[0:53, 100:350, 175:425]
 
         image = image / image.max()
 
