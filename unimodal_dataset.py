@@ -21,6 +21,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if device.type !='cpu':
     IMAGE_PATH = r'/scratch/users/ewesel/data/chest_scans'
     CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
+IMAGE_PATH = r'/scratch/users/ewesel/data/cropped'
 image_path = '/scratch/users/ewesel/data/chest_scans/M0_5.nii.gz'
 IMAGE_SIZE = 128
 IMAGE_SIZE0 = 53
@@ -114,6 +115,7 @@ class ASDataset(Dataset):
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
         image_name = os.path.join(self.image_dir, 'M0_'+str(subject_id))#self.input_tab.iloc[idx, 0])
+        image_name = os.path.join(self.image_dir, 'heart_cropped'+str(subject_id))#self.input_tab.iloc[idx, 0])
 
         image_path = image_name + '.nii.gz'
         
