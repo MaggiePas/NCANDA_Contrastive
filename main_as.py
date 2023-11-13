@@ -51,7 +51,7 @@ def main_resnet(wandb, wandb_logger):
     # load the data
     data = ASDataModule()
      # ge the model
-    model = ResNetModel(class_weight=data.class_weight)
+    model = ResNetModel(class_weight=data.get_class_weight())
 
     # Optional
     wandb.watch(model, log="all")
