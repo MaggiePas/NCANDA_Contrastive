@@ -207,12 +207,12 @@ class ASDataModule(pl.LightningDataModule):
 
         
         # Assuming the classes are integers (1, 2, 3, 4, 5)
-        unique_classes = np.unique(labels.values)
+        unique_classes = np.unique(labels)
         
         class_weights = {}
 
         for class_label in unique_classes:
-            num_samples = np.sum(labels.values == class_label)
+            num_samples = np.sum(labels == class_label)
             class_weights[class_label] = num_samples
 
         # Calculate the total number of samples
