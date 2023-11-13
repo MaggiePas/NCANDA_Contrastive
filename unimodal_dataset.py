@@ -203,21 +203,20 @@ class ASDataModule(pl.LightningDataModule):
         return train_subj, test_subj, y_train, y_test#, group_by_construct_train, group_by_construct_test
 
         
-    def calculate_class_weight(self, X_train):
+    def calculate_class_weight(self, labels):
 
-        y_train = X_train.loc[:, TARGET]
         
         # Assuming the classes are integers (1, 2, 3, 4, 5)
-        unique_classes = np.unique(y_train.values)
+        unique_classes = np.unique(labels.values)
         
         class_weights = {}
 
         for class_label in unique_classes:
-            num_samples = np.sum(y_train.values == class_label)
+            num_samples = np.sum(labels.values == class_label)
             class_weights[class_label] = num_samples
 
         # Calculate the total number of samples
-        total_samples = len(y_train)
+        total_samples = len(labels)
 
         # Calculate class weights
         for class_label, num_samples in class_weights.items():
@@ -231,7 +230,7 @@ class ASDataModule(pl.LightningDataModule):
 
         train_subj, test_subj, y_train, y_test = self.get_stratified_split(CSV_FILE)
                 
-        self.class_weight = self.calculate_class_weight(train_subj)
+        self.class_weight = self.calculate_class_weight(y_train)
 
         self.train = ASDataset(image_dir=IMAGE_PATH, subjects = train_subj, transform=transformation,
                                    target_transform=target_transformations, labels = y_train)
