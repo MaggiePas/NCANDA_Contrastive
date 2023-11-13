@@ -12,8 +12,9 @@ class ResNetModel(LightningModule):
     Resnet Model Class including the training, validation, and testing steps
     '''
 
-    def __init__(self, class_weights = None):
+    def __init__(self, class_weights):
         super().__init__()
+        self.class_weights = class_weights
 
         self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=5)
 
