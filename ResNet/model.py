@@ -37,16 +37,13 @@ class ResNetModel(LightningModule):
         accuracy_per_class = (y_pred == y_true).float()
 
         # Apply class weights
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        if device.type == "cuda":
-            class_weights = class_weights.cuda()
-            accuracy_per_class = accuracy_per_class.cuda()
-            y_true = y_true.cuda()
+        # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # if device.type == "cuda":
+        #     accuracy_per_class = accuracy_per_class.cuda()
+        #     y_true = y_true.cuda()
 
 
-
-        
-        weighted_accuracy_per_class = accuracy_per_class * torch.Tensor([class_weights[label] for label in y_true])
+        weighted_accuracy_per_class = accuracy_per_class * torch.Tensor([class_weights[label] for label in y_true]).cuda()
 
         # Compute balanced accuracy
         balanced_acc = weighted_accuracy_per_class.sum() / len(y_true)
