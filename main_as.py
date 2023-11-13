@@ -54,7 +54,7 @@ def main_resnet(wandb, wandb_logger):
     data.prepare_data()
 
     # ge the model
-    model = ResNetModel(class_weight=data.class_weight, scaler=data.scaler)
+    model = ResNetModel(class_weight=data.class_weight)
 
     # Optional
     wandb.watch(model, log="all")
