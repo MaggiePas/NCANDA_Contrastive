@@ -124,9 +124,9 @@ class ASDataset(Dataset):
         #     raise RuntimeError(f"TotalSegmentator command failed with error: {result.stderr}")
 
         # print(result.stdout)
-        totalsegmentator(image_path, outputfile, roi_subset= ["heart"])
+        # totalsegmentator(image_path, outputfile, roi_subset= ["heart"])
 
-        image = nib.load(outputfile)
+        image = nib.load(image_path)
         image = image.get_fdata()
 
 
@@ -134,7 +134,7 @@ class ASDataset(Dataset):
         image = np.array(image, dtype=np.float32)
 
         # scale images between [0,1]
-        # image = image[0:53, 100:350, 175:425]
+        image = image[0:53, 100:350, 175:425]
 
         image = image / image.max()
 
@@ -213,6 +213,7 @@ class ASDataModule(pl.LightningDataModule):
 
         for class_label in unique_classes:
             num_samples = np.sum(labels == class_label)
+            print(class_label, "has weight", num_samples)
             class_weights[class_label] = num_samples
 
         # Calculate the total number of samples
@@ -222,6 +223,7 @@ class ASDataModule(pl.LightningDataModule):
         for class_label, num_samples in class_weights.items():
             class_weights[class_label] = total_samples / (len(unique_classes) * num_samples)
 
+        print(class_weights)
         self.class_weights = class_weights
 
         return class_weights
