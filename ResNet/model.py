@@ -109,7 +109,7 @@ class ResNetModel(LightningModule):
         self.log('val_loss', loss)
         self.log('val_acc', acc, prog_bar=True)
         balanced_acc = self.calculate_balanced_accuracy(y_pred, y, self.class_weights)
-        self.log('train_balanced_acc', balanced_acc, prog_bar=True)
+        self.log('val_balanced_acc', balanced_acc, prog_bar=True)
 
         return loss
 
@@ -136,7 +136,7 @@ class ResNetModel(LightningModule):
 
         # Log loss and accuracy
         balanced_acc = self.calculate_balanced_accuracy(y_pred, y, self.class_weights)
-        self.log('train_balanced_acc', balanced_acc, prog_bar=True)
+        self.log('test_balanced_acc', balanced_acc, prog_bar=True)
         self.log('test_loss', loss)
         self.log('test_acc', acc, prog_bar=True)
 
