@@ -17,6 +17,7 @@ from conv3D.model import AdniModel
 from unimodal_dataset import ASDataModule
 
 from ResNet.model import ResNetModel
+import torch.multiprocessing as mp
 
 import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -65,6 +66,8 @@ def main_resnet(wandb, wandb_logger):
 
 
 if __name__ == '__main__':
+    mp.set_start_method('spawn', force=True)
+
 
     # create wandb objects to track runs
     # wandb.init(project="ncanda-imaging")
