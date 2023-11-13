@@ -33,6 +33,18 @@ class ResNetModel(LightningModule):
     def configure_optimizers(self):
         optimizer = torch.optim.Adam(self.parameters(), lr=1e-4, capturable=True)
         return optimizer
+    def calculate_balanced_accuracy(self, y_pred, y_true, class_weights):
+        y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
+        accuracy_per_class = (y_pred == y_true).float()
+
+        # Apply class weights
+        weighted_accuracy_per_class = accuracy_per_class * torch.Tensor([class_weights[label] for label in y_true])
+
+        # Compute balanced accuracy
+        balanced_acc = weighted_accuracy_per_class.sum() / len(y_true)
+
+        return balanced_acc
+
 
     def training_step(self, batch, batch_idx):
         x, y = batch
@@ -43,7 +55,7 @@ class ResNetModel(LightningModule):
 
         print("train predatory", y_pred)
         print("prey", y)
-        loss = F.cross_entropy(y_pred, y)
+        loss = self.loss(y_pred, y)
         print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
         # acc = 0#
@@ -54,6 +66,8 @@ class ResNetModel(LightningModule):
 
         # Log loss and accuracy
         print(y)
+        balanced_acc = self.calculate_balanced_accuracy(y_pred, y, self.class_weights)
+        self.log('train_balanced_acc', balanced_acc, prog_bar=True)
         self.log('train_loss', loss)
         self.log('train_acc', acc, prog_bar=True)
 
@@ -89,6 +103,8 @@ class ResNetModel(LightningModule):
         # Log loss and accuracy
         self.log('val_loss', loss)
         self.log('val_acc', acc, prog_bar=True)
+        balanced_acc = self.calculate_balanced_accuracy(y_pred, y, self.class_weights)
+        self.log('train_balanced_acc', balanced_acc, prog_bar=True)
 
         return loss
 
@@ -104,7 +120,7 @@ class ResNetModel(LightningModule):
 
         print(" test predatory", y_pred)
         print("prey", y)
-        loss = F.cross_entropy(y_pred, y)
+        loss = self.loss(y_pred, y)
         print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
 
@@ -114,6 +130,8 @@ class ResNetModel(LightningModule):
         print("score", acc)
 
         # Log loss and accuracy
+        balanced_acc = self.calculate_balanced_accuracy(y_pred, y, self.class_weights)
+        self.log('train_balanced_acc', balanced_acc, prog_bar=True)
         self.log('test_loss', loss)
         self.log('test_acc', acc, prog_bar=True)
 
