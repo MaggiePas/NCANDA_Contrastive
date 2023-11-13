@@ -37,13 +37,17 @@ class ResNetModel(LightningModule):
         accuracy_per_class = (y_pred == y_true).float()
 
         # Apply class weights
-        # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        # if device.type == "cuda":
+        
         #     accuracy_per_class = accuracy_per_class.cuda()
         #     y_true = y_true.cuda()
 
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-        weighted_accuracy_per_class = accuracy_per_class * torch.Tensor([class_weights[label] for label in y_true]).cuda()
+        if device.type == "cuda":
+            weighted_accuracy_per_class = accuracy_per_class * torch.Tensor([class_weights[label] for label in y_true]).cuda()
+        else: 
+            accuracy_per_class = accuracy_per_class.cpu()
+            weighted_accuracy_per_class = accuracy_per_class * torch.Tensor([class_weights[label] for label in y_true]).cpu()
 
         # Compute balanced accuracy
         balanced_acc = weighted_accuracy_per_class.sum() / len(y_true)
@@ -58,19 +62,19 @@ class ResNetModel(LightningModule):
         y_pred = self(x)
         y = torch.sub(y, 1)
 
-        print("train predatory", y_pred)
-        print("prey", y)
+        # print("train predatory", y_pred)
+        # print("prey", y)
         loss = self.loss(y_pred, y)
-        print("loss aquired")
+        # print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
         # acc = 0#
         acc = (y_pred == y).float().mean()
-        print(f'y_pred argmax: {y_pred}')
-        print(f'label: {y}')
-        print("score", acc)
+        # print(f'y_pred argmax: {y_pred}')
+        # print(f'label: {y}')
+        # print("score", acc)
 
         # Log loss and accuracy
-        print(y)
+        # print(y)
         balanced_acc = self.calculate_balanced_accuracy(y_pred, y, self.class_weights)
         self.log('train_balanced_acc', balanced_acc, prog_bar=True)
         self.log('train_loss', loss)
@@ -82,20 +86,20 @@ class ResNetModel(LightningModule):
         x, y = batch
         y = y #.to(torch.long)
         y = torch.sub(y, 1)
-        print(f'label after sub: {y}')
+        # print(f'label after sub: {y}')
         x = torch.unsqueeze(x, 1)
-        print(f'input batch shape: {x.shape}')
-        print(f'label batch shape: {y.shape}')
+        # print(f'input batch shape: {x.shape}')
+        # print(f'label batch shape: {y.shape}')
 
         y_pred = self(x)
-        print(f'model output shape: {y_pred.shape}')
+        # print(f'model output shape: {y_pred.shape}')
 
-        print("cal predatory", y_pred)
-        print("prey", y)
+        # print("cal predatory", y_pred)
+        # print("prey", y)
         loss = self.loss(y_pred, y)
-        print("loss aquired")
+        # print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
-        print(f'argmax output shape: {y_pred.shape}')
+        # print(f'argmax output shape: {y_pred.shape}')
         # y_pred += 1
         acc = (y_pred == y).float().mean()
         print(f'y_pred argmax: {y_pred}')
@@ -115,24 +119,24 @@ class ResNetModel(LightningModule):
 
     def test_step(self, batch, batch_idx):
         x, y = batch
-        print(f'input bacth shape: {x.shape}')
-        print(f'label batch shape: {y.shape}')
+        # print(f'input bacth shape: {x.shape}')
+        # print(f'label batch shape: {y.shape}')
         y = y.to(torch.long)
 
         y_pred = self(x)
-        print(f'model outpit shape: {y_pred.shape}')
+        # print(f'model outpit shape: {y_pred.shape}')
         y = torch.sub(y, 1)
 
-        print(" test predatory", y_pred)
-        print("prey", y)
+        # print(" test predatory", y_pred)
+        # print("prey", y)
         loss = self.loss(y_pred, y)
-        print("loss aquired")
+        # print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
 
         acc = (y_pred == y).float().mean()
-        print(f'y_pred argmax: {y_pred}')
-        print(f'label: {y}')
-        print("score", acc)
+        # print(f'y_pred argmax: {y_pred}')
+        # print(f'label: {y}')
+        # print("score", acc)
 
         # Log loss and accuracy
         balanced_acc = self.calculate_balanced_accuracy(y_pred, y, self.class_weights)
@@ -141,3 +145,4 @@ class ResNetModel(LightningModule):
         self.log('test_acc', acc, prog_bar=True)
 
         return loss
+

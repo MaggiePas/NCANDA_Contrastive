@@ -10,13 +10,15 @@ from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import LearningRateMonitor
 from medcam import medcam
 from scipy.interpolate import interpn
-import shap 
 import numpy as np
 from conv3D.model import AdniModel
 # from dataset import odule
 from unimodal_dataset import ASDataModule
 
+
 from ResNet.model import ResNetModel
+from SiameseNet.model import SiameseResNetModel
+
 import torch.multiprocessing as mp
 
 import torch
@@ -61,6 +63,31 @@ def main_resnet(wandb, wandb_logger):
     wandb.watch(model, log="all")
 
     # train the network
+    # if device == "cpu":
+    #     data = data.cpu()
+    trainer = Trainer(max_epochs=15, logger=wandb_logger, log_every_n_steps=1, accelerator=device, devices=1)
+    trainer.fit(model, data)
+
+def main_siamese(wandb, wandb_logger):
+    '''
+    main function to run the resnet architecture
+    '''
+    seed_everything(23)
+   
+    # load the data
+    data = ASDataModule()
+     # ge the model
+    data.prepare_data()
+
+    # ge the model
+    model = SiameseResNetModel(class_weights=data.class_weight)
+
+    # Optional
+    wandb.watch(model, log="all")
+
+    # train the network
+    # if device == "cpu":
+    #     data = data.cpu()
     trainer = Trainer(max_epochs=15, logger=wandb_logger, log_every_n_steps=1, accelerator=device, devices=1)
     trainer.fit(model, data)
 
@@ -83,6 +110,7 @@ if __name__ == '__main__':
     # main_conv3d(wandb, wandb_logger)
 
     # # run resnet
-    main_resnet(wandb, wandb_logger)
+    main_siamese(wandb, wandb_logger)
+    # main_resnet(wandb, wandb_logger)
 
 

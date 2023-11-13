@@ -3,13 +3,12 @@ import pandas as pd
 import torch
 import os
 import nibabel as nib
-import torchio as tio
 import pytorch_lightning as pl
 import numpy as np
 from sklearn.model_selection import train_test_split
 import warnings
-from totalsegmentator.python_api import totalsegmentator
-import subprocess
+# from totalsegmentator.python_api import totalsegmentator
+# import subprocess
 from collections import Counter
 
 
@@ -21,8 +20,11 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if device.type !='cpu':
     IMAGE_PATH = r'/scratch/users/ewesel/data/chest_scans'
     CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
-IMAGE_PATH = r'/scratch/users/ewesel/data/cropped'
-image_path = '/scratch/users/ewesel/data/chest_scans/M0_5.nii.gz'
+else: 
+    IMAGE_PATH = r'/Users/emilywesel/Desktop/Heart/chest_scans'
+    SEG_PATH = r'/Users/emilywesel/Desktop/Heart/cropped'
+    # image_path = '/scratch/users/ewesel/data/chest_scans/M0_5.nii.gz'
+    CSV_FILE = r'/Users/emilywesel/Desktop/Heart/scores.csv'
 IMAGE_SIZE = 128
 IMAGE_SIZE0 = 53
 TARGET = 'total_bin'
@@ -115,7 +117,7 @@ class ASDataset(Dataset):
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
         image_name = os.path.join(self.image_dir, 'M0_'+str(subject_id))#self.input_tab.iloc[idx, 0])
-        image_name = os.path.join(self.image_dir, 'heart_cropped'+str(subject_id))#self.input_tab.iloc[idx, 0])
+        # image_name = os.path.join(self.image_dir, 'heart_cropped'+str(subject_id))#self.input_tab.iloc[idx, 0])
 
         image_path = image_name + '.nii.gz'
         
@@ -143,7 +145,7 @@ class ASDataset(Dataset):
         image = np.array(image, dtype=np.float32)
 
         # scale images between [0,1]
-        # image = image[0:53, 100:350, 175:425]
+        image = image[0:53, 100:350, 175:425]
 
         image = image / image.max()
 
@@ -170,7 +172,7 @@ class ASDataModule(pl.LightningDataModule):
         group_by_construct_test = {1: [], 0: []}
         df = pd.read_csv(csv_file)
         X = list(df["filename"])
-        print("X", X)
+        # print("X", X)
 
         df['total_bin'] = df['total'].apply(categorize_total)
         labels = list(df['total_bin'])
@@ -178,12 +180,12 @@ class ASDataModule(pl.LightningDataModule):
         counts = Counter(labels)
 
         # Print counts
-        for value, count in counts.items():
-            print(f"emil yyyy {value}: {count} times")
+        # for value, count in counts.items():
+            # print(f"emil yyyy {value}: {count} times")
 
 
         all_labels = labels
-        print(len(X))
+        # print(len(X))
         train_subj, test_subj, y_train, y_test = train_test_split(X, all_labels, stratify=all_labels)
         train_subj_df = df[df['filename'].isin(list(train_subj))]
 
@@ -222,7 +224,7 @@ class ASDataModule(pl.LightningDataModule):
 
         for class_label in unique_classes:
             num_samples = np.sum(labels == class_label)
-            print(class_label, "has weight", num_samples)
+            # print(class_label, "has weight", num_samples)
             class_weights[class_label] = num_samples
 
         # Calculate the total number of samples
