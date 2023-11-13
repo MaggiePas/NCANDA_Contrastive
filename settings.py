@@ -51,7 +51,7 @@ IMAGE_SIZE = 64
 
 NUM_FEATURES = len(FEATURES)
 
-BATCH_SIZE = 4# must be a multiple of four
+BATCH_SIZE = 8# must be a multiple of four
 
 TRAIN_SIZE = 1
 VAL_SIZE = 1
