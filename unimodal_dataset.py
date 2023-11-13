@@ -11,7 +11,6 @@ import warnings
 from totalsegmentator.python_api import totalsegmentator
 import subprocess
 from collections import Counter
-import torch.multiprocessing as mp
 
 
 warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
@@ -130,7 +129,7 @@ class ASDataset(Dataset):
 
         # print(result.stdout)
         # mp.set_start_method('spawn', force=True)
-        totalsegmentator(image_path, outputfile, roi_subset= ["heart"])
+        # totalsegmentator(image_path, outputfile, roi_subset= ["heart"])
         # mp.set_start_method('fork', force=True)
 
 
@@ -142,7 +141,7 @@ class ASDataset(Dataset):
         image = np.array(image, dtype=np.float32)
 
         # scale images between [0,1]
-        image = image[0:53, 100:350, 175:425]
+        # image = image[0:53, 100:350, 175:425]
 
         image = image / image.max()
 
@@ -254,11 +253,11 @@ class ASDataModule(pl.LightningDataModule):
         self.test = self.validation
 
     def train_dataloader(self):
-        return DataLoader(self.train, batch_size=BATCH_SIZE, shuffle=True, num_workers=1, drop_last = False)
+        return DataLoader(self.train, batch_size=BATCH_SIZE, shuffle=True, num_workers=8, drop_last = False)
 
     def val_dataloader(self):
-        return DataLoader(self.validation, batch_size=BATCH_SIZE, shuffle=False, num_workers=1, drop_last = True)
+        return DataLoader(self.validation, batch_size=BATCH_SIZE, shuffle=False, num_workers=8, drop_last = True)
 
     def test_dataloader(self):
-        return DataLoader(self.test, batch_size=BATCH_SIZE, shuffle=False, num_workers=1, drop_last = True)
+        return DataLoader(self.test, batch_size=BATCH_SIZE, shuffle=False, num_workers=8, drop_last = True)
 
