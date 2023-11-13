@@ -34,7 +34,6 @@ class ResNetModel(LightningModule):
         optimizer = torch.optim.Adam(self.parameters(), lr=1e-4, capturable=True)
         return optimizer
     def calculate_balanced_accuracy(self, y_pred, y_true, class_weights):
-        y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
         accuracy_per_class = (y_pred == y_true).float()
 
         # Apply class weights

@@ -20,6 +20,7 @@ warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 from settings import CSV_FILE, IMAGE_PATH, IMAGE_SIZE, VAL_SIZE, TEST_SIZE, FEATURES, TARGET, BATCH_SIZE, transformation, target_transformations
 IMAGE_PATH = r'/scratch/users/ewesel/data/chest_scans'
 CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
+image_path = '/scratch/users/ewesel/data/chest_scans/M0_5.nii.gz'
 IMAGE_SIZE = 128
 IMAGE_SIZE0 = 53
 TARGET = 'total_bin'
