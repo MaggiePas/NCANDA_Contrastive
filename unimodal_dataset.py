@@ -231,7 +231,7 @@ class ASDataModule(pl.LightningDataModule):
         print(class_weights)
         self.class_weights = class_weights
 
-        return class_weights
+        return list(class_weights.values())
 
     def prepare_data(self):
 

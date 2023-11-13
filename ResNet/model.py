@@ -24,7 +24,7 @@ class ResNetModel(LightningModule):
         # # combine the nets
         # self.net = nn.Sequential(self.resnet, self.fc)
         # self.loss = nn.CrossEntropyLoss()
-        self.loss = nn.CrossEntropyLoss(weight=torch.Tensor(class_weights.values()) if class_weights else None)
+        self.loss = nn.CrossEntropyLoss(weight=torch.Tensor(class_weights) if class_weights else None)
     def forward(self, x):
         out = self.net(x)
         # out = out.view(-1, 5)
