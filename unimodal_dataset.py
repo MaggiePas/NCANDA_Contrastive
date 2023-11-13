@@ -74,6 +74,7 @@ def categorize_total(total):
         return 4
     else:
         return 5
+
     
 class ASDataset(Dataset):
     
@@ -95,6 +96,8 @@ class ASDataset(Dataset):
 
     def __len__(self):
         return len(self.subjects)
+    def get_class_weight(self):
+        return self.class_weight
 
     def __getitem__(self, idx):
         # Convert idx from tensor to list due to pandas bug (that arises when using pytorch's random_split)
@@ -199,24 +202,36 @@ class ASDataModule(pl.LightningDataModule):
 
         return train_subj, test_subj, y_train, y_test#, group_by_construct_train, group_by_construct_test
 
-  
         
     def calculate_class_weight(self, X_train):
 
         y_train = X_train.loc[:, TARGET]
-        number_neg_samples = np.sum(y_train.values == False)
-        num_pos_samples = np.sum(y_train.values == True)
-        mfb = number_neg_samples / num_pos_samples
+        
+        # Assuming the classes are integers (1, 2, 3, 4, 5)
+        unique_classes = np.unique(y_train.values)
+        
+        class_weights = {}
 
-        self.class_weights = mfb
+        for class_label in unique_classes:
+            num_samples = np.sum(y_train.values == class_label)
+            class_weights[class_label] = num_samples
 
-        return mfb
+        # Calculate the total number of samples
+        total_samples = len(y_train)
+
+        # Calculate class weights
+        for class_label, num_samples in class_weights.items():
+            class_weights[class_label] = total_samples / (len(unique_classes) * num_samples)
+
+        self.class_weights = class_weights
+
+        return class_weights
 
     def prepare_data(self):
 
         train_subj, test_subj, y_train, y_test = self.get_stratified_split(CSV_FILE)
                 
-        # self.class_weight = self.calculate_class_weight(X_train)
+        self.class_weight = self.calculate_class_weight(train_subj)
 
         self.train = ASDataset(image_dir=IMAGE_PATH, subjects = train_subj, transform=transformation,
                                    target_transform=target_transformations, labels = y_train)
