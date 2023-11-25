@@ -224,7 +224,7 @@ class ASDataModule(pl.LightningDataModule):
         
     def calculate_class_weight(self, labels):
 
-        labels = torch.where((labels >= 1) & (labels <= 4), torch.tensor(1, device='cuda'), labels)
+        labels = [1 if x in range(1, 5) else x for x in labels]
 
 
         
