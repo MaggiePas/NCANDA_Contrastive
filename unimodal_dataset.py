@@ -224,6 +224,9 @@ class ASDataModule(pl.LightningDataModule):
         
     def calculate_class_weight(self, labels):
 
+        labels = torch.where((labels >= 1) & (labels <= 4), torch.tensor(1, device='cuda'), labels)
+
+
         
         # Assuming the classes are integers (1, 2, 3, 4, 5)
         unique_classes = np.unique(labels)
