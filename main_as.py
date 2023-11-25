@@ -64,7 +64,7 @@ def main_resnet(wandb, wandb_logger):
 
     # train the network
     # if device == "cpu":
-    #     data = data.cpu()
+    #     data = data.to("cpu")
     trainer = Trainer(max_epochs=15, logger=wandb_logger, log_every_n_steps=1, accelerator=device, devices=1)
     trainer.fit(model, data)
 
@@ -110,7 +110,7 @@ if __name__ == '__main__':
     # main_conv3d(wandb, wandb_logger)
 
     # # run resnet
-    main_siamese(wandb, wandb_logger)
-    # main_resnet(wandb, wandb_logger)
+    # main_siamese(wandb, wandb_logger)
+    main_resnet(wandb, wandb_logger)
 
 

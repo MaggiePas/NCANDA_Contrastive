@@ -158,6 +158,11 @@ class ASDataset(Dataset):
             label = self.target_transform(label)
         image = image.astype(np.float32)
 
+        if device == 'cpu':
+            image = np.ascontiguousarray(image)
+            label = np.array(label, dtype=np.float32)
+
+
         # return image, tab, label, subject_id
         return image, label#, subject_id
 

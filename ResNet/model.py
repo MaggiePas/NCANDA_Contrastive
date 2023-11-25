@@ -5,6 +5,7 @@ from torch.nn import functional as F
 from monai.networks.nets import resnet10
 torch.backends.cudnn.enabled = False
 import numpy as np
+import torchmetrics
 
 
 class ResNetModel(LightningModule):
@@ -24,6 +25,22 @@ class ResNetModel(LightningModule):
         # # combine the nets
         # self.net = nn.Sequential(self.resnet, self.fc)
         # self.loss = nn.CrossEntropyLoss()
+        self.train_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
+
+        self.train_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
+
+        self.train_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+        self.val_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
+
+        self.val_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
+
+        self.val_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+        self.test_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
+
+        self.test_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
+
+        self.test_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+
         self.loss = nn.CrossEntropyLoss(weight=torch.Tensor(class_weights) if class_weights else None)
     def forward(self, x):
         out = self.net(x)
@@ -31,9 +48,9 @@ class ResNetModel(LightningModule):
         return out
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=1e-4, capturable=True)
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-5, capturable=True)
         return optimizer
-    def calculate_balanced_accuracy(self, y_pred, y_true, class_weights):
+    def calculate_class_weighted_accuracy(self, y_pred, y_true, class_weights):
         accuracy_per_class = (y_pred == y_true).float()
 
         # Apply class weights
@@ -49,10 +66,10 @@ class ResNetModel(LightningModule):
             accuracy_per_class = accuracy_per_class.cpu()
             weighted_accuracy_per_class = accuracy_per_class * torch.Tensor([class_weights[label] for label in y_true]).cpu()
 
-        # Compute balanced accuracy
-        balanced_acc = weighted_accuracy_per_class.sum() / len(y_true)
+        # Compute class_weighted accuracy
+        class_weighted_acc = weighted_accuracy_per_class.sum() / len(y_true)
 
-        return balanced_acc
+        return class_weighted_acc
 
 
     def training_step(self, batch, batch_idx):
@@ -75,10 +92,18 @@ class ResNetModel(LightningModule):
 
         # Log loss and accuracy
         # print(y)
-        balanced_acc = self.calculate_balanced_accuracy(y_pred, y, self.class_weights)
-        self.log('train_balanced_acc', balanced_acc, prog_bar=True)
+        class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
         self.log('train_loss', loss)
         self.log('train_acc', acc, prog_bar=True)
+
+        self.train_accuracy(y_pred, y)
+        self.train_macro_f1(y_pred, y)
+        self.train_auc(y_pred, y)
+
+        self.log('train_accuracy', self.train_accuracy, on_step=True, on_epoch=True)
+        self.log('train_macro_f1', self.train_macro_f1, on_step=True, on_epoch=True)
+        self.log('train_auc', self.train_auc, on_step=True, on_epoch=True)
+        self.log('train_class_weighted_acc', class_weighted_acc, prog_bar=True)
 
         return loss
 
@@ -112,9 +137,18 @@ class ResNetModel(LightningModule):
         # Log loss and accuracy
         self.log('val_loss', loss)
         self.log('val_acc', acc, prog_bar=True)
-        balanced_acc = self.calculate_balanced_accuracy(y_pred, y, self.class_weights)
-        self.log('val_balanced_acc', balanced_acc, prog_bar=True)
+        class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
+        self.val_accuracy(y_pred, y)
+        self.val_macro_f1(y_pred, y)
+        self.val_auc(y_pred, y)
 
+        self.log('val_accuracy', self.val_accuracy, on_step=True, on_epoch=True)
+        self.log('val_macro_f1', self.val_macro_f1, on_step=True, on_epoch=True)
+        self.log('val_auc', self.val_auc, on_step=True, on_epoch=True)
+        self.log('val_class_weighted_acc', class_weighted_acc, prog_bar=True)
+        
+
+        
         return loss
 
     def test_step(self, batch, batch_idx):
@@ -139,10 +173,17 @@ class ResNetModel(LightningModule):
         # print("score", acc)
 
         # Log loss and accuracy
-        balanced_acc = self.calculate_balanced_accuracy(y_pred, y, self.class_weights)
-        self.log('test_balanced_acc', balanced_acc, prog_bar=True)
+        class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
+        self.log('test_class_weighted_acc', class_weighted_acc, prog_bar=True)
         self.log('test_loss', loss)
         self.log('test_acc', acc, prog_bar=True)
+        self.test_accuracy(y_pred, y)
+        self.test_macro_f1(y_pred, y)
+        self.test_auc(y_pred, y)
+
+        self.log('test_accuracy', self.test_accuracy, on_step=True, on_epoch=True)
+        self.log('test_macro_f1', self.test_macro_f1, on_step=True, on_epoch=True)
+        self.log('test_auc', self.test_auc, on_step=True, on_epoch=True)
 
         return loss
 
