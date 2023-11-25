@@ -17,9 +17,11 @@ warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 
 from settings import CSV_FILE, IMAGE_PATH, IMAGE_SIZE, VAL_SIZE, TEST_SIZE, FEATURES, TARGET, BATCH_SIZE, transformation, target_transformations
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-if device.type !='cpu':
+if not device.type == 'cpu':
     IMAGE_PATH = r'/scratch/users/ewesel/data/chest_scans'
+    SEG_PATH = r'/scratch/users/ewesel/data/cropped'
     CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
+    IMAGE_PATH = SEG_PATH
 else: 
     IMAGE_PATH = r'/Users/emilywesel/Desktop/Heart/chest_scans'
     SEG_PATH = r'/Users/emilywesel/Desktop/Heart/cropped'
@@ -116,7 +118,7 @@ class ASDataset(Dataset):
 
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
-        image_name = os.path.join(self.image_dir, 'M0_'+str(subject_id))#self.input_tab.iloc[idx, 0])
+        image_name = os.path.join(self.image_dir, 'heart_cropped'+str(subject_id))#self.input_tab.iloc[idx, 0])
         # image_name = os.path.join(self.image_dir, 'heart_cropped'+str(subject_id))#self.input_tab.iloc[idx, 0])
 
         image_path = image_name + '.nii.gz'
@@ -145,7 +147,7 @@ class ASDataset(Dataset):
         image = np.array(image, dtype=np.float32)
 
         # scale images between [0,1]
-        image = image[0:53, 100:350, 175:425]
+        # image = image[0:53, 100:350, 175:425]
 
         image = image / image.max()
 

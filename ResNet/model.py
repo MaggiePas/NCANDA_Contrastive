@@ -17,7 +17,7 @@ class ResNetModel(LightningModule):
         super().__init__()
         self.class_weights = class_weights
 
-        self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=5)
+        self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2)
 
         # # add a new fc layer
         # self.fc = nn.Linear(400, 5)
@@ -78,6 +78,7 @@ class ResNetModel(LightningModule):
         x = torch.unsqueeze(x, 1)
         y_pred = self(x)
         y = torch.sub(y, 1)
+        y= [1 if x in range(1, 5) else x for x in y]
 
         # print("train predatory", y_pred)
         # print("prey", y)
@@ -112,6 +113,7 @@ class ResNetModel(LightningModule):
         y = y #.to(torch.long)
         y = torch.sub(y, 1)
         # print(f'label after sub: {y}')
+        y= [1 if x in range(1, 5) else x for x in y]
         x = torch.unsqueeze(x, 1)
         # print(f'input batch shape: {x.shape}')
         # print(f'label batch shape: {y.shape}')
@@ -160,6 +162,7 @@ class ResNetModel(LightningModule):
         y_pred = self(x)
         # print(f'model outpit shape: {y_pred.shape}')
         y = torch.sub(y, 1)
+        y = [1 if x in range(1, 5) else x for x in y]
 
         # print(" test predatory", y_pred)
         # print("prey", y)
