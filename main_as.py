@@ -8,7 +8,7 @@ import os
 from pytorch_lightning import Trainer, seed_everything
 from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import LearningRateMonitor
-from medcam import medcam
+# from medcam import medcam
 from scipy.interpolate import interpn
 import numpy as np
 from conv3D.model import AdniModel
