@@ -17,16 +17,17 @@ warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 
 from settings import CSV_FILE, IMAGE_PATH, IMAGE_SIZE, VAL_SIZE, TEST_SIZE, FEATURES, TARGET, BATCH_SIZE, transformation, target_transformations
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-if not device.type == 'cpu':
-    IMAGE_PATH = r'/scratch/users/ewesel/data/chest_scans'
-    SEG_PATH = r'/scratch/users/ewesel/data/cropped'
-    CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
-    IMAGE_PATH = SEG_PATH
-else: 
+print(device.type)
+if device.type == 'cpu':
     IMAGE_PATH = r'/Users/emilywesel/Desktop/Heart/chest_scans'
     SEG_PATH = r'/Users/emilywesel/Desktop/Heart/cropped'
     # image_path = '/scratch/users/ewesel/data/chest_scans/M0_5.nii.gz'
     CSV_FILE = r'/Users/emilywesel/Desktop/Heart/scores.csv'
+else:
+    IMAGE_PATH = r'/scratch/users/ewesel/data/chest_scans'
+    SEG_PATH = r'/scratch/users/ewesel/data/cropped'
+    CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
+    IMAGE_PATH = SEG_PATH
 IMAGE_SIZE = 128
 IMAGE_SIZE0 = 53
 TARGET = 'total_bin'
