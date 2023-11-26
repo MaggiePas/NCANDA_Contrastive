@@ -28,6 +28,9 @@ else:
     SEG_PATH = r'/scratch/users/ewesel/data/cropped'
     CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
     IMAGE_PATH = SEG_PATH
+    CSV_FILE = r'/scratch/users/ewesel/data/scores_small.csv'
+
+
 IMAGE_SIZE = 128
 IMAGE_SIZE0 = 53
 TARGET = 'total_bin'
