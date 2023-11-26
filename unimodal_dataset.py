@@ -183,7 +183,9 @@ class ASDataModule(pl.LightningDataModule):
         group_by_construct_test = {1: [], 0: []}
         df = pd.read_csv(csv_file)
         X = list(df["filename"])
+
         # print("X", X)
+        
 
         df['total_bin'] = df['total'].apply(categorize_total)
         labels = list(df['total_bin'])
@@ -197,7 +199,12 @@ class ASDataModule(pl.LightningDataModule):
 
         all_labels = labels
         # print(len(X))
-        train_subj, test_subj, y_train, y_test = train_test_split(X, all_labels, stratify=all_labels)
+        if len(X) == 1:
+            # If there's only one sample, use it for training without splitting
+            train_subj, y_train = X, labels
+            test_subj, y_test = X, labels
+        else: 
+            train_subj, test_subj, y_train, y_test = train_test_split(X, all_labels, stratify=all_labels)
         train_subj_df = df[df['filename'].isin(list(train_subj))]
 
         test_subj_df = df[df['filename'].isin(list(test_subj))]
