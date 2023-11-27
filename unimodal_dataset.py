@@ -190,12 +190,21 @@ class ASDataset(Dataset):
         # tab = self.X.values[idx]
 
         if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
+            from PIL import Image
+            import torchvision.transforms.functional as F
+            pil_image = Image.fromarray(np.uint8(image * 255))  # Assuming the values are in the range [0, 1]
+
+            # Apply random rotation
+            pil_image = v2.RandomRotation(degrees=(-10, 10))(pil_image)
+
+            # Convert back to NumPy array
+            image = np.array(pil_image, dtype=np.float32) / 255.0
+            # rotater = v2.RandomRotation(degrees=(-10, 10))
+            # image = rotater(image)
             # angle = np.random.uniform(-self.rotation_angle, self.rotation_angle)
             # rotated_image = transform(image, angle)
             
             # Example of usage
-            rotater = v2.RandomRotation(degrees=(-10, 10))
-            image = rotater(image)
             # rotation_transform = RandomRotationWithAngle(degrees=(-self.rotation_angle, self.rotation_angle))
             # rotated_image = rotation_transform(image)
             # image = rotated_image
