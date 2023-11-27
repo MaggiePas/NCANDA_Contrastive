@@ -192,6 +192,7 @@ class ASDataset(Dataset):
         if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
             from PIL import Image
             import torchvision.transforms.functional as F
+            image = np.squeeze(image)
             pil_image = Image.fromarray(np.uint8(image * 255))  # Assuming the values are in the range [0, 1]
 
             # Apply random rotation
