@@ -12,7 +12,7 @@ import warnings
 from collections import Counter
 from torchvision.transforms import RandomRotation
 from PIL import Image
-
+from torchvision.transforms import v2
 
 warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 
@@ -42,13 +42,13 @@ from sklearn.preprocessing import MinMaxScaler
 
 from torchvision import transforms
 
-class RandomRotationWithAngle(transforms.RandomRotation):
-    def __init__(self, degrees, expand=False, center=None):
-        super().__init__(degrees=degrees, expand=expand, center=center)
+# class RandomRotationWithAngle(transforms.RandomRotation):
+#     def __init__(self, degrees, expand=False, center=None):
+#         super().__init__(degrees=degrees, expand=expand, center=center)
 
-    def forward(self, img):
-        angle = self.get_params(self.degrees)
-        return super().forward(img, angle)
+#     def forward(self, img):
+#         angle = self.get_params(self.degrees)
+#         return super().forward(img, angle)
 
 
 
@@ -194,9 +194,11 @@ class ASDataset(Dataset):
             # rotated_image = transform(image, angle)
             
             # Example of usage
-            rotation_transform = RandomRotationWithAngle(degrees=(-self.rotation_angle, self.rotation_angle))
-            rotated_image = rotation_transform(image)
-            image = rotated_image
+            rotater = v2.RandomRotation(degrees=(-10, 10))
+            image = rotater(image)
+            # rotation_transform = RandomRotationWithAngle(degrees=(-self.rotation_angle, self.rotation_angle))
+            # rotated_image = rotation_transform(image)
+            # image = rotated_image
 
         if self.target_transform:
             label = self.target_transform(label)
