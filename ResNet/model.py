@@ -94,7 +94,7 @@ class ResNetModel(LightningModule):
 
         # Log loss and accuracy
         # print(y)
-        class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
+        # class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
         self.log('train_loss', loss)
         self.log('train_acc', acc, prog_bar=True)
 
@@ -105,7 +105,7 @@ class ResNetModel(LightningModule):
         self.log('train_accuracy', self.train_accuracy, on_step=True, on_epoch=True)
         self.log('train_macro_f1', self.train_macro_f1, on_step=True, on_epoch=True)
         self.log('train_auc', self.train_auc, on_step=True, on_epoch=True)
-        self.log('train_class_weighted_acc', class_weighted_acc, prog_bar=True)
+        # self.log('train_class_weighted_acc', class_weighted_acc, prog_bar=True)
 
         return loss
 
@@ -140,7 +140,7 @@ class ResNetModel(LightningModule):
         # Log loss and accuracy
         self.log('val_loss', loss)
         self.log('val_acc', acc, prog_bar=True)
-        class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
+        # class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
         self.val_accuracy(y_pred, y)
         self.val_macro_f1(y_pred, y)
         self.val_auc(y_pred, y)
@@ -148,7 +148,7 @@ class ResNetModel(LightningModule):
         self.log('val_accuracy', self.val_accuracy, on_step=True, on_epoch=True)
         self.log('val_macro_f1', self.val_macro_f1, on_step=True, on_epoch=True)
         self.log('val_auc', self.val_auc, on_step=True, on_epoch=True)
-        self.log('val_class_weighted_acc', class_weighted_acc, prog_bar=True)
+        # self.log('val_class_weighted_acc', class_weighted_acc, prog_bar=True)
         
 
         
@@ -177,8 +177,8 @@ class ResNetModel(LightningModule):
         # print("score", acc)
 
         # Log loss and accuracy
-        class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
-        self.log('test_class_weighted_acc', class_weighted_acc, prog_bar=True)
+        # class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
+        # self.log('test_class_weighted_acc', class_weighted_acc, prog_bar=True)
         self.log('test_loss', loss)
         self.log('test_acc', acc, prog_bar=True)
         self.test_accuracy(y_pred, y)
