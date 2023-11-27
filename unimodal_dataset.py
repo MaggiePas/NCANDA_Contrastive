@@ -12,7 +12,7 @@ import warnings
 from collections import Counter
 from torchvision.transforms import RandomRotation
 from PIL import Image
-from torchvision.transforms import v2
+from torchvision import transforms as v2
 
 warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 
