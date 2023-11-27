@@ -77,7 +77,7 @@ def resize(mat, new_size, interp_mode='linear'):
     # update command line status
     assert mat_rs.shape == tuple(new_size), "Resized matrix does not match requested size."
     return mat_rs
-def transform(self, image, angle):
+def transform(image, angle):
     """
     Apply random rotation to the input image.
     """
@@ -179,7 +179,7 @@ class ASDataset(Dataset):
 
         if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
             angle = np.random.uniform(-self.rotation_angle, self.rotation_angle)
-            rotated_image = self.transform(image, angle)
+            rotated_image = transform(image, angle)
             image = rotated_image
 
         if self.target_transform:
