@@ -17,7 +17,12 @@ class ResNetModel(LightningModule):
         super().__init__()
         self.class_weights = class_weights
 
-        self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2)
+        self.net = nn.Sequential(
+            resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2),
+            nn.Dropout(0.5)  # Adjust the dropout rate as needed
+        )
+
+        # self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2)
 
         # # add a new fc layer
         # self.fc = nn.Linear(400, 5)
@@ -55,7 +60,7 @@ class ResNetModel(LightningModule):
         return out
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=1e-5, capturable=True)
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-4, capturable=True, weight_decay=1e-3)
         return optimizer
     def calculate_class_weighted_accuracy(self, y_pred, y_true, class_weights):
         accuracy_per_class = (y_pred == y_true).float()
