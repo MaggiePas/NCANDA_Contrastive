@@ -122,7 +122,9 @@ class ASDataset(Dataset):
 
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
-        image_name = os.path.join(self.image_dir, 'heart_cropped'+str(subject_id))#self.input_tab.iloc[idx, 0])
+        temp = "heart_cropped"
+        temp = "M0_"
+        image_name = os.path.join(self.image_dir, temp+str(subject_id))#self.input_tab.iloc[idx, 0])
         # image_name = os.path.join(self.image_dir, 'heart_cropped'+str(subject_id))#self.input_tab.iloc[idx, 0])
 
         image_path = image_name + '.nii.gz'
