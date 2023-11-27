@@ -77,6 +77,17 @@ def resize(mat, new_size, interp_mode='linear'):
     # update command line status
     assert mat_rs.shape == tuple(new_size), "Resized matrix does not match requested size."
     return mat_rs
+def transform(self, image, angle):
+    """
+    Apply random rotation to the input image.
+    """
+    # Convert numpy array to PIL image
+    pil_image = Image.fromarray(image.squeeze())
+    # Apply random rotation
+    rotated_image = pil_image.rotate(angle)
+    # Convert back to numpy array
+    rotated_image = np.array(rotated_image, dtype=np.float32)
+    return rotated_image
     
 def categorize_total(total):
     if total == 0:
@@ -93,12 +104,14 @@ def categorize_total(total):
     
 class ASDataset(Dataset):
     
-    def __init__(self, image_dir, subjects, transform, target_transform, labels):
+    def __init__(self, image_dir, subjects, transform, target_transform, labels, rotation_angle=10, train_mode = True):
         self.image_dir = image_dir
         self.transform = transform
         self.target_transform = target_transform
         self.subjects = subjects
         self.labels = labels
+        self.rotation_angle = rotation_angle
+        self.train_mode = train_mode
         # self.input_tab = input_tabular
         # df = pd.read_csv(CSV_FILE)
         # self.X = list(df["filename"])
@@ -163,6 +176,11 @@ class ASDataset(Dataset):
         
         label = self.labels[idx]
         # tab = self.X.values[idx]
+
+        if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
+            angle = np.random.uniform(-self.rotation_angle, self.rotation_angle)
+            rotated_image = self.transform(image, angle)
+            image = rotated_image
 
         if self.target_transform:
             label = self.target_transform(label)
@@ -276,7 +294,7 @@ class ASDataModule(pl.LightningDataModule):
         print(f'Train dataset length: {self.train.__len__()}')
 
         self.validation = ASDataset(image_dir=IMAGE_PATH, subjects = test_subj, transform=transformation,
-                                        target_transform=target_transformations, labels = y_test)
+                                        target_transform=target_transformations, labels = y_test, train_mode=False)
                                         
         print(f'Validation dataset length: {self.validation.__len__()}')
         self.test = self.validation
