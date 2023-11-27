@@ -65,7 +65,7 @@ def main_resnet(wandb, wandb_logger):
     # train the network
     # if device == "cpu":
     #     data = data.to("cpu")
-    trainer = Trainer(max_epochs=15, logger=wandb_logger, log_every_n_steps=1, accelerator=device, devices=1)
+    trainer = Trainer(max_epochs=30, logger=wandb_logger, log_every_n_steps=1, accelerator=device, devices=1)
     trainer.fit(model, data)
 
 def main_siamese(wandb, wandb_logger):
