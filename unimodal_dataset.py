@@ -43,8 +43,8 @@ from sklearn.preprocessing import MinMaxScaler
 from torchvision import transforms
 
 class RandomRotationWithAngle(transforms.RandomRotation):
-    def __init__(self, degrees, resample=False, expand=False, center=None):
-        super().__init__(degrees, resample=resample, expand=expand, center=center)
+    def __init__(self, degrees, expand=False, center=None):
+        super().__init__(degrees=degrees, expand=expand, center=center)
 
     def forward(self, img):
         angle = self.get_params(self.degrees)
