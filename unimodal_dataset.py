@@ -40,6 +40,18 @@ from torch.utils.data import DataLoader
 from scipy.interpolate import interpn
 from sklearn.preprocessing import MinMaxScaler
 
+from torchvision import transforms
+
+class RandomRotationWithAngle(transforms.RandomRotation):
+    def __call__(self, img):
+        # Generate a random rotation angle
+        angle = self.get_params(self.degrees)
+
+        # Apply the rotation to the image
+        return super().__call__(img, angle)
+
+
+
 def resize(mat, new_size, interp_mode='linear'):
     """
     resize: resamples a "matrix" of spatial samples to a desired "resolution" or spatial sampling frequency via interpolation
@@ -178,8 +190,12 @@ class ASDataset(Dataset):
         # tab = self.X.values[idx]
 
         if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
-            angle = np.random.uniform(-self.rotation_angle, self.rotation_angle)
-            rotated_image = transform(image, angle)
+            # angle = np.random.uniform(-self.rotation_angle, self.rotation_angle)
+            # rotated_image = transform(image, angle)
+            
+            # Example of usage
+            rotation_transform = RandomRotationWithAngle(degrees=(-self.rotation_angle, self.rotation_angle))
+            rotated_image = rotation_transform(image)
             image = rotated_image
 
         if self.target_transform:
