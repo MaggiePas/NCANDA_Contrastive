@@ -25,12 +25,12 @@ class ResNetModel(LightningModule):
         # # combine the nets
         # self.net = nn.Sequential(self.resnet, self.fc)
         # self.loss = nn.CrossEntropyLoss()
-        self.train_precision = torchmetrics.Precision(num_classes=2, average='macro')
-        self.train_recall = torchmetrics.Recall(num_classes=2, average='macro')
-        self.val_precision = torchmetrics.Precision(num_classes=2, average='macro')
-        self.val_recall = torchmetrics.Recall(num_classes=2, average='macro')
-        self.test_precision = torchmetrics.Precision(num_classes=2, average='macro')
-        self.test_recall = torchmetrics.Recall(num_classes=2, average='macro')
+        self.train_precision = torchmetrics.Precision(task='multiclass',num_classes=2, average='macro')
+        self.train_recall = torchmetrics.Recall(task='multiclass',num_classes=2, average='macro')
+        self.val_precision = torchmetrics.Precision(task='multiclass',num_classes=2, average='macro')
+        self.val_recall = torchmetrics.Recall(task='multiclass',num_classes=2, average='macro')
+        self.test_precision = torchmetrics.Precision(task='multiclass',num_classes=2, average='macro')
+        self.test_recall = torchmetrics.Recall(task='multiclass',num_classes=2, average='macro')
 
         self.train_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
 
