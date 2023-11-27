@@ -238,7 +238,7 @@ class ASDataModule(pl.LightningDataModule):
         
     def calculate_class_weight(self, labels):
 
-        # labels = [2 if x in range(2, 6) else x for x in labels]
+        labels = [2 if x in range(2, 6) else x for x in labels]
 
 
         

@@ -52,8 +52,9 @@ class ResNetModel(LightningModule):
         self.test_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
 
         self.test_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+        self.loss = nn.BCEWithLogitsLoss(weight=torch.Tensor(class_weights) if class_weights else None)
 
-        self.loss = nn.CrossEntropyLoss(weight=torch.Tensor(class_weights) if class_weights else None)
+        # self.loss = nn.CrossEntropyLoss(weight=torch.Tensor(class_weights) if class_weights else None)
     def forward(self, x):
         out = self.net(x)
         # out = out.view(-1, 5)
