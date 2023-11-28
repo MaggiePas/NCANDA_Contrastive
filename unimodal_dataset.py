@@ -192,14 +192,15 @@ class ASDataset(Dataset):
         if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
             from PIL import Image
             import torchvision.transforms.functional as F
-            image = np.squeeze(image)
-            pil_image = Image.fromarray(np.uint8(image * 255))  # Assuming the values are in the range [0, 1]
+            import numpy as np
+            from scipy.ndimage import rotate
 
-            # Apply random rotation
-            pil_image = v2.RandomRotation(degrees=(-10, 10))(pil_image)
+            # Assuming you have an image represented as a NumPy array called 'image'
+            # and you want to rotate it by 45 degrees clockwise
+            rotation_angle = 45
 
-            # Convert back to NumPy array
-            image = np.array(pil_image, dtype=np.float32) / 255.0
+            # Rotate the image
+            image = rotate(image, rotation_angle, reshape=False)
             # rotater = v2.RandomRotation(degrees=(-10, 10))
             # image = rotater(image)
             # angle = np.random.uniform(-self.rotation_angle, self.rotation_angle)
