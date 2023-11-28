@@ -13,6 +13,10 @@ from collections import Counter
 from torchvision.transforms import RandomRotation
 from PIL import Image
 from torchvision import transforms as v2
+from PIL import Image
+import torchvision.transforms.functional as F
+import numpy as np
+from scipy.ndimage import rotate
 
 warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 
@@ -190,10 +194,6 @@ class ASDataset(Dataset):
         # tab = self.X.values[idx]
 
         if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
-            from PIL import Image
-            import torchvision.transforms.functional as F
-            import numpy as np
-            from scipy.ndimage import rotate
 
             # Assuming you have an image represented as a NumPy array called 'image'
             # and you want to rotate it by 45 degrees clockwise
