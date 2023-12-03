@@ -6,6 +6,7 @@ from monai.networks.nets import resnet10
 torch.backends.cudnn.enabled = False
 # import numpy as np
 import torchmetrics
+from torch.optim.lr_scheduler import StepLR
 
 
 class ResNetModel(LightningModule):
@@ -62,7 +63,13 @@ class ResNetModel(LightningModule):
 
     def configure_optimizers(self):
         optimizer = torch.optim.Adam(self.parameters(), lr=1e-4, capturable=True, weight_decay=1e-3)
-        return optimizer
+        scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.1)
+        lr_scheduler = {
+            'scheduler': scheduler,
+            'name': 'lr_logging'
+        }
+
+        return [optimizer], [lr_scheduler]
     def calculate_class_weighted_accuracy(self, y_pred, y_true, class_weights):
         accuracy_per_class = (y_pred == y_true).float()
 
@@ -125,6 +132,7 @@ class ResNetModel(LightningModule):
         self.log('train_macro_f1', self.train_macro_f1, on_step=True, on_epoch=True)
         self.log('train_auc', self.train_auc, on_step=True, on_epoch=True)
         # self.log('train_class_weighted_acc', class_weighted_acc, prog_bar=True)
+        self.scheduler.step()
 
         return loss
 
