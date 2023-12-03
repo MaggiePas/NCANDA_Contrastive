@@ -132,7 +132,7 @@ class ResNetModel(LightningModule):
         self.log('train_macro_f1', self.train_macro_f1, on_step=True, on_epoch=True)
         self.log('train_auc', self.train_auc, on_step=True, on_epoch=True)
         # self.log('train_class_weighted_acc', class_weighted_acc, prog_bar=True)
-        self.scheduler.step()
+        # self.scheduler.step()
 
         return loss
 
