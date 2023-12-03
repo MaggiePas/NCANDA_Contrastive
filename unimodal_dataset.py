@@ -197,7 +197,7 @@ class ASDataset(Dataset):
 
             # Assuming you have an image represented as a NumPy array called 'image'
             # and you want to rotate it by 45 degrees clockwise
-            rotation_angle = np.random.uniform(-10, 10)
+            rotation_angle = np.random.uniform(-20, 20)
 
             # Rotate the image
             image = rotate(image, rotation_angle, reshape=False)
