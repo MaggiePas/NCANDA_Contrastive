@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=train_depressive_symptoms_only_tabular
-#SBATCH --time=3:00:00
+#SBATCH --time=6:00:00
 #SBATCH -p gpu
 #SBATCH --gpus 3
 #SBATCH -c 20
