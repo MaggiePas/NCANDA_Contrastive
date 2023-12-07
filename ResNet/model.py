@@ -62,8 +62,8 @@ class ResNetModel(LightningModule):
         return out
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=1e-4, capturable=True, weight_decay=1e-3)
-        scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.2)
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-4, capturable=True, weight_decay=1e-3) # maybe higher learning rate bc of scheduler
+        scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.8)
         lr_scheduler = {
             'scheduler': scheduler,
             'name': 'lr_logging'
