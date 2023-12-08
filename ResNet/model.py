@@ -19,7 +19,7 @@ class ResNetModel(LightningModule):
         self.class_weights = class_weights
 
         # self.net = nn.Sequential(
-        self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2),
+        self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2)
         #     nn.Dropout(0.1)  # Adjust the dropout rate as needed
         # )
 
