@@ -33,7 +33,7 @@ else:
     IMAGE_PATH = r'/scratch/users/ewesel/data/chest_scans'
     SEG_PATH = r'/scratch/users/ewesel/data/cropped'
     CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
-    # IMAGE_PATH = SEG_PATH
+    IMAGE_PATH = SEG_PATH
     # CSV_FILE = r'/scratch/users/ewesel/data/scores_small.csv'
 
 
@@ -153,8 +153,8 @@ class ASDataset(Dataset):
 
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
-        # temp = "heart_cropped"
-        temp = "M0_"
+        temp = "heart_cropped"
+        # temp = "M0_"
         image_name = os.path.join(self.image_dir, temp+str(subject_id))#self.input_tab.iloc[idx, 0])
         # image_name = os.path.join(self.image_dir, 'heart_cropped'+str(subject_id))#self.input_tab.iloc[idx, 0])
 
@@ -198,6 +198,7 @@ class ASDataset(Dataset):
             # Assuming you have an image represented as a NumPy array called 'image'
             # and you want to rotate it by 45 degrees clockwise
             rotation_angle = np.random.uniform(-20, 20)
+            print("tator tot", rotation_angle)
 
             # Rotate the image
             image = rotate(image, rotation_angle, reshape=False)
