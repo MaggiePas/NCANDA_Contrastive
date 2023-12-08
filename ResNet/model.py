@@ -19,10 +19,10 @@ class ResNetModel(LightningModule):
         super().__init__()
         self.class_weights = class_weights
 
-        # self.net = nn.Sequential(
-        self.net = densenet121(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2)
-        #     nn.Dropout(0.1)  # Adjust the dropout rate as needed
-        # )
+        self.net = nn.Sequential(
+        resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2),
+            nn.Dropout(0.2)  # Adjust the dropout rate as needed
+        )
 
         # self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2)
 
@@ -64,13 +64,13 @@ class ResNetModel(LightningModule):
 
     def configure_optimizers(self):
         optimizer = torch.optim.Adam(self.parameters(), lr=1e-5, capturable=True)#, weight_decay=1e-3) # maybe higher learning rate bc of scheduler
-        # scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.9)
-        # lr_scheduler = {
-        #     'scheduler': scheduler,
-        #     'name': 'lr_logging'
-        # }
+        scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.9)
+        lr_scheduler = {
+            'scheduler': scheduler,
+            'name': 'lr_logging'
+        }
 
-        return optimizer #[optimizer], [lr_scheduler]
+        return [optimizer], [lr_scheduler]
     def calculate_class_weighted_accuracy(self, y_pred, y_true, class_weights):
         accuracy_per_class = (y_pred == y_true).float()
 
