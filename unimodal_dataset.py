@@ -10,8 +10,6 @@ import warnings
 # from totalsegmentator.python_api import totalsegmentator
 # import subprocess
 from collections import Counter
-from torchvision.transforms import RandomRotation
-from PIL import Image
 from torchvision import transforms as v2
 from PIL import Image
 import torchvision.transforms.functional as F
@@ -33,7 +31,7 @@ else:
     IMAGE_PATH = r'/scratch/users/ewesel/data/chest_scans'
     SEG_PATH = r'/scratch/users/ewesel/data/cropped'
     CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
-    IMAGE_PATH = SEG_PATH
+    # IMAGE_PATH = SEG_PATH
     # CSV_FILE = r'/scratch/users/ewesel/data/scores_small.csv'
 
 
@@ -154,7 +152,7 @@ class ASDataset(Dataset):
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
         temp = "heart_cropped"
-        # temp = "M0_"
+        temp = "M0_"
         image_name = os.path.join(self.image_dir, temp+str(subject_id))#self.input_tab.iloc[idx, 0])
         # image_name = os.path.join(self.image_dir, 'heart_cropped'+str(subject_id))#self.input_tab.iloc[idx, 0])
 
