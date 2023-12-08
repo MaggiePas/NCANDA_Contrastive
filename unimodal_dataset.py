@@ -31,7 +31,7 @@ else:
     IMAGE_PATH = r'/scratch/users/ewesel/data/chest_scans'
     SEG_PATH = r'/scratch/users/ewesel/data/cropped'
     CSV_FILE = r'/scratch/users/ewesel/data/scores.csv'
-    # IMAGE_PATH = SEG_PATH
+    IMAGE_PATH = SEG_PATH
     # CSV_FILE = r'/scratch/users/ewesel/data/scores_small.csv'
 
 
@@ -65,7 +65,7 @@ def resize(mat, new_size, interp_mode='linear'):
     """
     
     mat = mat.squeeze()
-    mat_shape = mat.shape
+    # mat_shape = mat.shape
 
     axis = []
     for dim in range(len(mat.shape)):
@@ -91,17 +91,17 @@ def resize(mat, new_size, interp_mode='linear'):
     # update command line status
     assert mat_rs.shape == tuple(new_size), "Resized matrix does not match requested size."
     return mat_rs
-def transform(image, angle):
-    """
-    Apply random rotation to the input image.
-    """
-    # Convert numpy array to PIL image
-    pil_image = Image.fromarray(image.squeeze())
-    # Apply random rotation
-    rotated_image = pil_image.rotate(angle)
-    # Convert back to numpy array
-    rotated_image = np.array(rotated_image, dtype=np.float32)
-    return rotated_image
+# def transform(image, angle):
+#     """
+#     Apply random rotation to the input image.
+#     """
+#     # Convert numpy array to PIL image
+#     pil_image = Image.fromarray(image.squeeze())
+#     # Apply random rotation
+#     rotated_image = pil_image.rotate(angle)
+#     # Convert back to numpy array
+#     rotated_image = np.array(rotated_image, dtype=np.float32)
+#     return rotated_image
     
 def categorize_total(total):
     if total == 0:
@@ -152,13 +152,13 @@ class ASDataset(Dataset):
 
         # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
         temp = "heart_cropped"
-        temp = "M0_"
+        # temp = "M0_"
         image_name = os.path.join(self.image_dir, temp+str(subject_id))#self.input_tab.iloc[idx, 0])
         # image_name = os.path.join(self.image_dir, 'heart_cropped'+str(subject_id))#self.input_tab.iloc[idx, 0])
 
         image_path = image_name + '.nii.gz'
         
-        outputfile = "/scratch/users/ewesel/data/chest_scans/segmentations" + "/"+f'M0_{str(subject_id)}_heart.nii.gz'
+        # outputfile = "/scratch/users/ewesel/data/chest_scans/segmentations" + "/"+f'M0_{str(subject_id)}_heart.nii.gz'
 
         # Run TotalSegmentator command
         # command = 'pip install TotalSegmentator'
@@ -191,15 +191,15 @@ class ASDataset(Dataset):
         label = self.labels[idx]
         # tab = self.X.values[idx]
 
-        if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
+        # if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
 
-            # Assuming you have an image represented as a NumPy array called 'image'
-            # and you want to rotate it by 45 degrees clockwise
-            rotation_angle = np.random.uniform(-20, 20)
-            print("tator tot", rotation_angle)
+        #     # Assuming you have an image represented as a NumPy array called 'image'
+        #     # and you want to rotate it by 45 degrees clockwise
+        #     rotation_angle = np.random.uniform(-20, 20)
+        #     print("tator tot", rotation_angle)
 
-            # Rotate the image
-            image = rotate(image, rotation_angle, reshape=False)
+        #     # Rotate the image
+        #     image = rotate(image, rotation_angle, reshape=False)
             # rotater = v2.RandomRotation(degrees=(-10, 10))
             # image = rotater(image)
             # angle = np.random.uniform(-self.rotation_angle, self.rotation_angle)
@@ -229,8 +229,8 @@ class ASDataModule(pl.LightningDataModule):
         super().__init__()
 
     def get_stratified_split(self, csv_file):
-        group_by_construct_train = {1: [], 0: []}
-        group_by_construct_test = {1: [], 0: []}
+        # group_by_construct_train = {1: [], 0: []}
+        # group_by_construct_test = {1: [], 0: []}
         df = pd.read_csv(csv_file)
         X = list(df["filename"])
 
@@ -240,7 +240,7 @@ class ASDataModule(pl.LightningDataModule):
         df['total_bin'] = df['total'].apply(categorize_total)
         labels = list(df['total_bin'])
         # Use Counter to get counts
-        counts = Counter(labels)
+        # counts = Counter(labels)
 
         # Print counts
         # for value, count in counts.items():
@@ -255,9 +255,9 @@ class ASDataModule(pl.LightningDataModule):
             test_subj, y_test = X, labels
         else: 
             train_subj, test_subj, y_train, y_test = train_test_split(X, all_labels, stratify=all_labels)
-        train_subj_df = df[df['filename'].isin(list(train_subj))]
+        # train_subj_df = df[df['filename'].isin(list(train_subj))]
 
-        test_subj_df = df[df['filename'].isin(list(test_subj))]
+        # test_subj_df = df[df['filename'].isin(list(test_subj))]
         print(len(train_subj), len(test_subj), len(y_train), len(y_test))
 
 

@@ -18,10 +18,10 @@ class ResNetModel(LightningModule):
         super().__init__()
         self.class_weights = class_weights
 
-        self.net = nn.Sequential(
-            resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2),
-            nn.Dropout(0.1)  # Adjust the dropout rate as needed
-        )
+        # self.net = nn.Sequential(
+        self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2),
+        #     nn.Dropout(0.1)  # Adjust the dropout rate as needed
+        # )
 
         # self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2)
 
@@ -55,14 +55,14 @@ class ResNetModel(LightningModule):
         self.test_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
         # self.loss = nn.BCEWithLogitsLoss(weight=torch.Tensor(class_weights) if class_weights else None)
 
-        self.loss = nn.CrossEntropyLoss(weight=torch.Tensor(class_weights) if class_weights else None)
+        self.loss = nn.CrossEntropyLoss()#weight=torch.Tensor(class_weights) if class_weights else None)
     def forward(self, x):
         out = self.net(x)
         # out = out.view(-1, 5)
         return out
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.parameters(), lr=1e-5, capturable=True, weight_decay=1e-3) # maybe higher learning rate bc of scheduler
+        optimizer = torch.optim.Adam(self.parameters(), lr=1e-5, capturable=True)#, weight_decay=1e-3) # maybe higher learning rate bc of scheduler
         # scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[10, 20, 35, 50], gamma=0.9)
         # lr_scheduler = {
         #     'scheduler': scheduler,
