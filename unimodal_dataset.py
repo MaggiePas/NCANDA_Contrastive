@@ -9,10 +9,10 @@ from sklearn.model_selection import train_test_split
 import warnings
 # from totalsegmentator.python_api import totalsegmentator
 # import subprocess
-from collections import Counter
-from torchvision import transforms as v2
-from PIL import Image
-import torchvision.transforms.functional as F
+# from collections import Counter
+# from torchvision import transforms as v2
+# from PIL import Image
+# import torchvision.transforms.functional as F
 import numpy as np
 from scipy.ndimage import rotate
 
@@ -40,9 +40,9 @@ IMAGE_SIZE0 = 53
 TARGET = 'total_bin'
 from torch.utils.data import DataLoader
 from scipy.interpolate import interpn
-from sklearn.preprocessing import MinMaxScaler
+# from sklearn.preprocessing import MinMaxScaler
 
-from torchvision import transforms
+# from torchvision import transforms
 
 # class RandomRotationWithAngle(transforms.RandomRotation):
 #     def __init__(self, degrees, expand=False, center=None):
