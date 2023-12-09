@@ -4,6 +4,7 @@ from pytorch_lightning.core.module import LightningModule
 from torch.nn import functional as F
 from monai.networks.nets import resnet10
 from torchvision.models import densenet121
+import torchio
 torch.backends.cudnn.enabled = False
 # import numpy as np
 import torchmetrics
@@ -20,7 +21,8 @@ class ResNetModel(LightningModule):
         self.class_weights = class_weights
 
         self.net = nn.Sequential(
-            densenet121(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2),
+            torchio.models.DenseNet(num_classes=2, in_channels=1),
+            # densenet121(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2),
             # resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2),
             nn.Dropout(0.2)  # Adjust the dropout rate as needed
         )
