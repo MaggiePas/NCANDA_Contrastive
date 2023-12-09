@@ -26,8 +26,6 @@ class ResNetModel(LightningModule):
         )
 
         # Modify the classifier to match your output classes
-        in_features = self.net.classifier.in_features
-        self.net.classifier = nn.Linear(in_features, num_classes=2)
 
 
         # self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2)
