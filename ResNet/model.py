@@ -20,11 +20,12 @@ class ResNetModel(LightningModule):
         self.class_weights = class_weights
 
         self.net = nn.Sequential(
-        resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=5),
+            densenet121(pretrained=True, num_classes=2),
+            # resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2),
             nn.Dropout(0.2)  # Adjust the dropout rate as needed
         )
 
-        # self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=5)
+        # self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2)
 
         # # add a new fc layer
         # self.fc = nn.Linear(400, 5)
@@ -32,28 +33,28 @@ class ResNetModel(LightningModule):
         # # combine the nets
         # self.net = nn.Sequential(self.resnet, self.fc)
         # self.loss = nn.CrossEntropyLoss()
-        self.train_precision = torchmetrics.Precision(task='multiclass',num_classes=5, average='macro')
-        self.train_recall = torchmetrics.Recall(task='multiclass',num_classes=5, average='macro')
-        self.val_precision = torchmetrics.Precision(task='multiclass',num_classes=5, average='macro')
-        self.val_recall = torchmetrics.Recall(task='multiclass',num_classes=5, average='macro')
-        self.test_precision = torchmetrics.Precision(task='multiclass',num_classes=5, average='macro')
-        self.test_recall = torchmetrics.Recall(task='multiclass',num_classes=5, average='macro')
+        self.train_precision = torchmetrics.Precision(task='multiclass',num_classes=2, average='macro')
+        self.train_recall = torchmetrics.Recall(task='multiclass',num_classes=2, average='macro')
+        self.val_precision = torchmetrics.Precision(task='multiclass',num_classes=2, average='macro')
+        self.val_recall = torchmetrics.Recall(task='multiclass',num_classes=2, average='macro')
+        self.test_precision = torchmetrics.Precision(task='multiclass',num_classes=2, average='macro')
+        self.test_recall = torchmetrics.Recall(task='multiclass',num_classes=2, average='macro')
 
-        self.train_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=5)
+        self.train_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
 
-        self.train_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=5, average='macro')
+        self.train_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
 
-        self.train_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=5, average='macro')
-        self.val_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=5)
+        self.train_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+        self.val_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
 
-        self.val_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=5, average='macro')
+        self.val_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
 
-        self.val_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=5, average='macro')
-        self.test_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=5)
+        self.val_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
+        self.test_accuracy = torchmetrics.Accuracy(task='multiclass', average='macro', num_classes=2)
 
-        self.test_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=5, average='macro')
+        self.test_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
 
-        self.test_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=5, average='macro')
+        self.test_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
         # self.loss = nn.BCEWithLogitsLoss(weight=torch.Tensor(class_weights) if class_weights else None)
 
         self.loss = nn.CrossEntropyLoss()#weight=torch.Tensor(class_weights) if class_weights else None)
@@ -99,7 +100,7 @@ class ResNetModel(LightningModule):
         x = torch.unsqueeze(x, 1)
         y_pred = self(x)
         y = torch.sub(y, 1)
-        # y = torch.where((y >= 1) & (y <= 4), 1, y)
+        y = torch.where((y >= 1) & (y <= 4), 1, y)
 
 
         # print("train predatory", y_pred)
@@ -142,7 +143,7 @@ class ResNetModel(LightningModule):
         y = y #.to(torch.long)
         y = torch.sub(y, 1)
         # print(f'label after sub: {y}')
-        # y = torch.where((y >= 1) & (y <= 4), 1, y)
+        y = torch.where((y >= 1) & (y <= 4), 1, y)
         x = torch.unsqueeze(x, 1)
         # print(f'input batch shape: {x.shape}')
         # print(f'label batch shape: {y.shape}')
@@ -197,7 +198,7 @@ class ResNetModel(LightningModule):
         y_pred = self(x)
         # print(f'model outpit shape: {y_pred.shape}')
         y = torch.sub(y, 1)
-        # y = torch.where((y >= 1) & (y <= 4), 1, y)
+        y = torch.where((y >= 1) & (y <= 4), 1, y)
 
         # print(" test predatory", y_pred)
         # print("prey", y)
