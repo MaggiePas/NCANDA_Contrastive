@@ -191,15 +191,15 @@ class ASDataset(Dataset):
         label = self.labels[idx]
         # tab = self.X.values[idx]
 
-        # if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
+        if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
 
-        #     # Assuming you have an image represented as a NumPy array called 'image'
-        #     # and you want to rotate it by 45 degrees clockwise
-        #     rotation_angle = np.random.uniform(-20, 20)
-        #     print("tator tot", rotation_angle)
+            # Assuming you have an image represented as a NumPy array called 'image'
+            # and you want to rotate it by 45 degrees clockwise
+            rotation_angle = np.random.uniform(-20, 20)
+            print("tator tot", rotation_angle)
 
         #     # Rotate the image
-        #     image = rotate(image, rotation_angle, reshape=False)
+            image = rotate(image, rotation_angle, reshape=False)
             # rotater = v2.RandomRotation(degrees=(-10, 10))
             # image = rotater(image)
             # angle = np.random.uniform(-self.rotation_angle, self.rotation_angle)
