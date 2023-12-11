@@ -106,7 +106,7 @@ class ResNetModel(LightningModule):
         x = torch.unsqueeze(x, 1)
         y_pred = self(x)
         y = torch.sub(y, 1)
-        y = torch.where((y >= 1) & (y <= 4), 1, y)
+        y = torch.where((y >= 3) & (y <= 4), 1, y)
 
 
         # print("train predatory", y_pred)
@@ -149,7 +149,7 @@ class ResNetModel(LightningModule):
         y = y #.to(torch.long)
         y = torch.sub(y, 1)
         # print(f'label after sub: {y}')
-        y = torch.where((y >= 1) & (y <= 4), 1, y)
+        y = torch.where((y >= 3) & (y <= 4), 1, y)
         x = torch.unsqueeze(x, 1)
         # print(f'input batch shape: {x.shape}')
         # print(f'label batch shape: {y.shape}')
@@ -187,8 +187,8 @@ class ResNetModel(LightningModule):
         self.val_precision(y_pred, y)
         self.val_recall(y_pred, y)
 
-        self.log('train_precision', self.val_precision, on_step=True, on_epoch=True)
-        self.log('train_recall', self.val_recall, on_step=True, on_epoch=True)
+        self.log('val_precision', self.val_precision, on_step=True, on_epoch=True)
+        self.log('val_recall', self.val_recall, on_step=True, on_epoch=True)
         # self.log('val_class_weighted_acc', class_weighted_acc, prog_bar=True)
         
 
@@ -204,7 +204,7 @@ class ResNetModel(LightningModule):
         y_pred = self(x)
         # print(f'model outpit shape: {y_pred.shape}')
         y = torch.sub(y, 1)
-        y = torch.where((y >= 1) & (y <= 4), 1, y)
+        y = torch.where((y >= 3) & (y <= 4), 1, y)
 
         # print(" test predatory", y_pred)
         # print("prey", y)
@@ -233,8 +233,8 @@ class ResNetModel(LightningModule):
         self.test_precision(y_pred, y)
         self.test_recall(y_pred, y)
 
-        self.log('train_precision', self.test_precision, on_step=True, on_epoch=True)
-        self.log('train_recall', self.test_recall, on_step=True, on_epoch=True)
+        self.log('test_precision', self.test_precision, on_step=True, on_epoch=True)
+        self.log('test_recall', self.test_recall, on_step=True, on_epoch=True)
 
         return loss
 
