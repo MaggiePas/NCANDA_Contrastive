@@ -106,8 +106,9 @@ class ResNetModel(LightningModule):
         x = torch.unsqueeze(x, 1)
         y_pred = self(x)
         y = torch.sub(y, 1)
-        y = torch.where((y >= 3) & (y <= 4), 1, y)
         y = torch.where((y < 3), 0, y)
+        y = torch.where((y >= 3) & (y <= 4), 1, y)
+        
 
 
         # print("train predatory", y_pred)
@@ -150,8 +151,9 @@ class ResNetModel(LightningModule):
         y = y #.to(torch.long)
         y = torch.sub(y, 1)
         # print(f'label after sub: {y}')
-        y = torch.where((y >= 3) & (y <= 4), 1, y)
         y = torch.where((y < 3), 0, y)
+        y = torch.where((y >= 3) & (y <= 4), 1, y)
+        
         x = torch.unsqueeze(x, 1)
         # print(f'input batch shape: {x.shape}')
         # print(f'label batch shape: {y.shape}')
@@ -206,8 +208,9 @@ class ResNetModel(LightningModule):
         y_pred = self(x)
         # print(f'model outpit shape: {y_pred.shape}')
         y = torch.sub(y, 1)
-        y = torch.where((y >= 3) & (y <= 4), 1, y)
         y = torch.where((y < 3), 0, y)
+        y = torch.where((y >= 3) & (y <= 4), 1, y)
+        
 
         # print(" test predatory", y_pred)
         # print("prey", y)
