@@ -15,6 +15,10 @@ import warnings
 # import torchvision.transforms.functional as F
 import numpy as np
 from scipy.ndimage import rotate
+from torchio import RandomElasticDeformation
+import torchio as tio
+
+
 
 warnings.filterwarnings("ignore", message=".*The 'nopython' keyword.*")
 
@@ -146,6 +150,24 @@ class ASDataset(Dataset):
             rotation_angle = np.random.uniform(-20, 20)
             # Rotate the image
             image = rotate(image, rotation_angle, reshape=False)
+
+        if self.transform and np.random.rand() < 0.5 and self.train_mode:
+            image_data = np.expand_dims(image, axis=0)
+
+            axial_slice = tio.ScalarImage(tensor=torch.from_numpy(image_data))
+
+            # Define the random affine transformation
+            transform = tio.RandomAffine(
+                scales=(0.7, 1.7),
+                degrees=0,
+            )
+            transform = RandomElasticDeformation(
+                num_control_points=(7, 7, 7),  # or just 7
+                locked_borders=2,
+            )
+
+            # Apply the transformation to the image
+            image = transform(axial_slice)
             
         if self.target_transform:
             label = self.target_transform(label)
@@ -174,12 +196,7 @@ class ASDataModule(pl.LightningDataModule):
         
 
         df['total_bin'] = df['total'].apply(categorize_total)
-        labels = list(df['total_bin'])
-        # Use Counter to get counts
-        # counts = Counter(labels)
-
-        # Print counts
-        
+        labels = list(df['total_bin'])    
 
         all_labels = labels
         if len(X) == 1:
@@ -196,9 +213,6 @@ class ASDataModule(pl.LightningDataModule):
 
         labels = [2 if x in range(4, 6) else 1 for x in labels]
 
-
-        
-        # Assuming the classes are integers (1, 2, 3, 4, 5)
         unique_classes = np.unique(labels)
         
         class_weights = {}
