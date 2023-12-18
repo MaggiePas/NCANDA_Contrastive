@@ -109,8 +109,10 @@ if __name__ == '__main__':
     # run conv3d
     # main_conv3d(wandb, wandb_logger)
 
-    # # run resnet
+    # run siamense
     # main_siamese(wandb, wandb_logger)
+    
+    #run resnet
     main_resnet(wandb, wandb_logger)
 
 

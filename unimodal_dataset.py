@@ -40,17 +40,6 @@ IMAGE_SIZE0 = 53
 TARGET = 'total_bin'
 from torch.utils.data import DataLoader
 from scipy.interpolate import interpn
-# from sklearn.preprocessing import MinMaxScaler
-
-# from torchvision import transforms
-
-# class RandomRotationWithAngle(transforms.RandomRotation):
-#     def __init__(self, degrees, expand=False, center=None):
-#         super().__init__(degrees=degrees, expand=expand, center=center)
-
-#     def forward(self, img):
-#         angle = self.get_params(self.degrees)
-#         return super().forward(img, angle)
 
 
 
@@ -91,17 +80,7 @@ def resize(mat, new_size, interp_mode='linear'):
     # update command line status
     assert mat_rs.shape == tuple(new_size), "Resized matrix does not match requested size."
     return mat_rs
-# def transform(image, angle):
-#     """
-#     Apply random rotation to the input image.
-#     """
-#     # Convert numpy array to PIL image
-#     pil_image = Image.fromarray(image.squeeze())
-#     # Apply random rotation
-#     rotated_image = pil_image.rotate(angle)
-#     # Convert back to numpy array
-#     rotated_image = np.array(rotated_image, dtype=np.float32)
-#     return rotated_image
+
     
 def categorize_total(total):
     if total == 0:
@@ -126,15 +105,7 @@ class ASDataset(Dataset):
         self.labels = labels
         self.rotation_angle = rotation_angle
         self.train_mode = train_mode
-        # self.input_tab = input_tabular
-        # df = pd.read_csv(CSV_FILE)
-        # self.X = list(df["filename"])
-        # self.X_train = df[df['filename'].isin(subjects)]
-        # df['total_bin'] = df['total'].apply(categorize_total)
-        # labels = list(df['total_bin'])
-        # labels.insert(0, 1)
-        # labels.insert(50, labels[-1])
-        # self.y = labels
+
 
     def __len__(self):
         return len(self.subjects)
@@ -145,35 +116,15 @@ class ASDataset(Dataset):
         # Convert idx from tensor to list due to pandas bug (that arises when using pytorch's random_split)
         if isinstance(idx, torch.Tensor):
             idx = idx.tolist()
-        # print("not idf", idx)
-        # print("subjects:", self.subjects)
         subject_id = self.subjects[idx]
 
 
-        # print(f'{self.csv_df_split.iloc[idx, 0]}\n')
         temp = "heart_cropped"
-        # temp = "M0_"
-        image_name = os.path.join(self.image_dir, temp+str(subject_id))#self.input_tab.iloc[idx, 0])
-        # image_name = os.path.join(self.image_dir, 'heart_cropped'+str(subject_id))#self.input_tab.iloc[idx, 0])
+        # temp = "M0_" #uncomment this line to use the whole image
+        image_name = os.path.join(self.image_dir, temp+str(subject_id))
 
         image_path = image_name + '.nii.gz'
         
-        # outputfile = "/scratch/users/ewesel/data/chest_scans/segmentations" + "/"+f'M0_{str(subject_id)}_heart.nii.gz'
-
-        # Run TotalSegmentator command
-        # command = 'pip install TotalSegmentator'
-        # result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        # command = f'TotalSegmentator -i {image_path} -o {outputfile} --roi_subset heart'
-        # result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        # if result.returncode != 0:
-        #     raise RuntimeError(f"TotalSegmentator command failed with error: {result.stderr}")
-
-        # print(result.stdout)
-        # mp.set_start_method('spawn', force=True)
-        # totalsegmentator(image_path, outputfile, roi_subset= ["heart"])
-        # mp.set_start_method('fork', force=True)
-
-
         image = nib.load(image_path)
         image = image.get_fdata()
 
@@ -182,7 +133,6 @@ class ASDataset(Dataset):
         image = np.array(image, dtype=np.float32)
 
         # scale images between [0,1]
-        # image = image[0:53, 100:350, 175:425]
 
         image = image / image.max()
 
@@ -193,23 +143,10 @@ class ASDataset(Dataset):
 
         if self.transform and np.random.rand() < 0.5 and self.train_mode:  # 50% chance of applying rotation
 
-            # Assuming you have an image represented as a NumPy array called 'image'
-            # and you want to rotate it by 45 degrees clockwise
             rotation_angle = np.random.uniform(-20, 20)
-            print("tator tot", rotation_angle)
-
-        #     # Rotate the image
+            # Rotate the image
             image = rotate(image, rotation_angle, reshape=False)
-            # rotater = v2.RandomRotation(degrees=(-10, 10))
-            # image = rotater(image)
-            # angle = np.random.uniform(-self.rotation_angle, self.rotation_angle)
-            # rotated_image = transform(image, angle)
             
-            # Example of usage
-            # rotation_transform = RandomRotationWithAngle(degrees=(-self.rotation_angle, self.rotation_angle))
-            # rotated_image = rotation_transform(image)
-            # image = rotated_image
-
         if self.target_transform:
             label = self.target_transform(label)
         image = image.astype(np.float32)
@@ -234,7 +171,6 @@ class ASDataModule(pl.LightningDataModule):
         df = pd.read_csv(csv_file)
         X = list(df["filename"])
 
-        # print("X", X)
         
 
         df['total_bin'] = df['total'].apply(categorize_total)
@@ -243,41 +179,15 @@ class ASDataModule(pl.LightningDataModule):
         # counts = Counter(labels)
 
         # Print counts
-        # for value, count in counts.items():
-            # print(f"emil yyyy {value}: {count} times")
-
+        
 
         all_labels = labels
-        # print(len(X))
         if len(X) == 1:
             # If there's only one sample, use it for training without splitting
             train_subj, y_train = X, labels
             test_subj, y_test = X, labels
         else: 
             train_subj, test_subj, y_train, y_test = train_test_split(X, all_labels, stratify=all_labels)
-        # train_subj_df = df[df['filename'].isin(list(train_subj))]
-
-        # test_subj_df = df[df['filename'].isin(list(test_subj))]
-        print(len(train_subj), len(test_subj), len(y_train), len(y_test))
-
-
-        # for subject in train_subj:
-        #     subj_visits = df[df['filename'] == subject]
-        #     idx = (int)(subject)
-        #     idx -= 1
-        #     if idx >= 50:
-        #         idx -=1
-        #     subj_label = labels[idx]
-        #     # group_by_construct_train[subj_label].append(subject)
-
-        # for subject in test_subj:
-        #     subj_visits = df[df['filename'] == subject]
-        #     idx = (int)(subject)
-        #     idx -= 1
-        #     if idx >= 50:
-        #         idx -=1
-        #     subj_label = labels[idx]
-        #     # group_by_construct_test[subj_label].append(subject)
 
         return train_subj, test_subj, y_train, y_test#, group_by_construct_train, group_by_construct_test
 

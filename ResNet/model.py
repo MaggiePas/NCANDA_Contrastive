@@ -23,22 +23,10 @@ class ResNetModel(LightningModule):
 
         self.net = nn.Sequential(
             DenseNet(spatial_dims=3, in_channels=1, out_channels=2),
-            # densenet121(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2),
             # resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2),
             nn.Dropout(0.2)  # Adjust the dropout rate as needed
         )
 
-        # Modify the classifier to match your output classes
-
-
-        # self.net = resnet10(pretrained=False, spatial_dims=3, n_input_channels=1, num_classes=2)
-
-        # # add a new fc layer
-        # self.fc = nn.Linear(400, 5)
-
-        # # combine the nets
-        # self.net = nn.Sequential(self.resnet, self.fc)
-        # self.loss = nn.CrossEntropyLoss()
         self.train_precision = torchmetrics.Precision(task='multiclass',num_classes=2, average='macro')
         self.train_recall = torchmetrics.Recall(task='multiclass',num_classes=2, average='macro')
         self.val_precision = torchmetrics.Precision(task='multiclass',num_classes=2, average='macro')
@@ -61,7 +49,6 @@ class ResNetModel(LightningModule):
         self.test_macro_f1 = torchmetrics.classification.MulticlassF1Score(task='multiclass', num_classes=2, average='macro')
 
         self.test_auc = torchmetrics.classification.BinaryAUROC(task='multiclass', num_classes=2, average='macro')
-        # self.loss = nn.BCEWithLogitsLoss(weight=torch.Tensor(class_weights) if class_weights else None)
 
         self.loss = nn.CrossEntropyLoss(weight=torch.Tensor(class_weights) if class_weights else None)
     def forward(self, x):
@@ -82,9 +69,6 @@ class ResNetModel(LightningModule):
         accuracy_per_class = (y_pred == y_true).float()
 
         # Apply class weights
-        
-        #     accuracy_per_class = accuracy_per_class.cuda()
-        #     y_true = y_true.cuda()
 
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -110,21 +94,14 @@ class ResNetModel(LightningModule):
         y = torch.where((y >= 3) & (y <= 4), 1, y)
         
 
-
-        # print("train predatory", y_pred)
-        # print("prey", y)
         loss = self.loss(y_pred, y)
-        # print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
-        # acc = 0#
         acc = (y_pred == y).float().mean()
         print(f'train y_pred argmax: {y_pred}')
         print(f'label: {y}')
         print("score", acc)
 
-        # Log loss and accuracy
-        # print(y)
-        # class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
+        # Log loss, accuracy, and other metrics
         self.log('train_loss', loss)
         self.log('train_acc', acc, prog_bar=True)
 
@@ -142,44 +119,30 @@ class ResNetModel(LightningModule):
         self.log('train_macro_f1', self.train_macro_f1, on_step=True, on_epoch=True)
         self.log('train_auc', self.train_auc, on_step=True, on_epoch=True)
         # self.log('train_class_weighted_acc', class_weighted_acc, prog_bar=True)
-        # self.scheduler.step()
 
         return loss
 
     def validation_step(self, batch, batch_idx):
         x, y = batch
-        y = y #.to(torch.long)
+        y = y
         y = torch.sub(y, 1)
-        # print(f'label after sub: {y}')
         y = torch.where((y < 3), 0, y)
         y = torch.where((y >= 3) & (y <= 4), 1, y)
         
         x = torch.unsqueeze(x, 1)
-        # print(f'input batch shape: {x.shape}')
-        # print(f'label batch shape: {y.shape}')
 
         y_pred = self(x)
-        # print(f'model output shape: {y_pred.shape}')
-
-        # print("cal predatory", y_pred)
-        # print("prey", y)
         loss = self.loss(y_pred, y)
-        # print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
-        # print(f'argmax output shape: {y_pred.shape}')
-        # y_pred += 1
+
         acc = (y_pred == y).float().mean()
         print(f'y_pred argmax: {y_pred}')
         print(f'label: {y}')
         print("score", acc)
 
-        # acc = np.sum(y_pred == y).float().mean() * 100.0
-        # print(f'accuracy: {acc}')
-
-        # Log loss and accuracy
+        # Log loss, accuracy, and other metrics
         self.log('val_loss', loss)
         self.log('val_acc', acc, prog_bar=True)
-        # class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
         self.val_accuracy(y_pred, y)
         self.val_macro_f1(y_pred, y)
         self.val_auc(y_pred, y)
@@ -193,6 +156,7 @@ class ResNetModel(LightningModule):
 
         self.log('val_precision', self.val_precision, on_step=True, on_epoch=True)
         self.log('val_recall', self.val_recall, on_step=True, on_epoch=True)
+        # class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
         # self.log('val_class_weighted_acc', class_weighted_acc, prog_bar=True)
         
 
@@ -201,27 +165,17 @@ class ResNetModel(LightningModule):
 
     def test_step(self, batch, batch_idx):
         x, y = batch
-        # print(f'input bacth shape: {x.shape}')
-        # print(f'label batch shape: {y.shape}')
         y = y.to(torch.long)
 
         y_pred = self(x)
-        # print(f'model outpit shape: {y_pred.shape}')
         y = torch.sub(y, 1)
         y = torch.where((y < 3), 0, y)
         y = torch.where((y >= 3) & (y <= 4), 1, y)
         
-
-        # print(" test predatory", y_pred)
-        # print("prey", y)
         loss = self.loss(y_pred, y)
-        # print("loss aquired")
         y_pred = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
 
         acc = (y_pred == y).float().mean()
-        # print(f'y_pred argmax: {y_pred}')
-        # print(f'label: {y}')
-        # print("score", acc)
 
         # Log loss and accuracy
         # class_weighted_acc = self.calculate_class_weighted_accuracy(y_pred, y, self.class_weights)
