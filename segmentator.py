@@ -1,5 +1,6 @@
 #This is the code used to segment the images
 #I do this outside of the prediction loop to save time
+# There is no image number 50, so I had to do this in two batches. 
 
 for i in range(51, 215):
     inputfile = f'M0_{i}.nii.gz'
