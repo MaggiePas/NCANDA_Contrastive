@@ -168,7 +168,7 @@ class ASDataset(Dataset):
 
             # Apply the transformation to the image
             image = transform(axial_slice)
-            image = np.array(image)
+            image = np.array(image,  dtype=np.float32)
 
             
         if self.target_transform:
